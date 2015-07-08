@@ -21,46 +21,46 @@
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>
     </bean>
 
-    <!--Begin 数据源 -->
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--指定数据库驱动 -->
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <!-- 指定数据库连接的url -->
-        <property name="url" value="jdbc:mysql://localhost:3306/commsystem" />
-        <!-- 数据库的用户名 -->
-        <property name="username" value="root" />
-        <!-- 连接数据库的密码 -->
-        <property name="password" value="pws1993" />
-    </bean>
-    <!--End 数据源 -->
+        <!--Begin 数据源 -->
+        <bean id="dataSource"
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <!--指定数据库驱动 -->
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+            <!-- 指定数据库连接的url -->
+            <property name="url" value="jdbc:mysql://localhost:8080/pan" />
+            <!-- 数据库的用户名 -->
+            <property name="username" value="root" />
+            <!-- 连接数据库的密码 -->
+            <property name="password" value="pws1993" />
+        </bean>
+        <!--End 数据源 -->
+        <!--Begin Hibernate 的 SessionFactory -->
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+            <property name="dataSource" ref="dataSource" />
 
-    <!--Begin Hibernate 的 SessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+            <!-- 以下列表写入实体类 -->
+            <property name="annotatedClasses">
+                <list>
 
-        <!-- 以下列表写入实体类 -->
-        <property name="annotatedClasses">
-            <list>
+                </list>
 
-            </list>
+            </property>
+            <!-- 定义 Hibernate的SessionFactory的属性 -->
+            <property name="hibernateProperties">
+                <props>
+                    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    <prop key="hibernate.format_sql">true</prop>
+                    <prop key="hibernate.hbm2ddl.auto">update</prop>
+                    <prop key="current_session_context_class">thread</prop>
+                    <prop key="hibernate.cache.use_query_cache">false</prop>
+                    <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                    <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                </props>
+            </property>
+        </bean>
+        <!-- End Hibernate 的 SessionFactory -->
 
-        </property>
-        <!-- 定义 Hibernate的SessionFactory的属性 -->
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="current_session_context_class">thread</prop>
-                <prop key="hibernate.cache.use_query_cache">false</prop>
-                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
-                <prop key="hibernate.cache.use_second_level_cache">false</prop>
-            </props>
-        </property>
-    </bean>
-    <!-- End Hibernate 的 SessionFactory -->
 
 </beans>
 
