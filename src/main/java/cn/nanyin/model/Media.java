@@ -12,18 +12,22 @@ public class Media {
     @GeneratedValue
 
     private long id;
-    private Mediasort sort; //分类
-    private String name;    //名称
-    private int playtype;   //?
-    private String url;     //媒体地址
-    private String pic;     //缩略图地址
-    private String gcp;     //工尺谱地址
-    private String jp;      //简谱地址
-    private String content; //说明
-    private int tuijian;    //推荐指数
-    private Date addtime;   //发布时间
-    private int hits;       //点击量
-    private int state;      //?
+    private Mediasort sort;     //分类
+    private String name;        //名称
+    private String singer;      //演唱
+    private String performer;   //演奏
+    private String cameraman;   //摄影
+    private String producer;    //制作
+    private int playtype;       //?
+    private String url;         //媒体地址
+    private String pic;         //缩略图地址
+    private String gcp;         //工尺谱地址
+    private String jp;          //简谱地址
+    private String content;     //说明
+    private int tuijian;        //推荐指数
+    private Date addtime;       //发布时间
+    private int hits;           //点击量
+    private int state;          //?
 
     public long getId() {
         return id;
