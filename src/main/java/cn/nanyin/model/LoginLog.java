@@ -14,7 +14,7 @@ public class LoginLog {
 
     @Id
     @GeneratedValue
-    private long id;
+    private long id;//
 
     private Date logDate;//登录日期
 
