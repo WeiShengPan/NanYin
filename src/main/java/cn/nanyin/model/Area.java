@@ -14,17 +14,17 @@ public class Area {
     private long id;
 
     @OneToMany(mappedBy = "area")
-    private List<User> users;
+    private List<User> users;//地区用户列表
 
-    private int level;
+    private int level;//地区等级
 
-    private String name;
+    private String name;//地区名
 
-    private long upperId;
+    private long upperId;//上一级地区ID
 
-    private String showorder;
+    private int Priority;//优先级
 
-    private int state;
+    private int state;//状态
 
     public List<User> getUsers() {
         return users;
@@ -58,19 +58,27 @@ public class Area {
         this.upperId = upperId;
     }
 
-    public String getShoworder() {
-        return showorder;
-    }
-
-    public void setShoworder(String showorder) {
-        this.showorder = showorder;
-    }
-
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getPriority() {
+        return Priority;
+    }
+
+    public void setPriority(int priority) {
+        Priority = priority;
     }
 }

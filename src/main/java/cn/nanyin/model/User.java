@@ -14,45 +14,45 @@ public class User {
     private long id;
 
     @ManyToOne
-    private Area area;
+    private Area area;//用户所属地区
 
-    private String username;
+    private String college;//用户所属社团
 
-    private String password;
+    private String username;//用户名
 
-    private String name;
+    private String password;//密码
 
-    private boolean gender;
+    private String name;//姓名
 
-    private String telephone;
+    private boolean gender;//性别
 
-    private String address;
+    private String telephone;//联系电话
 
-    private String email;
+    private String address;//地址
 
-    private String socialAccount;
+    private String email;//邮箱
 
-    private String question;
+    private String socialAccount;//社交账号（qq/msn）
 
-    private String answer;
+    private String question;//密保问题
 
-    private boolean join;
+    private String answer;//密保答案
 
-    private long collegeId;
+    private boolean join;//是否加入社团
 
-    private boolean volunteer;
+    private boolean volunteer;//是否为本站志愿者
 
-    private String skill;
+    private String skill;//技能、特长
 
-    private int level;
+    private int level;//会员等级
 
-    private Date regDate;
+    private Date regDate;//注册日期
 
-    private String regIP;
+    private String regIP;//注册IP
 
-    private Date lastRegDate;
+    private Date lastLoginDate;//最后登录日期
 
-    private int state;
+    private int state;//状态
 
     public long getId() {
         return id;
@@ -152,15 +152,6 @@ public class User {
         this.answer = answer;
     }
 
-    public long getCollegeId() {
-        return collegeId;
-    }
-
-    public void setCollegeId(long collegeId) {
-        this.collegeId = collegeId;
-    }
-
-
     public boolean isVolunteer() {
         return volunteer;
     }
@@ -201,14 +192,6 @@ public class User {
         this.regIP = regIP;
     }
 
-    public Date getLastRegDate() {
-        return lastRegDate;
-    }
-
-    public void setLastRegDate(Date lastRegDate) {
-        this.lastRegDate = lastRegDate;
-    }
-
     public int getState() {
         return state;
     }
@@ -223,5 +206,21 @@ public class User {
 
     public void setArea(Area area) {
         this.area = area;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public Date getLastLoginDate() {
+        return lastLoginDate;
+    }
+
+    public void setLastLoginDate(Date lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 }
