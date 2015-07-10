@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Links {
     @Id
     @GeneratedValue
-    private long id;
+    private long id;//
 
     private String name;
 
