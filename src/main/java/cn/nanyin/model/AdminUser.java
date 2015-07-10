@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by Administrator on 2015/7/10.
  */
 @Entity
-public class Admin1 {
+public class AdminUser {
     @Id
     @GeneratedValue
     private long id;
