@@ -12,7 +12,7 @@ import java.util.Date;
 public class AdminUser extends  User{
     @Id
     @GeneratedValue
-    private long id;
+    private long id;//123
 
     private String username;
 
