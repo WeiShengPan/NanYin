@@ -14,7 +14,7 @@ public class Video {
     private long id;
 
     @ManyToOne
-    private VideoSorts videoSort;//所属视频类别
+    private VideoSort videoSort;//所属视频类别
 
     @OneToMany(mappedBy = "video")
     private List<VideoDetail> videoDetails;
@@ -99,11 +99,11 @@ public class Video {
     }
 
 
-    public VideoSorts getVideoSort() {
+    public VideoSort getVideoSort() {
         return videoSort;
     }
 
-    public void setVideoSort(VideoSorts videoSort) {
+    public void setVideoSort(VideoSort videoSort) {
         this.videoSort = videoSort;
     }
 

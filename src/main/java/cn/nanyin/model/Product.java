@@ -14,7 +14,7 @@ public class Product {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private ProductSorts productSorts;   //����
+    private ProductSort productSort;   //����
     private String name;        //��Ʒ��
     private String price;       //�۸�
     private String pic;         //����ͼ��ַ
@@ -32,12 +32,12 @@ public class Product {
         this.id = id;
     }
 
-    public ProductSorts getProductSorts() {
-        return productSorts;
+    public ProductSort getProductSort() {
+        return productSort;
     }
 
-    public void setProductSorts(ProductSorts productSorts) {
-        this.productSorts = productSorts;
+    public void setProductSort(ProductSort productSort) {
+        this.productSort = productSort;
     }
 
     public String getName() {

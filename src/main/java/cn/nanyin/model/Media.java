@@ -14,7 +14,7 @@ public class Media {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private MediaSorts mediaSorts;     //����
+    private MediaSort mediaSort;     //����
     private String name;        //����
     private String singer;      //�ݳ�
     private String performer;   //����
@@ -39,12 +39,12 @@ public class Media {
         this.id = id;
     }
 
-    public MediaSorts getMediaSorts() {
-        return mediaSorts;
+    public MediaSort getMediaSort() {
+        return mediaSort;
     }
 
-    public void setMediaSorts(MediaSorts mediaSorts) {
-        this.mediaSorts = mediaSorts;
+    public void setMediaSort(MediaSort mediaSort) {
+        this.mediaSort = mediaSort;
     }
 
     public String getName() {

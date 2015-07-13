@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2015/7/13.
  */
 @Entity
-public class VideoSorts {
+public class VideoSort {
     @Id
     @GeneratedValue
     private long id;

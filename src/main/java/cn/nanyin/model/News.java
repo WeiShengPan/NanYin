@@ -14,7 +14,7 @@ public class News {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private NewsSorts newsSorts;  //����
+    private NewsSort newsSort;  //����
     private String title;   //����
     private String author;  //����
     private String content; //����
@@ -33,12 +33,12 @@ public class News {
         this.id = id;
     }
 
-    public NewsSorts getNewsSorts() {
-        return newsSorts;
+    public NewsSort getNewsSort() {
+        return newsSort;
     }
 
-    public void setNewsSorts(NewsSorts newsSorts) {
-        this.newsSorts = newsSorts;
+    public void setNewsSort(NewsSort newsSort) {
+        this.newsSort = newsSort;
     }
 
     public String getTitle() {

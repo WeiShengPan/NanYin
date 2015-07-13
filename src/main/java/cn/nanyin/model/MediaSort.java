@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by gg on 2015/7/9.
  */
 @Entity
-public class MediaSorts {
+public class MediaSort {
     @Id
     @GeneratedValue
     private long id;
