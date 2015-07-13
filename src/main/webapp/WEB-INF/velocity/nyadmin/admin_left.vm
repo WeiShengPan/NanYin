@@ -1,0 +1,362 @@
+<%
+menuid=0
+%>
+<!--#include file="checklogin.asp"-->
+<html>
+<head>
+    <style>
+        .menus
+        {
+            display:none;
+            background-Color:#eeeeee;
+            border-right:1 #888888 solid;
+            border-left:1 #888888 solid;
+            border-bottom:1 #cccccc solid;
+
+        }
+        .menuf
+        {
+            cursor: hand;
+            background-Color:#d0d0d0;
+            background:url('../images/bg_01.gif');
+            border-bottom:1 solid #cccccc;
+            border-top:1 solid #ffffff;
+            border-right:1 solid #888888;
+            border-left:1 solid #888888;
+
+        }
+    </style>
+    <script>
+        function showmenu(idname)
+        {
+            if (document.all[idname].style.display=="block")
+            {
+                document.all[idname].style.display="none";
+            }
+            else
+            {
+                document.all[idname].style.display="block";
+            }
+        }
+    </script>
+    <link href="css/snj-admin.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style type="text/css">
+    <!--
+    body {
+        background-image: url(img/left-line.gif);
+    }
+    -->
+</style></head>
+<body bgcolor="#018383" leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+aaaaaaaaaaaaaaaaaaaaaaaaa
+<br>
+<center>
+    <div >
+        <table width=94% bgcolor=#888888 align=right cellspacing="0" cellpadding="0" style="border-bottom:1 #cccccc solid;border-top:1 #ffffff solid;border-right:1 #888888 solid;border-left:1 #888888 solid;">
+            <tr>
+                <td height=80 align=center bgcolor="#f0f0f0">
+                    <b>WWW.FJNANYIN.COM <br>
+                        后台管理系统</b>
+                    <br>
+                    欢迎您，<%=session("name")%>!
+                    <br>
+                    <a href="admin_main.asp" target="mainF">管理首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="admin_logout.asp" target="_top">退出管理</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class=menuf>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b><a href="modpass.asp" target="mainF"><font color="#000000">修改密码</font></a></b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%if mid(session("menupriv"),1,1)="1" then%>
+                    <div class=menuf>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b><a href="admin\man.asp" target="mainF"><font color="#000000">后台帐号管理</font></a></b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),2,1)="1" then%>
+                    <div class=menuf>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b><a href="modhome.asp" target="mainF"><font color="#000000">系统设置</font></a></b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),3,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus0')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>用户管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus0 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="user\area.asp" target="mainF">用户地区管理</a></td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="user\man.asp" target="mainF">管理用户</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),4,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus1')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>新闻管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus1 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="news\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="news\add.asp" target="mainF">添加资讯</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="news\man.asp" target="mainF">管理资讯</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),5,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus3')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>社团资讯</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus3 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="college\sort.asp" target="mainF">地区管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="college\add.asp" target="mainF">添加社团</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="college\man.asp" target="mainF">管理社团</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),6,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus2')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>南音商城</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus2 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="product\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <!--
+                                <tr>
+                                  <td align=center height=22>·<a href="product\brand.asp" target="mainF">品牌管理</a>
+                                  </td>
+                                </tr>
+                            -->
+                            <tr>
+                                <td align=center height=22>·<a href="product\man.asp" target="mainF">管理产品</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),7,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus4')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>图文乐谱</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus4 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="book\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="book\add.asp" target="mainF">添加图书</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="book\man.asp" target="mainF">图书管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),8,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus5')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>教学中心</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus5 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="video\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="video\man.asp" target="mainF">教学管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),9,1)="1" then%>
+
+                    <div class=menuf onClick="showmenu('menus6')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>影音中心</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus6 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="media\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="media\manyy.asp" target="mainF">音乐管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="media\gc_0.asp" target="mainF">歌词管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="media\gc.asp" target="mainF">歌词审核</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="media\mansp.asp" target="mainF">视频管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),10,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus7')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>笑话管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus7 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="joke\sort.asp" target="mainF">类别管理</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align=center height=22>·<a href="joke\man.asp" target="mainF">笑话管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),11,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus8')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>留言管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus8 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="message\message.asp" target="mainF">留言管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                    <%if mid(session("menupriv"),12,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus9')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>短信管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus9 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="sms\man.asp" target="mainF">短信管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <%end if%>
+                    <%if mid(session("menupriv"),13,1)="1" then%>
+                    <div class=menuf onClick="showmenu('menus10')">
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=30>= <b>友情链接管理</b> =
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id=menus10 class=menus>
+                        <table width=100% align=center cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align=center height=22>·<a href="link\man.asp" target="mainF">链接管理</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%end if%>
+                </td>
+            </tr>
+        </table>
+    </div>
+</center>
+</body>
+</html>

@@ -18,6 +18,8 @@
 
     <mvc:default-servlet-handler/>
 
+
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="suffix" value=".vm"/>
     </bean>
@@ -25,6 +27,8 @@
     <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>
     </bean>
+
+
 
     <!--Begin 数据源 -->
     <bean id="dataSource"

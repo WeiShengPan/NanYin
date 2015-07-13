@@ -1,0 +1,11 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>后台管理系统</title>
+</head>
+<body>
+    #include("nyadmin/admin_left.vm")
+    aa
+    #include("nyadmin/admin_main.vm")
+</body>
+</html>

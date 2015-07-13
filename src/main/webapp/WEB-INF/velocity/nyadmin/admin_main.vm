@@ -1,0 +1,33 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+    <!--
+    body {
+        background-color: #D6EBEB;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+    -->
+</style>
+
+<link href="css/snj-admin.css" rel="stylesheet" type="text/css">
+<body>
+<center>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td height="60" align="center" background="img/right-line.gif" class="white-bold">欢迎使用福建南音网后台管理系统 !</td>
+        </tr>
+        <tr>
+            <td height="5" bgcolor="#018383"></td>
+        </tr>
+        <tr>
+            <td height="14"></td>
+        </tr>
+    </table>
+    <span class="tit-bold">欢迎使用福建南音网后台管理系统</span>
+</center>
+</body>
+</html>
+
