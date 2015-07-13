@@ -8,18 +8,18 @@ import java.util.Set;
  * Created by gg on 2015/7/9.
  */
 @Entity
-public class Newssort {
+public class NewsSort {
     @Id
     @GeneratedValue
     private long id;
-    private int leve;       //·ÖÀà¼¶±ð
-    private String name;    //Ãû³Æ
-    private long upperid;   //ËùÊô´ó·ÖÀà
-    private int showorder;  //?
+    private int level;       //ï¿½ï¿½ï¿½à¼¶ï¿½ï¿½
+    private String name;    //ï¿½ï¿½ï¿½ï¿½
+    private long upperId;   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int priority;  //?
     private int state;      //?
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "sort")
-    private Set<News> news=new HashSet<News>();
+    private Set<News> news;
 
     public long getId() {
         return id;
@@ -29,12 +29,12 @@ public class Newssort {
         this.id = id;
     }
 
-    public int getLeve() {
-        return leve;
+    public int getLevel() {
+        return level;
     }
 
-    public void setLeve(int leve) {
-        this.leve = leve;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getName() {
@@ -45,20 +45,20 @@ public class Newssort {
         this.name = name;
     }
 
-    public long getUpperid() {
-        return upperid;
+    public long getUpperId() {
+        return upperId;
     }
 
-    public void setUpperid(long upperid) {
-        this.upperid = upperid;
+    public void setUpperId(long upperId) {
+        this.upperId = upperId;
     }
 
-    public int getShoworder() {
-        return showorder;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setShoworder(int showorder) {
-        this.showorder = showorder;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public int getState() {

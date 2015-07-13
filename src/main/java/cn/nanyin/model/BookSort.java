@@ -8,18 +8,18 @@ import java.util.Set;
  * Created by gg on 2015/7/9.
  */
 @Entity
-public class Booksort {
+public class BookSort {
     @Id
     @GeneratedValue
     private long id;
-    private int level;      //·ÖÀà¼¶±ð
-    private String name;    //·ÖÀàÃû
-    private long upperid;   //¸Ã·ÖÀàËùÊô´ó·ÖÀà
-    private int showorder;  //£¿
-    private int state;      //£¿
+    private int level;      //ï¿½ï¿½ï¿½à¼¶ï¿½ï¿½
+    private String name;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private long upperId;   //ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int priority;  //ï¿½ï¿½
+    private int state;      //ï¿½ï¿½
 
     @OneToMany (cascade= CascadeType.ALL,mappedBy = "sort")
-    private Set<Book> books=new HashSet<Book>();
+    private Set<Book> books;
 
     public long getId() {
         return id;
@@ -45,20 +45,20 @@ public class Booksort {
         this.name = name;
     }
 
-    public long getUpperid() {
-        return upperid;
+    public long getUpperId() {
+        return upperId;
     }
 
-    public void setUpperid(long upperid) {
-        this.upperid = upperid;
+    public void setUpperId(long upperId) {
+        this.upperId = upperId;
     }
 
-    public int getShoworder() {
-        return showorder;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setShoworder(int showorder) {
-        this.showorder = showorder;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public int getState() {
