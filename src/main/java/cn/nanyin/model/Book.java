@@ -14,7 +14,7 @@ public class Book {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private BookSorts bookSorts;  //所属类别
+    private BookSort bookSort;  //所属类别
     private String title;   //
     private String author;  //
     private String content; //
@@ -106,12 +106,12 @@ public class Book {
         this.hits = hits;
     }
 
-    public BookSorts getBookSorts() {
-        return bookSorts;
+    public BookSort getBookSort() {
+        return bookSort;
     }
 
-    public void setBookSorts(BookSorts bookSorts) {
-        this.bookSorts = bookSorts;
+    public void setBookSort(BookSort bookSort) {
+        this.bookSort = bookSort;
     }
 
     public String getTitle() {
