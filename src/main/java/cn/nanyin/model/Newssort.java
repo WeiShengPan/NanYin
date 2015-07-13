@@ -9,16 +9,18 @@ import java.util.Set;
  */
 @Entity
 public class Newssort {
+    @Id
+    @GeneratedValue
     private long id;
     private int leve;       //分类级别
     private String name;    //名称
     private long upperid;   //所属大分类
     private int showorder;  //?
     private int state;      //?
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "newssort")
     private Set<News> news=new HashSet<News>();
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -67,7 +69,6 @@ public class Newssort {
         this.state = state;
     }
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "newssort")
     public Set<News> getNews() {
         return news;
     }

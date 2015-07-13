@@ -10,8 +10,10 @@ import java.util.Date;
 public class News {
     @Id
     @GeneratedValue
-
     private long id;
+
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
+    @JoinColumn(name = "sort_id")
     private Newssort sort;  //分类
     private String title;   //标题
     private String author;  //作者
@@ -31,8 +33,6 @@ public class News {
         this.id = id;
     }
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
-    @JoinColumn(name = "sort_id")
     public Newssort getSort() {
         return sort;
     }

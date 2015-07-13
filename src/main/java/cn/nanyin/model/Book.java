@@ -8,8 +8,14 @@ import java.util.Date;
  */
 @Entity
 public class Book {
+    @Id
+    @GeneratedValue
     private long id;
+
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
+    @JoinColumn(name = "sort_id")
     private Booksort sort;  //分类
+
     private String title;   //书名
     private String author;  //作者
     private String content; //介绍
@@ -21,8 +27,6 @@ public class Book {
     private Date addtime;   //发布时间
     private int state;      //?
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -103,8 +107,6 @@ public class Book {
         this.hits = hits;
     }
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
-    @JoinColumn(name = "sort_id")
     public Booksort getSort() {
         return sort;
     }

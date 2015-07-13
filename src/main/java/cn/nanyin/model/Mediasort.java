@@ -9,6 +9,8 @@ import java.util.Set;
  */
 @Entity
 public class Mediasort {
+    @Id
+    @GeneratedValue
     private long id;
     private int leve;       //分类级别
     private String name;    //分类名
@@ -17,10 +19,10 @@ public class Mediasort {
     private String pic;     //?
     private String intro;   //?
     private int state;      //?
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "mediasort")
     private Set<Media> medias=new HashSet<Media>();
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -85,7 +87,6 @@ public class Mediasort {
         this.state = state;
     }
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "mediasort")
     public Set<Media> getMedias() {
         return medias;
     }

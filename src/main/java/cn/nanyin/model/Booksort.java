@@ -9,16 +9,18 @@ import java.util.Set;
  */
 @Entity
 public class Booksort {
+    @Id
+    @GeneratedValue
     private long id;
     private int level;      //分类级别
     private String name;    //分类名
     private long upperid;   //该分类所属大分类
     private int showorder;  //？
     private int state;      //？
+
+    @OneToMany (cascade= CascadeType.ALL,mappedBy = "booksort")
     private Set<Book> books=new HashSet<Book>();
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -67,7 +69,6 @@ public class Booksort {
         this.state = state;
     }
 
-    @OneToMany (cascade= CascadeType.ALL,mappedBy = "booksort")
     public Set<Book> getBooks() {
         return books;
     }

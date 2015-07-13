@@ -9,6 +9,8 @@ import java.util.Set;
  */
 @Entity
 public class Productsort {
+    @Id
+    @GeneratedValue
     private long id;
     private int leve;       //分类级别
     private String name;    //分类名
@@ -17,10 +19,10 @@ public class Productsort {
     private String pic;     //缩略图地址
     private String intro;   //?
     private int state;      //?
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productsort")
     private Set<Product> products=new HashSet<Product>();
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -85,7 +87,6 @@ public class Productsort {
         this.state = state;
     }
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productsort")
     public Set<Product> getProducts() {
         return products;
     }

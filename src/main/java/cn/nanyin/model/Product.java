@@ -10,8 +10,10 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue
-
     private long id;
+
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
+    @JoinColumn(name = "sort_id")
     private Productsort sort;   //分类
     private String name;        //产品名
     private String price;       //价格
@@ -30,8 +32,6 @@ public class Product {
         this.id = id;
     }
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
-    @JoinColumn(name = "sort_id")
     public Productsort getSort() {
         return sort;
     }

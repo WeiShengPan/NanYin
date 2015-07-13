@@ -10,8 +10,10 @@ import java.util.Date;
 public class Media {
     @Id
     @GeneratedValue
-
     private long id;
+
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
+    @JoinColumn(name = "sort_id")
     private Mediasort sort;     //·ÖÀà
     private String name;        //Ãû³Æ
     private String singer;      //ÑÝ³ª
@@ -37,8 +39,6 @@ public class Media {
         this.id = id;
     }
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
-    @JoinColumn(name = "sort_id")
     public Mediasort getSort() {
         return sort;
     }
