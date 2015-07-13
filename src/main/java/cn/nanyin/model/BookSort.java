@@ -18,7 +18,7 @@ public class BookSort {
     private int priority;  //��
     private int state;      //��
 
-    @OneToMany (cascade= CascadeType.ALL,mappedBy = "sort")
+    @OneToMany (cascade= CascadeType.ALL,mappedBy = "bookSort")
     private Set<Book> books;
 
     public long getId() {

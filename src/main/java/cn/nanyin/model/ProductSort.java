@@ -20,7 +20,7 @@ public class ProductSort {
     private String intro;   //?
     private int state;      //?
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "sort")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productSort")
     private Set<Product> products=new HashSet<Product>();
 
     public long getId() {

@@ -20,7 +20,7 @@ public class MediaSort {
     private String intro;   //?
     private int state;      //?
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "sort")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "mediaSort")
     private Set<Media> medias;
 
     public long getId() {

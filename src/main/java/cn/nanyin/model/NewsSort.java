@@ -18,7 +18,7 @@ public class NewsSort {
     private int priority;  //?
     private int state;      //?
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "sort")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
     private Set<News> news;
 
     public long getId() {
