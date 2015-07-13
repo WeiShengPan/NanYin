@@ -14,21 +14,21 @@ public class Media {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private Mediasort sort;     //·ÖÀà
-    private String name;        //Ãû³Æ
-    private String singer;      //ÑÝ³ª
-    private String performer;   //ÑÝ×à
-    private String cameraman;   //ÉãÓ°
-    private String producer;    //ÖÆ×÷
+    private MediaSorts mediaSorts;     //ï¿½ï¿½ï¿½ï¿½
+    private String name;        //ï¿½ï¿½ï¿½ï¿½
+    private String singer;      //ï¿½Ý³ï¿½
+    private String performer;   //ï¿½ï¿½ï¿½ï¿½
+    private String cameraman;   //ï¿½ï¿½Ó°
+    private String producer;    //ï¿½ï¿½ï¿½ï¿½
     private int playtype;       //?
-    private String url;         //Ã½ÌåµØÖ·
-    private String pic;         //ËõÂÔÍ¼µØÖ·
-    private String gcp;         //¹¤³ßÆ×µØÖ·
-    private String jp;          //¼òÆ×µØÖ·
-    private String content;     //ËµÃ÷
-    private int tuijian;        //ÍÆ¼öÖ¸Êý
-    private Date addtime;       //·¢²¼Ê±¼ä
-    private int hits;           //µã»÷Á¿
+    private String url;         //Ã½ï¿½ï¿½ï¿½Ö·
+    private String pic;         //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö·
+    private String gcp;         //å·¥å°ºè°±
+    private String jp;          //ç®€è°±
+    private String content;     //Ëµï¿½ï¿½
+    private int recommendation;        //ï¿½Æ¼ï¿½Ö¸ï¿½ï¿½
+    private Date addDate;       //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    private int hits;           //ï¿½ï¿½ï¿½ï¿½ï¿½
     private int state;          //?
 
     public long getId() {
@@ -39,12 +39,12 @@ public class Media {
         this.id = id;
     }
 
-    public Mediasort getSort() {
-        return sort;
+    public MediaSorts getMediaSorts() {
+        return mediaSorts;
     }
 
-    public void setSort(Mediasort sort) {
-        this.sort = sort;
+    public void setMediaSorts(MediaSorts mediaSorts) {
+        this.mediaSorts = mediaSorts;
     }
 
     public String getName() {
@@ -103,20 +103,20 @@ public class Media {
         this.content = content;
     }
 
-    public int getTuijian() {
-        return tuijian;
+    public int getRecommendation() {
+        return recommendation;
     }
 
-    public void setTuijian(int tuijian) {
-        this.tuijian = tuijian;
+    public void setRecommendation(int recommendation) {
+        this.recommendation = recommendation;
     }
 
-    public Date getAddtime() {
-        return addtime;
+    public Date getAddDate() {
+        return addDate;
     }
 
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 
     public int getHits() {
@@ -133,5 +133,37 @@ public class Media {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getSinger() {
+        return singer;
+    }
+
+    public void setSinger(String singer) {
+        this.singer = singer;
+    }
+
+    public String getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(String performer) {
+        this.performer = performer;
+    }
+
+    public String getCameraman() {
+        return cameraman;
+    }
+
+    public void setCameraman(String cameraman) {
+        this.cameraman = cameraman;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 }

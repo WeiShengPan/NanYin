@@ -3,6 +3,7 @@ package cn.nanyin.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
@@ -13,6 +14,9 @@ public class VideoDetail {
     @Id
     @GeneratedValue
     private long id;
+
+    @ManyToOne
+    private Video video;//所属视频板块
 
     private String title;
 
@@ -30,9 +34,11 @@ public class VideoDetail {
 
     private int priority;
 
-    private int sort;
-
     private Date addDate;
+
+    private int hits;
+
+    private int state;
 
     public long getId() {
         return id;
@@ -106,19 +112,35 @@ public class VideoDetail {
         this.priority = priority;
     }
 
-    public int getSort() {
-        return sort;
-    }
-
-    public void setSort(int sort) {
-        this.sort = sort;
-    }
-
     public Date getAddDate() {
         return addDate;
     }
 
     public void setAddDate(Date addDate) {
         this.addDate = addDate;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void setHits(int hits) {
+        this.hits = hits;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

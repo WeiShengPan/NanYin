@@ -1,9 +1,8 @@
 package cn.nanyin.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/7/10.
@@ -13,6 +12,12 @@ public class Video {
     @Id
     @GeneratedValue
     private long id;
+
+    @ManyToOne
+    private VideoSorts videoSort;//所属视频类别
+
+    @OneToMany(mappedBy = "video")
+    private List<VideoDetail> videoDetails;
 
     private String title;
 
@@ -27,8 +32,6 @@ public class Video {
     private int state;
 
     private Date addDate;
-
-    private int sort;
 
     public long getId() {
         return id;
@@ -95,12 +98,21 @@ public class Video {
         this.addDate = addDate;
     }
 
-    public int getSort() {
-        return sort;
+
+    public VideoSorts getVideoSort() {
+        return videoSort;
     }
 
-    public void setSort(int sort) {
-        this.sort = sort;
+    public void setVideoSort(VideoSorts videoSort) {
+        this.videoSort = videoSort;
+    }
+
+    public List<VideoDetail> getVideoDetails() {
+        return videoDetails;
+    }
+
+    public void setVideoDetails(List<VideoDetail> videoDetails) {
+        this.videoDetails = videoDetails;
     }
 }
 

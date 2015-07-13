@@ -7,10 +7,11 @@ import java.util.Date;
  * Created by Administrator on 2015/7/8.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     @ManyToOne

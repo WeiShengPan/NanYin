@@ -8,19 +8,19 @@ import java.util.Set;
  * Created by gg on 2015/7/9.
  */
 @Entity
-public class Productsort {
+public class ProductSorts {
     @Id
     @GeneratedValue
     private long id;
-    private int leve;       //·ÖÀà¼¶±ð
-    private String name;    //·ÖÀàÃû
-    private long upperid;   //ËùÊô´ó·ÖÀà
-    private int showorder;  //?
-    private String pic;     //ËõÂÔÍ¼µØÖ·
+    private int level;       //ï¿½ï¿½ï¿½à¼¶ï¿½ï¿½
+    private String name;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private long upperId;   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int priority;  //?
+    private String pic;     //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö·
     private String intro;   //?
     private int state;      //?
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productsort")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "sort")
     private Set<Product> products=new HashSet<Product>();
 
     public long getId() {
@@ -31,12 +31,12 @@ public class Productsort {
         this.id = id;
     }
 
-    public int getLeve() {
-        return leve;
+    public int getLevel() {
+        return level;
     }
 
-    public void setLeve(int leve) {
-        this.leve = leve;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getName() {
@@ -47,20 +47,20 @@ public class Productsort {
         this.name = name;
     }
 
-    public long getUpperid() {
-        return upperid;
+    public long getUpperId() {
+        return upperId;
     }
 
-    public void setUpperid(long upperid) {
-        this.upperid = upperid;
+    public void setUpperId(long upperId) {
+        this.upperId = upperId;
     }
 
-    public int getShoworder() {
-        return showorder;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setShoworder(int showorder) {
-        this.showorder = showorder;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public String getPic() {

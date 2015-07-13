@@ -14,17 +14,16 @@ public class Book {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private Booksort sort;  //·ÖÀà
-
-    private String title;   //ÊéÃû
-    private String author;  //×÷Õß
-    private String content; //½éÉÜ
-    private String downurl; //ÏÂÔØµØÖ·
-    private int showorder;  //£¿
-    private int tuijian;    //ÍÆ¼öÖ¸Êı
-    private String image;   //ËõÂÔÍ¼µØÖ·
-    private int hits;       //µã»÷Á¿
-    private Date addtime;   //·¢²¼Ê±¼ä
+    private BookSorts bookSorts;  //æ‰€å±ç±»åˆ«
+    private String title;   //
+    private String author;  //
+    private String content; //
+    private String downloadURL; //
+    private int priority;  //ä¼˜å…ˆçº§
+    private boolean recommendation;    //æ˜¯å¦æ¨è
+    private String image;   //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö·
+    private int hits;       //ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Date addDate;   //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private int state;      //?
 
     public long getId() {
@@ -43,12 +42,12 @@ public class Book {
         this.state = state;
     }
 
-    public Date getAddtime() {
-        return addtime;
+    public Date getAddDate() {
+        return addDate;
     }
 
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 
     public String getAuthor() {
@@ -67,28 +66,28 @@ public class Book {
         this.content = content;
     }
 
-    public String getDownurl() {
-        return downurl;
+    public String getDownloadURL() {
+        return downloadURL;
     }
 
-    public void setDownurl(String downurl) {
-        this.downurl = downurl;
+    public void setDownloadURL(String downloadURL) {
+        this.downloadURL = downloadURL;
     }
 
-    public int getShoworder() {
-        return showorder;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setShoworder(int showorder) {
-        this.showorder = showorder;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
-    public int getTuijian() {
-        return tuijian;
+    public boolean getRecommendation() {
+        return recommendation;
     }
 
-    public void setTuijian(int tuijian) {
-        this.tuijian = tuijian;
+    public void setRecommendation(boolean recommendation) {
+        this.recommendation = recommendation;
     }
 
     public String getImage() {
@@ -107,12 +106,12 @@ public class Book {
         this.hits = hits;
     }
 
-    public Booksort getSort() {
-        return sort;
+    public BookSorts getBookSorts() {
+        return bookSorts;
     }
 
-    public void setSort(Booksort sort) {
-        this.sort = sort;
+    public void setBookSorts(BookSorts bookSorts) {
+        this.bookSorts = bookSorts;
     }
 
     public String getTitle() {

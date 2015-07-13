@@ -14,15 +14,15 @@ public class News {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private Newssort sort;  //·ÖÀà
-    private String title;   //±êÌâ
-    private String author;  //×÷Õß
-    private String content; //ÕýÎÄ
-    private int showorder;  //?
-    private int tuijian;    //ÍÆ¼öÖ¸Êý
-    private String image;   //ËõÂÔÍ¼µØÖ·
-    private int hits;       //µã»÷Á¿
-    private Date addtime;   //·¢²¼Ê±¼ä
+    private NewsSorts newsSorts;  //ï¿½ï¿½ï¿½ï¿½
+    private String title;   //ï¿½ï¿½ï¿½ï¿½
+    private String author;  //ï¿½ï¿½ï¿½ï¿½
+    private String content; //ï¿½ï¿½ï¿½ï¿½
+    private int priority;  //?
+    private int recommendation;    //ï¿½Æ¼ï¿½Ö¸ï¿½ï¿½
+    private String image;   //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö·
+    private int hits;       //ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Date addDate;   //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private int state;      //?
 
     public long getId() {
@@ -33,12 +33,12 @@ public class News {
         this.id = id;
     }
 
-    public Newssort getSort() {
-        return sort;
+    public NewsSorts getNewsSorts() {
+        return newsSorts;
     }
 
-    public void setSort(Newssort sort) {
-        this.sort = sort;
+    public void setNewsSorts(NewsSorts newsSorts) {
+        this.newsSorts = newsSorts;
     }
 
     public String getTitle() {
@@ -65,20 +65,20 @@ public class News {
         this.content = content;
     }
 
-    public int getShoworder() {
-        return showorder;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setShoworder(int showorder) {
-        this.showorder = showorder;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
-    public int getTuijian() {
-        return tuijian;
+    public int getRecommendation() {
+        return recommendation;
     }
 
-    public void setTuijian(int tuijian) {
-        this.tuijian = tuijian;
+    public void setRecommendation(int recommendation) {
+        this.recommendation = recommendation;
     }
 
     public String getImage() {
@@ -97,12 +97,12 @@ public class News {
         this.hits = hits;
     }
 
-    public Date getAddtime() {
-        return addtime;
+    public Date getAddDate() {
+        return addDate;
     }
 
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 
     public int getState() {

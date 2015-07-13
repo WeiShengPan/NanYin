@@ -14,14 +14,14 @@ public class Product {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private Productsort sort;   //·ÖÀà
-    private String name;        //²úÆ·Ãû
-    private String price;       //¼Û¸ñ
-    private String pic;         //ËõÂÔÍ¼µØÖ·
-    private String content;     //½éÉÜ
-    private int tuijian;        //ÍÆ¼öÖ¸Êý
-    private Date addtime;       //ÉÏ¼ÜÊ±¼ä
-    private int hits;           //µã»÷Á¿
+    private ProductSorts productSorts;   //ï¿½ï¿½ï¿½ï¿½
+    private String name;        //ï¿½ï¿½Æ·ï¿½ï¿½
+    private String price;       //ï¿½Û¸ï¿½
+    private String pic;         //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö·
+    private String content;     //ï¿½ï¿½ï¿½ï¿½
+    private int recommendation;        //ï¿½Æ¼ï¿½Ö¸ï¿½ï¿½
+    private Date addDate;       //ï¿½Ï¼ï¿½Ê±ï¿½ï¿½
+    private int hits;           //ï¿½ï¿½ï¿½ï¿½ï¿½
     private int state;          //?
 
     public long getId() {
@@ -32,12 +32,12 @@ public class Product {
         this.id = id;
     }
 
-    public Productsort getSort() {
-        return sort;
+    public ProductSorts getProductSorts() {
+        return productSorts;
     }
 
-    public void setSort(Productsort sort) {
-        this.sort = sort;
+    public void setProductSorts(ProductSorts productSorts) {
+        this.productSorts = productSorts;
     }
 
     public String getName() {
@@ -72,20 +72,20 @@ public class Product {
         this.content = content;
     }
 
-    public int getTuijian() {
-        return tuijian;
+    public int getRecommendation() {
+        return recommendation;
     }
 
-    public void setTuijian(int tuijian) {
-        this.tuijian = tuijian;
+    public void setRecommendation(int recommendation) {
+        this.recommendation = recommendation;
     }
 
-    public Date getAddtime() {
-        return addtime;
+    public Date getAddDate() {
+        return addDate;
     }
 
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 
     public int getHits() {
