@@ -22,7 +22,7 @@ public class NewsDao {
 
     public List<News> getNewsList(Integer start,Integer max)
     {
-        Query query=sessionFactory.getCurrentSession().createQuery("from news");
+        Query query=sessionFactory.getCurrentSession().createQuery("from News");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
@@ -30,7 +30,7 @@ public class NewsDao {
 
     public List<NewsSort> getNewsSortList(Integer start,Integer max)
     {
-        Query query=sessionFactory.getCurrentSession().createQuery("from newssort");
+        Query query=sessionFactory.getCurrentSession().createQuery("from NewsSort");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();

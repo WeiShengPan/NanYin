@@ -1,34 +1,30 @@
 package cn.nanyin.controller;
 
-import cn.nanyin.dao.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by gg on 2015/7/14.
  */
 @Controller
 public class UserController {
-    private UserDao userDao;
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
-    public ModelAndView showNewsList()
-    {
-        return new ModelAndView("nyadmin/userlist");
-    }
+//    private UserDao userDao;
+//
+//    public UserDao getUserDao() {
+//        return userDao;
+//    }
+//
+//    public void setUserDao(UserDao userDao) {
+//        this.userDao = userDao;
+//    }
+//
+//    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
+//    public ModelAndView showNewsList()
+//    {
+//        return new ModelAndView("nyadmin/userlist");
+//    }
 //    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
 //    public ModelAndView showUserList()
 //    {

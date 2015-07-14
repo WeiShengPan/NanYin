@@ -1,12 +1,15 @@
 package cn.nanyin.controller;
 
 import cn.nanyin.dao.NewsDao;
+import cn.nanyin.model.News;
 import cn.nanyin.model.NewsSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by ���� on 2015/7/13.
@@ -26,8 +29,8 @@ public class NewsController {
         return model;
     }
 
-    @RequestMapping(value="nyadmin/newsadd",method = RequestMethod.GET)
-    public ModelAndView addNews()
+    @RequestMapping(value="nyadmin/newsadd",method = RequestMethod.POST)
+    public ModelAndView addNews(News news)
     {
         return new ModelAndView("nyadmin/newsadd");
     }
@@ -35,17 +38,17 @@ public class NewsController {
     @RequestMapping(value="nyadmin/newssort",method=RequestMethod.GET)
     public ModelAndView showNewsSortList()
     {
-        ModelAndView model;
+        ModelAndView model=new ModelAndView("nyadmin/newssort");
         NewsSort ns=new NewsSort();
         ns.setLevel(1);
-        ns.setName("啊");
+        ns.setName("啊1");
         ns.setPriority(1);
         ns.setState(1);
         ns.setUpperId(1);
         newsDao.addNewsSort(ns);
-        //List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
-        // model.addObject("newsSortList",newsSortList);
-        return new ModelAndView("nyadmin/newssort");
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
+        model.addObject("newsSortList",newsSortList);
+        return model;
     }
 
 }
