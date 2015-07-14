@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by gg on 2015/7/14.
  */
@@ -25,9 +22,15 @@ public class UserController {
     }
 
     @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
-    public ModelAndView showNewsList()
+    public ModelAndView showUserList()
     {
-        return new ModelAndView("nyadmin/userlist");
+        return new ModelAndView("nyadmin/userList");
+    }
+
+    @RequestMapping(value="nyadmin/useradd",method = RequestMethod.GET)
+    public ModelAndView addUser()
+    {
+        return new ModelAndView("nyadmin/useradd");
     }
 //    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
 //    public ModelAndView showUserList()
