@@ -22,7 +22,7 @@
                 <ul class="treeview-menu">
                     <li><a href=""><i class="fa fa-circle-o"></i> 地区管理</a></li>
                     <li><a href=""><i class="fa fa-circle-o"></i> 添加用户</a></li>
-                    <li><a href="userList.vmuserlist.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                    <li><a href="userlist.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                 </ul>
             </li>
             <li class="active treeview">
