@@ -1,6 +1,7 @@
 package cn.nanyin.controller;
 
 import cn.nanyin.dao.NewsDao;
+import cn.nanyin.model.NewsSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,13 @@ public class NewsController {
     public ModelAndView showNewsSortList()
     {
         ModelAndView model;
+        NewsSort ns=new NewsSort();
+        ns.setLevel(1);
+        ns.setName("啊");
+        ns.setPriority(1);
+        ns.setState(1);
+        ns.setUpperId(1);
+        newsDao.addNewsSort(ns);
         //List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
         // model.addObject("newsSortList",newsSortList);
         return new ModelAndView("nyadmin/newssort");
