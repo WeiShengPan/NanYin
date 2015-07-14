@@ -17,25 +17,24 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>新闻管理</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                    <li><a href=""><i class="fa fa-circle-o"></i> 添加用户</a></li>
+                    <li><a href="userlist.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>新闻管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href=""><i class="fa fa-circle-o"></i> 类别管理</a></li>
                     <li><a href=""><i class="fa fa-circle-o"></i> 添加新闻</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> 管理新闻</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Layout Options</span>
-                    <span class="label label-primary pull-right">4</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                    <li><a href="newslist.vm"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
                 </ul>
             </li>
             <li>
