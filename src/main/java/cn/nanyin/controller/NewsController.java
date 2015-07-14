@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by звкЙ on 2015/7/13.
+ * Created by пїЅпїЅпїЅпїЅ on 2015/7/13.
  */
 @Controller
 public class NewsController {
@@ -15,5 +15,11 @@ public class NewsController {
     public ModelAndView showNewsList()
     {
         return new ModelAndView("nyadmin/newslist");
+    }
+
+    @RequestMapping(value="nyadmin/newsadd",method = RequestMethod.GET)
+    public ModelAndView addNews()
+    {
+        return new ModelAndView("nyadmin/newsadd");
     }
 }

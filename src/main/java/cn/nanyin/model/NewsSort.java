@@ -12,11 +12,11 @@ public class NewsSort {
     @Id
     @GeneratedValue
     private long id;
-    private int level;       //���༶��
-    private String name;    //����
-    private long upperId;   //���������
-    private int priority;  //?
-    private int state;      //?
+    private int level;
+    private String name;
+    private long upperId;
+    private int priority;
+    private int state;
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
     private Set<News> news;

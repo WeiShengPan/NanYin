@@ -11,21 +11,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminIndexController {
 
-    @RequestMapping(value="/nyadmin/admin_index",method= RequestMethod.GET)
-    public ModelAndView index()
-    {
-        return new ModelAndView("nyadmin/admin_index");
-    }
-
-    @RequestMapping(value="/nyadmin/admin_main",method=RequestMethod.GET)
-    public ModelAndView mainFrame()
-    {
-        return new ModelAndView("nyadmin/admin_main");
-    }
-
-    @RequestMapping(value="/nyadmin/admin_left",method=RequestMethod.GET)
-    public ModelAndView leftFrame()
-    {
-        return new ModelAndView("nyadmin/admin_left");
-    }
 }
