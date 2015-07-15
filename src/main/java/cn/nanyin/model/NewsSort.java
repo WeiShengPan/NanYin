@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,15 +13,19 @@ public class NewsSort {
     @Id
     @GeneratedValue
     private long id;
-    private int level;
-    private String name;
-    @ManyToOne
-    private NewsSort upperNewsSort;
-    private int priority;
-    private int state;
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
     private Set<News> news;
+
+    @ManyToOne
+    private NewsSort upperNewsSort;
+    @OneToMany(mappedBy = "upperNewsSort")
+    private List<NewsSort> lowerNewsSortList;
+
+    private int level;
+    private String name;
+    private int priority;
+    private int state;
 
     public long getId() {
         return id;
@@ -77,5 +82,13 @@ public class NewsSort {
 
     public void setUpperNewsSort(NewsSort upperNewsSort) {
         this.upperNewsSort = upperNewsSort;
+    }
+
+    public List<NewsSort> getLowerNewsSortList() {
+        return lowerNewsSortList;
+    }
+
+    public void setLowerNewsSortList(List<NewsSort> lowerNewsSortList) {
+        this.lowerNewsSortList = lowerNewsSortList;
     }
 }
