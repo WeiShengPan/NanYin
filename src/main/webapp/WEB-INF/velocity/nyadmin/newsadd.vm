@@ -37,12 +37,12 @@
                             </div><!-- /. tools -->
                         </div><!-- /.box-header -->
                         <div class="box-body pad">
-                            <form>
+                            <form action="/nyadmin/newsadd" method="post">
                                 <!-- 类别 -->
                                 <div class="form-group">
                                     <label>选择类别</label>
-                                    <select class="form-control">
-                                        <option>option 1</option>
+                                    <select name="=" class="form-control">
+                                        <option value="1">option 1</option>
                                         <option>option 2</option>
                                         <option>option 3</option>
                                         <option>option 4</option>
@@ -52,7 +52,7 @@
                                 <!-- 标题 -->
                                 <div class="form-group">
                                     <label>标题</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="title" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 作者 -->
                                 <div class="form-group">
