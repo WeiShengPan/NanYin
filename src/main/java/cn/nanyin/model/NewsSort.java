@@ -14,7 +14,8 @@ public class NewsSort {
     private long id;
     private int level;
     private String name;
-    private long upperId;
+    @ManyToOne
+    private NewsSort upperNewsSort;
     private int priority;
     private int state;
 
@@ -45,13 +46,6 @@ public class NewsSort {
         this.name = name;
     }
 
-    public long getUpperId() {
-        return upperId;
-    }
-
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
-    }
 
     public int getPriority() {
         return priority;
@@ -75,5 +69,13 @@ public class NewsSort {
 
     public void setNews(Set<News> news) {
         this.news = news;
+    }
+
+    public NewsSort getUpperNewsSort() {
+        return upperNewsSort;
+    }
+
+    public void setUpperNewsSort(NewsSort upperNewsSort) {
+        this.upperNewsSort = upperNewsSort;
     }
 }
