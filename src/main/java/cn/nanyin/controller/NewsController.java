@@ -60,7 +60,7 @@ public class NewsController {
         ModelAndView model=new ModelAndView("nyadmin/newssort");
 
         List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
-        model.addObject("newsSortList",newsSortList);
+        model.addObject("newsSortList", newsSortList);
         return model;
     }
 
@@ -70,6 +70,15 @@ public class NewsController {
     {
         newsDao.addNewsSort(newsSort);
         return new ModelAndView("redirect:newssort");
+    }
+
+    @RequestMapping(value="nyadmin/newsdelete",method = RequestMethod.GET)
+    public ModelAndView deleteNews(long id)
+    {
+        News news=new News();
+        news = newsDao.getNewsById(id);
+        newsDao.deleteNews(news);
+        return new ModelAndView("redirect:newslist");
     }
 
 }
