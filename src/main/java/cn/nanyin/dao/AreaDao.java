@@ -1,6 +1,6 @@
 package cn.nanyin.dao;
 
-import cn.nanyin.model.User;
+import cn.nanyin.model.Area;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +11,26 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by gg on 2015/7/14.
+ * Created by gg on 2015/7/15.
  */
 @Repository
 @Transactional
-public class UserDao {
+public class AreaDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<User> getUserList(Integer start,Integer max)
+    public List<Area> getAreaList(Integer start,Integer max)
     {
-        Query query=sessionFactory.getCurrentSession().createQuery("from User");
+        Query query=sessionFactory.getCurrentSession().createQuery("from Area");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
     }
 
-    public Serializable addUser(User user)
+    public Serializable addArea(Area area)
     {
         Serializable result=null;
-        result=sessionFactory.getCurrentSession().save(user);
+        result=sessionFactory.getCurrentSession().save(area);
         return result;
     }
 }
