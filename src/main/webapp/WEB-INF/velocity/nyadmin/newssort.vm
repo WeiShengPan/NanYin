@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>新闻管理</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -32,7 +33,8 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">类别列表</h3>
-                        </div><!-- /.box-header -->
+                        </div>
+                        <!-- /.box-header -->
                         <div class="box-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -45,26 +47,79 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <td>0</td>
-                                    <td>网站信息</td>
-                                    <td>顶级类</td>
-                                    <td></td>
-                                </tr>
+                                    #foreach($newsSort in $newsSortList)
+                                    <tr>
+                                        <td>$newsSort.level</td>
+                                        <td>$newsSort.name</td>
+                                        #foreach($upperSort in $newsSortList)
+                                            #if($upperSort.id==$newsSort.upperNewsSort_id)
+                                            <td>$upperSort.name</td>
+                                            #end
+                                        #end
+                                        <td></td>
+                                    </tr>
+                                    #end
 
                                 </tfoot>
                             </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">添加类别</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <form action="/nyadmin/newssortadd" method="post">
+                                <!-- 类别 -->
+                                <div class="form-group">
+                                    <label>上级类别</label>
+                                    <select name="upperNewsSort.id" class="form-control">
+                                        #foreach($newsSort in $newsSortList)
+                                            <option value="$newsSort.id">$newsSort.name</option>
+                                        #end
+
+                                    </select>
+                                </div>
+                                <!-- 标题 -->
+                                <div class="form-group">
+                                    <label>类别名称</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Enter ..."/>
+                                </div>
+
+                                <!-- 排序编号 -->
+                                <div class="form-group">
+                                    <label>排序编号</label>
+                                    <input type="text" name="level" class="form-control" placeholder="Enter ..."/>
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
     #include("nyadmin/_footer.vm")
 
-</div><!-- ./wrapper -->
+</div>
+<!-- ./wrapper -->
 
-#include("nyadmin/_globalJS.vm")
+    #include("nyadmin/_globalJS.vm")
 </body>
 </html>

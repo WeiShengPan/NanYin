@@ -81,9 +81,8 @@
                                     <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-default">Cancel</button>
-                                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                                </div><!-- /.box-footer -->
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div><!-- /.box -->

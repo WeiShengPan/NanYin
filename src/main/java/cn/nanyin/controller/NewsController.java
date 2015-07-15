@@ -3,6 +3,7 @@ package cn.nanyin.controller;
 import cn.nanyin.dao.NewsDao;
 import cn.nanyin.model.News;
 import cn.nanyin.model.NewsSort;
+import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,26 +30,35 @@ public class NewsController {
         return model;
     }
 
-    @RequestMapping(value="nyadmin/newsadd",method = RequestMethod.POST)
-    public ModelAndView addNews(News news)
+//    @RequestMapping(value="nyadmin/newsadd",method = RequestMethod.POST)
+//    public ModelAndView addNews(News news)
+//    {
+//        return new ModelAndView("nyadmin/newsadd");
+//    }
+
+    @RequestMapping(value="nyadmin/newsadd",method=RequestMethod.GET)
+    public ModelAndView showNewsAddPage()
     {
-        return new ModelAndView("nyadmin/newsadd");
+        ModelAndView model=new ModelAndView("nyadmin/newsadd");
+
+        return model;
     }
 
     @RequestMapping(value="nyadmin/newssort",method=RequestMethod.GET)
     public ModelAndView showNewsSortList()
     {
         ModelAndView model=new ModelAndView("nyadmin/newssort");
-        NewsSort ns=new NewsSort();
-        ns.setLevel(1);
-        ns.setName("啊1");
-        ns.setPriority(1);
-        ns.setState(1);
-        ns.setUpperId(1);
-        newsDao.addNewsSort(ns);
+
         List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
         model.addObject("newsSortList",newsSortList);
         return model;
+    }
+
+    @RequestMapping(value="nyadmin/newssortadd",method=RequestMethod.POST)
+    public ModelAndView addNewsSort(NewsSort newsSort)
+    {
+        newsDao.addNewsSort(newsSort);
+        return new ModelAndView("redirect:newssort");
     }
 
 }
