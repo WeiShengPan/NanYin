@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -56,6 +57,24 @@ public class UserController {
 //        ns.setState(1);
 //        ns.setUpperId(1);
 //        areaDao.addArea(ns);
+        List<Area> areaList=areaDao.getAreaList(0, 50);
+        model.addObject("areaList", areaList);
+        return model;
+    }
+
+    @RequestMapping(value="nyadmin/userarea/addArea",method = RequestMethod.POST)
+    public ModelAndView addArea(HttpServletRequest request)
+    {
+        Area ns=new Area();
+        int l = Integer.parseInt(request.getParameter("upperId"));
+        ns.setLevel(l+1);
+        ns.setName(request.getParameter("name"));
+        ns.setPriority(0);
+        ns.setState(0);
+        ns.setUpperId(1);
+        areaDao.addArea(ns);
+
+        ModelAndView model=new ModelAndView("nyadmin/userarea");
         List<Area> areaList=areaDao.getAreaList(0, 50);
         model.addObject("areaList", areaList);
         return model;
