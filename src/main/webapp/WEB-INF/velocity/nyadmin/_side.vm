@@ -20,7 +20,7 @@
                     <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                    <li><a href="userarea.vm"><i class="fa fa-circle-o"></i> 地区管理</a></li>
                     <li><a href="useradd.vm"><i class="fa fa-circle-o"></i> 添加用户</a></li>
                     <li><a href="userList.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                 </ul>

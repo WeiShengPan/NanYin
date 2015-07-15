@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>用户管理</title>
+    <title>新闻管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     #include("nyadmin/_globalCSS.vm")
 </head>
@@ -32,9 +32,9 @@
                         <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="userarea.vm"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                        <li class="active"><a href="userarea.vm"><i class="fa fa-circle-o"></i> 地区管理</a></li>
                         <li><a href="useradd.vm"><i class="fa fa-circle-o"></i> 添加用户</a></li>
-                        <li class="active"><a href="userList.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                        <li><a href="userList.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -168,8 +168,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                管理用户
-                <small>advanced tables</small>
+                用户管理
+                <small>地区管理</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -184,38 +184,28 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">用户信息</h3>
+                            <h3 class="box-title">地区列表</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>用户名</th>
-                                    <th>密码</th>
-                                    <th>真实姓名</th>
-                                    <th>用户等级</th>
-                                    <th>详细信息</th>
+                                    <th>级别</th>
+                                    <th>名称</th>
+                                    <th>上级类</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                #*    #foreach(${user}in ${userlist})
+
                                 <tr>
-                                    <td>${user.username}" /></td>
-                                    <td>${user.password}</td>
-                                    <td>${user.name}</td>
-                                    <td>${user.level}</td>
-                                    <td><a>详细信息</a></td>
+                                    <td>0</td>
+                                    <td>大陆</td>
+                                    <td>顶级类</td>
+                                    <td></td>
                                 </tr>
-                                    #end    *#
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                </tbody>
+
+                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
