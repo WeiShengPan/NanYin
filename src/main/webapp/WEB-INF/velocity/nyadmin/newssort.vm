@@ -57,6 +57,43 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">添加类别</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <form action="/nyadmin/newssortadd" method="post">
+                                <!-- 类别 -->
+                                <div class="form-group">
+                                    <label>上级类别</label>
+                                    <select name="upperId" class="form-control">
+                                        <option value="1">顶级类别</option>
+                                        <option value="2"">option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                        <option>option 5</option>
+                                    </select>
+                                </div>
+                                <!-- 标题 -->
+                                <div class="form-group">
+                                    <label>类别名称</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Enter ..." />
+                                </div>
+
+                                <!-- 排序编号 -->
+                                <div class="form-group">
+                                    <label>排序编号</label>
+                                    <input type="text" name="level" class="form-control" placeholder="Enter ..." />
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
             </div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
