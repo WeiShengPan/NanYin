@@ -19,11 +19,7 @@
                 新闻管理
                 <small>类别管理</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -48,16 +44,14 @@
                                 <tbody>
 
                                     #foreach($newsSort in $newsSortList)
-                                    <tr>
-                                        <td>$newsSort.level</td>
-                                        <td>$newsSort.name</td>
-                                        #foreach($upperSort in $newsSortList)
-                                            #if($upperSort.id==$newsSort.upperNewsSort_id)
-                                            <td>$upperSort.name</td>
-                                            #end
+                                        #if($newsSort.id!=1)
+                                        <tr>
+                                            <td>$newsSort.level</td>
+                                            <td>$newsSort.name</td>
+                                            <td>$!newsSort.upperNewsSort.name</td>
+                                            <td><a href="">修改 </a><a href="">删除</a></td>
+                                        </tr>
                                         #end
-                                        <td></td>
-                                    </tr>
                                     #end
 
                                 </tfoot>

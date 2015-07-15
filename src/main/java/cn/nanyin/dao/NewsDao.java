@@ -42,4 +42,11 @@ public class NewsDao {
         result=sessionFactory.getCurrentSession().save(newsSort);
         return result;
     }
+
+    public Serializable addNews(News news)
+    {
+        Serializable result=null;
+        result=sessionFactory.getCurrentSession().save(news);
+        return result;
+    }
 }

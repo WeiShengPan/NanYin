@@ -18,11 +18,7 @@
                 新闻管理
                 <small>文章管理</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -37,7 +33,6 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>删除</th>
                                     <th>类别</th>
                                     <th>标题</th>
                                     <th>添加时间</th>
@@ -46,13 +41,15 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <td></td>
-                                    <td>快讯</td>
-                                    <td>弦友相约•罗内采风</td>
-                                    <td>2015-6-27 10:42:43</td>
-                                    <td></td>
-                                </tr>
+                                    #foreach($news in $newsList)
+                                    <tr>
+                                        <td>$news.newsSort.name</td>
+                                        <td>$news.title</td>
+                                        <td>$news.addDate</td>
+                                        <td><a href="">修改 </a><a href="">删除</a></td>
+                                    </tr>
+                                    #end
+
 
                                 </tfoot>
                             </table>
