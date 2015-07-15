@@ -24,16 +24,22 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
-    public ModelAndView showNewsList()
-    {
-        return new ModelAndView("nyadmin/userlist");
-    }
 //    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
-//    public ModelAndView showUserList()
+//    public ModelAndView showNewsList()
 //    {
-//        Map map=new HashMap();
-//        map.put("userlist",userDao.getUserList());
-//        return new ModelAndView("nyadmin/userlist",map);
+//        return new ModelAndView("nyadmin/userlist");
 //    }
+
+    @RequestMapping(value="nyadmin/useradd",method = RequestMethod.GET)
+    public ModelAndView addUser()
+    {
+        return new ModelAndView("nyadmin/useradd");
+    }
+    @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
+    public ModelAndView showUserList()
+    {
+        Map map=new HashMap();
+        map.put("userlist",userDao.getUserList());
+        return new ModelAndView("nyadmin/userlist",map);
+    }
 }
