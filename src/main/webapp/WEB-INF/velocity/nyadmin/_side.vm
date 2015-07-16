@@ -32,9 +32,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="newssort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                    <li><a href="newsaddpage"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
-                    <li><a href="newslist"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
+                    <li><a href="newssort.vm"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="newsadd.vm"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
+                    <li><a href="newslist.vm"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
                 </ul>
             </li>
             <li>

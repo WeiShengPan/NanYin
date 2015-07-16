@@ -32,9 +32,9 @@
                         <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="userarea.vm"><i class="fa fa-circle-o"></i> 地区管理</a></li>
-                        <li><a href="useradd.vm"><i class="fa fa-circle-o"></i> 添加用户</a></li>
-                        <li class="active"><a href="userList.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                        <li><a href="userarea"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                        <li><a href="useraddpage"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+                        <li class="active"><a href="userlist"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -44,9 +44,9 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="newssort.vm"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                        <li><a href="newsadd.vm"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
-                        <li><a href="newslist.vm"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
+                        <li><a href="newssort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                        <li><a href="newsadd"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
+                        <li><a href="newslist"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
                     </ul>
                 </li>
                 <li>
@@ -194,27 +194,25 @@
                                     <th>密码</th>
                                     <th>真实姓名</th>
                                     <th>用户等级</th>
-                                    <th>详细信息</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                #*    #foreach(${user}in ${userlist})
+                                    #foreach(${user}in ${userList})
                                 <tr>
-                                    <td>${user.username}" /></td>
+                                    <td>${user.username}</td>
                                     <td>${user.password}</td>
                                     <td>${user.name}</td>
-                                    <td>${user.level}</td>
-                                    <td><a>详细信息</a></td>
+                                    #if(${user.level}==1)
+                                        <td>普通会员</td>
+                                    #elseif(${user.level}==2)
+                                        <td>合格会员</td>
+                                    #elseif(${user.level}==3)
+                                        <td>赞助会员</td>
+                                    #end
+                                    <td><a href="#">修改</a></td>
                                 </tr>
-                                    #end    *#
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
+                                    #end
                                 </tbody>
                             </table>
                         </div><!-- /.box-body -->
