@@ -49,7 +49,7 @@
                                             <td>$newsSort.level</td>
                                             <td>$newsSort.name</td>
                                             <td>$!newsSort.upperNewsSort.name</td>
-                                            <td><a href="">修改 </a><a href="">删除</a></td>
+                                            <td><a href="">修改 </a><a href="newssortdelete?id=$newsSort.id">删除</a></td>
                                         </tr>
                                         #end
                                     #end

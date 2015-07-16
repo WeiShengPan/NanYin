@@ -15,7 +15,7 @@ public class NewsSort {
     private long id;
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
-    private Set<News> news;
+    private List<News> news;
 
     @ManyToOne
     private NewsSort upperNewsSort;
@@ -26,6 +26,24 @@ public class NewsSort {
     private String name;
     private int priority;
     private int state;
+
+    public void removeNews(News n)
+    {
+        for(int i=0;i<news.size();i++)
+        {
+            if(news.get(i).getId()==n.getId())
+                news.remove(i);
+        }
+    }
+
+    public void removeNewsSort(NewsSort ns)
+    {
+        for(int i=0;i<lowerNewsSortList.size();i++)
+        {
+            if(lowerNewsSortList.get(i).getId()==ns.getId())
+                lowerNewsSortList.remove(i);
+        }
+    }
 
     public long getId() {
         return id;
@@ -68,14 +86,6 @@ public class NewsSort {
         this.state = state;
     }
 
-    public Set<News> getNews() {
-        return news;
-    }
-
-    public void setNews(Set<News> news) {
-        this.news = news;
-    }
-
     public NewsSort getUpperNewsSort() {
         return upperNewsSort;
     }
@@ -90,5 +100,13 @@ public class NewsSort {
 
     public void setLowerNewsSortList(List<NewsSort> lowerNewsSortList) {
         this.lowerNewsSortList = lowerNewsSortList;
+    }
+
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
     }
 }

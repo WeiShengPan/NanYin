@@ -20,33 +20,55 @@ public class NewsDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<News> getNewsList(Integer start,Integer max)
-    {
-        Query query=sessionFactory.getCurrentSession().createQuery("from News");
+    public News getNewsById(long id) {
+        return (News) sessionFactory.getCurrentSession().get(News.class, id);
+    }
+
+    public NewsSort getNewsSortById(long id) {
+        return (NewsSort) sessionFactory.getCurrentSession().get(NewsSort.class, id);
+    }
+
+    public List<News> getNewsList(Integer start, Integer max) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from News");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
     }
 
-    public List<NewsSort> getNewsSortList(Integer start,Integer max)
-    {
-        Query query=sessionFactory.getCurrentSession().createQuery("from NewsSort");
+    public List<NewsSort> getNewsSortList(Integer start, Integer max) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsSort");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
     }
 
-    public Serializable addNewsSort(NewsSort newsSort)
-    {
-        Serializable result=null;
-        result=sessionFactory.getCurrentSession().save(newsSort);
+    public Serializable addNewsSort(NewsSort newsSort) {
+        Serializable result = null;
+        result = sessionFactory.getCurrentSession().save(newsSort);
         return result;
     }
 
-    public Serializable addNews(News news)
-    {
-        Serializable result=null;
-        result=sessionFactory.getCurrentSession().save(news);
+    public Serializable addNews(News news) {
+        Serializable result = null;
+        result = sessionFactory.getCurrentSession().save(news);
         return result;
+    }
+
+    public void deleteNews(News news) {
+        sessionFactory.getCurrentSession().delete(news);
+    }
+
+    public void deleteNewsSort(NewsSort newsSort) {
+        sessionFactory.getCurrentSession().delete(newsSort);
+    }
+
+    public void updateNews(News news)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(news);
+    }
+
+    public void updateNewsSort(NewsSort newsSort)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(newsSort);
     }
 }
