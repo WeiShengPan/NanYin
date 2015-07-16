@@ -25,51 +25,15 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
+
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">类别列表</h3>
+                            <h3 class="box-title">修改类别</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>级别</th>
-                                    <th>名称</th>
-                                    <th>上级类</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                    #foreach($newsSort in $newsSortList)
-                                        #if($newsSort.id!=1)
-                                        <tr>
-                                            <td>$newsSort.level</td>
-                                            <td>$newsSort.name</td>
-                                            <td>$!newsSort.upperNewsSort.name</td>
-                                            <td><a href="newssorteditpage?id=$newsSort.id">修改 </a><a href="newssortdelete?id=$newsSort.id">删除</a></td>
-                                        </tr>
-                                        #end
-                                    #end
-
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">添加类别</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <form action="/nyadmin/newssortadd" method="post">
+                            <form action="/nyadmin/newssortedit" method="post">
                                 <!-- 类别 -->
                                 <div class="form-group">
                                     <label>上级类别</label>
@@ -83,15 +47,17 @@
                                 <!-- 标题 -->
                                 <div class="form-group">
                                     <label>类别名称</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                                    <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
                                 </div>
 
                                 <!-- 排序编号 -->
                                 <div class="form-group">
                                     <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..." required/>
+                                    <input type="text" name="priority" class="form-control" value="$!newsSort.priority" required/>
                                 </div>
-
+                                <div>
+                                    <input type="hidden" name="id" value="$!newsSort.id">
+                                </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

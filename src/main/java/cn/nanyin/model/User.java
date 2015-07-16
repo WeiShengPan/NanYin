@@ -7,14 +7,17 @@ import java.util.Date;
  * Created by Administrator on 2015/7/8.
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+//    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "area_id")
     private Area area;//用户所属地区
 
     private String college;//用户所属社团

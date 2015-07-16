@@ -15,7 +15,7 @@
         <section class="content-header">
             <h1>
                 新闻管理
-                <small>添加文章</small>
+                <small>修改文章</small>
             </h1>
 
         </section>
@@ -33,7 +33,7 @@
                             </div><!-- /. tools -->
                         </div><!-- /.box-header -->
                         <div class="box-body pad">
-                            <form action="/nyadmin/newsadd" method="post">
+                            <form action="/nyadmin/newsedit" method="post">
                                 <!-- 类别 -->
                                 <div class="form-group">
                                     <label>选择类别</label>
@@ -48,36 +48,41 @@
                                 <!-- 标题 -->
                                 <div class="form-group">
                                     <label>标题</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text" required/>
+                                    <input type="text" name="title" class="form-control" value="$!news.title" type="text" required/>
                                 </div>
                                 <!-- 作者 -->
                                 <div class="form-group">
                                     <label>作者</label>
-                                    <input type="text" name="author" class="form-control" placeholder="Enter ..." type="text" required/>
+                                    <input type="text" name="author" class="form-control" value="$!news.author" type="text" required/>
                                 </div>
                                 <!-- 来源 -->
                                 <div class="form-group">
                                     <label>来源</label>
-                                    <input type="text" name="source" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="source" class="form-control" value="$!news.source"/>
                                 </div>
                                 <!-- 排序编号 -->
                                 <div class="form-group">
                                     <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..." type="text" required/>
+                                    <input type="text" name="priority" class="form-control" value="$!news.priority" type="text" required/>
                                 </div>
                                 <!--内容-->
                                 <label>详细内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
-                                 </textarea>
+                                    $!news.content
+                                </textarea>
                                 <!--新闻缩略图-->
                                 </br>
                                 <div class="form-group">
                                     <label for="exampleInputFile">上传新闻缩略图</label>
-                                    <input type="file" name="image" id="exampleInputFile">
+                                    <input type="file" name="image" id="exampleInputFile" value="$!news.image">
+
                                     <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="id" value="$!news.id">
                                 </div>
                             </form>
                         </div>

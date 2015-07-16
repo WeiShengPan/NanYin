@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,14 +13,37 @@ public class NewsSort {
     @Id
     @GeneratedValue
     private long id;
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
+    private List<News> news;
+
+    @ManyToOne
+    private NewsSort upperNewsSort;
+    @OneToMany(mappedBy = "upperNewsSort")
+    private List<NewsSort> lowerNewsSortList;
+
     private int level;
     private String name;
-    private long upperId;
     private int priority;
     private int state;
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "newsSort")
-    private Set<News> news;
+    public void removeNews(News n)
+    {
+        for(int i=0;i<news.size();i++)
+        {
+            if(news.get(i).getId()==n.getId())
+                news.remove(i);
+        }
+    }
+
+    public void removeNewsSort(NewsSort ns)
+    {
+        for(int i=0;i<lowerNewsSortList.size();i++)
+        {
+            if(lowerNewsSortList.get(i).getId()==ns.getId())
+                lowerNewsSortList.remove(i);
+        }
+    }
 
     public long getId() {
         return id;
@@ -45,13 +69,6 @@ public class NewsSort {
         this.name = name;
     }
 
-    public long getUpperId() {
-        return upperId;
-    }
-
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
-    }
 
     public int getPriority() {
         return priority;
@@ -69,11 +86,27 @@ public class NewsSort {
         this.state = state;
     }
 
-    public Set<News> getNews() {
+    public NewsSort getUpperNewsSort() {
+        return upperNewsSort;
+    }
+
+    public void setUpperNewsSort(NewsSort upperNewsSort) {
+        this.upperNewsSort = upperNewsSort;
+    }
+
+    public List<NewsSort> getLowerNewsSortList() {
+        return lowerNewsSortList;
+    }
+
+    public void setLowerNewsSortList(List<NewsSort> lowerNewsSortList) {
+        this.lowerNewsSortList = lowerNewsSortList;
+    }
+
+    public List<News> getNews() {
         return news;
     }
 
-    public void setNews(Set<News> news) {
+    public void setNews(List<News> news) {
         this.news = news;
     }
 }

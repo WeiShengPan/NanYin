@@ -12,18 +12,19 @@ public class News {
     @GeneratedValue
     private long id;
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "sort_id")
     private NewsSort newsSort;  //����
     private String title;   //����
     private String author;  //����
+    @Lob
     private String content; //����
     private int priority;  //?
-    private int recommendation;    //�Ƽ�ָ��
     private String image;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
     private int state;      //?
+    private String source;
 
     public long getId() {
         return id;
@@ -73,14 +74,6 @@ public class News {
         this.priority = priority;
     }
 
-    public int getRecommendation() {
-        return recommendation;
-    }
-
-    public void setRecommendation(int recommendation) {
-        this.recommendation = recommendation;
-    }
-
     public String getImage() {
         return image;
     }
@@ -111,5 +104,13 @@ public class News {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
