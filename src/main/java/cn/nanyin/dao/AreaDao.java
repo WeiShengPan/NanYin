@@ -33,4 +33,14 @@ public class AreaDao {
         result=sessionFactory.getCurrentSession().save(area);
         return result;
     }
+
+    public void updateArea(Area area)
+    {
+        sessionFactory.getCurrentSession().update(area);
+    }
+
+    public void deleteArea(Area area)
+    {
+        sessionFactory.getCurrentSession().delete(area);
+    }
 }

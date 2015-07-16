@@ -31,9 +31,9 @@
                         <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="userarea.vm"><i class="fa fa-circle-o"></i> 地区管理</a></li>
-                        <li class="active"><a href="useradd.vm"><i class="fa fa-circle-o"></i> 添加用户</a></li>
-                        <li><a href="userList.vm"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                        <li><a href="userarea"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                        <li class="active"><a href="useraddpage"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+                        <li><a href="userlist"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -43,9 +43,9 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="newssort.vm"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                        <li><a href="newsadd.vm"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
-                        <li><a href="newslist.vm"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
+                        <li><a href="newssort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                        <li><a href="newsadd"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
+                        <li><a href="newslist"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
                     </ul>
                 </li>
                 <li>
@@ -189,77 +189,77 @@
                             </div><!-- /. tools -->
                         </div><!-- /.box-header -->
                         <div class="box-body pad">
-                            <form>
+                            <form action="/nyadmin/useradd" method="post">
                                 <!-- 用户名 -->
                                 <div class="form-group">
                                     <label>用户名</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="username" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 密码 -->
                                 <div class="form-group">
                                     <label>密码</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="password" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 姓名 -->
                                 <div class="form-group">
                                     <label>姓名</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="name" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 性别 -->
                                 <div class="form-group">
                                     <label>性别</label>
-                                    <select class="form-control">
-                                        <option>先生</option>
-                                        <option>女士</option>
+                                    <select name="gender" class="form-control">
+                                        <option value="false">先生</option>
+                                        <option value="true">女士</option>
                                     </select>
                                 </div>
                                 <!-- 联系电话 -->
                                 <div class="form-group">
                                     <label>联系电话</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="telephone" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 地区 -->
                                 <div class="form-group">
                                     <label>原籍地</label>
-                                    <select class="form-control">
-                                        <option>大陆</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                    <select name="area.id" class="form-control">
+                                        #foreach($area in ${areaList})
+                                            #if($area.id!=1)
+                                                <option value="$area.id">$area.name</option>
+                                            #end
+                                        #end
                                     </select>
                                 </div>
                                 <!-- 现居地 -->
                                 <div class="form-group">
                                     <label>现居地</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="address" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- Email -->
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="email" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- QQ或MSN -->
                                 <div class="form-group">
                                     <label>QQ或MSN</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="socialAccount" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 密保问题 -->
                                 <div class="form-group">
                                     <label>密保问题</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="question" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 密保答案 -->
                                 <div class="form-group">
                                     <label>密保答案</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="answer" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 是否参加社团 -->
                                 <div class="form-group">
                                     <label>参加参加南音社、文艺团体吗？</label>
-                                    <select class="form-control">
-                                        <option>否</option>
-                                        <option>是</option>
+                                    <select name="join" class="form-control">
+                                        <option value="false">否</option>
+                                        <option value="true">是</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -269,23 +269,26 @@
                                 <!-- 是否成为志工 -->
                                 <div class="form-group">
                                     <label>愿意成为南音网志工吗？</label>
-                                    <select class="form-control">
-                                        <option>否</option>
-                                        <option>是</option>
+                                    <select name="volunteer" class="form-control">
+                                        <option value="false">否</option>
+                                        <option value="true">是</option>
                                     </select>
                                 </div>
                                 <!--专长-->
                                 <label>专长</label>
-                                <textarea id="editor1" name="editor1" rows="10" cols="80">
+                                <textarea name="skill" rows="10" cols="80">
                                  </textarea>
                                 <!-- 用户级别 -->
                                 <div class="form-group">
                                     <label>用户级别</label>
-                                    <select class="form-control">
-                                        <option>普通会员</option>
-                                        <option>合格会员</option>
-                                        <option>赞助会员</option>
+                                    <select name="level" class="form-control">
+                                        <option value="1">普通会员</option>
+                                        <option value="2">合格会员</option>
+                                        <option value="3">赞助会员</option>
                                     </select>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">提交</button>
                                 </div>
                             </form>
                         </div>

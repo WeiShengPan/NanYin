@@ -13,16 +13,19 @@ public class Area {
     @GeneratedValue
     private long id;
 
-    @OneToMany(mappedBy = "area")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "area")
     private List<User> users;//地区用户列表
 
     private int level;//地区等级
 
     private String name;//地区名
 
-    private long upperId;//上一级地区ID
+    @ManyToOne
+    private Area upperArea;//上一级地区ID
+    @OneToMany(mappedBy = "upperArea")
+    private List<Area> lowerAreaList;
 
-    private int Priority;//优先级
+    private int priority;//优先级
 
     private int state;//状态
 
@@ -50,12 +53,20 @@ public class Area {
         this.name = name;
     }
 
-    public long getUpperId() {
-        return upperId;
+    public Area getUpperArea() {
+        return upperArea;
     }
 
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
+    public void setUpperArea(Area upperArea) {
+        this.upperArea = upperArea;
+    }
+
+    public List<Area> getLowerAreaList() {
+        return lowerAreaList;
+    }
+
+    public void setLowerAreaList(List<Area> lowerAreaList) {
+        this.lowerAreaList = lowerAreaList;
     }
 
     public int getState() {
@@ -75,10 +86,10 @@ public class Area {
     }
 
     public int getPriority() {
-        return Priority;
+        return priority;
     }
 
     public void setPriority(int priority) {
-        Priority = priority;
+        priority = priority;
     }
 }

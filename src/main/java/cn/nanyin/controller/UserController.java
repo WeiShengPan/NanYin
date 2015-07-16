@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,56 +27,41 @@ public class UserController {
     public ModelAndView showUserList()
     {
         ModelAndView model=new ModelAndView("nyadmin/userlist");
-        List<User> userList=userDao.getUserList(0,50);
-        model.addObject("userList",userList);
+        List<User> userList =userDao.getUserList(0,50);
+        model.addObject("userList", userList);
         return model;
     }
 
-    @RequestMapping(value="nyadmin/useradd",method = RequestMethod.GET)
+    @RequestMapping(value="nyadmin/useraddpage",method=RequestMethod.GET)
+    public ModelAndView showUserAddPage()
+    {
+        ModelAndView model=new ModelAndView("nyadmin/useradd");
+        List<Area> areaList=areaDao.getAreaList(0, 50);
+        model.addObject("areaList",areaList);
+        return model;
+    }
+
+    @RequestMapping(value="nyadmin/useradd",method = RequestMethod.POST)
     public ModelAndView addUser(User user)
     {
-//        Area ns=new Area();ns.setLevel(1);ns.setName("啊1");ns.setPriority(1);ns.setState(1);ns.setUpperId(1);
-//        User u=new User();
-//        u.setUsername("中国");
-//        u.setPassword("123456");
-//        u.setAddress("");u.setAnswer("");u.setCollege("");u.setEmail("");u.setGender(false);u.setJoin(false);
-//        u.setLastLoginDate(null);u.setLevel(1);u.setName("");
-//        u.setArea(ns);
-//        userDao.addUser(u);
-        return new ModelAndView("nyadmin/useradd");
+        user.setRegDate(new Date());
+        userDao.addUser(user);
+        return new ModelAndView("redirect:useraddpage");
     }
 
     @RequestMapping(value="nyadmin/userarea",method=RequestMethod.GET)
     public ModelAndView showAreaList()
     {
         ModelAndView model=new ModelAndView("nyadmin/userarea");
-//        Area ns=new Area();
-//        ns.setLevel(1);
-//        ns.setName("啊1");
-//        ns.setPriority(1);
-//        ns.setState(1);
-//        ns.setUpperId(1);
-//        areaDao.addArea(ns);
         List<Area> areaList=areaDao.getAreaList(0, 50);
         model.addObject("areaList", areaList);
         return model;
     }
 
-    @RequestMapping(value="nyadmin/userarea/addArea",method = RequestMethod.POST)
-    public ModelAndView addArea(HttpServletRequest request)
+    @RequestMapping(value="nyadmin/userareaadd",method = RequestMethod.POST)
+    public ModelAndView addArea(Area area)
     {
-        Area ns=new Area();
-        int l = Integer.parseInt(request.getParameter("upperId"));
-        ns.setLevel(l+1);
-        ns.setName(request.getParameter("name"));
-        ns.setPriority(0);
-        ns.setState(0);
-        ns.setUpperId(1);
-        areaDao.addArea(ns);
-
-        ModelAndView model=new ModelAndView("nyadmin/userarea");
-        List<Area> areaList=areaDao.getAreaList(0, 50);
-        model.addObject("areaList", areaList);
-        return model;
+        areaDao.addArea(area);
+        return new ModelAndView("redirect:userarea");
     }
 }
