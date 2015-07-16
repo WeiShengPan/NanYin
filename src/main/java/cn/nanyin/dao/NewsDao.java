@@ -61,4 +61,14 @@ public class NewsDao {
     public void deleteNewsSort(NewsSort newsSort) {
         sessionFactory.getCurrentSession().delete(newsSort);
     }
+
+    public void updateNews(News news)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(news);
+    }
+
+    public void updateNewsSort(NewsSort newsSort)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(newsSort);
+    }
 }

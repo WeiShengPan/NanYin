@@ -48,12 +48,12 @@
                                 <!-- 标题 -->
                                 <div class="form-group">
                                     <label>标题</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text" required/>
                                 </div>
                                 <!-- 作者 -->
                                 <div class="form-group">
                                     <label>作者</label>
-                                    <input type="text" name="author" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="author" class="form-control" placeholder="Enter ..." type="text" required/>
                                 </div>
                                 <!-- 来源 -->
                                 <div class="form-group">
@@ -63,11 +63,11 @@
                                 <!-- 排序编号 -->
                                 <div class="form-group">
                                     <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..." type="text" required/>
                                 </div>
                                 <!--内容-->
                                 <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80">
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
                                  </textarea>
                                 <!--新闻缩略图-->
                                 </br>
