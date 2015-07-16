@@ -122,4 +122,62 @@ public class NewsController {
         return new ModelAndView("redirect:newssort");
     }
 
+    //显示修改新闻页面
+    @RequestMapping(value="nyadmin/newseditpage",method = RequestMethod.GET)
+    public ModelAndView showNewsEditPage(long id)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/newsedit");
+        News news=newsDao.getNewsById(id);
+        model.addObject("news", news);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0, 50);
+        model.addObject("newsSortList", newsSortList);
+        return model;
+    }
+
+    //修改新闻
+    @RequestMapping(value="nyadmin/newsedit",method = RequestMethod.POST)
+    public ModelAndView editNews(News news)
+    {
+        News targetNews=newsDao.getNewsById(news.getId());
+        targetNews.setTitle(news.getTitle());
+        targetNews.setAuthor(news.getAuthor());
+        targetNews.setSource(news.getSource());
+        targetNews.setImage(news.getImage());
+        targetNews.setPriority(news.getPriority());
+        targetNews.setContent(news.getContent());
+        targetNews.setNewsSort(newsDao.getNewsSortById(news.getNewsSort().getId()));
+        targetNews.setAddDate(newsDao.getNewsById(news.getId()).getAddDate());
+        targetNews.setHits(newsDao.getNewsById(news.getId()).getHits());
+        targetNews.setState(newsDao.getNewsById(news.getId()).getState());
+
+        newsDao.updateNews(targetNews);
+        return new ModelAndView("redirect:newslist");
+    }
+
+
+    @RequestMapping(value="nyadmin/newssorteditpage",method = RequestMethod.GET)
+    public ModelAndView showNewsSortEditPage(long id)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/newssortedit");
+        NewsSort newsSort=newsDao.getNewsSortById(id);
+        model.addObject("newsSort", newsSort);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
+        model.addObject("newsSortList", newsSortList);
+        return model;
+    }
+
+    @RequestMapping(value="nyadmin/newssortedit",method = RequestMethod.POST)
+    public ModelAndView editNewsSort(NewsSort newsSort)
+    {
+        NewsSort targetNewsSort=newsDao.getNewsSortById(newsSort.getId());
+        targetNewsSort.setName(newsSort.getName());
+        targetNewsSort.setPriority(newsSort.getPriority());
+        targetNewsSort.setUpperNewsSort(newsDao.getNewsSortById(newsSort.getUpperNewsSort().getId()));
+        targetNewsSort.setLevel(newsDao.getNewsSortById(newsSort.getId()).getLevel());
+        targetNewsSort.setState(newsDao.getNewsSortById(newsSort.getId()).getState());
+
+        newsDao.updateNewsSort(targetNewsSort);
+        return new ModelAndView("redirect:newssort");
+    }
+
 }

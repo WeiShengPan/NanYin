@@ -6,6 +6,10 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <welcome-file-list>
+        <welcome-file>index.vm</welcome-file>
+    </welcome-file-list>
+    
     <!-- 上下文配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
