@@ -15,9 +15,9 @@ public class SMS {
     @GeneratedValue
     private long id;
 
-    private String from;
+    private String fromWho;
 
-    private String to;
+    private String toWho;
 
     private String title;
 
@@ -67,11 +67,19 @@ public class SMS {
         this.state = state;
     }
 
-    public String getFrom() {
-        return from;
+    public String getFromWho() {
+        return fromWho;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromWho(String fromWho) {
+        this.fromWho = fromWho;
+    }
+
+    public String getToWho() {
+        return toWho;
+    }
+
+    public void setToWho(String toWho) {
+        this.toWho = toWho;
     }
 }

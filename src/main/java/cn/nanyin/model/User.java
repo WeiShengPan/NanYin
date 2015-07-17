@@ -7,12 +7,8 @@ import java.util.Date;
  * Created by Administrator on 2015/7/8.
  */
 @Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-
     @Id
-//    @GeneratedValue(strategy = GenerationType.TABLE)
     @GeneratedValue
     private long id;
 

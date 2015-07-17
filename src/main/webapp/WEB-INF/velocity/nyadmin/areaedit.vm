@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>用户管理</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -32,9 +33,9 @@
                         <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="userarea"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                        <li class="active"><a href="userarea"><i class="fa fa-circle-o"></i> 地区管理</a></li>
                         <li><a href="useraddpage"><i class="fa fa-circle-o"></i> 添加用户</a></li>
-                        <li class="active"><a href="userlist"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                        <li><a href="userlist"><i class="fa fa-circle-o"></i> 管理用户</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -168,63 +169,75 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                管理用户
-                <small>advanced tables</small>
+                用户管理
+                <small>地区管理</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
         <section class="content">
             <div class="row">
+
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">用户信息</h3>
-                        </div><!-- /.box-header -->
+                            <h3 class="box-title">修改地区</h3>
+                        </div>
+                        <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>用户名</th>
-                                    <th>密码</th>
-                                    <th>真实姓名</th>
-                                    <th>用户等级</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    #foreach(${user}in ${userList})
-                                <tr>
-                                    <td>${user.username}</td>
-                                    <td>${user.password}</td>
-                                    <td>${user.name}</td>
-                                    #if(${user.level}==1)
-                                        <td>普通会员</td>
-                                    #elseif(${user.level}==2)
-                                        <td>合格会员</td>
-                                    #elseif(${user.level}==3)
-                                        <td>赞助会员</td>
-                                    #end
-                                    <td><a href="usereditpage?id=$user.id">修改 </a><a href="userdelete?id=$user.id">删除</a></td>
-                                </tr>
-                                    #end
-                                </tbody>
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+                            <form action="/nyadmin/areaedit" method="post">
+                                <!-- 类别 -->
+                                <div class="form-group">
+                                    <label>上级地区</label>
+                                    <select name="upperArea.id" class="form-control">
+                                        #foreach(${tempArea} in ${areaList})
+                                            #if(${tempArea.id}!=${area.id})
+                                                <option value="${tempArea.id}"
+                                                    #if($!{area.upperArea.id}=="${tempArea.id}")
+                                                        selected = "selected"
+                                                    #end
+                                                        >${tempArea.name}</option>
+                                            #end
+                                        #end
+
+                                    </select>
+                                </div>
+                                <!-- 标题 -->
+                                <div class="form-group">
+                                    <label>地区名称</label>
+                                    <input type="text" name="name" class="form-control" value="$!area.name" required/>
+                                </div>
+
+                                <!-- 排序编号 -->
+                                <div class="form-group">
+                                    <label>排序编号</label>
+                                    <input type="text" name="priority" class="form-control" value="$!area.priority" required/>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="id" value="$!area.id">
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
     #include("nyadmin/_footer.vm")
 
-</div><!-- ./wrapper -->
+</div>
+<!-- ./wrapper -->
 
     #include("nyadmin/_globalJS.vm")
 </body>

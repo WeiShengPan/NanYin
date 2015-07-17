@@ -264,7 +264,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>如果是，请填写社团名</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." />
+                                    <input type="text" name="college" class="form-control" placeholder="Enter ..." />
                                 </div>
                                 <!-- 是否成为志工 -->
                                 <div class="form-group">
@@ -276,7 +276,7 @@
                                 </div>
                                 <!--专长-->
                                 <label>专长</label>
-                                <textarea name="skill" rows="10" cols="80">
+                                <textarea name="skill" id="editor1" name="content" rows="10" cols="80" required>
                                  </textarea>
                                 <!-- 用户级别 -->
                                 <div class="form-group">

@@ -206,7 +206,7 @@
                                 <!-- 排序编号 -->
                                 <div class="form-group">
                                     <label>排序编号</label>
-                                    <input type="text" name="level" class="form-control" placeholder="Enter ..."/>
+                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..."/>
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">提交</button>
@@ -238,7 +238,11 @@
                                     <td>${area.level}</td>
                                     <td>${area.name}</td>
                                     <td>$!{area.upperArea.name}</td>
-                                    <td><a href="#">修改</a></td>
+                                    <td>
+                                        #if($area.id!=1)
+                                            <a href="areaeditpage?id=$area.id">修改 </a><a href="areadelete?id=$area.id">删除</a>
+                                        #end
+                                    </td>
                                 </tr>
                                     #end
                                 </tbody>
