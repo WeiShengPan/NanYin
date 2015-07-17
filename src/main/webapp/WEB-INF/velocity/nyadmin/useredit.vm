@@ -14,116 +14,179 @@
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/useredit" method="post">
-                        <!-- 注册时间 -->
-                        <div class="form-group">
-                            <label>注册时间</label>
-                            <input type="text" class="form-control" value="$!user.regDate" readonly="true"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 注册时间 -->
+                                <div class="form-group">
+                                    <label>注册时间</label>
+                                    <input type="text" class="form-control" value="$!user.regDate" readonly="true"/>
+                                </div>
+                                <!-- 注册IP -->
+                                <div class="form-group">
+                                    <label>注册IP</label>
+                                    <input type="text" class="form-control" value="$!user.regIP" readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- 最近登录时间 -->
+                                <div class="form-group">
+                                    <label>最近登录时间</label>
+                                    <input type="text" class="form-control" value="$!user.lastLoginDate" readonly="true"/>
+                                </div>
+                            </div>
                         </div>
-                        <!-- 注册IP -->
-                        <div class="form-group">
-                            <label>注册IP</label>
-                            <input type="text" class="form-control" value="$!user.regIP" readonly="true"/>
-                        </div>
-                        <!-- 最近登录时间 -->
-                        <div class="form-group">
-                            <label>最近登录时间</label>
-                            <input type="text" class="form-control" value="$!user.lastLoginDate" readonly="true"/>
-                        </div>
-                        <!-- 用户名 -->
-                        <div class="form-group">
-                            <label>用户名</label>
-                            <input type="text" name="username" class="form-control" value="$!user.username"/>
-                        </div>
-                        <!-- 密码 -->
-                        <div class="form-group">
-                            <label>密码</label>
-                            <input type="text" name="password" class="form-control" value="$!user.password"/>
-                        </div>
-                        <!-- 姓名 -->
-                        <div class="form-group">
-                            <label>姓名</label>
-                            <input type="text" name="name" class="form-control" value="$!user.name"/>
-                        </div>
-                        <!-- 性别 -->
-                        <div class="form-group">
-                            <label>性别</label>
-                            <select id="sel" name="gender" class="form-control">
-                                <option value="false"
-                                    #if($!{user.gender}=="false")
-                                        selected = "selected"
-                                    #end
-                                        >先生</option>
-                                <option value="true"
-                                    #if($!{user.gender}=="true")
-                                        selected = "selected"
-                                    #end
-                                        >女士</option>
-                            </select>
-                        </div>
-                        <!-- 联系电话 -->
-                        <div class="form-group">
-                            <label>联系电话</label>
-                            <input type="text" name="telephone" class="form-control" value="$!user.telephone"/>
-                        </div>
-                        <!-- 地区 -->
-                        <div class="form-group">
-                            <label>原籍地</label>
-                            <select name="area.id" class="form-control">
-                                #foreach($area in ${areaList})
-                                    #if($area.id!=1)
-                                        <option value="$area.id"
-                                            #if($!{user.area.id}=="$area.id")
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 用户名 -->
+                                <div class="form-group">
+                                    <label>用户名</label>
+                                    <input type="text" name="username" class="form-control" value="$!user.username"/>
+                                </div>
+                                <!-- 密码 -->
+                                <div class="form-group">
+                                    <label>密码</label>
+                                    <input type="text" name="password" class="form-control" value="$!user.password"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- 姓名 -->
+                                <div class="form-group">
+                                    <label>姓名</label>
+                                    <input type="text" name="name" class="form-control" value="$!user.name"/>
+                                </div>
+                                <!-- 性别 -->
+                                <div class="form-group">
+                                    <label>性别</label>
+                                    <select id="sel" name="gender" class="form-control">
+                                        <option value="false"
+                                            #if($!{user.gender}=="false")
                                                 selected = "selected"
                                             #end
-                                                >$area.name</option>
-                                    #end
-                                #end
-                            </select>
+                                                >先生</option>
+                                        <option value="true"
+                                            #if($!{user.gender}=="true")
+                                                selected = "selected"
+                                            #end
+                                                >女士</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <!-- 现居地 -->
-                        <div class="form-group">
-                            <label>现居地</label>
-                            <input type="text" name="address" class="form-control" value="$!user.address" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 联系电话 -->
+                                <div class="form-group">
+                                    <label>联系电话</label>
+                                    <input type="text" name="telephone" class="form-control" value="$!user.telephone"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- 用户级别 -->
+                                <div class="form-group">
+                                    <label>用户级别</label>
+                                    <select name="level" class="form-control">
+                                        <option value="1"
+                                            #if($!{user.level}=="1")
+                                                selected = "selected"
+                                            #end
+                                                >普通会员</option>
+                                        <option value="2"
+                                            #if($!{user.leve}=="2")
+                                                selected = "selected"
+                                            #end
+                                                >合格会员</option>
+                                        <option value="3"
+                                            #if($!{user.level}=="3")
+                                                selected = "selected"
+                                            #end
+                                                >赞助会员</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="email" class="form-control" value="$!user.email"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- QQ或MSN -->
+                                <div class="form-group">
+                                    <label>QQ或MSN</label>
+                                    <input type="text" name="socialAccount" class="form-control" value="$!user.socialAccount"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="email" class="form-control" value="$!user.email"/>
+                                </div>
+                            </div>
                         </div>
-                        <!-- QQ或MSN -->
-                        <div class="form-group">
-                            <label>QQ或MSN</label>
-                            <input type="text" name="socialAccount" class="form-control" value="$!user.socialAccount"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 地区 -->
+                                <div class="form-group">
+                                    <label>原籍地</label>
+                                    <select name="area.id" class="form-control">
+                                        #foreach($area in ${areaList})
+                                            #if($area.id!=1)
+                                                <option value="$area.id"
+                                                    #if($!{user.area.id}=="$area.id")
+                                                        selected = "selected"
+                                                    #end
+                                                        >$area.name</option>
+                                            #end
+                                        #end
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- 现居地 -->
+                                <div class="form-group">
+                                    <label>现居地</label>
+                                    <input type="text" name="address" class="form-control" value="$!user.address" />
+                                </div>
+                            </div>
                         </div>
-                        <!-- 密保问题 -->
-                        <div class="form-group">
-                            <label>密保问题</label>
-                            <input type="text" name="question" class="form-control" value="$!user.question"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 密保问题 -->
+                                <div class="form-group">
+                                    <label>密保问题</label>
+                                    <input type="text" name="question" class="form-control" value="$!user.question"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- 密保答案 -->
+                                <div class="form-group">
+                                    <label>密保答案</label>
+                                    <input type="text" name="answer" class="form-control" value="$!user.answer"/>
+                                </div>
+                            </div>
                         </div>
-                        <!-- 密保答案 -->
-                        <div class="form-group">
-                            <label>密保答案</label>
-                            <input type="text" name="answer" class="form-control" value="$!user.answer"/>
-                        </div>
-                        <!-- 是否参加社团 -->
-                        <div class="form-group">
-                            <label>参加南音社、文艺团体吗？</label>
-                            <select name="joinCommunity" class="form-control">
-                                <option value="false"
-                                    #if($!{user.joinCommunity}=="false")
-                                        selected = "selected"
-                                    #end
-                                        >否</option>
-                                <option value="true"
-                                    #if($!{user.joinCommunity}=="true")
-                                        selected = "selected"
-                                    #end
-                                        >是</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>如果是，请填写社团名</label>
-                            <input type="text" name="college" class="form-control" value="$!user.college" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- 是否参加社团 -->
+                                <div class="form-group">
+                                    <label>参加南音社、文艺团体吗？</label>
+                                    <select name="joinCommunity" class="form-control">
+                                        <option value="false"
+                                            #if($!{user.joinCommunity}=="false")
+                                                selected = "selected"
+                                            #end
+                                                >否</option>
+                                        <option value="true"
+                                            #if($!{user.joinCommunity}=="true")
+                                                selected = "selected"
+                                            #end
+                                                >是</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>如果是，请填写社团名</label>
+                                    <input type="text" name="college" class="form-control" value="$!user.college" />
+                                </div>
+                            </div>
                         </div>
                         <!-- 是否成为志工 -->
                         <div class="form-group">
@@ -142,30 +205,11 @@
                             </select>
                         </div>
                         <!--专长-->
-                        <label>专长</label>
-                        <textarea name="skill" id="editor1" name="content" rows="10" cols="80" required>
-                            $!user.skill
-                        </textarea>
-                        <!-- 用户级别 -->
                         <div class="form-group">
-                            <label>用户级别</label>
-                            <select name="level" class="form-control">
-                                <option value="1"
-                                    #if($!{user.level}=="1")
-                                        selected = "selected"
-                                    #end
-                                        >普通会员</option>
-                                <option value="2"
-                                    #if($!{user.leve}=="2")
-                                        selected = "selected"
-                                    #end
-                                        >合格会员</option>
-                                <option value="3"
-                                    #if($!{user.level}=="3")
-                                        selected = "selected"
-                                    #end
-                                        >赞助会员</option>
-                            </select>
+                            <label>专长</label>
+                            <textarea name="skill" id="editor1" name="content" rows="10" cols="80" required>
+                                $!user.skill
+                            </textarea>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">提交</button>
