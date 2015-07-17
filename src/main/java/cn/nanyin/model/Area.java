@@ -29,6 +29,24 @@ public class Area {
 
     private int state;//状态
 
+    public void removeUser(User u)
+    {
+        for(int i=0;i<users.size();i++)
+        {
+            if(users.get(i).getId()==u.getId())
+                users.remove(i);
+        }
+    }
+
+    public void removeArea(Area a)
+    {
+        for(int i=0;i<lowerAreaList.size();i++)
+        {
+            if(lowerAreaList.get(i).getId()==a.getId())
+                lowerAreaList.remove(i);
+        }
+    }
+
     public List<User> getUsers() {
         return users;
     }
@@ -90,6 +108,6 @@ public class Area {
     }
 
     public void setPriority(int priority) {
-        priority = priority;
+        this.priority = priority;
     }
 }

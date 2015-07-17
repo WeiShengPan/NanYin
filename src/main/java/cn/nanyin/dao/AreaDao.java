@@ -19,6 +19,10 @@ public class AreaDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public Area getAreaById(long id) {
+        return (Area) sessionFactory.getCurrentSession().get(Area.class, id);
+    }
+
     public List<Area> getAreaList(Integer start,Integer max)
     {
         Query query=sessionFactory.getCurrentSession().createQuery("from Area");
@@ -36,7 +40,7 @@ public class AreaDao {
 
     public void updateArea(Area area)
     {
-        sessionFactory.getCurrentSession().update(area);
+        sessionFactory.getCurrentSession().saveOrUpdate(area);
     }
 
     public void deleteArea(Area area)

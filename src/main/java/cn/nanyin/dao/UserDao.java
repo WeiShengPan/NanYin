@@ -19,6 +19,10 @@ public class UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public User getUserById(long id) {
+        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+    }
+
     public List<User> getUserList(Integer start,Integer max)
     {
         Query query=sessionFactory.getCurrentSession().createQuery("from User");
@@ -32,5 +36,15 @@ public class UserDao {
         Serializable result=null;
         result=sessionFactory.getCurrentSession().save(user);
         return result;
+    }
+
+    public void updateUser(User user)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    }
+
+    public void deleteUser(User user)
+    {
+        sessionFactory.getCurrentSession().delete(user);
     }
 }
