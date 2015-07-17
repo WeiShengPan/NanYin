@@ -86,17 +86,17 @@
                                     <label>用户级别</label>
                                     <select name="level" class="form-control">
                                         <option value="1"
-                                            #if($!{user.level}=="1")
+                                            #if($!{user.level}==1)
                                                 selected = "selected"
                                             #end
                                                 >普通会员</option>
                                         <option value="2"
-                                            #if($!{user.leve}=="2")
+                                            #if($!{user.level}==2)
                                                 selected = "selected"
                                             #end
                                                 >合格会员</option>
                                         <option value="3"
-                                            #if($!{user.level}=="3")
+                                            #if($!{user.level}==3)
                                                 selected = "selected"
                                             #end
                                                 >赞助会员</option>
