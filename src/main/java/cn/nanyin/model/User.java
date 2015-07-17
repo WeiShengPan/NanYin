@@ -42,6 +42,7 @@ public class User {
 
     private boolean volunteer;//是否为本站志愿者
 
+    @Lob
     private String skill;//技能、特长
 
     private int level;//会员等级
