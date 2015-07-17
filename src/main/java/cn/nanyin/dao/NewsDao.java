@@ -29,7 +29,8 @@ public class NewsDao {
     }
 
     public List<News> getNewsList(Integer start, Integer max) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from News");
+        //from News as news order by addDate desc
+        Query query = sessionFactory.getCurrentSession().createQuery("from News as news order by addDate desc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
