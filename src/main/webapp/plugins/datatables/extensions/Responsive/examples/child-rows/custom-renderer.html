@@ -39,7 +39,7 @@ $(document).ready(function() {
 									api.cell( cell ).data()+
 								'</td>'+
 							'</tr>';
-					} ).toArray().join('');
+					} ).toArray().joinCommunity('');
 
 					return data ?
 						$('<table/>').append( data ) :
@@ -744,7 +744,7 @@ $(document).ready(function() {
 									api.cell( cell ).data()+
 								'&lt;/td&gt;'+
 							'&lt;/tr&gt;';
-					} ).toArray().join('');
+					} ).toArray().joinCommunity('');
 
 					return data ?
 						$('&lt;table/&gt;').append( data ) :

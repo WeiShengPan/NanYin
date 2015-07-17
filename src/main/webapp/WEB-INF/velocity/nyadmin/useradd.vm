@@ -257,7 +257,7 @@
                                 <!-- 是否参加社团 -->
                                 <div class="form-group">
                                     <label>参加参加南音社、文艺团体吗？</label>
-                                    <select name="join" class="form-control">
+                                    <select name="joinCommunity" class="form-control">
                                         <option value="false">否</option>
                                         <option value="true">是</option>
                                     </select>

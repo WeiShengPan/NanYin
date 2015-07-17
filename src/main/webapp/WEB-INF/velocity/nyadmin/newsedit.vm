@@ -1,103 +1,89 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-    <title>新闻管理</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    #include("nyadmin/_globalCSS.vm")
-</head>
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
-    #include("nyadmin/_header.vm")
-    #include("nyadmin/_side.vm")
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                新闻管理
-                <small>修改文章</small>
-            </h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        新闻管理
+        <small>修改文章</small>
+    </h1>
 
-        </section>
+</section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <!-- tools box -->
-                            <div class="pull-right box-tools">
-                                <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                                <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-                            </div><!-- /. tools -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body pad">
-                            <form action="/nyadmin/newsedit" method="post">
-                                <!-- 类别 -->
-                                <div class="form-group">
-                                    <label>选择类别</label>
-                                    <select name="newsSort.id" class="form-control">
-                                        #foreach($newsSort in $newsSortList)
-                                            #if($newsSort.id!=1)
-                                                <option value="$newsSort.id">$newsSort.name</option>
-                                            #end
-                                        #end
-                                    </select>
-                                </div>
-                                <!-- 标题 -->
-                                <div class="form-group">
-                                    <label>标题</label>
-                                    <input type="text" name="title" class="form-control" value="$!news.title" type="text" required/>
-                                </div>
-                                <!-- 作者 -->
-                                <div class="form-group">
-                                    <label>作者</label>
-                                    <input type="text" name="author" class="form-control" value="$!news.author" type="text" required/>
-                                </div>
-                                <!-- 来源 -->
-                                <div class="form-group">
-                                    <label>来源</label>
-                                    <input type="text" name="source" class="form-control" value="$!news.source"/>
-                                </div>
-                                <!-- 排序编号 -->
-                                <div class="form-group">
-                                    <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" value="$!news.priority" type="text" required/>
-                                </div>
-                                <!--内容-->
-                                <label>详细内容</label>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    <!-- tools box -->
+                    <div class="pull-right box-tools">
+                        <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i
+                                class="fa fa-times"></i></button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form action="/nyadmin/newsedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>选择类别</label>
+                            <select name="newsSort.id" class="form-control">
+                                #foreach($newsSort in $newsSortList)
+                                    #if($newsSort.id!=1)
+                                        <option value="$newsSort.id">$newsSort.name</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input type="text" name="title" class="form-control" value="$!news.title" type="text"
+                                   required/>
+                        </div>
+                        <!-- 作者 -->
+                        <div class="form-group">
+                            <label>作者</label>
+                            <input type="text" name="author" class="form-control" value="$!news.author" type="text"
+                                   required/>
+                        </div>
+                        <!-- 来源 -->
+                        <div class="form-group">
+                            <label>来源</label>
+                            <input type="text" name="source" class="form-control" value="$!news.source"/>
+                        </div>
+                        <!-- 排序编号 -->
+                        <div class="form-group">
+                            <label>排序编号</label>
+                            <input type="text" name="priority" class="form-control" value="$!news.priority" type="text"
+                                   required/>
+                        </div>
+                        <!--内容-->
+                        <label>详细内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                     $!news.content
                                 </textarea>
-                                <!--新闻缩略图-->
-                                </br>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">上传新闻缩略图</label>
-                                    <input type="file" name="image" id="exampleInputFile" value="$!news.image">
+                        <!--新闻缩略图-->
+                        </br>
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传新闻缩略图</label>
+                            <input type="file" name="image" id="exampleInputFile" value="$!news.image">
 
-                                    <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                                <div>
-                                    <input type="hidden" name="id" value="$!news.id">
-                                </div>
-                            </form>
+                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
                         </div>
-                    </div><!-- /.box -->
-                </div><!-- /.col-->
-            </div><!-- ./row -->
-        </section><!-- /.content -->
-
-    </div><!-- /.content-wrapper -->
-
-    #include("nyadmin/_footer.vm")
-
-</div><!-- ./wrapper -->
-
-    #include("nyadmin/_globalJS.vm")
-</div><!-- ./wrapper -->
-</body>
-</html>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!news.id">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

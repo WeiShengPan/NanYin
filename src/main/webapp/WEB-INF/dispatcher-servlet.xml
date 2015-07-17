@@ -26,10 +26,12 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm"/>
         <property name="contentType" value="text/html;charset=utf-8"/>
+        <property name="layoutUrl" value="admin.template.vm"/>
     </bean>
+
 
     <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>

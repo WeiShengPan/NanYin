@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>新闻管理</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    #include("nyadmin/_globalCSS.vm")
-</head>
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
-    #include("nyadmin/_header.vm")
-    #include("nyadmin/_side.vm")
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
         <section class="content-header">
             <h1>
                 新闻管理
@@ -105,15 +90,4 @@
             </div>
             <!-- /.row -->
         </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
-    #include("nyadmin/_footer.vm")
-
-</div>
-<!-- ./wrapper -->
-
-    #include("nyadmin/_globalJS.vm")
-</body>
-</html>

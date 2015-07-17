@@ -1,85 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>新闻管理</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    #include("nyadmin/_globalCSS.vm")
-</head>
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
-    #include("nyadmin/_header.vm")
-    #include("nyadmin/_side.vm")
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                新闻管理
-                <small>类别管理</small>
-            </h1>
+<section class="content-header">
+    <h1>
+        新闻管理
+        <small>类别管理</small>
+    </h1>
 
-        </section>
+</section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
+<!-- Main content -->
+<section class="content">
+    <div class="row">
 
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">修改类别</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <form action="/nyadmin/newssortedit" method="post">
-                                <!-- 类别 -->
-                                <div class="form-group">
-                                    <label>上级类别</label>
-                                    <select name="upperNewsSort.id" class="form-control">
-                                        #foreach($newsSort in $newsSortList)
-                                            <option value="$newsSort.id">$newsSort.name</option>
-                                        #end
-
-                                    </select>
-                                </div>
-                                <!-- 标题 -->
-                                <div class="form-group">
-                                    <label>类别名称</label>
-                                    <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
-                                </div>
-
-                                <!-- 排序编号 -->
-                                <div class="form-group">
-                                    <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" value="$!newsSort.priority" required/>
-                                </div>
-                                <div>
-                                    <input type="hidden" name="id" value="$!newsSort.id">
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改类别</h3>
                 </div>
-                <!-- /.col -->
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/newssortedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>上级类别</label>
+                            <select name="upperNewsSort.id" class="form-control">
+                                #foreach($newsSort in $newsSortList)
+                                    <option value="$newsSort.id">$newsSort.name</option>
+                                #end
+
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>类别名称</label>
+                            <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
+                        </div>
+
+                        <!-- 排序编号 -->
+                        <div class="form-group">
+                            <label>排序编号</label>
+                            <input type="text" name="priority" class="form-control" value="$!newsSort.priority"
+                                   required/>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!newsSort.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.row -->
-        </section>
-        <!-- /.content -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
     </div>
-    <!-- /.content-wrapper -->
-
-    #include("nyadmin/_footer.vm")
-
-</div>
-<!-- ./wrapper -->
-
-    #include("nyadmin/_globalJS.vm")
-</body>
-</html>
+    <!-- /.row -->
+</section>
