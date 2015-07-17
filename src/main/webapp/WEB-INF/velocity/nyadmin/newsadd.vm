@@ -70,12 +70,17 @@
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                  </textarea>
                                 <!--新闻缩略图-->
+                                1231213
                                 </br>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">上传新闻缩略图</label>
-                                    <input type="file" name="image" id="exampleInputFile">
-                                    <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
-                                </div>
+                                <form action="/nyadmin/upload" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">上传新闻缩略图</label>
+                                        <input type="file" name="file" id="exampleInputFile">
+                                        <input type="submit" value="确定">
+
+                                        <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
+                                    </div>
+                                </form>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
