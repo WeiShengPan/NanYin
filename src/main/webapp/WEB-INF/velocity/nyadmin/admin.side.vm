@@ -8,6 +8,14 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>后台账户管理</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="adminlist"><i class="fa fa-circle-o"></i> 管理后台账户</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
