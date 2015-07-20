@@ -14,7 +14,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/userareaadd" method="post">
+                    <form action="/nyadmin/areaadd" method="post">
                         <!-- 上级地区 -->
                         <div class="form-group">
                             <label>上级地区</label>
