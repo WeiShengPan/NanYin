@@ -24,6 +24,7 @@ public class Media {
     private String url;         //
     private String gcp;         //工尺谱
     private String jp;          //简谱
+    @Lob
     private String content;
     private Date addDate;
     private int hits;
