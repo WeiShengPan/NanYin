@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        新闻管理
+        图文管理
         <small>类别管理</small>
     </h1>
 
@@ -17,13 +17,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/newssortedit" method="post">
+                    <form action="/nyadmin/articlesortedit" method="post">
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>上级类别</label>
-                            <select name="upperNewsSort.id" class="form-control">
-                                #foreach($newsSort in $newsSortList)
-                                    <option value="$newsSort.id">$newsSort.name</option>
+                            <select name="upperBookSort.id" class="form-control">
+                                #foreach($bookSort in $bookSortList)
+                                    <option value="$bookSort.id">$bookSort.name</option>
                                 #end
 
                             </select>
@@ -31,11 +31,11 @@
                         <!-- 标题 -->
                         <div class="form-group">
                             <label>类别名称</label>
-                            <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
+                            <input type="text" name="name" class="form-control" value="$!bookSort.name" required/>
                         </div>
 
                         <div>
-                            <input type="hidden" name="id" value="$!newsSort.id">
+                            <input type="hidden" name="id" value="$!bookSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

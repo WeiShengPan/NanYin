@@ -28,10 +28,17 @@
                     <li><a href="newslist"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="pages/widgets.html">
-                    <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>图文乐谱</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="articlesort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="articleaddpage"><i class="fa fa-circle-o"></i> 添加图书</a></li>
+                    <li><a href="articlelist"><i class="fa fa-circle-o"></i> 管理图书</a></li>
+                </ul>
             </li>
             <li class="treeview">
                 <a href="#">

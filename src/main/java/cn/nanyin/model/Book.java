@@ -17,14 +17,15 @@ public class Book {
     private BookSort bookSort;  //所属类别
     private String title;   //
     private String author;  //
+    @Lob
     private String content; //
     private String downloadURL; //
-    private int priority;  //优先级
-    private boolean recommendation;    //是否推荐
     private String image;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
-    private int state;      //?
+    private String source;
+
+
 
     public long getId() {
         return id;
@@ -32,14 +33,6 @@ public class Book {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public Date getAddDate() {
@@ -74,22 +67,6 @@ public class Book {
         this.downloadURL = downloadURL;
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public boolean getRecommendation() {
-        return recommendation;
-    }
-
-    public void setRecommendation(boolean recommendation) {
-        this.recommendation = recommendation;
-    }
-
     public String getImage() {
         return image;
     }
@@ -120,6 +97,14 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
 
