@@ -27,7 +27,7 @@ public class UserController {
     @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
     public ModelAndView showUserList()
     {
-        ModelAndView model=new ModelAndView("nyadmin/userlist");
+        ModelAndView model=new ModelAndView("nyadmin/userList");
         List<User> userList =userDao.getUserList(0,50);
         model.addObject("userList", userList);
         return model;
