@@ -20,12 +20,10 @@ public class News {
     private String author;  //����
     @Lob
     private String content; //����
-    private int priority;  //?
     private File image;
    // private String image;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
-    private int state;      //?
     private String source;
 
     public long getId() {
@@ -68,13 +66,7 @@ public class News {
         this.content = content;
     }
 
-    public int getPriority() {
-        return priority;
-    }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
 
     public int getHits() {
         return hits;
@@ -90,14 +82,6 @@ public class News {
 
     public void setAddDate(Date addDate) {
         this.addDate = addDate;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public String getSource() {
