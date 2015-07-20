@@ -38,7 +38,7 @@
                                  #end
                                  <td>
                                      <a href="usereditpage?id=$user.id">修改  </a>
-                                     <a href="userdelete?id=$user.id">删除</a>
+                                     <a href="userdelete?id=$user.id">删除 </a>
                                  </td>
                              </tr>
                              #end
