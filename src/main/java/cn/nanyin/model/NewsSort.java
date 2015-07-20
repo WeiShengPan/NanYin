@@ -24,8 +24,6 @@ public class NewsSort {
 
     private int level;
     private String name;
-    private int priority;
-    private int state;
 
     public void removeNews(News n)
     {
@@ -67,23 +65,6 @@ public class NewsSort {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public NewsSort getUpperNewsSort() {
