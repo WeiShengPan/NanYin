@@ -52,12 +52,6 @@
                             <label>来源</label>
                             <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
                         </div>
-                        <!-- 排序编号 -->
-                        <div class="form-group">
-                            <label>排序编号</label>
-                            <input type="text" name="priority" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
                         <!--内容-->
                         <label>详细内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>

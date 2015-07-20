@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,12 +15,31 @@ public class BookSort {
     private long id;
     private int level;      //���༶��
     private String name;    //������
-    private long upperId;   //�÷������������
-    private int priority;  //��
-    private int state;      //��
 
+    @ManyToOne
+    private BookSort upperBookSort;
+    @OneToMany(mappedBy = "upperBookSort")
+    private List<BookSort> lowerBookSortList;
     @OneToMany (cascade= CascadeType.ALL,mappedBy = "bookSort")
-    private Set<Book> books;
+    private List<Book> books;
+
+    public void removeBook(Book b)
+    {
+        for(int i=0;i<books.size();i++)
+        {
+            if(books.get(i).getId()==b.getId())
+                books.remove(i);
+        }
+    }
+
+    public void removeBookSort(BookSort bs)
+    {
+        for(int i=0;i<lowerBookSortList.size();i++)
+        {
+            if(lowerBookSortList.get(i).getId()==bs.getId())
+                lowerBookSortList.remove(i);
+        }
+    }
 
     public long getId() {
         return id;
@@ -45,35 +65,27 @@ public class BookSort {
         this.name = name;
     }
 
-    public long getUpperId() {
-        return upperId;
+    public BookSort getUpperBookSort() {
+        return upperBookSort;
     }
 
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
+    public void setUpperBookSort(BookSort upperBookSort) {
+        this.upperBookSort = upperBookSort;
     }
 
-    public int getPriority() {
-        return priority;
+    public List<BookSort> getLowerBookSortList() {
+        return lowerBookSortList;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setLowerBookSortList(List<BookSort> lowerBookSortList) {
+        this.lowerBookSortList = lowerBookSortList;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBook(Set<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

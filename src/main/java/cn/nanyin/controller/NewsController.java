@@ -67,7 +67,8 @@ public class NewsController {
     public ModelAndView addNewsSort(NewsSort newsSort)
     {
         //if(newsSort.getUpperNewsSort().getId()!=1)
-        newsSort.setLevel(newsSort.getUpperNewsSort().getLevel() + 1);
+        int level=newsDao.getNewsSortById(newsSort.getUpperNewsSort().getId()).getLevel();
+        newsSort.setLevel(level+1);
         newsDao.addNewsSort(newsSort);
         return new ModelAndView("redirect:newssort");
     }
