@@ -47,14 +47,12 @@ public class ArticleDao {
     }
 
     public Serializable addBookSort(BookSort bookSort) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(bookSort);
+        Serializable result = sessionFactory.getCurrentSession().save(bookSort);
         return result;
     }
 
     public Serializable addBook(Book book) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(book);
+        Serializable result = sessionFactory.getCurrentSession().save(book);
         return result;
     }
 

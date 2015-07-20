@@ -130,16 +130,15 @@ public class NewsController {
         ModelAndView model=new ModelAndView("nyadmin/newsedit");
         News news=newsDao.getNewsById(id);
         model.addObject("news", news);
-        List<NewsSort> newsSortList=newsDao.getNewsSortList(0, 50);
+        List<NewsSort> newsSortList = newsDao.getNewsSortList(0, 50);
         model.addObject("newsSortList", newsSortList);
         return model;
     }
 
     //修改新闻
     @RequestMapping(value="nyadmin/newsedit",method = RequestMethod.POST)
-    public ModelAndView editNews(News news)
-    {
-        News targetNews=newsDao.getNewsById(news.getId());
+    public ModelAndView editNews(News news) {
+        News targetNews = newsDao.getNewsById(news.getId());
         targetNews.setTitle(news.getTitle());
         targetNews.setAuthor(news.getAuthor());
         targetNews.setSource(news.getSource());
@@ -159,7 +158,7 @@ public class NewsController {
         ModelAndView model=new ModelAndView("nyadmin/newssortedit");
         NewsSort newsSort=newsDao.getNewsSortById(id);
         model.addObject("newsSort", newsSort);
-        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0, 50);
         model.addObject("newsSortList", newsSortList);
         return model;
     }

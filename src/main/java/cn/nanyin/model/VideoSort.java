@@ -1,9 +1,6 @@
 package cn.nanyin.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -18,13 +15,32 @@ public class VideoSort {
     @OneToMany(mappedBy = "videoSort")
     private List<Video> videos;
 
-    private String name;
+    @ManyToOne
+    private VideoSort upperVideoSort;
+    @OneToMany(mappedBy = "upperVideoSort")
+    private List<VideoSort> lowerVideoSortList;
 
-    private int priority;
+    private String name;
 
     private int level;
 
-    private int state;
+    public void removeVideo(Video v)
+    {
+        for(int i=0;i<videos.size();i++)
+        {
+            if(videos.get(i).getId()==v.getId())
+                videos.remove(i);
+        }
+    }
+
+    public void removeVideoSort(VideoSort vs)
+    {
+        for(int i=0;i<lowerVideoSortList.size();i++)
+        {
+            if(lowerVideoSortList.get(i).getId()==vs.getId())
+                lowerVideoSortList.remove(i);
+        }
+    }
 
     public List<Video> getVideos() {
         return videos;
@@ -42,13 +58,7 @@ public class VideoSort {
         this.name = name;
     }
 
-    public int getPriority() {
-        return priority;
-    }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
 
     public int getLevel() {
         return level;
@@ -58,11 +68,29 @@ public class VideoSort {
         this.level = level;
     }
 
-    public int getState() {
-        return state;
+
+
+    public VideoSort getUpperVideoSort() {
+        return upperVideoSort;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setUpperVideoSort(VideoSort upperVideoSort) {
+        this.upperVideoSort = upperVideoSort;
+    }
+
+    public List<VideoSort> getLowerVideoSortList() {
+        return lowerVideoSortList;
+    }
+
+    public void setLowerVideoSortList(List<VideoSort> lowerVideoSortList) {
+        this.lowerVideoSortList = lowerVideoSortList;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -44,14 +44,12 @@ public class NewsDao {
     }
 
     public Serializable addNewsSort(NewsSort newsSort) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(newsSort);
+        Serializable result =  sessionFactory.getCurrentSession().save(newsSort);
         return result;
     }
 
     public Serializable addNews(News news) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(news);
+        Serializable result= sessionFactory.getCurrentSession().save(news);
         return result;
     }
 

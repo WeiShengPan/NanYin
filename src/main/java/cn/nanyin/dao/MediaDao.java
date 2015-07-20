@@ -46,14 +46,12 @@ public class MediaDao {
     }
 
     public Serializable addMediaSort(MediaSort mediaSort) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(mediaSort);
+        Serializable result = sessionFactory.getCurrentSession().save(mediaSort);
         return result;
     }
 
     public Serializable addMedia(Media media) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(media);
+        Serializable result =  sessionFactory.getCurrentSession().save(media);
         return result;
     }
 
