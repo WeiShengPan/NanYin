@@ -49,7 +49,7 @@ public class UserController {
     {
         user.setRegDate(new Date());
         userDao.addUser(user);
-        return new ModelAndView("redirect:useraddpage");
+        return new ModelAndView("redirect:userlist");
     }
 
     //删除用户

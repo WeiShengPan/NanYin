@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,14 +15,35 @@ public class ProductSort {
     private long id;
     private int level;       //���༶��
     private String name;    //������
-    private long upperId;   //���������
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productSort")
+    private List<Product> products;
+
+    @ManyToOne
+    private ProductSort upperProductSort;
+    @OneToMany(mappedBy = "upperProductSort")
+    private List<ProductSort> lowerProductSortList;
+
     private int priority;  //?
     private String pic;     //����ͼ��ַ
     private String intro;   //?
     private int state;      //?
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "productSort")
-    private Set<Product> products=new HashSet<Product>();
+    public void removeProduct(Product p) {
+        for(int i=0;i<products.size();i++)
+        {
+            if(products.get(i).getId()==p.getId())
+                products.remove(i);
+        }
+    }
+
+    public void removeProductSort(ProductSort ps) {
+        for(int i=0;i<lowerProductSortList.size();i++)
+        {
+            if(lowerProductSortList.get(i).getId()==ps.getId())
+                lowerProductSortList.remove(i);
+        }
+    }
 
     public long getId() {
         return id;
@@ -45,14 +67,6 @@ public class ProductSort {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getUpperId() {
-        return upperId;
-    }
-
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
     }
 
     public int getPriority() {
@@ -87,11 +101,27 @@ public class ProductSort {
         this.state = state;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public ProductSort getUpperProductSort() {
+        return upperProductSort;
+    }
+
+    public void setUpperProductSort(ProductSort upperProductSort) {
+        this.upperProductSort = upperProductSort;
+    }
+
+    public List<ProductSort> getLowerProductSortList() {
+        return lowerProductSortList;
+    }
+
+    public void setLowerProductSortList(List<ProductSort> lowerProductSortList) {
+        this.lowerProductSortList = lowerProductSortList;
     }
 }

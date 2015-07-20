@@ -1,8 +1,10 @@
 package cn.nanyin.controller;
 
 import cn.nanyin.dao.AreaDao;
+import cn.nanyin.dao.CollegeDao;
 import cn.nanyin.dao.UserDao;
 import cn.nanyin.model.Area;
+import cn.nanyin.model.College;
 import cn.nanyin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ public class AreaController {
     private AreaDao areaDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CollegeDao collegeDao;
 
     //展示地区列表
     @RequestMapping(value="nyadmin/arealist",method= RequestMethod.GET)
@@ -59,7 +63,18 @@ public class AreaController {
             userDao.deleteUser(userTmp1);
         }
 
-        //级联删除所有下层新闻种类
+        //级联删除所有该地区社团
+        List<College> collegeList=area.getColleges();
+        for(int i=0;i<collegeList.size();i++)
+        {
+            College collegeTmp1 =collegeList.get(i);
+            area.removeCollege(collegeTmp1);
+            collegeTmp1.setArea(null);
+            collegeDao.updateCollege(collegeTmp1);
+            collegeDao.deleteCollege(collegeTmp1);
+        }
+
+        //级联删除所有下层地区
         List<Area> lowerAreaList=area.getLowerAreaList();
         for(int i=0;i<lowerAreaList.size();i++)
         {

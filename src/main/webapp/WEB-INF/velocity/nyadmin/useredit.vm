@@ -207,7 +207,7 @@
                         <!--专长-->
                         <div class="form-group">
                             <label>专长</label>
-                            <textarea name="skill" id="editor1" name="content" rows="10" cols="80" required>
+                            <textarea name="skill" class="form-control">
                                 $!user.skill
                             </textarea>
                         </div>
