@@ -1,8 +1,7 @@
 package cn.nanyin.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by gg on 2015/7/9.
@@ -12,16 +11,35 @@ public class MediaSort {
     @Id
     @GeneratedValue
     private long id;
-    private int level;       //���༶��
-    private String name;    //������
-    private long upperId;   //���������
-    private int priority;  //?
-    private String pic;     //?
-    private String intro;   //?
-    private int state;      //?
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "mediaSort")
-    private Set<Media> medias;
+    private List<Media> mediaList;
+
+    @ManyToOne
+    private MediaSort upperMediaSort;
+    @OneToMany(mappedBy = "upperMediaSort")
+    private List<MediaSort> lowerMediaSortList;
+
+    private int level;
+    private String name;
+
+    public void removeMedia(Media m)
+    {
+        for(int i=0;i<mediaList.size();i++)
+        {
+            if(mediaList.get(i).getId()==m.getId())
+                mediaList.remove(i);
+        }
+    }
+
+    public void removeMediaSort(MediaSort ms)
+    {
+        for(int i=0;i<lowerMediaSortList.size();i++)
+        {
+            if(lowerMediaSortList.get(i).getId()==ms.getId())
+                lowerMediaSortList.remove(i);
+        }
+    }
 
     public long getId() {
         return id;
@@ -47,51 +65,28 @@ public class MediaSort {
         this.name = name;
     }
 
-    public long getUpperId() {
-        return upperId;
+
+    public List<Media> getMediaList() {
+        return mediaList;
     }
 
-    public void setUpperId(long upperId) {
-        this.upperId = upperId;
+    public void setMediaList(List<Media> mediaList) {
+        this.mediaList = mediaList;
     }
 
-    public int getPriority() {
-        return priority;
+    public MediaSort getUpperMediaSort() {
+        return upperMediaSort;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setUpperMediaSort(MediaSort upperMediaSort) {
+        this.upperMediaSort = upperMediaSort;
     }
 
-    public String getPic() {
-        return pic;
+    public List<MediaSort> getLowerMediaSortList() {
+        return lowerMediaSortList;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public Set<Media> getMedias() {
-        return medias;
-    }
-
-    public void setMedias(Set<Media> medias) {
-        this.medias = medias;
+    public void setLowerMediaSortList(List<MediaSort> lowerMediaSortList) {
+        this.lowerMediaSortList = lowerMediaSortList;
     }
 }

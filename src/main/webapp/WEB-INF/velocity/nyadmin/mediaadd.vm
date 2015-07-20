@@ -1,0 +1,96 @@
+<section class="content-header">
+    <h1>
+        影音管理
+        <small>添加影音</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form action="/nyadmin/mediaadd" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>选择类别</label>
+                            <select name="mediaSort.id" class="form-control">
+                                #foreach($mediaSort in $mediaSortList)
+                                    #if($mediaSort.id!=1)
+                                        <option value="$mediaSort.id">$mediaSort.name</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>影音名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 演唱 -->
+                        <div class="form-group">
+                            <label>演唱</label>
+                            <input type="text" name="singer" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 演奏 -->
+                        <div class="form-group">
+                            <label>演奏</label>
+                            <input type="text" name="performer" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!-- 摄像 -->
+                        <div class="form-group">
+                            <label>摄像</label>
+                            <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!-- 制作 -->
+                        <div class="form-group">
+                            <label>制作</label>
+                            <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!-- 播放地址 -->
+                        <div class="form-group">
+                            <label>播放地址</label>
+                            <input type="text" name="url" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!--工尺谱-->
+                        <br>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传工尺谱</label>
+                            <input type="file" name="gcp" id="exampleInputFile">
+                        </div>
+                        <!--简谱-->
+                        <br>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传简谱</label>
+                            <input type="file" name="jp" id="exampleInputFile">
+                        </div>
+                        <!--内容-->
+                        <label>内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                 </textarea>
+                        <!--缩略图-->
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传缩略图</label>
+                            <input type="file" name="image" id="exampleInputFile">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

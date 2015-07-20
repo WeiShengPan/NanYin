@@ -21,15 +21,11 @@ public class Video {
 
     private String title;
 
-    private int priority;//优先级
-
     private String content;//内容
 
     private String imageURL;//图片url
 
     private int hits;//点击量
-
-    private int state;
 
     private Date addDate;
 
@@ -47,14 +43,6 @@ public class Video {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
     }
 
     public String getContent() {
@@ -80,14 +68,6 @@ public class Video {
 
     public void setHits(int hits) {
         this.hits = hits;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public Date getAddDate() {

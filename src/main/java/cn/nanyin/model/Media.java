@@ -14,22 +14,22 @@ public class Media {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private MediaSort mediaSort;     //����
-    private String name;        //����
-    private String singer;      //�ݳ�
-    private String performer;   //����
-    private String cameraman;   //��Ӱ
-    private String producer;    //����
-    private int playtype;       //?
-    private String url;         //ý���ַ
-    private String pic;         //����ͼ��ַ
+    private MediaSort mediaSort;
+    private String name;       //标题
+    private String singer;      //演唱
+    private String performer;   //演奏
+    private String cameraman;   //摄像
+    private String producer;    //制作
+    private int type;
+    private String url;         //
     private String gcp;         //工尺谱
     private String jp;          //简谱
-    private String content;     //˵��
-    private int recommendation;        //�Ƽ�ָ��
-    private Date addDate;       //����ʱ��
-    private int hits;           //�����
-    private int state;          //?
+    @Lob
+    private String content;
+    private Date addDate;
+    private int hits;
+    private String image;    //缩略图
+
 
     public long getId() {
         return id;
@@ -55,12 +55,12 @@ public class Media {
         this.name = name;
     }
 
-    public int getPlaytype() {
-        return playtype;
+    public int getType() {
+        return type;
     }
 
-    public void setPlaytype(int playtype) {
-        this.playtype = playtype;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getUrl() {
@@ -69,14 +69,6 @@ public class Media {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
     }
 
     public String getGcp() {
@@ -103,13 +95,7 @@ public class Media {
         this.content = content;
     }
 
-    public int getRecommendation() {
-        return recommendation;
-    }
 
-    public void setRecommendation(int recommendation) {
-        this.recommendation = recommendation;
-    }
 
     public Date getAddDate() {
         return addDate;
@@ -127,13 +113,6 @@ public class Media {
         this.hits = hits;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
 
     public String getSinger() {
         return singer;
@@ -165,5 +144,13 @@ public class Media {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
