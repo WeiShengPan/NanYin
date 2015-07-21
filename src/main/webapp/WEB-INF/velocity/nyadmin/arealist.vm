@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        用户管理
+        地区管理
         <small>地区管理</small>
     </h1>
 </section>
@@ -60,17 +60,17 @@
                         </thead>
                         <tbody>
                             #foreach(${area}in ${areaList})
-                            <tr>
-                                <td>${area.level}</td>
-                                <td>${area.name}</td>
-                                <td>$!{area.upperArea.name}</td>
-                                <td>
-                                    #if($area.id!=1)
+                                #if(${area.id}!=1)
+                                <tr>
+                                    <td>${area.level}</td>
+                                    <td>${area.name}</td>
+                                    <td>$!{area.upperArea.name}</td>
+                                    <td>
                                         <a href="areaeditpage?id=$area.id">修改 </a>
                                         <a href="areadelete?id=$area.id">删除</a>
-                                    #end
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                #end
                             #end
                         </tbody>
                     </table>
