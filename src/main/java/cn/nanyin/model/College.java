@@ -1,8 +1,6 @@
 package cn.nanyin.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -18,9 +16,13 @@ public class College {
 
     private String name;//社团名
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "area_id")
+    private Area area;//用户所属地区
+
     private String leader;//现任社团领导
 
-    private String exLeader;//理解领导
+    private String exLeader;//历届领导
 
     private String email;//邮箱
 
@@ -30,12 +32,13 @@ public class College {
 
     private String telephone;//联系电话
 
-    private Date formDate;//成立时间
+    private String formDate;//成立时间
 
     private int memberNum;//会员数
 
     private String activityDate;//活动时间
 
+    @Lob
     private String introduction;//简介
 
     private boolean vip;//是否为vip社团
@@ -108,11 +111,11 @@ public class College {
         this.telephone = telephone;
     }
 
-    public Date getFormDate() {
+    public String getFormDate() {
         return formDate;
     }
 
-    public void setFormDate(Date formDate) {
+    public void setFormDate(String formDate) {
         this.formDate = formDate;
     }
 
@@ -130,14 +133,6 @@ public class College {
 
     public void setActivityDate(String activityDate) {
         this.activityDate = activityDate;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
     }
 
     public boolean isVip() {
@@ -170,5 +165,21 @@ public class College {
 
     public void setMainMembers(String mainMembers) {
         this.mainMembers = mainMembers;
+    }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 }

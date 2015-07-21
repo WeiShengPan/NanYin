@@ -1,0 +1,131 @@
+<section class="content-header">
+    <h1>
+        社团管理
+        <small>社团管理</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改社团</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/collegeadd" method="post">
+                        <!-- 所属地区 -->
+                        <div class="form-group">
+                            <label>所属地区</label>
+                            <select name="area.id" class="form-control">
+                                #foreach($area in ${areaList})
+                                    #if($area.id!=1)
+                                        <option value="$area.id"
+                                            #if($!{college.area.id}=="$area.id")
+                                                selected = "selected"
+                                            #end
+                                                >$area.name</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <!-- 社团名 -->
+                        <div class="form-group">
+                            <label>社团名</label>
+                            <input type="text" name="name" class="form-control" value="$!{college.name}"/>
+                        </div>
+                        <!-- 主要成员 -->
+                        <div class="form-group">
+                            <label>主要成员</label>
+                            <input type="text" name="mainMembers" class="form-control" value="$!{college.mainMembers}"/>
+                        </div>
+                        <!-- 现任社团领导 -->
+                        <div class="form-group">
+                            <label>现任社团领导</label>
+                            <input type="text" name="leader" class="form-control"  value="$!{college.leader}"/>
+                        </div>
+                        <!-- 历届领导 -->
+                        <div class="form-group">
+                            <label>历届领导</label>
+                            <input type="text" name="exLeader" class="form-control" value="$!{college.exLeader}"/>
+                        </div>
+                        <!-- 邮箱 -->
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="text" name="email" class="form-control" value="$!{college.email}"/>
+                        </div>
+                        <!-- 联系地址 -->
+                        <div class="form-group">
+                            <label>联系地址</label>
+                            <input type="text" name="address" class="form-control" value="$!{college.address}"/>
+                        </div>
+                        <!-- 联系人 -->
+                        <div class="form-group">
+                            <label>联系人</label>
+                            <input type="text" name="contact" class="form-control" value="$!{college.contact}"/>
+                        </div>
+                        <!-- 联系电话 -->
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="text" name="telephone" class="form-control" value="$!{college.telephone}"/>
+                        </div>
+                        <!-- 成立时间 -->
+                        <div class="form-group">
+                            <label>成立时间</label>
+                            <input type="text" name="formDate" class="form-control" value="$!{college.formDate}"/>
+                        </div>
+                        <!-- 会员数 -->
+                        <div class="form-group">
+                            <label>会员数</label>
+                            <input type="text" name="memberNum" class="form-control" value="$!{college.memberNum}"/>
+                        </div>
+                        <!-- 活动时间 -->
+                        <div class="form-group">
+                            <label>活动时间</label>
+                            <input type="text" name="activityDate" class="form-control" value="$!{college.activityDate}"/>
+                        </div>
+                        <!-- 是否为vip社团 -->
+                        <div class="form-group">
+                            <label>是否为vip社团</label>
+                            <select name="vip" class="form-control">
+                                <option value="false"
+                                    #if($!{college.vip}=="false")
+                                        selected = "selected"
+                                    #end
+                                        >否</option>
+                                <option value="true"
+                                    #if($!{college.vip}=="true")
+                                        selected = "selected"
+                                    #end
+                                        >是</option>
+                            </select>
+                        </div>
+                        <!-- 简介 -->
+                        <div class="form-group">
+                            <label>简介</label>
+                            <textarea name="introduction" id="editor1" rows="10" cols="80" required>
+                                $!{college.introduction}
+                            </textarea>
+                        </div>
+                        <!--社团形象缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传社团形象缩略图</label>
+                            <input type="file" name="image" id="exampleInputFile" value="$!{college.image}">
+
+                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!college.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

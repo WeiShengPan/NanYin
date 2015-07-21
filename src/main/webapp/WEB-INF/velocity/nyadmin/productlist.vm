@@ -1,0 +1,47 @@
+<section class="content-header">
+    <h1>
+        商城管理
+        <small>产品管理</small>
+    </h1>
+</section><!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">产品列表</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>类别</th>
+                            <th>产品名称</th>
+                            <th>产品价格</th>
+                            <th>缩略图</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            #foreach($product in ${productList})
+                            <tr>
+                                <td>$!{product.productSort.name}</td>
+                                <td>$!{product.name}</td>
+                                <td>$!{product.price}</td>
+                                <td>$!{product.pic}</td>
+                                <td><a href="producteditpage?id=${product.id}">修改 </a><a href="productdelete?id=${product.id}">删除</a>
+                                </td>
+                            </tr>
+                            #end
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section><!-- /.content -->
