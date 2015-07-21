@@ -1,0 +1,65 @@
+<section class="content-header">
+    <h1>
+        教学中心
+        <small>专辑管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改类别</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/videosortedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>上级类别</label>
+                            <select name="upperVideoSort.id" class="form-control">
+                                #foreach($videoort in $videoSortList)
+                                    <option value="$videoSort.id">$videoSort.name</option>
+                                #end
+
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>专辑名称</label>
+                            <input type="text" name="title" class="form-control" value="$!video.title" type="text"
+                                   required/>
+                        </div>
+
+                        <!--内容-->
+                        <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                    $!video.content;
+                                 </textarea>
+                        <!--新闻缩略图-->
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传缩略图</label>
+                            <input type="file" name="image" id="exampleInputFile">
+                        </div>
+
+                        <div>
+                            <input type="hidden" name="id" value="$!videoSort.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,6 +1,7 @@
 package cn.nanyin.dao;
 
 import cn.nanyin.model.Video;
+import cn.nanyin.model.VideoDetail;
 import cn.nanyin.model.VideoSort;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -28,6 +29,11 @@ public class VideoDao {
         return (VideoSort) sessionFactory.getCurrentSession().get(VideoSort.class, id);
     }
 
+    public VideoDetail getVideoDetailById(long id)
+    {
+        return (VideoDetail)sessionFactory.getCurrentSession().get(VideoDetail.class,id);
+    }
+
     public List<Video> getVideoList(Integer start, Integer max) {
         //from Video as Video order by addDate desc
         Query query = sessionFactory.getCurrentSession().createQuery("from Video as video order by addDate desc");
@@ -42,16 +48,28 @@ public class VideoDao {
         query.setMaxResults(max);
         return query.list();
     }
+    public List<VideoDetail> getVideoDetailList(Integer start, Integer max,long  videoId)
+    {
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoDetail where video.id=? order by addDate desc");
+        query.setParameter(0,videoId);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
 
     public Serializable addVideoSort(VideoSort videoSort) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(videoSort);
+        Serializable result = sessionFactory.getCurrentSession().save(videoSort);
         return result;
     }
 
     public Serializable addVideo(Video video) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(video);
+        Serializable result = sessionFactory.getCurrentSession().save(video);
+        return result;
+    }
+
+    public Serializable addVideoDetail(VideoDetail videoDetail)
+    {
+        Serializable result =sessionFactory.getCurrentSession().save(videoDetail);
         return result;
     }
 
@@ -63,6 +81,11 @@ public class VideoDao {
         sessionFactory.getCurrentSession().delete(videoSort);
     }
 
+    public void deleteVideoDetail(VideoDetail videoDetail)
+    {
+        sessionFactory.getCurrentSession().delete(videoDetail);
+    }
+
     public void updateVideo(Video video)
     {
         sessionFactory.getCurrentSession().saveOrUpdate(video);
@@ -72,4 +95,13 @@ public class VideoDao {
     {
         sessionFactory.getCurrentSession().saveOrUpdate(videoSort);
     }
+
+    public void updateVideoDetail(VideoDetail videoDetail)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(videoDetail);
+    }
+
+
+
+
 }
