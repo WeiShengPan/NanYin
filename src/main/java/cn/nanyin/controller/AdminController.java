@@ -42,7 +42,7 @@ public class AdminController {
         return new ModelAndView("redirect:adminlist");
     }
 
-    //地区修改页面
+    //管理员账户修改页面
     @RequestMapping(value="nyadmin/admineditpage",method = RequestMethod.GET)
     public ModelAndView showAdminUserEditPage(long id) {
         ModelAndView model=new ModelAndView("nyadmin/adminedit");
@@ -51,7 +51,7 @@ public class AdminController {
         return model;
     }
 
-    //地区修改操作
+    //管理员账户修改操作
     @RequestMapping(value="nyadmin/adminedit",method = RequestMethod.POST)
     public ModelAndView editAdminUser(AdminUser adminUser) {
         AdminUser targetAdminUser = adminDao.getAdminUserById(adminUser.getId());

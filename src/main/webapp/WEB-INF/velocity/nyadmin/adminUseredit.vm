@@ -1,0 +1,49 @@
+<section class="content-header">
+    <h1>
+        修改密码
+        <small>修改密码</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改密码</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/adminUseredit" method="post">
+                        <!-- 账号名 -->
+                        <div class="form-group">
+                            <label>账号名</label>
+                            <input type="text" name="adminName" class="form-control" value="$!adminUser.adminName" placeholder="Enter ..." />
+                        </div>
+                        <!-- 旧密码 -->
+                        <div class="form-group">
+                            <label>旧密码</label>
+                            <input type="text" name="password" class="form-control" placeholder="Enter ..." />
+                        </div>
+                        <!-- 新密码 -->
+                        <div class="form-group">
+                            <label>新密码</label>
+                            <input type="text" name="newPass" class="form-control" placeholder="Enter ..." />
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!adminUser.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

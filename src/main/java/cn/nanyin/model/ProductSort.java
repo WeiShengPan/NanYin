@@ -13,22 +13,23 @@ public class ProductSort {
     @Id
     @GeneratedValue
     private long id;
-    private int level;       //���༶��
-    private String name;    //������
+    private int level;  //产品等级
+    private String name;    //本等级名
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "productSort")
-    private List<Product> products;
+    private List<Product> products; //本等级的产品列表
 
     @ManyToOne
-    private ProductSort upperProductSort;
+    private ProductSort upperProductSort;   //本等级所属的上一级
     @OneToMany(mappedBy = "upperProductSort")
-    private List<ProductSort> lowerProductSortList;
+    private List<ProductSort> lowerProductSortList; //本等级的下一级列表
 
-    private int priority;  //?
-    private String pic;     //����ͼ��ַ
-    private String intro;   //?
-    private int state;      //?
+    private int priority;  //排序编号
+    private String pic; //缩略图地址
+    private String intro;   //介绍
+    private int state;  //状态
 
+    //删除本等级产品列表中的产品
     public void removeProduct(Product p) {
         for(int i=0;i<products.size();i++)
         {
@@ -37,6 +38,7 @@ public class ProductSort {
         }
     }
 
+    //删除本等级下属等级列表中的等级
     public void removeProductSort(ProductSort ps) {
         for(int i=0;i<lowerProductSortList.size();i++)
         {

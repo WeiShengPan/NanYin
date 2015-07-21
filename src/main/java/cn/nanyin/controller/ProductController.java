@@ -140,7 +140,7 @@ public class ProductController {
         return new ModelAndView("redirect:productlist");
     }
 
-
+    //显示修改产品类别页面
     @RequestMapping(value="nyadmin/productsorteditpage",method = RequestMethod.GET)
     public ModelAndView showProductSortEditPage(long id) {
         ModelAndView model=new ModelAndView("nyadmin/productsortedit");
@@ -151,6 +151,7 @@ public class ProductController {
         return model;
     }
 
+    //修改产品类别
     @RequestMapping(value="nyadmin/productsortedit",method = RequestMethod.POST)
     public ModelAndView editProductSort(ProductSort productSort) {
         ProductSort targetProductSort=productDao.getProductSortById(productSort.getId());

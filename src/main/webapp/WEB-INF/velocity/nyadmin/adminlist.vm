@@ -54,8 +54,8 @@
                         <thead>
                         <tr>
                             <th>账号名</th>
-                            <th>密码</th>
                             <th>真实姓名</th>
+                            <th>最近登录时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -64,7 +64,7 @@
                             <tr>
                                 <td>$!{admin.adminName}</td>
                                 <td>$!{admin.password}</td>
-                                <td>$!{admin.name}</td>
+                                <td>$!{admin.lastLoginDate}</td>
                                 <td>
                                     <a href="admineditpage?id=$admin.id">修改 </a>
                                     <a href="admindelete?id=$admin.id">删除 </a>
