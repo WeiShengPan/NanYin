@@ -1,0 +1,87 @@
+
+<section class="content-header">
+    <h1>
+        教学中心
+        <small>类别管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">类别列表</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>级别</th>
+                            <th>名称</th>
+                            <th>上级类</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            #foreach($videoSort in $videoSortList)
+                                #if($videoSort.id!=1)
+                                <tr>
+                                    <td>$videoSort.level</td>
+                                    <td>$videoSort.name</td>
+                                    <td>$!videoSort.upperVideoSort.name</td>
+                                    <td><a href="videosorteditpage?id=$videoSort.id">修改 </a><a href="videosortdelete?id=$videoSort.id">删除</a></td>
+                                </tr>
+                                #end
+                            #end
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">添加类别</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/videosortadd" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>上级类别</label>
+                            <select name="upperVideoSort.id" class="form-control">
+                                #foreach($videoSort in $videoSortList)
+                                    <option value="$videoSort.id">$videoSort.name</option>
+                                #end
+
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>类别名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
