@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>选择类别</label>
                             <select name="videoSort.id" class="form-control">
-                                #foreach($videosSort in $videoSortList)
+                                #foreach($videoSort in $videoSortList)
                                     #if($videoSort.id!=1)
                                         <option value="$videoSort.id">$videoSort.name</option>
                                     #end

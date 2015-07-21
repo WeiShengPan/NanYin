@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,60 @@ public class VideoController {
     @RequestMapping(value="nyadmin/videosortdelete",method = RequestMethod.GET)
     public ModelAndView deleteVideoSort(long id)
     {
-        return null;
+        VideoSort videoSort=videoDao.getVideoSortById(id);
+
+
+        List<Video> videoList=videoSort.getVideos();
+        for(int i=0;i<videoList.size();i++)
+        {
+            Video videoTmp1 =videoList.get(i);
+            videoSort.removeVideo(videoTmp1);
+            videoTmp1.setVideoSort(null);
+
+            List<VideoDetail> videoDetails=videoTmp1.getVideoDetails();
+            for(int j=0;j<videoDetails.size();j++)
+            {
+                VideoDetail videoDetailTmp=videoDetails.get(j);
+                videoTmp1.removeVideoDetail(videoDetailTmp);
+                videoDetailTmp.setVideo(null);
+                videoDao.updateVideoDetail(videoDetailTmp);
+                videoDao.deleteVideoDetail(videoDetailTmp);
+            }
+            videoDao.updateVideo(videoTmp1);
+            videoDao.deleteVideo(videoTmp1);
+        }
+
+        //级联删除所有下层新闻种类
+        List<VideoSort> lowerVideoSortList=videoSort.getLowerVideoSortList();
+        for(int i=0;i<lowerVideoSortList.size();i++)
+        {
+            VideoSort videoSortTmp=lowerVideoSortList.get(i);
+            List<Video> lowerVideoList=videoSortTmp.getVideos();
+            for(int j=0;j<lowerVideoList.size();j++)
+            {
+                Video videoTmp2=lowerVideoList.get(i);
+                videoSortTmp.removeVideo(videoTmp2);
+                videoTmp2.setVideoSort(null);
+                List<VideoDetail> videoDetails=videoTmp2.getVideoDetails();
+                for(int k=0;k<videoDetails.size();k++)
+                {
+                    VideoDetail videoDetailTmp=videoDetails.get(k);
+                    videoTmp2.removeVideoDetail(videoDetailTmp);
+                    videoDetailTmp.setVideo(null);
+                    videoDao.updateVideoDetail(videoDetailTmp);
+                    videoDao.deleteVideoDetail(videoDetailTmp);
+                }
+                videoDao.updateVideo(videoTmp2);
+                videoDao.deleteVideo(videoTmp2);
+            }
+            videoSort.removeVideoSort(videoSortTmp);
+            videoSortTmp.setUpperVideoSort(null);
+            videoDao.updateVideoSort(videoSortTmp);
+            videoDao.deleteVideoSort(videoSortTmp);
+        }
+
+        videoDao.deleteVideoSort(videoSort);
+        return new ModelAndView("redirect:videosort");
     }
 
     @RequestMapping(value = "nyadmin/videolist",method = RequestMethod.GET)
@@ -117,7 +171,7 @@ public class VideoController {
         targetVideo.setAddDate(videoDao.getVideoById(video.getId()).getAddDate());
         targetVideo.setHits(videoDao.getVideoById(video.getId()).getHits());
         targetVideo.setVideoDetails(videoDao.getVideoById(video.getId()).getVideoDetails());
-        videoDao.updateVideo(video);
+        videoDao.updateVideo(targetVideo);
         return new ModelAndView("redirect:videolist");
     }
 
@@ -143,20 +197,19 @@ public class VideoController {
     public ModelAndView showVideoDetailList(long id)
     {
         ModelAndView model=new ModelAndView("nyadmin/videodetail");
-        List<VideoDetail> videoDetailList=videoDao.getVideoDetailList(0,50,id);
-        model.addObject("videoDetailList",videoDetailList);
+        List<VideoDetail> videoDetailList=videoDao.getVideoDetailList(0, 50, id);
+        model.addObject("videoDetailList", videoDetailList);
         Video video=videoDao.getVideoById(id);
         model.addObject("video",video);
-
         return model;
     }
 
     @RequestMapping(value = "nyadmin/videodetailadd",method = RequestMethod.POST)
-    public ModelAndView addVideoDetail(VideoDetail videoDetail)
+    public ModelAndView addVideoDetail(VideoDetail videoDetail,BindingResult result)
     {
         videoDetail.setAddDate(new Date());
         videoDao.addVideoDetail(videoDetail);
-        return new ModelAndView("redirect:videodetail");
+        return new ModelAndView("redirect:videodetail?id="+videoDetail.getVideo().getId());
     }
 
     @RequestMapping(value = "nyadmin/videodetaileditpage")
@@ -185,8 +238,8 @@ public class VideoController {
         targetVideoDetail.setAddDate(videoDao.getVideoDetailById(videoDetail.getId()).getAddDate());
         targetVideoDetail.setHits(videoDao.getVideoDetailById(videoDetail.getId()).getHits());
 
-        videoDao.updateVideoDetail(videoDetail);
-        return new ModelAndView("redirect:videodetail");
+        videoDao.updateVideoDetail(targetVideoDetail);
+        return new ModelAndView("redirect:videodetail?id="+videoDetail.getVideo().getId());
     }
 
     @RequestMapping(value = "nyadmin/videodetaildelete",method = RequestMethod.GET)
@@ -194,7 +247,7 @@ public class VideoController {
     {
         VideoDetail videoDetail=videoDao.getVideoDetailById(id);
         videoDao.deleteVideoDetail(videoDetail);
-        return new ModelAndView("redirect:videodetail");
+        return new ModelAndView("redirect:videodetail?id="+videoDetail.getVideo().getId());
     }
 
 

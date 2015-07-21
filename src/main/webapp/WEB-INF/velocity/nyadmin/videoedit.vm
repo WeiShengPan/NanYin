@@ -17,13 +17,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/videosortedit" method="post">
+                    <form action="/nyadmin/videoedit" method="post">
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>上级类别</label>
-                            <select name="upperVideoSort.id" class="form-control">
-                                #foreach($videoort in $videoSortList)
-                                    <option value="$videoSort.id">$videoSort.name</option>
+                            <select name="videoSort.id" class="form-control">
+                                #foreach($vs in $videoSortList)
+                                    <option value="$vs.id">$vs.name</option>
                                 #end
 
                             </select>
@@ -31,14 +31,14 @@
                         <!-- 标题 -->
                         <div class="form-group">
                             <label>专辑名称</label>
-                            <input type="text" name="title" class="form-control" value="$!video.title" type="text"
+                            <input type="text" name="title" class="form-control" value="$!video.title"
                                    required/>
                         </div>
 
                         <!--内容-->
                         <label>详细内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
-                                    $!video.content;
+                                    $!video.content
                                  </textarea>
                         <!--新闻缩略图-->
 
@@ -48,7 +48,7 @@
                         </div>
 
                         <div>
-                            <input type="hidden" name="id" value="$!videoSort.id">
+                            <input type="hidden" name="id" value="$!video.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
