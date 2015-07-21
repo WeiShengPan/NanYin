@@ -68,8 +68,7 @@ public class ProductDao {
         sessionFactory.getCurrentSession().saveOrUpdate(product);
     }
 
-    public void updateProductSort(ProductSort productSort)
-    {
+    public void updateProductSort(ProductSort productSort) {
         sessionFactory.getCurrentSession().saveOrUpdate(productSort);
     }
 }

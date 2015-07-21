@@ -13,6 +13,7 @@ public class AdminUser {
     private long id;
     private String adminName;   //管理员账户
     private String password;
+    private String newPass;
     private String name;        //管理员真实姓名
     private String permission;  //权限
     private Date lastLoginDate; //最近登录时间
@@ -81,5 +82,13 @@ public class AdminUser {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
     }
 }
