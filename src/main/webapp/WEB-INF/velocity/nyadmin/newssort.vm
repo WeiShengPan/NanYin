@@ -1,4 +1,7 @@
-
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(新闻管理)").parent().addClass("active");
+</script>')
         <section class="content-header">
             <h1>
                 新闻管理

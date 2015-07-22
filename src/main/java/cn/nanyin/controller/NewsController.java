@@ -6,8 +6,10 @@ import cn.nanyin.model.NewsSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -28,8 +30,18 @@ public class NewsController {
     {
         ModelAndView model = new ModelAndView("nyadmin/newslist");
         List<News> newsList=newsDao.getNewsList(0, 50);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
         model.addObject("newsList",newsList);
+        model.addObject("newsSortList",newsSortList);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/newslistbysort/{sortid}", method = RequestMethod.GET)
+    public List<News> getNewsListBySort(@PathVariable Long sortid) {
+        NewsSort newsSort=newsDao.getNewsSortById(sortid);
+        List<News> newsList=newsSort.getNews();
+        return newsList;
     }
 
     //显示增加新闻页面

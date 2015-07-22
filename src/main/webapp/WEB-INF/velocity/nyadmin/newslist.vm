@@ -1,3 +1,24 @@
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(新闻管理)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/newslistbysort/"+value,function(data){
+
+            var newslist=data;
+            $.each(newslist,function(i,news)
+            {
+                var name=news.newsSort.name;
+                var title=news.title;
+                var date=news.addDate;
+                var id=news.id;
+                $("#newslistbysort").html("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td></td> </tr>");
+            })
+        },"json")
+    });
+});
+</script>')
 <section class="content-header">
     <h1>
         新闻管理
@@ -12,7 +33,16 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">文章列表</h3>
+                    <h3 class="box-title">文章列表 </h3>
+                    <a class="pull-right hidden-xs">类别
+                        <select id="sortbox">
+                            #foreach($newsSort in $newsSortList)
+                                #if($newsSort.id!=1)
+                                    <option value="$newsSort.id">$newsSort.name</option>
+                                #end
+                            #end
+                        </select>
+                    </a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -25,7 +55,7 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="newslistbysort">
 
                             #foreach($news in $newsList)
                             <tr>

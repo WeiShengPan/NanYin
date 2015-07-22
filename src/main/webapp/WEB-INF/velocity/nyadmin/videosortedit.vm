@@ -1,3 +1,7 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+</script>')
 <section class="content-header">
     <h1>
         教学中心
