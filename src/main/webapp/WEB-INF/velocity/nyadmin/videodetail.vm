@@ -57,7 +57,7 @@
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>上级类别</label>
-                            <select name="video.id" class="form-control" disabled="disabled">
+                            <select name="video.id" class="form-control">
                                 <option selected="selected" value="$!video.id">$!video.title</option>
                             </select>
                         </div>
@@ -69,22 +69,22 @@
                         <!-- 指导老师 -->
                         <div class="form-group">
                             <label>指导老师</label>
-                            <input type="text" name="teacher" class="form-control" placeholder="Enter ..." required/>
+                            <input type="text" name="teacher" class="form-control" placeholder="Enter ..." />
                         </div>
                         <!-- 来源 -->
                         <div class="form-group">
                             <label>来源</label>
-                            <input type="text" name="source" class="form-control" placeholder="Enter ..." required/>
+                            <input type="text" name="source" class="form-control" placeholder="Enter ..." />
                         </div>
                         <!-- 摄制 -->
                         <div class="form-group">
                             <label>摄制</label>
-                            <input type="text" name="editor" class="form-control" placeholder="Enter ..." required/>
+                            <input type="text" name="editor" class="form-control" placeholder="Enter ..." />
                         </div>
                         <!-- 备注 -->
                         <div class="form-group">
                             <label>备注</label>
-                            <input type="text" name="remark" class="form-control" placeholder="Enter ..." required/>
+                            <input type="text" name="remark" class="form-control" placeholder="Enter ..." />
                         </div>
                         <!-- 播放地址 -->
                         <div class="form-group">
@@ -94,7 +94,7 @@
 
                         <!--内容-->
                         <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                <textarea id="editor1" name="content" rows="10" cols="80" >
                                  </textarea>
 
                         <div class="box-footer">

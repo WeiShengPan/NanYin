@@ -19,45 +19,51 @@
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>选择类别</label>
-                            <select name="video.id" class="form-control" disabled="disabled">
+                            <select name="video.id" class="form-control">
                                 <option selected="selected" value="$!video.id">$!video.title</option>
                             </select>
-                            <!-- 标题 -->
-                            <div class="form-group">
-                                <label>曲目名称</label>
-                                <input type="text" name="title" class="form-control" value="$!videoDetail.title" required/>
-                            </div>
-                            <!-- 指导老师 -->
-                            <div class="form-group">
-                                <label>指导老师</label>
-                                <input type="text" name="teacher" class="form-control" value="$!videoDetail.teacher" required/>
-                            </div>
-                            <!-- 来源 -->
-                            <div class="form-group">
-                                <label>来源</label>
-                                <input type="text" name="source" class="form-control" value="$!videoDetail.source" required/>
-                            </div>
-                            <!-- 摄制 -->
-                            <div class="form-group">
-                                <label>摄制</label>
-                                <input type="text" name="editor" class="form-control" value="$!videoDetail.editor" required/>
-                            </div>
-                            <!-- 备注 -->
-                            <div class="form-group">
-                                <label>备注</label>
-                                <input type="text" name="remark" class="form-control" value="$!videoDetail.remark" required/>
-                            </div>
-                            <!-- 播放地址 -->
-                            <div class="form-group">
-                                <label>播放地址</label>
-                                <input type="text" name="url" class="form-control" value="$!videoDetail.url" required/>
-                            </div>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>曲目名称</label>
+                            <input type="text" name="title" class="form-control" value="$!videoDetail.title"/>
+                        </div>
+                        <!-- 指导老师 -->
+                        <div class="form-group">
+                            <label>指导老师</label>
+                            <input type="text" name="teacher" class="form-control" value="$!videoDetail.teacher"
+                                   />
+                        </div>
+                        <!-- 来源 -->
+                        <div class="form-group">
+                            <label>来源</label>
+                            <input type="text" name="source" class="form-control" value="$!videoDetail.source"
+                                   />
+                        </div>
+                        <!-- 摄制 -->
+                        <div class="form-group">
+                            <label>摄制</label>
+                            <input type="text" name="editor" class="form-control" value="$!videoDetail.editor"
+                                   />
+                        </div>
+                        <!-- 备注 -->
+                        <div class="form-group">
+                            <label>备注</label>
+                            <input type="text" name="remark" class="form-control" value="$!videoDetail.remark"
+                                   />
+                        </div>
+                        <!-- 播放地址 -->
+                        <div class="form-group">
+                            <label>播放地址</label>
+                            <input type="text" name="url" class="form-control" value="$!videoDetail.url" required/>
+                        </div>
 
-                            <!--内容-->
-                            <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                        <!--内容-->
+                        <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" >
                                     $!videoDetail.content
-                                 </textarea>
+                                </textarea>
+
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
