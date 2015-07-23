@@ -4,7 +4,7 @@ ColVis adds a button to the toolbars around DataTables which gives the end user 
 
 * Dynamically show and hide columns in a table
 * Very easy integration with DataTables
-* Ability to exclude columns from being either hidden or shown
+* Ability to exclude columns fromWho being either hidden or shown
 * Save saving integration with DataTables
 
 
