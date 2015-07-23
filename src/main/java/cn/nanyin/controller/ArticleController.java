@@ -6,10 +6,14 @@ import cn.nanyin.model.BookSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +33,8 @@ public class ArticleController {
     {
         ModelAndView model = new ModelAndView("nyadmin/articlelist");
         List<Book> bookList=articleDao.getBookList(0,50);
+        List<BookSort> articleSortList=articleDao.getNewsSortList(0,50);
+        model.addObject("articleSortList",articleSortList);
         model.addObject("bookList",bookList);
         return model;
     }
@@ -38,9 +44,29 @@ public class ArticleController {
     public ModelAndView showBookAddPage()
     {
         ModelAndView model=new ModelAndView("nyadmin/articleadd");
-        List<BookSort> bookSortList=articleDao.getNewsSortList(0,50);
+        List<BookSort> bookSortList=articleDao.getNewsSortList(0, 50);
         model.addObject("bookSortList",bookSortList);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/articlelistbysort/{sortid}", method = RequestMethod.GET)
+    public List<BookData> getArticleListBySort(@PathVariable Long sortid) {
+        BookSort bookSort=articleDao.getBookSortById(sortid);
+        List<Book> bookList=bookSort.getBooks();
+        List<BookData> bookDataList=new ArrayList<BookData>();
+        for(int i=0;i<bookList.size();i++)
+        {
+            Book bookTmp=bookList.get(i);
+            long id=bookTmp.getId();
+            String title=bookTmp.getTitle();
+            Date addDate=bookTmp.getAddDate();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date=sdf.format(addDate);
+            BookData bookData=new BookData(id,title,date,bookSort.getName());
+            bookDataList.add(bookData);
+        }
+        return bookDataList;
     }
 
     //添加新闻
@@ -173,6 +199,23 @@ public class ArticleController {
         targetBookSort.setLevel(articleDao.getBookSortById(bookSort.getId()).getLevel());
         articleDao.updateBookSort(targetBookSort);
         return new ModelAndView("redirect:articlesort");
+    }
+
+}
+
+class BookData
+{
+    public long id;
+    public String title;
+    public String date;
+    public String sortName;
+
+    public BookData(long id,String title,String date,String sortName)
+    {
+        this.id=id;
+        this.title=title;
+        this.date=date;
+        this.sortName=sortName;
     }
 
 }

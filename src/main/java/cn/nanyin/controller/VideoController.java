@@ -7,10 +7,13 @@ import cn.nanyin.model.VideoSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -126,9 +129,31 @@ public class VideoController {
     public ModelAndView showVideoList()
     {
         ModelAndView model=new ModelAndView("nyadmin/videolist");
-        List<Video> videoList=videoDao.getVideoList(0,50);
-        model.addObject("videoList",videoList);
+        List<Video> videoList=videoDao.getVideoList(0, 50);
+        List<VideoSort> videoSortList=videoDao.getVideoSortList(0, 50);
+        model.addObject("videoSortList",videoSortList);
+        model.addObject("videoList", videoList);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/videolistbysort/{sortid}", method = RequestMethod.GET)
+    public List<VideoData> getVideoListBySort(@PathVariable Long sortid) {
+        VideoSort videoSort=videoDao.getVideoSortById(sortid);
+        List<Video> videoList=videoSort.getVideos();
+        List<VideoData> videoDataList=new ArrayList<VideoData>();
+        for(int i=0;i<videoList.size();i++)
+        {
+            Video videoTmp=videoList.get(i);
+            long id=videoTmp.getId();
+            String title=videoTmp.getTitle();
+            Date addDate=videoTmp.getAddDate();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date=sdf.format(addDate);
+            VideoData videoData=new VideoData(id,title,date,videoSort.getName());
+            videoDataList.add(videoData);
+        }
+        return videoDataList;
     }
 
     @RequestMapping(value="nyadmin/videoadd")
@@ -250,5 +275,23 @@ public class VideoController {
         return new ModelAndView("redirect:videodetail?id="+videoDetail.getVideo().getId());
     }
 
+
+}
+
+
+class VideoData
+{
+    public long id;
+    public String title;
+    public String date;
+    public String sortName;
+
+    public VideoData(long id,String title,String date,String sortName)
+    {
+        this.id=id;
+        this.title=title;
+        this.date=date;
+        this.sortName=sortName;
+    }
 
 }

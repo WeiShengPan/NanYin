@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,10 +40,22 @@ public class NewsController {
 
     @ResponseBody
     @RequestMapping(value = "nyadmin/newslistbysort/{sortid}", method = RequestMethod.GET)
-    public List<News> getNewsListBySort(@PathVariable Long sortid) {
+    public List<NewsData> getNewsListBySort(@PathVariable Long sortid) {
         NewsSort newsSort=newsDao.getNewsSortById(sortid);
         List<News> newsList=newsSort.getNews();
-        return newsList;
+        List<NewsData> newsDataList=new ArrayList<NewsData>();
+        for(int i=0;i<newsList.size();i++)
+        {
+            News newsTmp=newsList.get(i);
+            long id=newsTmp.getId();
+            String title=newsTmp.getTitle();
+            Date addDate=newsTmp.getAddDate();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date=sdf.format(addDate);
+            NewsData newsData=new NewsData(id,title,date,newsSort.getName());
+            newsDataList.add(newsData);
+        }
+        return newsDataList;
     }
 
     //显示增加新闻页面
@@ -184,6 +198,23 @@ public class NewsController {
         targetNewsSort.setLevel(newsDao.getNewsSortById(newsSort.getId()).getLevel());
         newsDao.updateNewsSort(targetNewsSort);
         return new ModelAndView("redirect:newssort");
+    }
+}
+
+
+class NewsData
+{
+    public long id;
+    public String title;
+    public String date;
+    public String sortName;
+
+    public NewsData(long id,String title,String date,String sortName)
+    {
+        this.id=id;
+        this.title=title;
+        this.date=date;
+        this.sortName=sortName;
     }
 
 }

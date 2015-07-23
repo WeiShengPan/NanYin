@@ -1,6 +1,24 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(图文乐谱)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/articlelistbysort/"+value,function(data){
+
+            var articlelist=data;
+            $("#articlelistbysort").html("");
+            $.each(articlelist,function(i,article)
+            {
+                var name=article.sortName;
+                var title=article.title;
+                var date=article.date;
+                var id=article.id;
+                $("#articlelistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"articleeditpage?id="+id+"\">修改 </a><a href=\"articledelete?id="+id+"\">删除</a></td></tr>");
+            })
+        },"json")
+    });
+    });
 </script>')
 <section class="content-header">
     <h1>
@@ -16,20 +34,33 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">文章列表</h3>
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="sortbox" class="form-control">
+                            #foreach($articleSort in $articleSortList)
+                                #if($articleSort.id!=1)
+                                    <option value="$articleSort.id">$articleSort.name</option>
+                                #end
+                            #end
+                        </select>
+
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>类别</th>
-                            <th>标题</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="articlelistbysort">
 
                             #foreach($book in $bookList)
                             <tr>
