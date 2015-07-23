@@ -1,3 +1,7 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(后台账户管理)").parent().addClass("active");
+</script>')
 <section class="content-header">
     <h1>
         后台账户管理
@@ -31,10 +35,10 @@
                             <input type="text" name="name" class="form-control" value="$!adminUser.name" placeholder="Enter ..." />
                         </div>
                         <!-- 权限 -->
-                        <div class="form-group">
+                    <!--    <div class="form-group">
                             <label>权限</label>
                             <input type="text" name="permission" class="form-control" value="$!adminUser.permission" placeholder="Enter ..." />
-                        </div>
+                        </div>  -->
                         <div>
                             <input type="hidden" name="id" value="$!adminUser.id">
                         </div>
