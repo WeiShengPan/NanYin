@@ -156,12 +156,8 @@ public class ProductController {
     public ModelAndView editProductSort(ProductSort productSort) {
         ProductSort targetProductSort=productDao.getProductSortById(productSort.getId());
         targetProductSort.setName(productSort.getName());
-        targetProductSort.setPriority(productSort.getPriority());
         targetProductSort.setUpperProductSort(productDao.getProductSortById(productSort.getUpperProductSort().getId()));
         targetProductSort.setLevel(productDao.getProductSortById(productSort.getId()).getLevel());
-        targetProductSort.setPic(productDao.getProductSortById(productSort.getId()).getPic());
-        targetProductSort.setIntro(productDao.getProductSortById(productSort.getId()).getIntro());
-        targetProductSort.setState(productDao.getProductSortById(productSort.getId()).getState());
         productDao.updateProductSort(targetProductSort);
         return new ModelAndView("redirect:productsort");
     }

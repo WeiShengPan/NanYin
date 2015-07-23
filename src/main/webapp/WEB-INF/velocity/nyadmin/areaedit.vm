@@ -35,11 +35,6 @@
                             <label>地区名称</label>
                             <input type="text" name="name" class="form-control" value="$!area.name" required/>
                         </div>
-                        <!-- 排序编号 -->
-                        <div class="form-group">
-                            <label>排序编号</label>
-                            <input type="text" name="priority" class="form-control" value="$!area.priority" required/>
-                        </div>
                         <div>
                             <input type="hidden" name="id" value="$!area.id">
                         </div>
