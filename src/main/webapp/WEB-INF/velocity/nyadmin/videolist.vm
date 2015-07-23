@@ -1,6 +1,24 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/videolistbysort/"+value,function(data){
+
+            var videolist=data;
+            $("#videolistbysort").html("");
+            $.each(videolist,function(i,video)
+            {
+                var name=video.sortName;
+                var title=video.title;
+                var date=video.date;
+                var id=video.id;
+                $("#videolistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"videoeditpage?id="+id+"\">修改 </a><a href=\"videodelete?id="+id+"\">删除</a><a href=\"videodetail?id="+id+"\">管理专辑曲目</a></td></tr>");
+            })
+        },"json")
+    });
+});
 </script>')
 <section class="content-header">
     <h1>
@@ -16,7 +34,20 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">专辑列表</h3>
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="sortbox" class="form-control">
+                            #foreach($videoSort in $videoSortList)
+                                #if($videoSort.id!=1)
+                                    <option value="$videoSort.id">$videoSort.name</option>
+                                #end
+                            #end
+                        </select>
+
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -29,7 +60,7 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="videolistbysort">
 
                             #foreach($video in $videoList)
                             <tr>

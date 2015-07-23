@@ -10,9 +10,9 @@ $(document).ready(function(){
             $("#newslistbysort").html("");
             $.each(newslist,function(i,news)
             {
-                var name=news.newsSort.name;
+                var name=news.sortName;
                 var title=news.title;
-                var date=news.addDate;
+                var date=news.date;
                 var id=news.id;
                 $("#newslistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"newseditpage?id="+id+"\">修改 </a><a href=\"newsdelete?id="+id+"\">删除</a></td></tr>");
             })
@@ -34,26 +34,31 @@ $(document).ready(function(){
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">文章列表 </h3>
-                    <a class="pull-right hidden-xs">类别
-                        <select id="sortbox">
-                            #foreach($newsSort in $newsSortList)
-                                #if($newsSort.id!=1)
-                                    <option value="$newsSort.id">$newsSort.name</option>
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                            <select id="sortbox" class="form-control">
+                                #foreach($newsSort in $newsSortList)
+                                    #if($newsSort.id!=1)
+                                        <option value="$newsSort.id">$newsSort.name</option>
+                                    #end
                                 #end
-                            #end
-                        </select>
-                    </a>
+                            </select>
+
+                    </div>
                 </div>
+            </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>类别</th>
-                            <th>标题</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                         </thead>
                         <tbody id="newslistbysort">

@@ -6,10 +6,14 @@ import cn.nanyin.model.MediaSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +31,30 @@ public class MediaController {
     {
         ModelAndView model = new ModelAndView("nyadmin/medialist");
         List<Media> mediaList=mediaDao.getMediaList(0, 50);
+        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0,50);
+        model.addObject("mediaSortList",mediaSortList);
         model.addObject("mediaList",mediaList);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/medialistbysort/{sortid}", method = RequestMethod.GET)
+    public List<MediaData> getMediaListBySort(@PathVariable Long sortid) {
+        MediaSort mediaSort=mediaDao.getMediaSortById(sortid);
+        List<Media> mediaList=mediaSort.getMediaList();
+        List<MediaData> mediaDataList=new ArrayList<MediaData>();
+        for(int i=0;i<mediaList.size();i++)
+        {
+            Media mediaTmp=mediaList.get(i);
+            long id=mediaTmp.getId();
+            String title=mediaTmp.getName();
+            Date addDate=mediaTmp.getAddDate();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date=sdf.format(addDate);
+            MediaData mediaData=new MediaData(id,title,date,mediaSort.getName());
+            mediaDataList.add(mediaData);
+        }
+        return mediaDataList;
     }
 
     //显示增加新闻页面
@@ -177,6 +203,22 @@ public class MediaController {
         targetMediaSort.setLevel(mediaDao.getMediaSortById(mediaSort.getId()).getLevel());
         mediaDao.updateMediaSort(targetMediaSort);
         return new ModelAndView("redirect:mediasort");
+    }
+
+}
+class MediaData
+{
+    public long id;
+    public String title;
+    public String date;
+    public String sortName;
+
+    public MediaData(long id,String title,String date,String sortName)
+    {
+        this.id=id;
+        this.title=title;
+        this.date=date;
+        this.sortName=sortName;
     }
 
 }
