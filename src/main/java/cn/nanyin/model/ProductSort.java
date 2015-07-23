@@ -24,11 +24,6 @@ public class ProductSort {
     @OneToMany(mappedBy = "upperProductSort")
     private List<ProductSort> lowerProductSortList; //本等级的下一级列表
 
-    private int priority;  //排序编号
-    private String pic; //缩略图地址
-    private String intro;   //介绍
-    private int state;  //状态
-
     //删除本等级产品列表中的产品
     public void removeProduct(Product p) {
         for(int i=0;i<products.size();i++)
@@ -69,38 +64,6 @@ public class ProductSort {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public List<Product> getProducts() {

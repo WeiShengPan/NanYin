@@ -28,10 +28,6 @@ public class Area {
     @OneToMany(mappedBy = "upperArea")
     private List<Area> lowerAreaList;
 
-    private int priority;//优先级
-
-    private int state;//状态
-
     public void removeUser(User u)
     {
         for(int i=0;i<users.size();i++)
@@ -99,28 +95,12 @@ public class Area {
         this.lowerAreaList = lowerAreaList;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
     }
 
     public List<College> getColleges() {

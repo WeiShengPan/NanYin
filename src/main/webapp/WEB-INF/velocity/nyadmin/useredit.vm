@@ -1,3 +1,7 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(用户管理)").parent().addClass("active");
+</script>')
 <section class="content-header">
     <h1>
         用户管理

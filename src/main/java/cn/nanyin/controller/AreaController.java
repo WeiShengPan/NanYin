@@ -88,6 +88,15 @@ public class AreaController {
                 userDao.updateUser(userTmp2);
                 userDao.deleteUser(userTmp2);
             }
+            List<College> lowerCollegeList=areaTmp.getColleges();
+            for(int k=0;k<lowerCollegeList.size();k++)
+            {
+                College collegeTmp2 =lowerCollegeList.get(i);
+                areaTmp.removeCollege(collegeTmp2);
+                collegeTmp2.setArea(null);
+                collegeDao.updateCollege(collegeTmp2);
+                collegeDao.deleteCollege(collegeTmp2);
+            }
             area.removeArea(areaTmp);
             areaTmp.setUpperArea(null);
             areaDao.updateArea(areaTmp);
@@ -115,10 +124,8 @@ public class AreaController {
     public ModelAndView editArea(Area area) {
         Area targetArea = areaDao.getAreaById(area.getId());
         targetArea.setName(area.getName());
-        targetArea.setPriority(area.getPriority());
         targetArea.setUpperArea(areaDao.getAreaById(area.getUpperArea().getId()));
         targetArea.setLevel(areaDao.getAreaById(area.getId()).getLevel());
-        targetArea.setState(areaDao.getAreaById(area.getId()).getState());
 
         areaDao.updateArea(targetArea);
         return new ModelAndView("redirect:arealist");
