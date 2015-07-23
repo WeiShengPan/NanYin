@@ -7,13 +7,14 @@ $(document).ready(function(){
         $.get("/nyadmin/newslistbysort/"+value,function(data){
 
             var newslist=data;
+            $("#newslistbysort").html("");
             $.each(newslist,function(i,news)
             {
                 var name=news.newsSort.name;
                 var title=news.title;
                 var date=news.addDate;
                 var id=news.id;
-                $("#newslistbysort").html("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td></td> </tr>");
+                $("#newslistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"newseditpage?id="+id+"\">修改 </a><a href=\"newsdelete?id="+id+"\">删除</a></td></tr>");
             })
         },"json")
     });

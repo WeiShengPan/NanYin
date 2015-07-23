@@ -1,6 +1,12 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(影音管理)").parent().addClass("active");
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1");
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
 </script>')
 <section class="content-header">
     <h1>
