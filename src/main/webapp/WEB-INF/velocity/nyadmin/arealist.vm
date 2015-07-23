@@ -1,0 +1,76 @@
+<section class="content-header">
+    <h1>
+        地区管理
+        <small>地区管理</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">地区列表</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>级别</th>
+                            <th>名称</th>
+                            <th>上级类</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            #foreach(${area}in ${areaList})
+                                #if(${area.id}!=1)
+                                <tr>
+                                    <td>${area.level}</td>
+                                    <td>${area.name}</td>
+                                    <td>$!{area.upperArea.name}</td>
+                                    <td>
+                                        <a href="areaeditpage?id=$area.id">修改 </a>
+                                        <a href="areadelete?id=$area.id">删除</a>
+                                    </td>
+                                </tr>
+                                #end
+                            #end
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">添加地区</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/areaadd" method="post">
+                        <!-- 上级地区 -->
+                        <div class="form-group">
+                            <label>上级地区</label>
+                            <select name="upperArea.id" class="form-control">
+                                #foreach($area in ${areaList})
+                                    <option value="$area.id">$area.name</option>
+                                #end
+                            </select>
+                        </div>
+                        <!-- 地区名称 -->
+                        <div class="form-group">
+                            <label>地区名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter ..." />
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

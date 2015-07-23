@@ -1,9 +1,6 @@
 package cn.nanyin.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -28,17 +25,16 @@ public class VideoDetail {
 
     private String remark;//备注
 
-    private String url;//曲目播放网址
+    private String type;
 
+    private String url;//曲目播放地址
+
+    @Lob
     private String content;
-
-    private int priority;
 
     private Date addDate;
 
     private int hits;
-
-    private int state;
 
     public long getId() {
         return id;
@@ -104,14 +100,6 @@ public class VideoDetail {
         this.content = content;
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
     public Date getAddDate() {
         return addDate;
     }
@@ -136,11 +124,11 @@ public class VideoDetail {
         this.hits = hits;
     }
 
-    public int getState() {
-        return state;
+    public String getType() {
+        return type;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setType(String type) {
+        this.type = type;
     }
 }

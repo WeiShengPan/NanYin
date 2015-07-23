@@ -1,0 +1,117 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+       <!--     <li class="header">欢迎您，$!{adminUser.adminName}</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>个人信息管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="adminUsereditpage?id=$!{adminUser.id}"><i class="fa fa-circle-o"></i> 修改密码</a></li>
+                </ul>
+            </li>   -->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>后台账户管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="adminlist"><i class="fa fa-circle-o"></i> 管理后台账户</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>用户管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="arealist"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                    <li><a href="useraddpage"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+                    <li><a href="userlist"><i class="fa fa-circle-o"></i> 管理用户</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>新闻管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="newssort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="newsaddpage"><i class="fa fa-circle-o"></i> 添加新闻</a></li>
+                    <li><a href="newslist"><i class="fa fa-circle-o"></i> 管理新闻</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>社团管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="arealist"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                    <li><a href="collegeaddpage"><i class="fa fa-circle-o"></i> 添加社团</a></li>
+                    <li><a href="collegelist"><i class="fa fa-circle-o"></i> 管理社团</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>商城管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="productsort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="productaddpage"><i class="fa fa-circle-o"></i> 添加产品</a></li>
+                    <li><a href="productlist"><i class="fa fa-circle-o"></i> 管理产品</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>图文乐谱</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="articlesort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="articleaddpage"><i class="fa fa-circle-o"></i> 添加图书</a></li>
+                    <li><a href="articlelist"><i class="fa fa-circle-o"></i> 管理图书</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>影音管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="mediasort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="mediaaddpage"><i class="fa fa-circle-o"></i> 添加影音</a></li>
+                    <li><a href="medialist"><i class="fa fa-circle-o"></i> 管理影音</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>教学中心</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="videosort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="videoaddpage"><i class="fa fa-circle-o"></i> 专辑管理</a></li>
+                    <li><a href="videolist"><i class="fa fa-circle-o"></i> 专辑列表</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+

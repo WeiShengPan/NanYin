@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>新闻管理</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    #include("nyadmin/_globalCSS.vm")
-</head>
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
-    #include("nyadmin/_header.vm")
-    #include("nyadmin/_side.vm")
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(新闻管理)").parent().addClass("active");
+</script>')
         <section class="content-header">
             <h1>
                 新闻管理
@@ -35,10 +23,10 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>级别</th>
-                                    <th>名称</th>
-                                    <th>上级类</th>
-                                    <th>操作</th>
+                                    <th class="col-md-2">级别</th>
+                                    <th class="col-md-4">名称</th>
+                                    <th class="col-md-4">上级类</th>
+                                    <th class="col-md-2">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +37,7 @@
                                             <td>$newsSort.level</td>
                                             <td>$newsSort.name</td>
                                             <td>$!newsSort.upperNewsSort.name</td>
-                                            <td><a href="newssorteditpage?id=$newsSort.id">修改 </a><a href="newssortdelete?id=$newsSort.id">删除</a></td>
+                                            <td><a href="newssorteditpage?id=$newsSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="newssortdelete?id=$newsSort.id" class="btn btn-danger">删除</a></td>
                                         </tr>
                                         #end
                                     #end
@@ -86,12 +74,6 @@
                                     <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
                                 </div>
 
-                                <!-- 排序编号 -->
-                                <div class="form-group">
-                                    <label>排序编号</label>
-                                    <input type="text" name="priority" class="form-control" placeholder="Enter ..." required/>
-                                </div>
-
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
@@ -105,15 +87,4 @@
             </div>
             <!-- /.row -->
         </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
-    #include("nyadmin/_footer.vm")
-
-</div>
-<!-- ./wrapper -->
-
-    #include("nyadmin/_globalJS.vm")
-</body>
-</html>

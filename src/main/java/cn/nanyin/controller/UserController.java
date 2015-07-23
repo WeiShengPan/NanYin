@@ -23,15 +23,17 @@ public class UserController {
     @Autowired
     private AreaDao areaDao;
 
+    //展示用户列表
     @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
     public ModelAndView showUserList()
     {
-        ModelAndView model=new ModelAndView("nyadmin/userlist");
+        ModelAndView model=new ModelAndView("nyadmin/userList");
         List<User> userList =userDao.getUserList(0,50);
         model.addObject("userList", userList);
         return model;
     }
 
+    //添加用户页面
     @RequestMapping(value="nyadmin/useraddpage",method=RequestMethod.GET)
     public ModelAndView showUserAddPage()
     {
@@ -41,27 +43,63 @@ public class UserController {
         return model;
     }
 
+    //添加用户操作
     @RequestMapping(value="nyadmin/useradd",method = RequestMethod.POST)
     public ModelAndView addUser(User user)
     {
         user.setRegDate(new Date());
         userDao.addUser(user);
-        return new ModelAndView("redirect:useraddpage");
+        return new ModelAndView("redirect:userlist");
     }
 
-    @RequestMapping(value="nyadmin/userarea",method=RequestMethod.GET)
-    public ModelAndView showAreaList()
+    //删除用户
+    @RequestMapping(value="nyadmin/userdelete",method = RequestMethod.GET)
+    public ModelAndView deleteUser(long id)
     {
-        ModelAndView model=new ModelAndView("nyadmin/userarea");
+        User user = userDao.getUserById(id);
+        userDao.deleteUser(user);
+        return new ModelAndView("redirect:userlist");
+    }
+
+    //显示修改用户页面
+    @RequestMapping(value="nyadmin/usereditpage",method = RequestMethod.GET)
+    public ModelAndView showUserEditPage(long id)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/useredit");
+        User user=userDao.getUserById(id);
+        model.addObject("user", user);
         List<Area> areaList=areaDao.getAreaList(0, 50);
         model.addObject("areaList", areaList);
         return model;
     }
 
-    @RequestMapping(value="nyadmin/userareaadd",method = RequestMethod.POST)
-    public ModelAndView addArea(Area area)
+    //修改用户
+    @RequestMapping(value="nyadmin/useredit",method = RequestMethod.POST)
+    public ModelAndView editUser(User user)
     {
-        areaDao.addArea(area);
-        return new ModelAndView("redirect:userarea");
+        User targetUser=userDao.getUserById(user.getId());
+        targetUser.setUsername(user.getUsername());
+        targetUser.setPassword(user.getPassword());
+        targetUser.setName(user.getName());
+        targetUser.setGender(user.isGender());
+        targetUser.setTelephone(user.getTelephone());
+        targetUser.setAddress(user.getAddress());
+        targetUser.setEmail(user.getEmail());
+        targetUser.setSocialAccount(user.getSocialAccount());
+        targetUser.setQuestion(user.getQuestion());
+        targetUser.setAnswer(user.getAnswer());
+        targetUser.setJoinCommunity(user.isJoinCommunity());
+        targetUser.setCollege(user.getCollege());
+        targetUser.setVolunteer(user.isVolunteer());
+        targetUser.setSkill(user.getSkill());
+        targetUser.setLevel(user.getLevel());
+        targetUser.setArea(areaDao.getAreaById(user.getArea().getId()));
+        targetUser.setRegDate(userDao.getUserById(user.getId()).getRegDate());
+        targetUser.setRegIP(userDao.getUserById(user.getId()).getRegIP());
+        targetUser.setLastLoginDate(userDao.getUserById(user.getId()).getLastLoginDate());
+        targetUser.setState(userDao.getUserById(user.getId()).getState());
+
+        userDao.updateUser(targetUser);
+        return new ModelAndView("redirect:userlist");
     }
 }

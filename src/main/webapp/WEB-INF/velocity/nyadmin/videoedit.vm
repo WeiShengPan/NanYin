@@ -1,0 +1,75 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1");
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+</script>')
+<section class="content-header">
+    <h1>
+        教学中心
+        <small>专辑管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改类别</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/videoedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>上级类别</label>
+                            <select name="videoSort.id" class="form-control">
+                                #foreach($vs in $videoSortList)
+                                    <option value="$vs.id">$vs.name</option>
+                                #end
+
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>专辑名称</label>
+                            <input type="text" name="title" class="form-control" value="$!video.title"
+                                   required/>
+                        </div>
+
+                        <!--内容-->
+                        <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                    $!video.content
+                                 </textarea>
+                        <!--新闻缩略图-->
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传缩略图</label>
+                            <input type="file" name="image" id="exampleInputFile">
+                        </div>
+
+                        <div>
+                            <input type="hidden" name="id" value="$!video.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

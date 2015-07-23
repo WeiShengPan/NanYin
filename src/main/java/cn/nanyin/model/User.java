@@ -7,12 +7,8 @@ import java.util.Date;
  * Created by Administrator on 2015/7/8.
  */
 @Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-
     @Id
-//    @GeneratedValue(strategy = GenerationType.TABLE)
     @GeneratedValue
     private long id;
 
@@ -42,10 +38,11 @@ public class User {
 
     private String answer;//密保答案
 
-    private boolean join;//是否加入社团
+    private boolean joinCommunity;//是否加入社团
 
     private boolean volunteer;//是否为本站志愿者
 
+    @Lob
     private String skill;//技能、特长
 
     private int level;//会员等级
@@ -108,12 +105,12 @@ public class User {
     }
 
 
-    public boolean isJoin() {
-        return join;
+    public boolean isJoinCommunity() {
+        return joinCommunity;
     }
 
-    public void setJoin(boolean join) {
-        this.join = join;
+    public void setJoinCommunity(boolean joinCommunity) {
+        this.joinCommunity = joinCommunity;
     }
 
     public String getAddress() {

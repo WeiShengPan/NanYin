@@ -14,15 +14,17 @@ public class Product {
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH })
     @JoinColumn(name = "sort_id")
-    private ProductSort productSort;   //����
-    private String name;        //��Ʒ��
-    private String price;       //�۸�
-    private String pic;         //����ͼ��ַ
-    private String content;     //����
-    private int recommendation;        //�Ƽ�ָ��
-    private Date addDate;       //�ϼ�ʱ��
-    private int hits;           //�����
-    private int state;          //?
+    private ProductSort productSort;    //产品所属等级
+
+    private String name;    //产品名称
+    private String price;   //产品价格
+    private String pic; //产品缩略图
+    @Lob
+    private String content; //说明
+    private int recommendation; //推荐指数
+    private Date addDate;   //上架时间
+    private int hits;   //点击量
+    private int state;  //状态
 
     public long getId() {
         return id;

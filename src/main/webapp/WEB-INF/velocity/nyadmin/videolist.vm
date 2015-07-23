@@ -1,0 +1,88 @@
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/videolistbysort/"+value,function(data){
+
+            var videolist=data;
+            $("#videolistbysort").html("");
+            $.each(videolist,function(i,video)
+            {
+                var name=video.sortName;
+                var title=video.title;
+                var date=video.date;
+                var id=video.id;
+                $("#videolistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"videoeditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"videodelete?id="+id+"\" class=\"btn btn-danger\">删除</a>&nbsp<a href=\"videodetail?id="+id+"\" class=\"btn btn-primary\">管理专辑曲目</a></td></tr>");
+            })
+        },"json")
+    });
+});
+</script>')
+<section class="content-header">
+    <h1>
+        教学中心
+        <small>专辑管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="sortbox" class="form-control">
+                            #foreach($videoSort in $videoSortList)
+                                #if($videoSort.id!=1)
+                                    <option value="$videoSort.id">$videoSort.name</option>
+                                #end
+                            #end
+                        </select>
+
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">专辑名称</th>
+                            <th class="col-md-3">添加时间</th>
+                            <th class="col-md-3">操作</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="videolistbysort">
+
+                            #foreach($video in $videoList)
+                            <tr>
+                                <td>$video.videoSort.name</td>
+                                <td>$video.title</td>
+                                <td>$video.addDate</td>
+                                <td><a href="videoeditpage?id=$video.id" class="btn btn-primary">修改 </a>&nbsp<a href="videodelete?id=$video.id" class="btn btn-danger">删除 </a>&nbsp<a href="videodetail?id=$video.id" class="btn btn-primary">管理专辑曲目</a>
+                                </td>
+                            </tr>
+                            #end
+
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section><!-- /.content -->
+

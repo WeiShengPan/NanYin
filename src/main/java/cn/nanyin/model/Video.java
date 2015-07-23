@@ -21,17 +21,21 @@ public class Video {
 
     private String title;
 
-    private int priority;//优先级
-
+    @Lob
     private String content;//内容
 
-    private String imageURL;//图片url
+    private String image;//缩略图
 
     private int hits;//点击量
 
-    private int state;
-
     private Date addDate;
+
+    public void removeVideoDetail(VideoDetail videoDetail)
+    {
+        for(int i=0;i<videoDetails.size();i++)
+            if(videoDetails.get(i).getId()==videoDetail.getId())
+                videoDetails.remove(i);
+    }
 
     public long getId() {
         return id;
@@ -49,14 +53,6 @@ public class Video {
         this.title = title;
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
     public String getContent() {
         return content;
     }
@@ -65,12 +61,12 @@ public class Video {
         this.content = content;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImage(String image) {
+        this.image = image;
 
     }
 
@@ -80,14 +76,6 @@ public class Video {
 
     public void setHits(int hits) {
         this.hits = hits;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public Date getAddDate() {

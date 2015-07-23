@@ -1,0 +1,77 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(商城管理)").parent().addClass("active");
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1");
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+</script>')
+<section class="content-header">
+    <h1>
+        商城管理
+        <small>添加产品</small>
+    </h1>
+</section><!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form action="/nyadmin/productadd" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>选择类别</label>
+                            <select name="productSort.id" class="form-control">
+                                #foreach($productSort in ${productSortList})
+                                    #if($!{productSort.id}!=1)
+                                        <option value="$!{productSort.id}">$!{productSort.name}</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <!-- 产品名称 -->
+                        <div class="form-group">
+                            <label>产品名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 价格 -->
+                        <div class="form-group">
+                            <label>价格</label>
+                            <input type="text" name="price" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 推荐指数 -->
+                        <div class="form-group">
+                            <label>推荐指数</label>
+                            <input type="text" name="recommendation" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!--介绍-->
+                        <div class="form-group">
+                            <label>详细介绍</label>
+                            <textarea id="editor1" name="content" rows="10" cols="80" required>
+                            </textarea>
+                        </div>
+                        <!--产品缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传产品缩略图</label>
+                            <input type="file" name="pic" id="exampleInputFile">
+                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

@@ -1,0 +1,83 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(图文乐谱)").parent().addClass("active");
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1");
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+</script>')
+<section class="content-header">
+    <h1>
+        图文管理
+        <small>添加文章</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form action="/nyadmin/articleadd" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>选择类别</label>
+                            <select name="bookSort.id" class="form-control">
+                                #foreach($bookSort in $bookSortList)
+                                    #if($bookSort.id!=1)
+                                        <option value="$bookSort.id">$bookSort.name</option>
+                                    #end
+                                #end
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 作者 -->
+                        <div class="form-group">
+                            <label>作者</label>
+                            <input type="text" name="author" class="form-control" placeholder="Enter ..." type="text"
+                                   required/>
+                        </div>
+                        <!-- 来源 -->
+                        <div class="form-group">
+                            <label>来源</label>
+                            <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!-- 下载网址 -->
+                        <div class="form-group">
+                            <label>下载网址</label>
+                            <input type="text" name="downloadURL" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!--内容-->
+                        <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                 </textarea>
+                        <br>
+                        <!--缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传缩略图</label>
+                            <input type="file" name="file" id="exampleInputFile">
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

@@ -1,0 +1,87 @@
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(图文乐谱)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/articlelistbysort/"+value,function(data){
+
+            var articlelist=data;
+            $("#articlelistbysort").html("");
+            $.each(articlelist,function(i,article)
+            {
+                var name=article.sortName;
+                var title=article.title;
+                var date=article.date;
+                var id=article.id;
+                $("#articlelistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"articleeditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"articledelete?id="+id+"\" class=\"btn btn-danger\">删除</a></td></tr>");
+            })
+        },"json")
+    });
+    });
+</script>')
+<section class="content-header">
+    <h1>
+        图文管理
+        <small>文章管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="sortbox" class="form-control">
+                            #foreach($articleSort in $articleSortList)
+                                #if($articleSort.id!=1)
+                                    <option value="$articleSort.id">$articleSort.name</option>
+                                #end
+                            #end
+                        </select>
+
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="articlelistbysort">
+
+                            #foreach($book in $bookList)
+                            <tr>
+                                <td>$book.bookSort.name</td>
+                                <td>$book.title</td>
+                                <td>$book.addDate</td>
+                                <td><a href="articleeditpage?id=$book.id" class="btn btn-primary">修改 </a>&nbsp<a href="articledelete?id=$book.id" class="btn btn-danger">删除</a>
+                                </td>
+                            </tr>
+                            #end
+
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section><!-- /.content -->
+

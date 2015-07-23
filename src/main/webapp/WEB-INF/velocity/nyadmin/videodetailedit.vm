@@ -1,0 +1,91 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1");
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+</script>')
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        教学中心
+        <small>修改曲目</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form action="/nyadmin/videodetailedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>选择类别</label>
+                            <select name="video.id" class="form-control">
+                                <option selected="selected" value="$!video.id">$!video.title</option>
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>曲目名称</label>
+                            <input type="text" name="title" class="form-control" value="$!videoDetail.title"/>
+                        </div>
+                        <!-- 指导老师 -->
+                        <div class="form-group">
+                            <label>指导老师</label>
+                            <input type="text" name="teacher" class="form-control" value="$!videoDetail.teacher"
+                                   />
+                        </div>
+                        <!-- 来源 -->
+                        <div class="form-group">
+                            <label>来源</label>
+                            <input type="text" name="source" class="form-control" value="$!videoDetail.source"
+                                   />
+                        </div>
+                        <!-- 摄制 -->
+                        <div class="form-group">
+                            <label>摄制</label>
+                            <input type="text" name="editor" class="form-control" value="$!videoDetail.editor"
+                                   />
+                        </div>
+                        <!-- 备注 -->
+                        <div class="form-group">
+                            <label>备注</label>
+                            <input type="text" name="remark" class="form-control" value="$!videoDetail.remark"
+                                   />
+                        </div>
+                        <!-- 播放地址 -->
+                        <div class="form-group">
+                            <label>播放地址</label>
+                            <input type="text" name="url" class="form-control" value="$!videoDetail.url" required/>
+                        </div>
+
+                        <!--内容-->
+                        <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" >
+                                    $!videoDetail.content
+                                </textarea>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!videoDetail.id">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

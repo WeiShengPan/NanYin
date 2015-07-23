@@ -1,69 +1,88 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>新闻管理</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    #include("nyadmin/_globalCSS.vm")
-</head>
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
-    #include("nyadmin/_header.vm")
-    #include("nyadmin/_side.vm")
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                新闻管理
-                <small>文章管理</small>
-            </h1>
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(新闻管理)").parent().addClass("active");
+    $("#sortbox").change(function(){
+        var value=$(this).children("option:selected").val();
+        $.get("/nyadmin/newslistbysort/"+value,function(data){
 
-        </section>
+            var newslist=data;
+            $("#newslistbysort").html("");
+            $.each(newslist,function(i,news)
+            {
+                var name=news.sortName;
+                var title=news.title;
+                var date=news.date;
+                var id=news.id;
+                $("#newslistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"newseditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"newsdelete?id="+id+"\" class=\"btn btn-danger\">删除</a></td></tr>");
+            })
+        },"json")
+    });
+});
+</script>')
+<section class="content-header">
+    <h1>
+        新闻管理
+        <small>文章管理</small>
+    </h1>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">文章列表</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>类别</th>
-                                    <th>标题</th>
-                                    <th>添加时间</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+</section>
 
-                                    #foreach($news in $newsList)
-                                    <tr>
-                                        <td>$news.newsSort.name</td>
-                                        <td>$news.title</td>
-                                        <td>$news.addDate</td>
-                                        <td><a href="newseditpage?id=$news.id">修改 </a><a href="newsdelete?id=$news.id">删除</a></td>
-                                    </tr>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">文章列表 </h3>
+                    </div>
+                    <div class="col-md-2">
+
+                            <select id="sortbox" class="form-control">
+                                #foreach($newsSort in $newsSortList)
+                                    #if($newsSort.id!=1)
+                                        <option value="$newsSort.id">$newsSort.name</option>
                                     #end
+                                #end
+                            </select>
+
+                    </div>
+                </div>
+            </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="newslistbysort">
+
+                            #foreach($news in $newsList)
+                            <tr>
+                                <td>$news.newsSort.name</td>
+                                <td>$news.title</td>
+                                <td>$news.addDate</td>
+                                <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
+                                </td>
+                            </tr>
+                            #end
 
 
-                                </tfoot>
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section><!-- /.content -->
 
-    #include("nyadmin/_footer.vm")
-
-</div><!-- ./wrapper -->
-
-    #include("nyadmin/_globalJS.vm")
-</body>
-</html>

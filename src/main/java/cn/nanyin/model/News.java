@@ -1,6 +1,7 @@
 package cn.nanyin.model;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -19,11 +20,10 @@ public class News {
     private String author;  //����
     @Lob
     private String content; //����
-    private int priority;  //?
-    private String image;   //����ͼ��ַ
+    private File image;
+   // private String image;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
-    private int state;      //?
     private String source;
 
     public long getId() {
@@ -66,21 +66,7 @@ public class News {
         this.content = content;
     }
 
-    public int getPriority() {
-        return priority;
-    }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getHits() {
         return hits;
@@ -98,19 +84,19 @@ public class News {
         this.addDate = addDate;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public String getSource() {
         return source;
     }
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
     }
 }

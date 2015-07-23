@@ -29,7 +29,8 @@ public class NewsDao {
     }
 
     public List<News> getNewsList(Integer start, Integer max) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from News");
+        //from News as news order by addDate desc
+        Query query = sessionFactory.getCurrentSession().createQuery("from News as news order by addDate desc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
@@ -43,14 +44,12 @@ public class NewsDao {
     }
 
     public Serializable addNewsSort(NewsSort newsSort) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(newsSort);
+        Serializable result =  sessionFactory.getCurrentSession().save(newsSort);
         return result;
     }
 
     public Serializable addNews(News news) {
-        Serializable result = null;
-        result = sessionFactory.getCurrentSession().save(news);
+        Serializable result= sessionFactory.getCurrentSession().save(news);
         return result;
     }
 

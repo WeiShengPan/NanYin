@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class IP {
     @Id
     @GeneratedValue
-    private long id;
+    private long id;//1234
 
     private String starIP;
 

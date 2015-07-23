@@ -4,7 +4,7 @@ ColReorder adds the ability for the end user to click and drag column headers to
 
 * Very easy integration with DataTables
 * Tight integration with all other DataTables plug-ins
-* The ability to exclude the first (or more) column from being movable
+* The ability to exclude the first (or more) column fromWho being movable
 * Predefine a column order
 * Save staving integration with DataTables
 

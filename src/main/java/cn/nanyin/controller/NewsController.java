@@ -6,10 +6,14 @@ import cn.nanyin.model.NewsSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +32,30 @@ public class NewsController {
     {
         ModelAndView model = new ModelAndView("nyadmin/newslist");
         List<News> newsList=newsDao.getNewsList(0, 50);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
         model.addObject("newsList",newsList);
+        model.addObject("newsSortList",newsSortList);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/newslistbysort/{sortid}", method = RequestMethod.GET)
+    public List<NewsData> getNewsListBySort(@PathVariable Long sortid) {
+        NewsSort newsSort=newsDao.getNewsSortById(sortid);
+        List<News> newsList=newsSort.getNews();
+        List<NewsData> newsDataList=new ArrayList<NewsData>();
+        for(int i=0;i<newsList.size();i++)
+        {
+            News newsTmp=newsList.get(i);
+            long id=newsTmp.getId();
+            String title=newsTmp.getTitle();
+            Date addDate=newsTmp.getAddDate();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date=sdf.format(addDate);
+            NewsData newsData=new NewsData(id,title,date,newsSort.getName());
+            newsDataList.add(newsData);
+        }
+        return newsDataList;
     }
 
     //显示增加新闻页面
@@ -66,8 +92,9 @@ public class NewsController {
     @RequestMapping(value="nyadmin/newssortadd",method=RequestMethod.POST)
     public ModelAndView addNewsSort(NewsSort newsSort)
     {
-        if(newsSort.getUpperNewsSort().getId()!=1)
-            newsSort.setLevel(newsSort.getUpperNewsSort().getLevel()+1);
+        //if(newsSort.getUpperNewsSort().getId()!=1)
+        int level=newsDao.getNewsSortById(newsSort.getUpperNewsSort().getId()).getLevel();
+        newsSort.setLevel(level+1);
         newsDao.addNewsSort(newsSort);
         return new ModelAndView("redirect:newssort");
     }
@@ -129,27 +156,23 @@ public class NewsController {
         ModelAndView model=new ModelAndView("nyadmin/newsedit");
         News news=newsDao.getNewsById(id);
         model.addObject("news", news);
-        List<NewsSort> newsSortList=newsDao.getNewsSortList(0, 50);
+        List<NewsSort> newsSortList = newsDao.getNewsSortList(0, 50);
         model.addObject("newsSortList", newsSortList);
         return model;
     }
 
     //修改新闻
     @RequestMapping(value="nyadmin/newsedit",method = RequestMethod.POST)
-    public ModelAndView editNews(News news)
-    {
-        News targetNews=newsDao.getNewsById(news.getId());
+    public ModelAndView editNews(News news) {
+        News targetNews = newsDao.getNewsById(news.getId());
         targetNews.setTitle(news.getTitle());
         targetNews.setAuthor(news.getAuthor());
         targetNews.setSource(news.getSource());
         targetNews.setImage(news.getImage());
-        targetNews.setPriority(news.getPriority());
         targetNews.setContent(news.getContent());
         targetNews.setNewsSort(newsDao.getNewsSortById(news.getNewsSort().getId()));
         targetNews.setAddDate(newsDao.getNewsById(news.getId()).getAddDate());
         targetNews.setHits(newsDao.getNewsById(news.getId()).getHits());
-        targetNews.setState(newsDao.getNewsById(news.getId()).getState());
-
         newsDao.updateNews(targetNews);
         return new ModelAndView("redirect:newslist");
     }
@@ -161,7 +184,7 @@ public class NewsController {
         ModelAndView model=new ModelAndView("nyadmin/newssortedit");
         NewsSort newsSort=newsDao.getNewsSortById(id);
         model.addObject("newsSort", newsSort);
-        List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
+        List<NewsSort> newsSortList=newsDao.getNewsSortList(0, 50);
         model.addObject("newsSortList", newsSortList);
         return model;
     }
@@ -171,13 +194,27 @@ public class NewsController {
     {
         NewsSort targetNewsSort=newsDao.getNewsSortById(newsSort.getId());
         targetNewsSort.setName(newsSort.getName());
-        targetNewsSort.setPriority(newsSort.getPriority());
         targetNewsSort.setUpperNewsSort(newsDao.getNewsSortById(newsSort.getUpperNewsSort().getId()));
         targetNewsSort.setLevel(newsDao.getNewsSortById(newsSort.getId()).getLevel());
-        targetNewsSort.setState(newsDao.getNewsSortById(newsSort.getId()).getState());
-
         newsDao.updateNewsSort(targetNewsSort);
         return new ModelAndView("redirect:newssort");
+    }
+}
+
+
+class NewsData
+{
+    public long id;
+    public String title;
+    public String date;
+    public String sortName;
+
+    public NewsData(long id,String title,String date,String sortName)
+    {
+        this.id=id;
+        this.title=title;
+        this.date=date;
+        this.sortName=sortName;
     }
 
 }

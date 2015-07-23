@@ -1,0 +1,56 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(影音管理)").parent().addClass("active");
+</script>')
+<section class="content-header">
+    <h1>
+        影音管理
+        <small>类别管理</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">修改类别</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/nyadmin/mediasortedit" method="post">
+                        <!-- 类别 -->
+                        <div class="form-group">
+                            <label>上级类别</label>
+                            <select name="upperMediaSort.id" class="form-control">
+                                #foreach($mediaSort in $mediaSortList)
+                                    <option value="$mediaSort.id">$mediaSort.name</option>
+                                #end
+
+                            </select>
+                        </div>
+                        <!-- 标题 -->
+                        <div class="form-group">
+                            <label>类别名称</label>
+                            <input type="text" name="name" class="form-control" value="$!mediaSort.name" required/>
+                        </div>
+
+                        <div>
+                            <input type="hidden" name="id" value="$!mediaSort.id">
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

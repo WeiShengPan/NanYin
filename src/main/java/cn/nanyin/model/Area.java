@@ -16,6 +16,9 @@ public class Area {
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "area")
     private List<User> users;//地区用户列表
 
+    @OneToMany(cascade= CascadeType.ALL,mappedBy = "area")
+    private List<College> colleges;//地区社团列表
+
     private int level;//地区等级
 
     private String name;//地区名
@@ -25,9 +28,32 @@ public class Area {
     @OneToMany(mappedBy = "upperArea")
     private List<Area> lowerAreaList;
 
-    private int priority;//优先级
+    public void removeUser(User u)
+    {
+        for(int i=0;i<users.size();i++)
+        {
+            if(users.get(i).getId()==u.getId())
+                users.remove(i);
+        }
+    }
 
-    private int state;//状态
+    public void removeCollege(College college)
+    {
+        for(int i=0;i<colleges.size();i++)
+        {
+            if(colleges.get(i).getId()==college.getId())
+                colleges.remove(i);
+        }
+    }
+
+    public void removeArea(Area a)
+    {
+        for(int i=0;i<lowerAreaList.size();i++)
+        {
+            if(lowerAreaList.get(i).getId()==a.getId())
+                lowerAreaList.remove(i);
+        }
+    }
 
     public List<User> getUsers() {
         return users;
@@ -69,14 +95,6 @@ public class Area {
         this.lowerAreaList = lowerAreaList;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public long getId() {
         return id;
     }
@@ -85,11 +103,11 @@ public class Area {
         this.id = id;
     }
 
-    public int getPriority() {
-        return priority;
+    public List<College> getColleges() {
+        return colleges;
     }
 
-    public void setPriority(int priority) {
-        priority = priority;
+    public void setColleges(List<College> colleges) {
+        this.colleges = colleges;
     }
 }
