@@ -30,7 +30,7 @@
                             #foreach(${admin}in ${adminList})
                             <tr>
                                 <td>$!{admin.adminName}</td>
-                                <td>$!{admin.password}</td>
+                                <td>$!{admin.name}</td>
                                 <td>$!{admin.lastLoginDate}</td>
                                 <td>
                                     <a href="admineditpage?id=$admin.id">修改 </a>
@@ -54,12 +54,12 @@
                         <!-- 账号名 -->
                         <div class="form-group">
                             <label>账号名</label>
-                            <input type="text" name="adminName" class="form-control" placeholder="Enter ..." />
+                            <input type="text" name="adminName" class="form-control" placeholder="Enter ..." required/>
                         </div>
                         <!-- 密码 -->
                         <div class="form-group">
                             <label>密码</label>
-                            <input type="text" name="password" class="form-control" placeholder="Enter ..." />
+                            <input type="password" name="password" class="form-control" placeholder="Enter ..." required/>
                         </div>
                         <!-- 真实姓名 -->
                         <div class="form-group">

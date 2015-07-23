@@ -1,9 +1,6 @@
 package cn.nanyin.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -32,6 +29,7 @@ public class VideoDetail {
 
     private String url;//曲目播放地址
 
+    @Lob
     private String content;
 
     private Date addDate;

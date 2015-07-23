@@ -23,10 +23,10 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>级别</th>
-                            <th>名称</th>
-                            <th>上级类</th>
-                            <th>操作</th>
+                            <th class="col-md-2">级别</th>
+                            <th class="col-md-4">名称</th>
+                            <th class="col-md-4">上级类</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,7 @@
                                     <td>$videoSort.level</td>
                                     <td>$videoSort.name</td>
                                     <td>$!videoSort.upperVideoSort.name</td>
-                                    <td><a href="videosorteditpage?id=$videoSort.id">修改 </a><a href="videosortdelete?id=$videoSort.id">删除</a></td>
+                                    <td><a href="videosorteditpage?id=$videoSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="videosortdelete?id=$videoSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
                                 #end
                             #end

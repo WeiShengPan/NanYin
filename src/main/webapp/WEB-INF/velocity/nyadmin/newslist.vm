@@ -14,7 +14,7 @@ $(document).ready(function(){
                 var title=news.title;
                 var date=news.date;
                 var id=news.id;
-                $("#newslistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"newseditpage?id="+id+"\">修改 </a><a href=\"newsdelete?id="+id+"\">删除</a></td></tr>");
+                $("#newslistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"newseditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"newsdelete?id="+id+"\" class=\"btn btn-danger\">删除</a></td></tr>");
             })
         },"json")
     });
@@ -68,7 +68,7 @@ $(document).ready(function(){
                                 <td>$news.newsSort.name</td>
                                 <td>$news.title</td>
                                 <td>$news.addDate</td>
-                                <td><a href="newseditpage?id=$news.id">修改 </a><a href="newsdelete?id=$news.id">删除</a>
+                                <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
                                 </td>
                             </tr>
                             #end

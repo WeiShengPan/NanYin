@@ -14,7 +14,7 @@ $(document).ready(function(){
                 var title=media.title;
                 var date=media.date;
                 var id=media.id;
-                $("#medialistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"mediaeditpage?id="+id+"\">修改 </a><a href=\"mediadelete?id="+id+"\">删除</a></td></tr>");
+                $("#medialistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"mediaeditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"mediadelete?id="+id+"\" class=\"btn btn-danger\">删除</a></td></tr>");
             })
         },"json")
     });
@@ -54,10 +54,10 @@ $(document).ready(function(){
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>类别</th>
-                            <th>标题</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
                         </thead>
                         <tbody id="medialistbysort">
@@ -67,7 +67,7 @@ $(document).ready(function(){
                                 <td>$media.mediaSort.name</td>
                                 <td>$media.name</td>
                                 <td>$media.addDate</td>
-                                <td><a href="mediaeditpage?id=$media.id">修改 </a><a href="mediadelete?id=$media.id">删除</a>
+                                <td><a href="mediaeditpage?id=$media.id" class="btn btn-primary">修改 </a>&nbsp<a href="mediadelete?id=$media.id" class="btn btn-danger">删除</a>
                                 </td>
                             </tr>
                             #end

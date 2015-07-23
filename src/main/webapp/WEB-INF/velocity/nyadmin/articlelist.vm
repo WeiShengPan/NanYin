@@ -14,7 +14,7 @@ $(document).ready(function(){
                 var title=article.title;
                 var date=article.date;
                 var id=article.id;
-                $("#articlelistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"articleeditpage?id="+id+"\">修改 </a><a href=\"articledelete?id="+id+"\">删除</a></td></tr>");
+                $("#articlelistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"articleeditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"articledelete?id="+id+"\" class=\"btn btn-danger\">删除</a></td></tr>");
             })
         },"json")
     });
@@ -67,7 +67,7 @@ $(document).ready(function(){
                                 <td>$book.bookSort.name</td>
                                 <td>$book.title</td>
                                 <td>$book.addDate</td>
-                                <td><a href="articleeditpage?id=$book.id">修改 </a><a href="articledelete?id=$book.id">删除</a>
+                                <td><a href="articleeditpage?id=$book.id" class="btn btn-primary">修改 </a>&nbsp<a href="articledelete?id=$book.id" class="btn btn-danger">删除</a>
                                 </td>
                             </tr>
                             #end

@@ -21,6 +21,7 @@ public class Video {
 
     private String title;
 
+    @Lob
     private String content;//内容
 
     private String image;//缩略图

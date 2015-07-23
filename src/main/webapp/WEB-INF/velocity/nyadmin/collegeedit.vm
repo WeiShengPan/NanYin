@@ -24,7 +24,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/collegeadd" method="post">
+                    <form action="/nyadmin/collegeedit" method="post">
                         <!-- 所属地区 -->
                         <div class="form-group">
                             <label>所属地区</label>

@@ -14,7 +14,7 @@ $(document).ready(function(){
                 var title=video.title;
                 var date=video.date;
                 var id=video.id;
-                $("#videolistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"videoeditpage?id="+id+"\">修改 </a><a href=\"videodelete?id="+id+"\">删除</a><a href=\"videodetail?id="+id+"\">管理专辑曲目</a></td></tr>");
+                $("#videolistbysort").append("<tr><td>"+name+"</td><td>"+title+"</td><td>"+date+"</td><td><a href=\"videoeditpage?id="+id+"\" class=\"btn btn-primary\">修改 </a>&nbsp<a href=\"videodelete?id="+id+"\" class=\"btn btn-danger\">删除</a>&nbsp<a href=\"videodetail?id="+id+"\" class=\"btn btn-primary\">管理专辑曲目</a></td></tr>");
             })
         },"json")
     });
@@ -54,10 +54,11 @@ $(document).ready(function(){
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>类别</th>
-                            <th>专辑名称</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">专辑名称</th>
+                            <th class="col-md-3">添加时间</th>
+                            <th class="col-md-3">操作</th>
+
                         </tr>
                         </thead>
                         <tbody id="videolistbysort">
@@ -67,7 +68,7 @@ $(document).ready(function(){
                                 <td>$video.videoSort.name</td>
                                 <td>$video.title</td>
                                 <td>$video.addDate</td>
-                                <td><a href="videoeditpage?id=$video.id">修改 </a><a href="videodelete?id=$video.id">删除 </a><a href="videodetail?id=$video.id">管理专辑曲目</a>
+                                <td><a href="videoeditpage?id=$video.id" class="btn btn-primary">修改 </a>&nbsp<a href="videodelete?id=$video.id" class="btn btn-danger">删除 </a>&nbsp<a href="videodetail?id=$video.id" class="btn btn-primary">管理专辑曲目</a>
                                 </td>
                             </tr>
                             #end

@@ -24,7 +24,7 @@
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/nyadmin/mediaadd" method="post">
+                    <form action="/nyadmin/mediaedit" method="post">
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>选择类别</label>
@@ -93,6 +93,9 @@
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!media.id">
                         </div>
                     </form>
                 </div>

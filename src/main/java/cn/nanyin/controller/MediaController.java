@@ -162,7 +162,7 @@ public class MediaController {
 
     //修改新闻
     @RequestMapping(value="nyadmin/mediaedit",method = RequestMethod.POST)
-    public ModelAndView editNews(Media media)
+    public ModelAndView editMedia(Media media)
     {
         Media targetMedia=mediaDao.getMediaById(media.getId());
         targetMedia.setName(media.getName());

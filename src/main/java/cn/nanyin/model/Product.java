@@ -19,6 +19,7 @@ public class Product {
     private String name;    //产品名称
     private String price;   //产品价格
     private String pic; //产品缩略图
+    @Lob
     private String content; //说明
     private int recommendation; //推荐指数
     private Date addDate;   //上架时间
