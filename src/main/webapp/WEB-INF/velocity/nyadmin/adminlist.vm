@@ -33,8 +33,7 @@
                                 <td>$!{admin.name}</td>
                                 <td>$!{admin.lastLoginDate}</td>
                                 <td>
-                                    <a href="admineditpage?id=$admin.id" class="btn btn-primary">修改 </a>
-                                    <a href="admindelete?id=$admin.id" class="btn btn-danger">删除 </a>
+                                    <a href="admineditpage?id=$admin.id" class="btn btn-primary">修改 </a>&nbsp<a href="admindelete?id=$admin.id" class="btn btn-danger">删除 </a>
                                 </td>
                             </tr>
                             #end

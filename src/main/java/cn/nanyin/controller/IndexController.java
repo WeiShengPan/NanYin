@@ -20,11 +20,11 @@ public class IndexController {
     @Autowired
     private AdminDao adminDao;
 
-    //进入登录页面
-    @RequestMapping(value = "nyadmin", method = RequestMethod.GET)
-    public ModelAndView index() {
-        return new ModelAndView("nyadmin/index");
-    }
+//    //进入登录页面
+//    @RequestMapping(value = "nyadmin", method = RequestMethod.GET)
+//    public ModelAndView index() {
+//        return new ModelAndView("nyadmin/index");
+//    }
 
     //登录验证操作
     @RequestMapping(value = "nyadmin/login", method = RequestMethod.POST)
@@ -68,11 +68,17 @@ public class IndexController {
         return new ModelAndView("redirect:adminUsereditpage?id="+ adminUser.getId());
     }
 
-    @RequestMapping(value = "nyadmin/adminside", method = RequestMethod.GET)
-    public ModelAndView showSide(long id) {
+//    @RequestMapping(value = "nyadmin/adminside", method = RequestMethod.GET)
+//    public ModelAndView showSide(long id) {
+//        ModelAndView model=new ModelAndView("nyadmin/admin.side");
+//        AdminUser adminUser=adminDao.getAdminUserById(id);
+//        model.addObject("adminUser",adminUser);
+//        return model;
+//    }
+
+    @RequestMapping(value = "nyadmin/index", method = RequestMethod.GET)
+    public ModelAndView showSide() {
         ModelAndView model=new ModelAndView("nyadmin/admin.side");
-        AdminUser adminUser=adminDao.getAdminUserById(id);
-        model.addObject("adminUser",adminUser);
         return model;
     }
 
