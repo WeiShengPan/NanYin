@@ -36,8 +36,8 @@ public class AreaController {
     @RequestMapping(value="nyadmin/areaadd",method = RequestMethod.POST)
     public ModelAndView addArea(Area area)
     {
-        if(area.getUpperArea().getId()!=1)
-            area.setLevel(area.getUpperArea().getLevel()+1);
+        int level=areaDao.getAreaById(area.getUpperArea().getId()).getLevel();
+        area.setLevel(level+1);
         areaDao.addArea(area);
         return new ModelAndView("redirect:arealist");
     }
