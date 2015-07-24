@@ -18,6 +18,17 @@ $(document).ready(function(){
             })
         },"json")
     });
+    $(function () {
+        $("#example1").DataTable();
+        $("#example2").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
 });
 </script>')
 <section class="content-header">
@@ -49,34 +60,35 @@ $(document).ready(function(){
 
                     </div>
                 </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th class="col-md-2">类别</th>
-                        <th class="col-md-4">标题</th>
-                        <th class="col-md-4">添加时间</th>
-                        <th class="col-md-2">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody id="newslistbysort">
 
-                        #foreach($news in $newsList)
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
                         <tr>
-                            <td>$news.newsSort.name</td>
-                            <td>$news.title</td>
-                            <td>$news.addDate</td>
-                            <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a
-                                    href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
-                            </td>
+                            <th class="col-md-2">类别</th>
+                            <th class="col-md-4">标题</th>
+                            <th class="col-md-4">添加时间</th>
+                            <th class="col-md-2">操作</th>
                         </tr>
-                        #end
+                        </thead>
+                        <tbody id="newslistbysort">
+
+                            #foreach($news in $newsList)
+                            <tr>
+                                <td>$news.newsSort.name</td>
+                                <td>$news.title</td>
+                                <td>$news.addDate</td>
+                                <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a
+                                        href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
+                                </td>
+                            </tr>
+                            #end
 
 
-                    </tfoot>
-                </table>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
             <!-- /.box-body -->
         </div>
