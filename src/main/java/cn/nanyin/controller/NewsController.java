@@ -26,7 +26,10 @@ public class NewsController {
     @Autowired
     private NewsDao newsDao;
 
-    //显示新闻列表页面
+    /**
+     * 显示新闻列表页面
+     * @return
+     */
     @RequestMapping(value="nyadmin/newslist",method= RequestMethod.GET)
     public ModelAndView showNewsList()
     {
@@ -38,6 +41,11 @@ public class NewsController {
         return model;
     }
 
+    /**
+     *
+     * @param sortid
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "nyadmin/newslistbysort/{sortid}", method = RequestMethod.GET)
     public List<NewsData> getNewsListBySort(@PathVariable Long sortid) {
@@ -82,7 +90,6 @@ public class NewsController {
     public ModelAndView showNewsSortList()
     {
         ModelAndView model=new ModelAndView("nyadmin/newssort");
-
         List<NewsSort> newsSortList=newsDao.getNewsSortList(0,50);
         model.addObject("newsSortList", newsSortList);
         return model;
