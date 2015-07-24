@@ -28,8 +28,9 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <form action="/nyadmin/videoedit" method="post">
+                        <div>
                         <!-- 类别 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>上级类别</label>
                             <select name="videoSort.id" class="form-control">
                                 #foreach($vs in $videoSortList)
@@ -39,11 +40,12 @@
                             </select>
                         </div>
                         <!-- 标题 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>专辑名称</label>
                             <input type="text" name="title" class="form-control" value="$!video.title"
                                    required/>
                         </div>
+                            </div>
 
                         <!--内容-->
                         <label>详细内容</label>
@@ -54,7 +56,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="image" id="exampleInputFile">
+                            <input type="file" name="image" id="exampleInputFile" >
                         </div>
 
                         <div>

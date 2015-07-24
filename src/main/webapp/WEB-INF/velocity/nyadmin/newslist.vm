@@ -39,50 +39,50 @@ $(document).ready(function(){
                     </div>
                     <div class="col-md-2">
 
-                            <select id="sortbox" class="form-control">
-                                #foreach($newsSort in $newsSortList)
-                                    #if($newsSort.id!=1)
-                                        <option value="$newsSort.id">$newsSort.name</option>
-                                    #end
+                        <select id="sortbox" class="form-control">
+                            #foreach($newsSort in $newsSortList)
+                                #if($newsSort.id!=1)
+                                    <option value="$newsSort.id">$newsSort.name</option>
                                 #end
-                            </select>
+                            #end
+                        </select>
 
                     </div>
                 </div>
             </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-md-2">类别</th>
+                        <th class="col-md-4">标题</th>
+                        <th class="col-md-4">添加时间</th>
+                        <th class="col-md-2">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="newslistbysort">
+
+                        #foreach($news in $newsList)
                         <tr>
-                            <th class="col-md-2">类别</th>
-                            <th class="col-md-4">标题</th>
-                            <th class="col-md-4">添加时间</th>
-                            <th class="col-md-2">操作</th>
+                            <td>$news.newsSort.name</td>
+                            <td>$news.title</td>
+                            <td>$news.addDate</td>
+                            <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a
+                                    href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody id="newslistbysort">
-
-                            #foreach($news in $newsList)
-                            <tr>
-                                <td>$news.newsSort.name</td>
-                                <td>$news.title</td>
-                                <td>$news.addDate</td>
-                                <td><a href="newseditpage?id=$news.id" class="btn btn-primary">修改 </a>&nbsp<a href="newsdelete?id=$news.id" class="btn btn-danger">删除</a>
-                                </td>
-                            </tr>
-                            #end
+                        #end
 
 
-                        </tfoot>
-                    </table>
-                </div>
-                <!-- /.box-body -->
+                    </tfoot>
+                </table>
             </div>
-            <!-- /.box -->
+            <!-- /.box-body -->
         </div>
-        <!-- /.col -->
+        <!-- /.box -->
     </div>
+    <!-- /.col -->
     <!-- /.row -->
 </section><!-- /.content -->
 

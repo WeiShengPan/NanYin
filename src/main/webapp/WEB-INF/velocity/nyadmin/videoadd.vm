@@ -26,22 +26,24 @@
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/videoadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>选择类别</label>
-                            <select name="videoSort.id" class="form-control">
-                                #foreach($videoSort in $videoSortList)
-                                    #if($videoSort.id!=1)
-                                        <option value="$videoSort.id">$videoSort.name</option>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-6">
+                                <label>选择类别</label>
+                                <select name="videoSort.id" class="form-control">
+                                    #foreach($videoSort in $videoSortList)
+                                        #if($videoSort.id!=1)
+                                            <option value="$videoSort.id">$videoSort.name</option>
+                                        #end
                                     #end
-                                #end
-                            </select>
-                        </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>专辑名称</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>专辑名称</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
+                                       required/>
+                            </div>
                         </div>
 
                         <!--内容-->
@@ -52,7 +54,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="image" id="exampleInputFile">
+                            <input type="file" name="image" id="exampleInputFile" >
 
                         </div>
 

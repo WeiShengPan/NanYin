@@ -38,13 +38,14 @@
                         <tbody>
 
                             #foreach($videoDetail in $videoDetailList)
-                                <tr>
-                                    <td>$videoDetail.title</td>
-                                    <td>$!videoDetail.url</td>
-                                    <td>$!videoDetail.addDate</td>
-                                    <td><a href="videodetaileditpage?id=$videoDetail.id">修改 </a><a href="videodetaildelete?id=$videoDetail.id">删除</a></td>
-                                </tr>
-                                #end
+                            <tr>
+                                <td>$videoDetail.title</td>
+                                <td>$!videoDetail.url</td>
+                                <td>$!videoDetail.addDate</td>
+                                <td><a href="videodetaileditpage?id=$videoDetail.id" class="btn btn-primary">修改 </a>&nbsp<a
+                                        href="videodetaildelete?id=$videoDetail.id" class="btn btn-danger">删除</a></td>
+                            </tr>
+                            #end
 
 
                         </tfoot>
@@ -63,47 +64,53 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <form action="/nyadmin/videodetailadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>上级类别</label>
-                            <select name="video.id" class="form-control">
-                                <option selected="selected" value="$!video.id">$!video.title</option>
-                            </select>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-4">
+                                <label>上级类别</label>
+                                <select name="video.id" class="form-control">
+                                    <option selected="selected" value="$!video.id">$!video.title</option>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-4">
+                                <label>曲目名称</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter ..." required/>
+                            </div>
+                            <!-- 指导老师 -->
+                            <div class="form-group col-md-4">
+                                <label>指导老师</label>
+                                <input type="text" name="teacher" class="form-control" placeholder="Enter ..."/>
+                            </div>
                         </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>曲目名称</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter ..." required/>
+                        <div>
+                            <!-- 来源 -->
+                            <div class="form-group col-md-6">
+                                <label>来源</label>
+                                <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 摄制 -->
+                            <div class="form-group col-md-6">
+                                <label>摄制</label>
+                                <input type="text" name="editor" class="form-control" placeholder="Enter ..."/>
+                            </div>
                         </div>
-                        <!-- 指导老师 -->
-                        <div class="form-group">
-                            <label>指导老师</label>
-                            <input type="text" name="teacher" class="form-control" placeholder="Enter ..." />
-                        </div>
-                        <!-- 来源 -->
-                        <div class="form-group">
-                            <label>来源</label>
-                            <input type="text" name="source" class="form-control" placeholder="Enter ..." />
-                        </div>
-                        <!-- 摄制 -->
-                        <div class="form-group">
-                            <label>摄制</label>
-                            <input type="text" name="editor" class="form-control" placeholder="Enter ..." />
-                        </div>
-                        <!-- 备注 -->
-                        <div class="form-group">
-                            <label>备注</label>
-                            <input type="text" name="remark" class="form-control" placeholder="Enter ..." />
-                        </div>
-                        <!-- 播放地址 -->
-                        <div class="form-group">
-                            <label>播放地址</label>
-                            <input type="text" name="url" class="form-control" placeholder="Enter ..." required/>
+                        <div>
+                            <!-- 备注 -->
+                            <div class="form-group col-md-6">
+                                <label>备注</label>
+                                <input type="text" name="remark" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 播放地址 -->
+                            <div class="form-group col-md-6">
+                                <label>播放地址</label>
+                                <input type="text" name="url" class="form-control" placeholder="Enter ..." required/>
+                            </div>
                         </div>
 
                         <!--内容-->
                         <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80" >
+                                <textarea id="editor1" name="content" rows="10" cols="80">
                                  </textarea>
 
                         <div class="box-footer">

@@ -26,57 +26,64 @@
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/newsadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>选择类别</label>
-                            <select name="newsSort.id" class="form-control">
-                                #foreach($newsSort in $newsSortList)
-                                    #if($newsSort.id!=1)
-                                        <option value="$newsSort.id">$newsSort.name</option>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-6">
+                                <label>选择类别</label>
+                                <select name="newsSort.id" class="form-control">
+                                    #foreach($newsSort in $newsSortList)
+                                        #if($newsSort.id!=1)
+                                            <option value="$newsSort.id">$newsSort.name</option>
+                                        #end
                                     #end
-                                #end
-                            </select>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>标题</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
+                                       required/>
+                            </div>
                         </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>标题</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
-                        <!-- 作者 -->
-                        <div class="form-group">
+                        <div>
+                            <!-- 作者 -->
+                            <div class="form-group col-md-6"
+                            ">
                             <label>作者</label>
-                            <input type="text" name="author" class="form-control" placeholder="Enter ..." type="text"
+                            <input type="text" name="author" class="form-control" placeholder="Enter ..."
+                                   type="text"
                                    required/>
                         </div>
                         <!-- 来源 -->
-                        <div class="form-group">
-                            <label>来源</label>
-                            <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
-                        </div>
-                        <!--内容-->
-                        <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80" required>
-                                 </textarea>
-                        <!--新闻缩略图-->
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传新闻缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile">
-
-
-                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
-                        </div>
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                        <div class="form-group col-md-6"
+                        ">
+                        <label>来源</label>
+                        <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
                 </div>
             </div>
-            <!-- /.box -->
+            <!--内容-->
+            <label>详细内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                 </textarea>
+            <!--新闻缩略图-->
+
+            <div class="form-group">
+                <label for="exampleInputFile">上传新闻缩略图</label>
+                <input type="file" name="file" id="exampleInputFile" >
+
+
+                <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
         </div>
-        <!-- /.col-->
+    </div>
+    <!-- /.box -->
+    </div>
+    <!-- /.col-->
     </div>
     <!-- ./row -->
 </section><!-- /.content -->
