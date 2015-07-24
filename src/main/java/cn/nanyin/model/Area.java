@@ -16,9 +16,6 @@ public class Area {
     @OneToMany(cascade= CascadeType.ALL,mappedBy = "area")
     private List<User> users;//地区用户列表
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy = "area")
-    private List<College> colleges;//地区社团列表
-
     private int level;//地区等级
 
     private String name;//地区名
@@ -34,15 +31,6 @@ public class Area {
         {
             if(users.get(i).getId()==u.getId())
                 users.remove(i);
-        }
-    }
-
-    public void removeCollege(College college)
-    {
-        for(int i=0;i<colleges.size();i++)
-        {
-            if(colleges.get(i).getId()==college.getId())
-                colleges.remove(i);
         }
     }
 
@@ -101,13 +89,5 @@ public class Area {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public List<College> getColleges() {
-        return colleges;
-    }
-
-    public void setColleges(List<College> colleges) {
-        this.colleges = colleges;
     }
 }

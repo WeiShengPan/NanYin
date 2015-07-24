@@ -19,7 +19,7 @@
                 <div class="box-body">
                     <form action="/nyadmin/productsortedit" method="post">
                         <!-- 上级类别 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>上级类别</label>
                             <select name="upperProductSort.id" class="form-control">
                                 #foreach($tempProductSort in ${productSortList})
@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <!-- 类别名称 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>类别名称</label>
                             <input type="text" name="name" class="form-control" value="$!{productSort.name}" required/>
                         </div>

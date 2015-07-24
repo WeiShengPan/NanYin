@@ -17,8 +17,8 @@ public class College {
     private String name;//社团名
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "area_id")
-    private Area area;//用户所属地区
+    @JoinColumn(name = "collegeArea_id")
+    private CollegeArea collegeArea;//用户所属地区
 
     private String leader;//现任社团领导
 
@@ -55,12 +55,28 @@ public class College {
         this.id = id;
     }
 
+    public String getMainMembers() {
+        return mainMembers;
+    }
+
+    public void setMainMembers(String mainMembers) {
+        this.mainMembers = mainMembers;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public CollegeArea getCollegeArea() {
+        return collegeArea;
+    }
+
+    public void setCollegeArea(CollegeArea collegeArea) {
+        this.collegeArea = collegeArea;
     }
 
     public String getLeader() {
@@ -135,6 +151,14 @@ public class College {
         this.activityDate = activityDate;
     }
 
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
     public boolean isVip() {
         return vip;
     }
@@ -157,29 +181,5 @@ public class College {
 
     public void setState(int state) {
         this.state = state;
-    }
-
-    public String getMainMembers() {
-        return mainMembers;
-    }
-
-    public void setMainMembers(String mainMembers) {
-        this.mainMembers = mainMembers;
-    }
-
-    public Area getArea() {
-        return area;
-    }
-
-    public void setArea(Area area) {
-        this.area = area;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
     }
 }

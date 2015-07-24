@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(用户管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(社团管理)").parent().addClass("active");
 </script>')
 <section class="content-header">
     <h1>
-        用户管理
+        社团管理
         <small>地区管理</small>
     </h1>
 </section>
@@ -27,14 +27,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                            #foreach(${area}in ${areaList})
-                                #if(${area.id}!=1)
+                            #foreach(${collegeArea}in ${collegeAreaList})
+                                #if(${collegeArea.id}!=1)
                                 <tr>
-                                    <td>${area.level}</td>
-                                    <td>${area.name}</td>
-                                    <td>$!{area.upperArea.name}</td>
+                                    <td>${collegeArea.level}</td>
+                                    <td>${collegeArea.name}</td>
+                                    <td>$!{collegeArea.upperCollegeArea.name}</td>
                                     <td>
-                                        <a href="areaeditpage?id=$area.id" class="btn btn-primary">修改 </a>&nbsp<a href="areadelete?id=$area.id" class="btn btn-danger">删除</a>
+                                        <a href="collegeareaeditpage?id=$collegeArea.id" class="btn btn-primary">修改 </a>&nbsp<a href="collegeareadelete?id=$collegeArea.id" class="btn btn-danger">删除</a>
                                     </td>
                                 </tr>
                                 #end
@@ -51,13 +51,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/areaadd" method="post">
-                        <!-- 上级地区 -->
+                    <form action="/nyadmin/collegeareaadd" method="post">
+                        <!--上级地区-->
                         <div class="form-group col-md-6">
                             <label>上级地区</label>
-                            <select name="upperArea.id" class="form-control">
-                                #foreach($area in ${areaList})
-                                    <option value="$area.id">$area.name</option>
+                            <select name="upperCollegeArea.id" class="form-control">
+                                #foreach($collegeArea in ${collegeAreaList})
+                                    <option value="$collegeArea.id">$!{collegeArea.name}</option>
                                 #end
                             </select>
                         </div>
