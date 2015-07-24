@@ -1,5 +1,6 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
     $(function () {
         // instance, using default configuration.
@@ -7,6 +8,18 @@
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+    $(function () {
+        $("#example1").DataTable();
+        $("#example2").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+      });
 </script>')
 <section class="content-header">
     <h1>
