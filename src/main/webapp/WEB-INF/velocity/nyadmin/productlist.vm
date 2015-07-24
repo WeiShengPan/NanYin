@@ -34,7 +34,7 @@
                                 <td>$!{product.name}</td>
                                 <td>$!{product.price}</td>
                                 <td>$!{product.pic}</td>
-                                <td><a href="producteditpage?id=${product.id}">修改 </a><a href="productdelete?id=${product.id}">删除</a>
+                                <td><a href="producteditpage?id=${product.id}" class="btn btn-primary">修改 </a><a href="productdelete?id=${product.id}" class="btn btn-danger">删除</a>
                                 </td>
                             </tr>
                             #end

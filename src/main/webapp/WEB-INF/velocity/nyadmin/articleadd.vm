@@ -25,38 +25,43 @@
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/articleadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>选择类别</label>
-                            <select name="bookSort.id" class="form-control">
-                                #foreach($bookSort in $bookSortList)
-                                    #if($bookSort.id!=1)
-                                        <option value="$bookSort.id">$bookSort.name</option>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-4">
+                                <label>选择类别</label>
+                                <select name="bookSort.id" class="form-control">
+                                    #foreach($bookSort in $bookSortList)
+                                        #if($bookSort.id!=1)
+                                            <option value="$bookSort.id">$bookSort.name</option>
+                                        #end
                                     #end
-                                #end
-                            </select>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-4">
+                                <label>标题</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
+                                       required/>
+                            </div>
+                            <!-- 作者 -->
+                            <div class="form-group col-md-4">
+                                <label>作者</label>
+                                <input type="text" name="author" class="form-control" placeholder="Enter ..."
+                                       type="text"
+                                       required/>
+                            </div>
                         </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>标题</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
-                        <!-- 作者 -->
-                        <div class="form-group">
-                            <label>作者</label>
-                            <input type="text" name="author" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
-                        <!-- 来源 -->
-                        <div class="form-group">
-                            <label>来源</label>
-                            <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
-                        </div>
-                        <!-- 下载网址 -->
-                        <div class="form-group">
-                            <label>下载网址</label>
-                            <input type="text" name="downloadURL" class="form-control" placeholder="Enter ..."/>
+                        <div>
+                            <!-- 来源 -->
+                            <div class="form-group col-md-6">
+                                <label>来源</label>
+                                <input type="text" name="source" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 下载网址 -->
+                            <div class="form-group col-md-6">
+                                <label>下载网址</label>
+                                <input type="text" name="downloadURL" class="form-control" placeholder="Enter ..."/>
+                            </div>
                         </div>
                         <!--内容-->
                         <label>详细内容</label>
@@ -66,7 +71,7 @@
                         <!--缩略图-->
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile">
+                            <input type="file" name="file" id="exampleInputFile" >
                         </div>
 
                         <div class="box-footer">

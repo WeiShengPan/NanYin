@@ -22,20 +22,22 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <form action="/nyadmin/newssortedit" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>上级类别</label>
-                            <select name="upperNewsSort.id" class="form-control">
-                                #foreach($newsSort in $newsSortList)
-                                    <option value="$newsSort.id">$newsSort.name</option>
-                                #end
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-6">
+                                <label>上级类别</label>
+                                <select name="upperNewsSort.id" class="form-control">
+                                    #foreach($newsSort in $newsSortList)
+                                        <option value="$newsSort.id">$newsSort.name</option>
+                                    #end
 
-                            </select>
-                        </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>类别名称</label>
-                            <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>类别名称</label>
+                                <input type="text" name="name" class="form-control" value="$!newsSort.name" required/>
+                            </div>
                         </div>
 
                         <div>

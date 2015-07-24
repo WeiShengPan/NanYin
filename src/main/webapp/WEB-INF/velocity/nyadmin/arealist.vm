@@ -30,8 +30,8 @@
                                     <td>${area.name}</td>
                                     <td>$!{area.upperArea.name}</td>
                                     <td>
-                                        <a href="areaeditpage?id=$area.id">修改 </a>
-                                        <a href="areadelete?id=$area.id">删除</a>
+                                        <a href="areaeditpage?id=$area.id" class="btn btn-primary">修改 </a>
+                                        <a href="areadelete?id=$area.id" class="btn btn-danger">删除</a>
                                     </td>
                                 </tr>
                                 #end

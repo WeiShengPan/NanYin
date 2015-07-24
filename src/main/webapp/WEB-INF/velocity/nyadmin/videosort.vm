@@ -58,8 +58,9 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <form action="/nyadmin/videosortadd" method="post">
+                        <div>
                         <!-- 类别 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>上级类别</label>
                             <select name="upperVideoSort.id" class="form-control">
                                 #foreach($videoSort in $videoSortList)
@@ -69,10 +70,11 @@
                             </select>
                         </div>
                         <!-- 标题 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label>类别名称</label>
                             <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
                         </div>
+                            </div>
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

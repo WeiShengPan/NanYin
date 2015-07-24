@@ -25,47 +25,55 @@
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/mediaedit" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>选择类别</label>
-                            <select name="mediaSort.id" class="form-control">
-                                #foreach($mediaSort in $mediaSortList)
-                                    #if($mediaSort.id!=1)
-                                        <option value="$mediaSort.id">$mediaSort.name</option>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-4">
+                                <label>选择类别</label>
+                                <select name="mediaSort.id" class="form-control">
+                                    #foreach($mediaSort in $mediaSortList)
+                                        #if($mediaSort.id!=1)
+                                            <option value="$mediaSort.id">$mediaSort.name</option>
+                                        #end
                                     #end
-                                #end
-                            </select>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-4">
+                                <label>影音名称</label>
+                                <input type="text" name="name" class="form-control" value="$!media.name" required/>
+                            </div>
+
+                            <!-- 演唱 -->
+                            <div class="form-group col-md-4">
+                                <label>演唱</label>
+                                <input type="text" name="singer" class="form-control" value="$!media.singer"/>
+                            </div>
                         </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>影音名称</label>
-                            <input type="text" name="name" class="form-control" value="$!media.name" required/>
-                        </div>
-                        <!-- 演唱 -->
-                        <div class="form-group">
-                            <label>演唱</label>
-                            <input type="text" name="singer" class="form-control" value="$!media.singer" />
-                        </div>
-                        <!-- 演奏 -->
-                        <div class="form-group">
-                            <label>演奏</label>
-                            <input type="text" name="performer" class="form-control" value="$!media.performer" />
-                        </div>
-                        <!-- 摄像 -->
-                        <div class="form-group">
-                            <label>摄像</label>
-                            <input type="text" name="cameraman" class="form-control" value="$!media.cameraman" />
-                        </div>
-                        <!-- 制作 -->
-                        <div class="form-group">
-                            <label>制作</label>
-                            <input type="text" name="producer" class="form-control" value="$!media.producer" />
+                        <div>
+                            <!-- 演奏 -->
+                            <div class="form-group col-md-4">
+                                <label>演奏</label>
+                                <input type="text" name="performer" class="form-control" value="$!media.performer"/>
+                            </div>
+                            <!-- 摄像 -->
+                            <div class="form-group col-md-4">
+                                <label>摄像</label>
+                                <input type="text" name="cameraman" class="form-control" value="$!media.cameraman"/>
+                            </div>
+
+
+                            <!-- 制作 -->
+                            <div class="form-group col-md-4">
+                                <label>制作</label>
+                                <input type="text" name="producer" class="form-control" value="$!media.producer"/>
+                            </div>
                         </div>
                         <!-- 播放地址 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-12">
                             <label>播放地址</label>
-                            <input type="text" name="url" class="form-control" value="$!media.url" />
+                            <input type="text" name="url" class="form-control" value="$!media.url"/>
                         </div>
+
                         <!--工尺谱-->
                         <br>
 
@@ -84,9 +92,10 @@
                         <label>内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                     $!media.content
-                                 </textarea>
+                                </textarea>
                         <!--缩略图-->
                         <br>
+
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
                             <input type="file" name="image" id="exampleInputFile">

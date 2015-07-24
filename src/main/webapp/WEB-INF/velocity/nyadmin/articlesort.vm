@@ -37,7 +37,8 @@
                                     <td>$bookSort.level</td>
                                     <td>$bookSort.name</td>
                                     <td>$!bookSort.upperBookSort.name</td>
-                                    <td><a href="articlesorteditpage?id=$bookSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="articlesortdelete?id=$bookSort.id" class="btn btn-danger">删除</a></td>
+                                    <td><a href="articlesorteditpage?id=$bookSort.id" class="btn btn-primary">修改 </a>&nbsp<a
+                                            href="articlesortdelete?id=$bookSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
                                 #end
                             #end
@@ -58,20 +59,22 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <form action="/nyadmin/articlesortadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>上级类别</label>
-                            <select name="upperBookSort.id" class="form-control">
-                                #foreach($bookSort in $bookSortList)
-                                    <option value="$bookSort.id">$bookSort.name</option>
-                                #end
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-6">
+                                <label>上级类别</label>
+                                <select name="upperBookSort.id" class="form-control">
+                                    #foreach($bookSort in $bookSortList)
+                                        <option value="$bookSort.id">$bookSort.name</option>
+                                    #end
 
-                            </select>
-                        </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>类别名称</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>类别名称</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                            </div>
                         </div>
 
                         <div class="box-footer">

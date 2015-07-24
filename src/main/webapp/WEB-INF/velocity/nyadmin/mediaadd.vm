@@ -25,55 +25,65 @@
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form action="/nyadmin/mediaadd" method="post">
-                        <!-- 类别 -->
-                        <div class="form-group">
-                            <label>选择类别</label>
-                            <select name="mediaSort.id" class="form-control">
-                                #foreach($mediaSort in $mediaSortList)
-                                    #if($mediaSort.id!=1)
-                                        <option value="$mediaSort.id">$mediaSort.name</option>
+                        <div>
+                            <!-- 类别 -->
+                            <div class="form-group col-md-4">
+                                <label>选择类别</label>
+                                <select name="mediaSort.id" class="form-control">
+                                    #foreach($mediaSort in $mediaSortList)
+                                        #if($mediaSort.id!=1)
+                                            <option value="$mediaSort.id">$mediaSort.name</option>
+                                        #end
                                     #end
-                                #end
-                            </select>
+                                </select>
+                            </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-4">
+                                <label>影音名称</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter ..." type="text"
+                                       required/>
+                            </div>
+
+
+                            <!-- 演唱 -->
+                            <div class="form-group col-md-4">
+                                <label>演唱</label>
+                                <input type="text" name="singer" class="form-control" placeholder="Enter ..."
+                                       type="text"
+                                       required/>
+                            </div>
                         </div>
-                        <!-- 标题 -->
-                        <div class="form-group">
-                            <label>影音名称</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
-                        <!-- 演唱 -->
-                        <div class="form-group">
-                            <label>演唱</label>
-                            <input type="text" name="singer" class="form-control" placeholder="Enter ..." type="text"
-                                   required/>
-                        </div>
-                        <!-- 演奏 -->
-                        <div class="form-group">
-                            <label>演奏</label>
-                            <input type="text" name="performer" class="form-control" placeholder="Enter ..."/>
-                        </div>
-                        <!-- 摄像 -->
-                        <div class="form-group">
-                            <label>摄像</label>
-                            <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
-                        </div>
-                        <!-- 制作 -->
-                        <div class="form-group">
-                            <label>制作</label>
-                            <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
+                        <div>
+                            <!-- 演奏 -->
+                            <div class="form-group col-md-4">
+                                <label>演奏</label>
+                                <input type="text" name="performer" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 摄像 -->
+                            <div class="form-group col-md-4">
+                                <label>摄像</label>
+                                <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
+                            </div>
+
+
+                            <!-- 制作 -->
+                            <div class="form-group col-md-4">
+                                <label>制作</label>
+                                <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
+                            </div>
                         </div>
                         <!-- 播放地址 -->
-                        <div class="form-group">
+                        <div class="form-group col-md-12">
                             <label>播放地址</label>
                             <input type="text" name="url" class="form-control" placeholder="Enter ..."/>
                         </div>
+
                         <!--工尺谱-->
                         <br>
 
                         <div class="form-group">
                             <label for="exampleInputFile">上传工尺谱</label>
-                            <input type="file" name="gcp" id="exampleInputFile">
+                            <input type="file" name="gcp" id="exampleInputFile" >
                         </div>
                         <!--简谱-->
                         <br>
@@ -88,6 +98,7 @@
                                  </textarea>
                         <!--缩略图-->
                         <br>
+
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
                             <input type="file" name="image" id="exampleInputFile">
