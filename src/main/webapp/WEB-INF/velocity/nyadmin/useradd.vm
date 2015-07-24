@@ -52,7 +52,12 @@
                                 <!-- 联系电话 -->
                                 <div class="form-group">
                                     <label>联系电话</label>
-                                    <input type="text" name="telephone" class="form-control" placeholder="Enter ..." />
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input type="text" name="telephone" class="form-control" placeholder="Enter ..." />
+                                    </div><!-- /.input group -->
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -79,7 +84,12 @@
                                 <!-- Email -->
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" name="email" class="form-control" placeholder="Enter ..." required/>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <input type="email" name="email" class="form-control" placeholder="Enter ..." required/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

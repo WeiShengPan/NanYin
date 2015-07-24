@@ -43,7 +43,7 @@
                         <!-- 社团名 -->
                         <div class="form-group">
                             <label>社团名</label>
-                            <input type="text" name="name" class="form-control" value="$!{college.name}"/>
+                            <input type="text" name="name" class="form-control" value="$!{college.name}" required/>
                         </div>
                         <!-- 主要成员 -->
                         <div class="form-group">
@@ -53,7 +53,7 @@
                         <!-- 现任社团领导 -->
                         <div class="form-group">
                             <label>现任社团领导</label>
-                            <input type="text" name="leader" class="form-control"  value="$!{college.leader}"/>
+                            <input type="text" name="leader" class="form-control"  value="$!{college.leader}" required/>
                         </div>
                         <!-- 历届领导 -->
                         <div class="form-group">
@@ -63,7 +63,12 @@
                         <!-- 邮箱 -->
                         <div class="form-group">
                             <label>邮箱</label>
-                            <input type="text" name="email" class="form-control" value="$!{college.email}"/>
+                            <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                <input type="email" name="email" class="form-control" value="$!{college.email}"/>
+                            </div>
                         </div>
                         <!-- 联系地址 -->
                         <div class="form-group">
@@ -73,22 +78,31 @@
                         <!-- 联系人 -->
                         <div class="form-group">
                             <label>联系人</label>
-                            <input type="text" name="contact" class="form-control" value="$!{college.contact}"/>
+                            <input type="text" name="contact" class="form-control" value="$!{college.contact}" required/>
                         </div>
                         <!-- 联系电话 -->
                         <div class="form-group">
                             <label>联系电话</label>
-                            <input type="text" name="telephone" class="form-control" value="$!{college.telephone}"/>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" name="telephone" class="form-control" value="$!{college.telephone}" required/>
+                            </div><!-- /.input group -->
                         </div>
                         <!-- 成立时间 -->
                         <div class="form-group">
                             <label>成立时间</label>
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
                             <input type="text" name="formDate" class="form-control" value="$!{college.formDate}"/>
+                        </div><!-- /.input group -->
                         </div>
                         <!-- 会员数 -->
                         <div class="form-group">
                             <label>会员数</label>
-                            <input type="text" name="memberNum" class="form-control" value="$!{college.memberNum}"/>
+                            <input type="text" name="memberNum" class="form-control" value="$!{college.memberNum}" required/>
                         </div>
                         <!-- 活动时间 -->
                         <div class="form-group">

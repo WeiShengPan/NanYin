@@ -41,8 +41,7 @@
                                      <td>赞助会员</td>
                                  #end
                                  <td>
-                                     <a href="usereditpage?id=$user.id">修改  </a>
-                                     <a href="userdelete?id=$user.id">删除 </a>
+                                     <a href="usereditpage?id=$user.id" class="btn btn-primary">修改 </a>&nbsp<a href="userdelete?id=$user.id" class="btn btn-danger">删除 </a>
                                  </td>
                              </tr>
                              #end

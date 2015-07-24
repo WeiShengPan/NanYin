@@ -59,7 +59,12 @@
                         <!-- 邮箱 -->
                         <div class="form-group">
                             <label>邮箱</label>
-                            <input type="text" name="email" class="form-control" placeholder="Enter ..."/>
+                            <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                <input type="email" name="email" class="form-control" placeholder="Enter ..."/>
+                            </div>
                         </div>
                         <!-- 联系地址 -->
                         <div class="form-group">
@@ -74,12 +79,22 @@
                         <!-- 联系电话 -->
                         <div class="form-group">
                             <label>联系电话</label>
-                            <input type="text" name="telephone" class="form-control" placeholder="Enter ..." required/>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <input type="text" name="telephone" class="form-control" placeholder="Enter ..." required/>
+                            </div><!-- /.input group -->
                         </div>
                         <!-- 成立时间 -->
                         <div class="form-group">
                             <label>成立时间</label>
-                            <input type="text" name="formDate" class="form-control" placeholder="Enter ..."/>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" name="formDate" class="form-control" placeholder="Enter ..."/>
+                            </div><!-- /.input group -->
                         </div>
                         <!-- 会员数 -->
                         <div class="form-group">

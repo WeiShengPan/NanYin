@@ -39,8 +39,7 @@
                                     <td>是</td>
                                 #end
                                 <td>
-                                    <a href="collegeeditpage?id=$college.id">修改  </a>
-                                    <a href="collegedelete?id=$college.id">删除 </a>
+                                    <a href="collegeeditpage?id=$college.id" class="btn btn-primary">修改 </a>&nbsp<a href="collegedelete?id=$college.id" class="btn btn-danger">删除 </a>
                                 </td>
                             </tr>
                             #end

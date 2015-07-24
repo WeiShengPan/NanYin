@@ -40,14 +40,12 @@
                         <!-- 产品名称 -->
                         <div class="form-group">
                             <label>产品名称</label>
-                            <input type="text" name="name" class="form-control" value="$!product.name" type="text"
-                                   required/>
+                            <input type="text" name="name" class="form-control" value="$!product.name" type="text" required/>
                         </div>
                         <!-- 价格 -->
                         <div class="form-group">
                             <label>价格</label>
-                            <input type="text" name="price" class="form-control" value="$!product.price" type="text"
-                                   required/>
+                            <input type="text" name="price" class="form-control" value="$!product.price" type="text" required/>
                         </div>
                         <!-- 推荐指数 -->
                         <div class="form-group">
