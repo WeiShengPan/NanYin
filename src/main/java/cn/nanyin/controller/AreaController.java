@@ -1,10 +1,8 @@
 package cn.nanyin.controller;
 
 import cn.nanyin.dao.AreaDao;
-import cn.nanyin.dao.CollegeDao;
 import cn.nanyin.dao.UserDao;
 import cn.nanyin.model.Area;
-import cn.nanyin.model.College;
 import cn.nanyin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +21,6 @@ public class AreaController {
     private AreaDao areaDao;
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private CollegeDao collegeDao;
 
     //展示地区列表
     @RequestMapping(value="nyadmin/arealist",method= RequestMethod.GET)
@@ -40,8 +36,8 @@ public class AreaController {
     @RequestMapping(value="nyadmin/areaadd",method = RequestMethod.POST)
     public ModelAndView addArea(Area area)
     {
-        if(area.getUpperArea().getId()!=1)
-            area.setLevel(area.getUpperArea().getLevel()+1);
+        int level=areaDao.getAreaById(area.getUpperArea().getId()).getLevel();
+        area.setLevel(level+1);
         areaDao.addArea(area);
         return new ModelAndView("redirect:arealist");
     }
@@ -63,17 +59,6 @@ public class AreaController {
             userDao.deleteUser(userTmp1);
         }
 
-        //级联删除所有该地区社团
-        List<College> collegeList=area.getColleges();
-        for(int i=0;i<collegeList.size();i++)
-        {
-            College collegeTmp1 =collegeList.get(i);
-            area.removeCollege(collegeTmp1);
-            collegeTmp1.setArea(null);
-            collegeDao.updateCollege(collegeTmp1);
-            collegeDao.deleteCollege(collegeTmp1);
-        }
-
         //级联删除所有下层地区
         List<Area> lowerAreaList=area.getLowerAreaList();
         for(int i=0;i<lowerAreaList.size();i++)
@@ -87,15 +72,6 @@ public class AreaController {
                 userTmp2.setArea(null);
                 userDao.updateUser(userTmp2);
                 userDao.deleteUser(userTmp2);
-            }
-            List<College> lowerCollegeList=areaTmp.getColleges();
-            for(int k=0;k<lowerCollegeList.size();k++)
-            {
-                College collegeTmp2 =lowerCollegeList.get(i);
-                areaTmp.removeCollege(collegeTmp2);
-                collegeTmp2.setArea(null);
-                collegeDao.updateCollege(collegeTmp2);
-                collegeDao.deleteCollege(collegeTmp2);
             }
             area.removeArea(areaTmp);
             areaTmp.setUpperArea(null);

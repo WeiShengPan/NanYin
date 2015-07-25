@@ -1,16 +1,14 @@
 package cn.nanyin.controller;
 
-import cn.nanyin.dao.AreaDao;
 import cn.nanyin.dao.CollegeDao;
-import cn.nanyin.model.Area;
 import cn.nanyin.model.College;
+import cn.nanyin.model.CollegeArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,10 +18,8 @@ import java.util.List;
 public class CollegeController {
     @Autowired
     private CollegeDao collegeDao;
-    @Autowired
-    private AreaDao areaDao;
 
-    //展示用户列表
+    //展示社团列表
     @RequestMapping(value="/nyadmin/collegelist",method= RequestMethod.GET)
     public ModelAndView showCollegeList() {
         ModelAndView model=new ModelAndView("nyadmin/collegelist");
@@ -32,23 +28,23 @@ public class CollegeController {
         return model;
     }
 
-    //添加用户页面
+    //添加社团页面
     @RequestMapping(value="nyadmin/collegeaddpage",method=RequestMethod.GET)
     public ModelAndView showCollegeAddPage() {
         ModelAndView model=new ModelAndView("nyadmin/collegeadd");
-        List<Area> areaList=areaDao.getAreaList(0, 50);
-        model.addObject("areaList",areaList);
+        List<CollegeArea> collegeAreaList=collegeDao.getCollegeAreaList(0, 50);
+        model.addObject("collegeAreaList",collegeAreaList);
         return model;
     }
 
-    //添加用户操作
+    //添加社团操作
     @RequestMapping(value="nyadmin/collegeadd",method = RequestMethod.POST)
     public ModelAndView addCollege(College college) {
         collegeDao.addCollege(college);
         return new ModelAndView("redirect:collegelist");
     }
 
-    //删除用户
+    //删除社团
     @RequestMapping(value="nyadmin/collegedelete",method = RequestMethod.GET)
     public ModelAndView deleteCollege(long id) {
         College college = collegeDao.getCollegeById(id);
@@ -56,18 +52,18 @@ public class CollegeController {
         return new ModelAndView("redirect:collegelist");
     }
 
-    //显示修改用户页面
+    //显示修改社团页面
     @RequestMapping(value="nyadmin/collegeeditpage",method = RequestMethod.GET)
     public ModelAndView showCollegeEditPage(long id) {
         ModelAndView model=new ModelAndView("nyadmin/collegeedit");
         College college=collegeDao.getCollegeById(id);
         model.addObject("college", college);
-        List<Area> areaList=areaDao.getAreaList(0, 50);
-        model.addObject("areaList", areaList);
+        List<CollegeArea> collegeAreaList=collegeDao.getCollegeAreaList(0, 50);
+        model.addObject("collegeAreaList", collegeAreaList);
         return model;
     }
 
-    //修改用户
+    //修改社团
     @RequestMapping(value="nyadmin/collegeedit",method = RequestMethod.POST)
     public ModelAndView editCollege(College college) {
         College targetCollege=collegeDao.getCollegeById(college.getId());
@@ -85,10 +81,92 @@ public class CollegeController {
         targetCollege.setMemberNum(college.getMemberNum());
         targetCollege.setTelephone(college.getTelephone());
         targetCollege.setVip(college.isVip());
-        targetCollege.setArea(areaDao.getAreaById(college.getArea().getId()));
+        targetCollege.setCollegeArea(collegeDao.getCollegeAreaById(college.getCollegeArea().getId()));
         targetCollege.setState(collegeDao.getCollegeById(college.getId()).getState());
 
         collegeDao.updateCollege(targetCollege);
         return new ModelAndView("redirect:collegelist");
+    }
+
+    //展示地区列表
+    @RequestMapping(value="nyadmin/collegearea",method= RequestMethod.GET)
+    public ModelAndView showCollegeAreaList() {
+        ModelAndView model=new ModelAndView("nyadmin/collegearea");
+        List<CollegeArea> collegeAreaList=collegeDao.getCollegeAreaList(0, 50);
+        model.addObject("collegeAreaList", collegeAreaList);
+        return model;
+    }
+
+    //添加地区
+    @RequestMapping(value="nyadmin/collegeareaadd",method = RequestMethod.POST)
+    public ModelAndView addCollegeArea(CollegeArea collegeArea) {
+        int level=collegeDao.getCollegeAreaById(collegeArea.getUpperCollegeArea().getId()).getLevel();
+        collegeArea.setLevel(level+1);
+        collegeDao.addCollegeArea(collegeArea);
+        return new ModelAndView("redirect:collegearea");
+    }
+
+    //删除地区
+    @RequestMapping(value="nyadmin/collegeareadelete",method = RequestMethod.GET)
+    public ModelAndView deleteCollegeArea(long id) {
+        CollegeArea collegeArea=collegeDao.getCollegeAreaById(id);
+
+        //级联删除所有该地区社团
+        List<College> collegeList=collegeArea.getColleges();
+        for(int i=0;i<collegeList.size();i++)
+        {
+            College collegeTmp1 =collegeList.get(i);
+            collegeArea.removeCollege(collegeTmp1);
+            collegeTmp1.setCollegeArea(null);
+            collegeDao.updateCollege(collegeTmp1);
+            collegeDao.deleteCollege(collegeTmp1);
+        }
+
+        //级联删除所有下层地区
+        List<CollegeArea> lowerCollegeAreaList=collegeArea.getLowerCollegeAreaList();
+        for(int i=0;i<lowerCollegeAreaList.size();i++)
+        {
+            CollegeArea collegeAreaTmp=lowerCollegeAreaList.get(i);
+
+            List<College> lowerCollegeList=collegeAreaTmp.getColleges();
+            for(int k=0;k<lowerCollegeList.size();k++)
+            {
+                College collegeTmp2 =lowerCollegeList.get(i);
+                collegeAreaTmp.removeCollege(collegeTmp2);
+                collegeTmp2.setCollegeArea(null);
+                collegeDao.updateCollege(collegeTmp2);
+                collegeDao.deleteCollege(collegeTmp2);
+            }
+            collegeArea.removeCollegeArea(collegeAreaTmp);
+            collegeAreaTmp.setUpperCollegeArea(null);
+            collegeDao.updateCollegeArea(collegeAreaTmp);
+            collegeDao.deleteCollegeArea(collegeAreaTmp);
+        }
+
+        collegeDao.deleteCollegeArea(collegeArea);
+        return new ModelAndView("redirect:collegearea");
+    }
+
+    //地区修改页面
+    @RequestMapping(value="nyadmin/collegeareaeditpage",method = RequestMethod.GET)
+    public ModelAndView showCollegeAreaEditPage(long id) {
+        ModelAndView model=new ModelAndView("nyadmin/collegeareaedit");
+        CollegeArea collegeArea=collegeDao.getCollegeAreaById(id);
+        model.addObject("collegeArea", collegeArea);
+        List<CollegeArea> collegeAreaList=collegeDao.getCollegeAreaList(0, 50);
+        model.addObject("collegeAreaList",collegeAreaList);
+        return model;
+    }
+
+    //地区修改操作
+    @RequestMapping(value="nyadmin/collegeareaedit",method = RequestMethod.POST)
+    public ModelAndView editCollegeArea(CollegeArea collegeArea) {
+        CollegeArea targetCollegeArea = collegeDao.getCollegeAreaById(collegeArea.getId());
+        targetCollegeArea.setName(collegeArea.getName());
+        targetCollegeArea.setUpperCollegeArea(collegeDao.getCollegeAreaById(collegeArea.getUpperCollegeArea().getId()));
+        targetCollegeArea.setLevel(collegeDao.getCollegeAreaById(collegeArea.getId()).getLevel());
+
+        collegeDao.updateCollegeArea(targetCollegeArea);
+        return new ModelAndView("redirect:collegearea");
     }
 }

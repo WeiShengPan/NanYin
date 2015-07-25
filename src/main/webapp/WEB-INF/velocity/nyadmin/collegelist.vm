@@ -31,7 +31,7 @@
                             #foreach(${college}in ${collegeList})
                             <tr>
                                 <td>$!{college.name}</td>
-                                <td>$!{college.area.name}</td>
+                                <td>$!{college.collegeArea.name}</td>
                                 <td>$!{college.contact}</td>
                                 #if(${college.vip}=="false")
                                     <td>否</td>

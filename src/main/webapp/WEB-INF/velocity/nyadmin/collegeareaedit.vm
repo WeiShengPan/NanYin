@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(用户管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(社团管理)").parent().addClass("active");
 </script>')
 <section class="content-header">
     <h1>
-        用户管理
+        社团管理
         <small>地区管理</small>
     </h1>
 </section>
@@ -18,29 +18,29 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/areaedit" method="post">
-                        <!-- 类别 -->
+                    <form action="/nyadmin/collegeareaedit" method="post">
+                        <!--上级地区-->
                         <div class="form-group col-md-6">
                             <label>上级地区</label>
-                            <select name="upperArea.id" class="form-control">
-                                #foreach(${tempArea} in ${areaList})
-                                    #if(${tempArea.id}!=${area.id})
-                                        <option value="${tempArea.id}"
-                                            #if($!{area.upperArea.id}=="${tempArea.id}")
+                            <select name="upperCollegeArea.id" class="form-control">
+                                #foreach(${tempCollegeArea} in ${collegeAreaList})
+                                    #if(${tempCollegeArea.id}!=${collegeArea.id})
+                                        <option value="${tempCollegeArea.id}"
+                                            #if($!{collegeArea.upperCollegeArea.id}=="${tempCollegeArea.id}")
                                                 selected = "selected"
                                             #end
-                                                >${tempArea.name}</option>
+                                                >${tempCollegeArea.name}</option>
                                     #end
                                 #end
                             </select>
                         </div>
-                        <!-- 标题 -->
+                        <!--地区名称-->
                         <div class="form-group col-md-6">
                             <label>地区名称</label>
-                            <input type="text" name="name" class="form-control" value="$!area.name" required/>
+                            <input type="text" name="name" class="form-control" value="$!collegeArea.name" required/>
                         </div>
                         <div>
-                            <input type="hidden" name="id" value="$!area.id">
+                            <input type="hidden" name="id" value="$!collegeArea.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">提交</button>

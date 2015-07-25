@@ -28,10 +28,10 @@
                         <!-- 所属地区 -->
                         <div class="form-group">
                             <label>所属地区</label>
-                            <select name="area.id" class="form-control">
-                                #foreach($area in ${areaList})
-                                    #if($area.id!=1)
-                                        <option value="$area.id">$area.name</option>
+                            <select name="collegeArea.id" class="form-control">
+                                #foreach($collegeArea in ${collegeAreaList})
+                                    #if($collegeArea.id!=1)
+                                        <option value="$collegeArea.id">$!{collegeArea.name}</option>
                                     #end
                                 #end
                             </select>

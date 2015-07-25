@@ -1,6 +1,7 @@
 package cn.nanyin.dao;
 
 import cn.nanyin.model.College;
+import cn.nanyin.model.CollegeArea;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,31 @@ public class CollegeDao {
     public void deleteCollege(College college)
     {
         sessionFactory.getCurrentSession().delete(college);
+    }
+
+    public CollegeArea getCollegeAreaById(long id) {
+        return (CollegeArea) sessionFactory.getCurrentSession().get(CollegeArea.class, id);
+    }
+
+    public List<CollegeArea> getCollegeAreaList(Integer start,Integer max) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from CollegeArea");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public Serializable addCollegeArea(CollegeArea collegeArea) {
+        Serializable result=null;
+        result=sessionFactory.getCurrentSession().save(collegeArea);
+        return result;
+    }
+
+    public void updateCollegeArea(CollegeArea collegeArea) {
+        sessionFactory.getCurrentSession().saveOrUpdate(collegeArea);
+    }
+
+    public void deleteCollegeArea(CollegeArea collegeArea)
+    {
+        sessionFactory.getCurrentSession().delete(collegeArea);
     }
 }

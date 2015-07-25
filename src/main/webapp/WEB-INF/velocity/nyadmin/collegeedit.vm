@@ -28,14 +28,14 @@
                         <!-- 所属地区 -->
                         <div class="form-group">
                             <label>所属地区</label>
-                            <select name="area.id" class="form-control">
-                                #foreach($area in ${areaList})
-                                    #if($area.id!=1)
-                                        <option value="$area.id"
-                                            #if($!{college.area.id}=="$area.id")
+                            <select name="collegeArea.id" class="form-control">
+                                #foreach($collegeArea in ${collegeAreaList})
+                                    #if($collegeArea.id!=1)
+                                        <option value="$collegeArea.id"
+                                            #if($!{college.collegeArea.id}=="$collegeArea.id")
                                                 selected = "selected"
                                             #end
-                                                >$area.name</option>
+                                                >$!{collegeArea.name}</option>
                                     #end
                                 #end
                             </select>
@@ -64,9 +64,9 @@
                         <div class="form-group">
                             <label>邮箱</label>
                             <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-envelope"></i>
-                                        </span>
+                                <div class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
                                 <input type="email" name="email" class="form-control" value="$!{college.email}"/>
                             </div>
                         </div>
@@ -93,11 +93,12 @@
                         <!-- 成立时间 -->
                         <div class="form-group">
                             <label>成立时间</label>
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input type="text" name="formDate" class="form-control" value="$!{college.formDate}"/>
-                        </div><!-- /.input group -->
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" name="formDate" class="form-control" value="$!{college.formDate}"/>
+                            </div><!-- /.input group -->
                         </div>
                         <!-- 会员数 -->
                         <div class="form-group">
