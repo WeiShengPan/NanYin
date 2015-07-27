@@ -1,12 +1,35 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(图文乐谱)").parent().addClass("active");
-    $(function () {
+        $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1");
+         CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorarticleimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+     $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/articleimage",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
 </script>')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -25,7 +48,7 @@
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/nyadmin/articleedit" method="post">
+                    <form id="data-form" action="/nyadmin/articleedit" method="post">
                         <div>
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
@@ -68,20 +91,30 @@
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                     $!book.content
                                 </textarea>
+
+                        <div>
+                            <input type="hidden" name="id" value="$!book.id">
+                        </div>
+                        <input type="hidden" name="file" value="$!book.file" required>
+                    </form>
+                    <br>
+
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
                         <!--新闻缩略图-->
                         </br>
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="image" id="exampleInputFile" value="$!book.image" >
-
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        <div>
-                            <input type="hidden" name="id" value="$!book.id">
+                            <input type="file" name="file" id="exampleInputFile" value="$!book.file">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻</p>
                         </div>
                     </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+
                 </div>
             </div>
             <!-- /.box -->

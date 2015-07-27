@@ -4,15 +4,21 @@ import cn.nanyin.dao.VideoDao;
 import cn.nanyin.model.Video;
 import cn.nanyin.model.VideoDetail;
 import cn.nanyin.model.VideoSort;
+import cn.nanyin.util.FileUpload;
+import cn.nanyin.util.FileUploadResult;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -191,7 +197,7 @@ public class VideoController {
         Video targetVideo=videoDao.getVideoById(video.getId());
         targetVideo.setTitle(video.getTitle());
         targetVideo.setContent(video.getContent());
-        targetVideo.setImage(video.getImage());
+        targetVideo.setFile(video.getFile());
         targetVideo.setVideoSort(videoDao.getVideoSortById(video.getVideoSort().getId()));
         targetVideo.setAddDate(videoDao.getVideoById(video.getId()).getAddDate());
         targetVideo.setHits(videoDao.getVideoById(video.getId()).getHits());
@@ -225,7 +231,7 @@ public class VideoController {
         List<VideoDetail> videoDetailList=videoDao.getVideoDetailList(0, 50, id);
         model.addObject("videoDetailList", videoDetailList);
         Video video=videoDao.getVideoById(id);
-        model.addObject("video",video);
+        model.addObject("video", video);
         return model;
     }
 
@@ -257,7 +263,7 @@ public class VideoController {
         targetVideoDetail.setEditor(videoDetail.getEditor());
         targetVideoDetail.setSource(videoDetail.getSource());
         targetVideoDetail.setRemark(videoDetail.getRemark());
-        targetVideoDetail.setUrl(videoDetail.getUrl());
+        targetVideoDetail.setFile(videoDetail.getFile());
         targetVideoDetail.setContent(videoDetail.getContent());
         targetVideoDetail.setVideo(videoDao.getVideoById(videoDetail.getVideo().getId()));
         targetVideoDetail.setAddDate(videoDao.getVideoDetailById(videoDetail.getId()).getAddDate());
@@ -275,7 +281,47 @@ public class VideoController {
         return new ModelAndView("redirect:videodetail?id="+videoDetail.getVideo().getId());
     }
 
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/videomedia", method = RequestMethod.POST)
+    public FileUploadResult uploadMedia(@RequestParam MultipartFile file, HttpSession session) {
 
+        String basePath="/upload/video/video/";
+        FileUpload fileUpload=new FileUpload(basePath,file,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/videoimage", method = RequestMethod.POST)
+    public FileUploadResult uploadImage(@RequestParam MultipartFile file, HttpSession session) {
+
+        String basePath="/upload/video/image/";
+        FileUpload fileUpload=new FileUpload(basePath,file,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/ckeditorvideoimage", method = RequestMethod.POST)
+    public String uploadCkeditorImage(@RequestParam MultipartFile upload, HttpSession session,HttpServletResponse response,HttpServletRequest request)
+    {
+        PrintWriter out= null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String basePath = "/upload/video/image/";
+        FileUpload fileUpload=new FileUpload(basePath,upload,session);
+        FileUploadResult fileUploadResult=fileUpload.upload();
+
+        String callback = request.getParameter("CKEditorFuncNum");
+        out.println("<script type=\"text/javascript\">");
+        out.println("window.parent.CKEDITOR.tools.callFunction("
+                + callback + ",'" + fileUploadResult.getFileName() + "',''" + ")");
+        out.println("</script>");
+
+        return null;
+    }
 }
 
 

@@ -22,7 +22,7 @@
     <!-- 启用默认的servlet-->
     <mvc:default-servlet-handler/>
 
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
@@ -84,6 +84,11 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000000"/>
+    </bean>
     <!-- 配置事务异常封装 -->
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
@@ -94,6 +99,8 @@
             <property name="sessionFactory" ref="sessionFactory"/>
         </bean>
     </mvc:interceptors>
+
+
 
 </beans>
 

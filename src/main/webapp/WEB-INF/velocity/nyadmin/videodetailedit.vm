@@ -1,12 +1,37 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
     $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1");
+         CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorvideoimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+
+    $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/videomedia",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
 </script>')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -25,7 +50,7 @@
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/nyadmin/videodetailedit" method="post">
+                    <form id="data-form" action="/nyadmin/videodetailedit" method="post">
                         <div>
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
@@ -42,50 +67,54 @@
                             <!-- 指导老师 -->
                             <div class="form-group col-md-4">
                                 <label>指导老师</label>
-                                <input type="text" name="teacher" class="form-control" value="$!videoDetail.teacher"
-                                        />
+                                <input type="text" name="teacher" class="form-control" value="$!videoDetail.teacher"/>
                             </div>
                         </div>
                         <div>
                             <!-- 来源 -->
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label>来源</label>
-                                <input type="text" name="source" class="form-control" value="$!videoDetail.source"
-                                        />
+                                <input type="text" name="source" class="form-control" value="$!videoDetail.source"/>
                             </div>
                             <!-- 摄制 -->
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label>摄制</label>
-                                <input type="text" name="editor" class="form-control" value="$!videoDetail.editor"
-                                        />
+                                <input type="text" name="editor" class="form-control" value="$!videoDetail.editor"/>
+                            </div>
+                            <!-- 备注 -->
+                            <div class="form-group col-md-4">
+                                <label>备注</label>
+                                <input type="text" name="remark" class="form-control" value="$!videoDetail.remark"/>
                             </div>
                         </div>
-                        <div>x
-                            <!-- 备注 -->
-                            <div class="form-group col-md-6">
-                                <label>备注</label>
-                                <input type="text" name="remark" class="form-control" value="$!videoDetail.remark"
-                                        />
-                            </div>
-                            <!-- 播放地址 -->
-                            <div class="form-group col-md-6">
-                                <label>播放地址</label>
-                                <input type="text" name="url" class="form-control" value="$!videoDetail.url" required/>
-                            </div>
-                            <div>
-                                <!--内容-->
-                                <label>详细内容</label>
+                        <!--内容-->
+                        <label>详细内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80">
                                     $!videoDetail.content
                                 </textarea>
 
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                                <div>
-                                    <input type="hidden" name="id" value="$!videoDetail.id">
-                                </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!videoDetail.id">
+                        </div>
+                        <input type="hidden" name="file" value="$!videoDetail.file">
                     </form>
+                    </br>
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
+                        <div>
+                            <!-- 播放地址 -->
+                            <div class="form-group">
+                                <label for="exampleInputFile">上传媒体文件</label>
+                                <input type="file" name="file" id="exampleInputFile" value="$!videoDetail.file">
+                                <br>
+                                <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                                <p class="help-block">请上传媒体文件</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
             <!-- /.box -->

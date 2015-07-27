@@ -20,7 +20,7 @@ public class Book {
     @Lob
     private String content; //
     private String downloadURL; //
-    private String image;   //����ͼ��ַ
+    private String file;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
     private String source;
@@ -67,12 +67,12 @@ public class Book {
         this.downloadURL = downloadURL;
     }
 
-    public String getImage() {
-        return image;
+    public String getFile() {
+        return file;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public int getHits() {

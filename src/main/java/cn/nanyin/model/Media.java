@@ -21,14 +21,14 @@ public class Media {
     private String cameraman;   //摄像
     private String producer;    //制作
     private int type;
-    private String url;         //
+    private String media;         //媒体文件地址
     private String gcp;         //工尺谱
     private String jp;          //简谱
     @Lob
     private String content;
     private Date addDate;
     private int hits;
-    private String image;    //缩略图
+    private String file;    //缩略图
 
 
     public long getId() {
@@ -63,13 +63,6 @@ public class Media {
         this.type = type;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getGcp() {
         return gcp;
@@ -146,11 +139,19 @@ public class Media {
         this.producer = producer;
     }
 
-    public String getImage() {
-        return image;
+    public String getFile() {
+        return file;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public String getMedia() {
+        return media;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
     }
 }

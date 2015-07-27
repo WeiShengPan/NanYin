@@ -1,7 +1,7 @@
 CKEditor 4
 ==========
 
-Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.  
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.  
 http://ckeditor.com - See LICENSE.md for license information.
 
 CKEditor is a text editor to be used inside web pages. It's not a replacement
@@ -17,7 +17,7 @@ http://docs.ckeditor.com
 
 Installing CKEditor is an easy task. Just follow these simple steps:
 
- 1. **Download** the latest version fromWho the CKEditor website:
+ 1. **Download** the latest version from the CKEditor website:
     http://ckeditor.com. You should have already completed this step, but be
     sure you have the very latest version.
  2. **Extract** (decompress) the downloaded file into the root of your website.
