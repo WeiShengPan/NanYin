@@ -18,13 +18,11 @@ public class Links {
 
     private String url;//链接URL
 
-    private String imageURL;//图片所在url
+    private String file;//图片所在url
 
     private boolean linkType;//链接类型（图片链接/文字链接）
 
     private int priority;//优先级
-
-    private int state;//状态
 
 
 
@@ -68,19 +66,12 @@ public class Links {
         this.priority = priority;
     }
 
-    public int getState() {
-        return state;
+
+    public String getFile() {
+        return file;
     }
 
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

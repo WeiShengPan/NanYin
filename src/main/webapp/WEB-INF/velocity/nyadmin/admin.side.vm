@@ -110,6 +110,17 @@
                     <li><a href="videolist"><i class="fa fa-circle-o"></i> 专辑列表</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>友情链接管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="linksaddpage"><i class="fa fa-circle-o"></i> 添加链接</a></li>
+                    <li><a href="linkslist"><i class="fa fa-circle-o"></i> 链接列表</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

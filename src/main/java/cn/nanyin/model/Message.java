@@ -17,7 +17,7 @@ public class Message {
 
     private int section;//所属板块
 
-    private int newsId;
+    private int newsId;//对应文章编号
 
     private String author;
 
