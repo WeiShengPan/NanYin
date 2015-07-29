@@ -8,16 +8,16 @@ import java.util.Date;
 /**
  * Created by Administrator on 2015/7/10.
  */
-//消息类
+//留言类
 @Entity
 public class Message {
     @Id
     @GeneratedValue
     private long id;
 
-    private int section;//所属板块
+    private long section;//所属板块
 
-    private int newsId;//对应文章编号
+    private long newsId;//对应文章编号
 
     private String author;
 
@@ -27,6 +27,8 @@ public class Message {
 
     private Date addDate;//留言日期
 
+    private boolean check;//是否审核通过
+
 
     public long getId() {
         return id;
@@ -34,22 +36,6 @@ public class Message {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getSection() {
-        return section;
-    }
-
-    public void setSection(int section) {
-        this.section = section;
-    }
-
-    public int getNewsId() {
-        return newsId;
-    }
-
-    public void setNewsId(int newsId) {
-        this.newsId = newsId;
     }
 
     public String getAuthor() {
@@ -82,5 +68,29 @@ public class Message {
 
     public void setAddDate(Date addDate) {
         this.addDate = addDate;
+    }
+
+    public long getSection() {
+        return section;
+    }
+
+    public void setSection(long section) {
+        this.section = section;
+    }
+
+    public long getNewsId() {
+        return newsId;
+    }
+
+    public void setNewsId(long newsId) {
+        this.newsId = newsId;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
     }
 }
