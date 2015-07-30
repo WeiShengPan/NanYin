@@ -106,6 +106,9 @@ $(document).ready(function(){
                                 <label for="exampleInputFile">上传媒体文件</label>
                                 <input type="file" name="file" id="exampleInputFile" value="$!videoDetail.file">
                                 <br>
+                                <a>已上传图片：</a>
+                                <input type="text" readonly="readonly" value="$!videoDetail.file">
+                                <br>
                                 <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
                                 <p class="help-block">请上传媒体文件</p>
