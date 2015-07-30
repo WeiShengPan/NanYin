@@ -34,7 +34,7 @@ public class College {
 
     private String formDate;//成立时间
 
-    private int memberNum;//会员数
+    private String memberNum;//会员数
 
     private String activityDate;//活动时间
 
@@ -135,14 +135,6 @@ public class College {
         this.formDate = formDate;
     }
 
-    public int getMemberNum() {
-        return memberNum;
-    }
-
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
-    }
-
     public String getActivityDate() {
         return activityDate;
     }
@@ -181,5 +173,13 @@ public class College {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public String getMemberNum() {
+        return memberNum;
+    }
+
+    public void setMemberNum(String memberNum) {
+        this.memberNum = memberNum;
     }
 }

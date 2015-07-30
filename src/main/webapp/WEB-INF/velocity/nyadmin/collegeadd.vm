@@ -65,11 +65,6 @@ $(document).ready(function(){
                             <label>社团名</label>
                             <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
                         </div>
-                        <!-- 主要成员 -->
-                        <div class="form-group">
-                            <label>主要成员</label>
-                            <input type="text" name="mainMembers" class="form-control" placeholder="Enter ..."/>
-                        </div>
                         <!-- 现任社团领导 -->
                         <div class="form-group">
                             <label>现任社团领导</label>
@@ -79,6 +74,11 @@ $(document).ready(function(){
                         <div class="form-group">
                             <label>历届领导</label>
                             <input type="text" name="exLeader" class="form-control" placeholder="Enter ..."/>
+                        </div>
+                        <!-- 主要成员 -->
+                        <div class="form-group">
+                            <label>主要成员</label>
+                            <input type="text" name="mainMembers" class="form-control" placeholder="Enter ..."/>
                         </div>
                         <!-- 邮箱 -->
                         <div class="form-group">
