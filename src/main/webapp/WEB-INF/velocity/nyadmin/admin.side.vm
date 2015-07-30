@@ -5,7 +5,16 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">欢迎您，$!{AdminSession.adminName}</li>
+            <li class="header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <b>欢迎您，$!{AdminSession.adminName}</b>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="logout">退出登录</a>
+                    </div>
+                </div>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
