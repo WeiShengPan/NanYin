@@ -94,6 +94,14 @@
             <property name="sessionFactory" ref="sessionFactory"/>
         </bean>
     </mvc:interceptors>
+    <!-- -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/nyadmin/**"/>
+            <bean class="cn.nanyin.adminauth.AuthorityAnnotationInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!-- -->
 
 </beans>
 

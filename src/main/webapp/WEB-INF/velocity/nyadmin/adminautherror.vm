@@ -1,0 +1,6 @@
+<section class="content-header">
+    <h1>
+        对不起，您没有权限操作该模块！
+        <small>您可尝试重新<a href="/nyadmin">登录</a></small>
+    </h1>
+</section>

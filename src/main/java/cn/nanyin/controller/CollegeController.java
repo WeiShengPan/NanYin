@@ -1,6 +1,9 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.CollegeDao;
+import cn.nanyin.model.AdminUser;
 import cn.nanyin.model.College;
 import cn.nanyin.model.CollegeArea;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * Created by gg on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.COLLEGE_MANAGEMENT)
 public class CollegeController {
     @Autowired
     private CollegeDao collegeDao;

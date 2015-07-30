@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.ProductDao;
 import cn.nanyin.model.Product;
 import cn.nanyin.model.ProductSort;
@@ -17,6 +19,7 @@ import java.util.List;
  * Created by gg on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.PRODUCT_MANAGEMENT)
 public class ProductController {
     @Autowired
     private ProductDao productDao;

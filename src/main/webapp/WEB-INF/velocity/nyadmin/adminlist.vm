@@ -1,7 +1,16 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(后台账户管理)").parent().addClass("active");
-</script>')
+    $("#submit").click(function(){
+        $("input:checkbox").each(function(){
+            if(this.checked==false){
+                this.value=0
+                this.checked=true;
+            }
+        });
+    });
+</script>
+')
 <section class="content-header">
     <h1>
         后台账户管理
@@ -66,12 +75,79 @@
                             <input type="text" name="name" class="form-control" placeholder="Enter ..." />
                         </div>
                         <!-- 权限 -->
-                    <!--    <div class="form-group">
+                        <div class="form-group">
                             <label>权限</label>
-                            <input type="text" name="permission" class="form-control" placeholder="Enter ..." />
-                        </div>  -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            账户管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            用户管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            新闻管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            社团管理
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            商城管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            图文乐谱
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            影音管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            教学中心
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">提交</button>
+                            <button type="submit" id="submit" class="btn btn-primary">提交</button>
                         </div>
                     </form>
                 </div>
