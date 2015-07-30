@@ -68,11 +68,6 @@ $(document).ready(function(){
                             <label>社团名</label>
                             <input type="text" name="name" class="form-control" value="$!{college.name}" required/>
                         </div>
-                        <!-- 主要成员 -->
-                        <div class="form-group">
-                            <label>主要成员</label>
-                            <input type="text" name="mainMembers" class="form-control" value="$!{college.mainMembers}"/>
-                        </div>
                         <!-- 现任社团领导 -->
                         <div class="form-group">
                             <label>现任社团领导</label>
@@ -82,6 +77,11 @@ $(document).ready(function(){
                         <div class="form-group">
                             <label>历届领导</label>
                             <input type="text" name="exLeader" class="form-control" value="$!{college.exLeader}"/>
+                        </div>
+                        <!-- 主要成员 -->
+                        <div class="form-group">
+                            <label>主要成员</label>
+                            <input type="text" name="mainMembers" class="form-control" value="$!{college.mainMembers}"/>
                         </div>
                         <!-- 邮箱 -->
                         <div class="form-group">
@@ -168,9 +168,12 @@ $(document).ready(function(){
                             <label for="exampleInputFile">上传社团缩略图</label>
                             <input type="file" name="file" id="exampleInputFile" value="$!college.file">
                             <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!college.file">
+                            <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
-                            <p class="help-block">只有上传缩略图，前台才能显示图片</p>
+                            <p class="help-block">若无需修改缩略图，不用再次上传图片。</p>
                         </div>
                     </form>
                     <div class="box-footer">

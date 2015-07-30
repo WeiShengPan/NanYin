@@ -94,9 +94,12 @@ $(document).ready(function(){
                             <label for="exampleInputFile">上传产品缩略图</label>
                             <input type="file" name="file" id="exampleInputFile" value="$!produdct.file">
                             <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!product.file">
+                            <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
-                            <p class="help-block">只有上传缩略图，前台才能显示图片</p>
+                            <p class="help-block">若无需修改缩略图，不用再次上传图片。</p>
                         </div>
                     </form>
                     <div class="box-footer">

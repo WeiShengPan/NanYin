@@ -61,8 +61,11 @@ public class IndexController {
     //修改密码页面
     @RequestMapping(value = "nyadmin/adminUsereditpage", method = RequestMethod.GET)
     public ModelAndView showAdminUserEditPage(HttpSession session) {
-        ModelAndView model=new ModelAndView("nyadmin/adminUseredit");
         AdminUser admin=(AdminUser)session.getAttribute("AdminSession");
+        if(admin==null || admin.getId()==0) {
+            return new ModelAndView("nyadmin/adminloginerror");
+        }
+        ModelAndView model=new ModelAndView("nyadmin/adminUseredit");
         AdminUser adminUser=adminDao.getAdminUserById(admin.getId());
         model.addObject("adminUser", adminUser);
         return model;
@@ -82,8 +85,11 @@ public class IndexController {
 
     @RequestMapping(value = "nyadmin/adminside", method = RequestMethod.GET)
     public ModelAndView showSide(HttpSession session) {
-        ModelAndView model=new ModelAndView("nyadmin/admin.side");
         AdminUser admin=(AdminUser)session.getAttribute("AdminSession");
+        if(admin==null || admin.getId()==0) {
+            return new ModelAndView("nyadmin/adminloginerror");
+        }
+        ModelAndView model=new ModelAndView("nyadmin/admin.side");
         AdminUser adminUser=adminDao.getAdminUserById(admin.getId());
         model.addObject("adminUser",adminUser);
         return model;
@@ -99,6 +105,12 @@ public class IndexController {
     @RequestMapping(value="nyadmin/adminautherror",method = RequestMethod.GET)
     public ModelAndView showAdminAuthError() {
         return new ModelAndView("nyadmin/adminautherror");
+    }
+
+    //管理员账户退出登录
+    @RequestMapping(value="nyadmin/logout",method = RequestMethod.GET)
+    public ModelAndView logout() {
+        return new ModelAndView("redirect:/nyadmin");
     }
 
 }
