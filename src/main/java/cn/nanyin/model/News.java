@@ -20,7 +20,7 @@ public class News {
     private String author;  //����
     @Lob
     private String content; //����
-    private File image;
+    private String file;
    // private String image;   //����ͼ��ַ
     private int hits;       //�����
     private Date addDate;   //����ʱ��
@@ -92,11 +92,11 @@ public class News {
         this.source = source;
     }
 
-    public File getImage() {
-        return image;
+    public String getFile() {
+        return file;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

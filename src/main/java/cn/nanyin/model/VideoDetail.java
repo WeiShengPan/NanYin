@@ -27,7 +27,7 @@ public class VideoDetail {
 
     private String type;
 
-    private String url;//曲目播放地址
+    private String file;//曲目播放地址
 
     @Lob
     private String content;
@@ -84,14 +84,6 @@ public class VideoDetail {
         this.remark = remark;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getContent() {
         return content;
     }
@@ -130,5 +122,13 @@ public class VideoDetail {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }

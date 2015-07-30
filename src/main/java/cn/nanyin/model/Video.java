@@ -24,7 +24,7 @@ public class Video {
     @Lob
     private String content;//内容
 
-    private String image;//缩略图
+    private String file;//缩略图
 
     private int hits;//点击量
 
@@ -61,15 +61,6 @@ public class Video {
         this.content = content;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-
-    }
-
     public int getHits() {
         return hits;
     }
@@ -101,6 +92,14 @@ public class Video {
 
     public void setVideoDetails(List<VideoDetail> videoDetails) {
         this.videoDetails = videoDetails;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }
 

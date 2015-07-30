@@ -3,15 +3,20 @@ package cn.nanyin.controller;
 import cn.nanyin.dao.MediaDao;
 import cn.nanyin.model.Media;
 import cn.nanyin.model.MediaSort;
+import cn.nanyin.util.FileUpload;
+import cn.nanyin.util.FileUploadResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,7 +98,7 @@ public class MediaController {
     {
         //if(newsSort.getUpperNewsSort().getId()!=1)
         int level=mediaDao.getMediaSortById(mediaSort.getUpperMediaSort().getId()).getLevel();
-        mediaSort.setLevel(level+1);
+        mediaSort.setLevel(level + 1);
         mediaDao.addMediaSort(mediaSort);
         return new ModelAndView("redirect:mediasort");
     }
@@ -171,9 +176,10 @@ public class MediaController {
         targetMedia.setCameraman(media.getCameraman());
         targetMedia.setProducer(media.getProducer());
         targetMedia.setType(media.getType());
-        targetMedia.setUrl(media.getUrl());
+        targetMedia.setMedia(media.getMedia());
         targetMedia.setGcp(media.getGcp());
         targetMedia.setJp(media.getJp());
+        targetMedia.setFile(media.getFile());
         targetMedia.setContent(media.getContent());
         targetMedia.setMediaSort(mediaDao.getMediaSortById(media.getMediaSort().getId()));
         targetMedia.setAddDate(mediaDao.getMediaById(media.getId()).getAddDate());
@@ -203,6 +209,71 @@ public class MediaController {
         targetMediaSort.setLevel(mediaDao.getMediaSortById(mediaSort.getId()).getLevel());
         mediaDao.updateMediaSort(targetMediaSort);
         return new ModelAndView("redirect:mediasort");
+    }
+
+    /**
+     *
+     * @param file
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/mediaimage", method = RequestMethod.POST)
+    public FileUploadResult uploadImage(@RequestParam MultipartFile file, HttpSession session) {
+
+        String basePath="/upload/media/image/";
+        FileUpload fileUpload=new FileUpload(basePath,file,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/mediagcp", method = RequestMethod.POST)
+    public FileUploadResult uploadgcp(@RequestParam MultipartFile gcp, HttpSession session) {
+
+        String basePath="/upload/media/image/";
+        FileUpload fileUpload=new FileUpload(basePath,gcp,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/mediajp", method = RequestMethod.POST)
+    public FileUploadResult uploadjp(@RequestParam MultipartFile jp, HttpSession session) {
+
+        String basePath="/upload/media/image/";
+        FileUpload fileUpload=new FileUpload(basePath,jp,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/mediavideo", method = RequestMethod.POST)
+    public FileUploadResult uploadMedia(@RequestParam MultipartFile media, HttpSession session) {
+        String basePath = "/upload/media/video/";
+        FileUpload fileUpload=new FileUpload(basePath,media,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/ckeditormediaimage", method = RequestMethod.POST)
+    public String uploadCkeditorImage(@RequestParam MultipartFile upload, HttpSession session,HttpServletResponse response,HttpServletRequest request)
+    {
+        PrintWriter out= null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String basePath = "/upload/media/image/";
+        FileUpload fileUpload=new FileUpload(basePath,upload,session);
+        FileUploadResult fileUploadResult=fileUpload.upload();
+
+        String callback = request.getParameter("CKEditorFuncNum");
+        out.println("<script type=\"text/javascript\">");
+        out.println("window.parent.CKEDITOR.tools.callFunction("
+                + callback + ",'" + fileUploadResult.getFileName() + "',''" + ")");
+        out.println("</script>");
+
+        return null;
     }
 
 }

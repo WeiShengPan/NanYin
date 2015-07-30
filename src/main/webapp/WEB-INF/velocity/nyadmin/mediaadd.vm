@@ -1,12 +1,90 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(影音管理)").parent().addClass("active");
-    $(function () {
+        $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1");
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditormediaimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+    $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/mediavideo",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"media\"]").val(data.fileName);
+
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+    $("#upload-form1").submit(function () {
+        var formData1 = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/mediagcp",
+            type: "POST",
+            dataType: "json",
+            data: formData1,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"gcp\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+     $("#upload-form2").submit(function () {
+        var formData2 = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/mediajp",
+            type: "POST",
+            dataType: "json",
+            data: formData2,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"jp\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+     $("#upload-form3").submit(function () {
+        var formData3 = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/mediaimage",
+            type: "POST",
+            dataType: "json",
+            data: formData3,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
 </script>')
 <section class="content-header">
     <h1>
@@ -24,7 +102,7 @@
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/nyadmin/mediaadd" method="post">
+                    <form id="data-form" action="/nyadmin/mediaadd" method="post">
                         <div>
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
@@ -43,8 +121,6 @@
                                 <input type="text" name="name" class="form-control" placeholder="Enter ..." type="text"
                                        required/>
                             </div>
-
-
                             <!-- 演唱 -->
                             <div class="form-group col-md-4">
                                 <label>演唱</label>
@@ -64,49 +140,76 @@
                                 <label>摄像</label>
                                 <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
                             </div>
-
-
                             <!-- 制作 -->
                             <div class="form-group col-md-4">
                                 <label>制作</label>
                                 <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
                             </div>
                         </div>
-                        <!-- 播放地址 -->
-                        <div class="form-group col-md-12">
-                            <label>播放地址</label>
-                            <input type="text" name="url" class="form-control" placeholder="Enter ..."/>
-                        </div>
-
-                        <!--工尺谱-->
-                        <br>
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传工尺谱</label>
-                            <input type="file" name="gcp" id="exampleInputFile" >
-                        </div>
-                        <!--简谱-->
-                        <br>
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传简谱</label>
-                            <input type="file" name="jp" id="exampleInputFile">
-                        </div>
                         <!--内容-->
                         <label>内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                  </textarea>
-                        <!--缩略图-->
-                        <br>
+                        <input type="hidden" name="file">
+                        <input type="hidden" name="gcp">
+                        <input type="hidden" name="jp">
+                        <input type="hidden" name="media">
+                    </form>
+                    <br>
 
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="image" id="exampleInputFile">
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
+                        <div>
+
+                            <!-- 播放地址 -->
+                            <div class="form-group">
+                                <label for="exampleInputFile">上传媒体文件</label>
+                                <input type="file" name="media" id="exampleInputFile">
+                                <br>
+                                <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                                <p class="help-block">请上传媒体文件</p>
+                            </div>
                         </div>
                     </form>
+
+                    <form id="upload-form1" role="form" enctype="multipart/form-data">
+                        <!--工尺谱-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传工尺谱</label>
+                            <input type="file" name="gcp" id="exampleInputFile">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                        </div>
+                    </form>
+                    <br>
+
+                    <form id="upload-form2" role="form" enctype="multipart/form-data">
+                        <!--简谱-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传简谱</label>
+                            <input type="file" name="jp" id="exampleInputFile">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                        </div>
+                    </form>
+
+                    <br>
+
+                    <form id="upload-form3" role="form" enctype="multipart/form-data">
+                        <!--缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传缩略图</label>
+                            <input type="file" name="file" id="exampleInputFile">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                        </div>
+                    </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
             <!-- /.box -->

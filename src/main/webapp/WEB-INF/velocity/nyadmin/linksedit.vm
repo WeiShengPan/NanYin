@@ -1,0 +1,107 @@
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(友情链接管理)").parent().addClass("active");
+
+    $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/linksimage",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
+</script>')
+<section class="content-header">
+    <h1>
+        友情链接管理
+        <small>添加链接</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form id="data-form" action="/nyadmin/linksedit" method="post">
+                        <div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>名称</label>
+                                <input type="text" name="name" class="form-control" value="$!links.name" type="text"
+                                       required/>
+                            </div>
+                            <!-- 链接地址 -->
+                            <div class="form-group col-md-6">
+                                <label>链接地址</label>
+                                <input type="text" name="url" class="form-control" value="$!links.url"
+                                       type="text"
+                                       required/>
+                            </div>
+                        </div>
+                        <div>
+                            <!--链接类型-->
+                            <div class="form-group col-md-6">
+                                <label>链接类型</label>
+                                <select name="linkType" class="form-control">
+                                    <option value="0">文字链接</option>
+                                    <option value="1">图片链接</option>
+                                </select>
+                            </div>
+                            <!-- 排序 -->
+                            <div class="form-group col-md-6">
+                                <label>排序</label>
+                                <input type="text" name="priority" class="form-control" value="$!links.priority"/>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="$!links.id">
+                        </div>
+                        <input type="hidden" name="file" value="$!links.file" required>
+                    </form>
+                    <br>
+
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传图片链接所显示的图片</label>
+                            <input type="file" name="file" id="exampleInputFile">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                            <p class="help-block">只有上传图片，前台才能显示图片链接</p>
+                        </div>
+                    </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <!--内容-->
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+</section><!-- /.content -->
+<script>
+
+</script>
