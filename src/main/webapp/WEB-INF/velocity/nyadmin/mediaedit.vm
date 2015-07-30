@@ -171,6 +171,9 @@ $(document).ready(function(){
                                 <label for="exampleInputFile">上传媒体文件</label>
                                 <input type="file" name="media" id="exampleInputFile" value="$!media.media">
                                 <br>
+                                <a>已上传媒体文件：</a>
+                                <input type="text" readonly="readonly" value="$!media.media">
+                                <br>
                                 <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
                                 <p class="help-block">请上传媒体文件</p>
@@ -184,6 +187,9 @@ $(document).ready(function(){
                             <label for="exampleInputFile">上传工尺谱</label>
                             <input type="file" name="gcp" id="exampleInputFile" value="$!media.gcp">
                             <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!media.gcp">
+                            <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
                         </div>
@@ -195,6 +201,9 @@ $(document).ready(function(){
                         <div class="form-group">
                             <label for="exampleInputFile">上传简谱</label>
                             <input type="file" name="jp" id="exampleInputFile" value="$!media.jp">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!media.jp">
                             <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
@@ -208,6 +217,9 @@ $(document).ready(function(){
                         <div class="form-group">
                             <label for="exampleInputFile">上传缩略图</label>
                             <input type="file" name="file" id="exampleInputFile" value="$!media.file">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!media.file">
                             <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
