@@ -5,13 +5,23 @@ import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.ProductDao;
 import cn.nanyin.model.Product;
 import cn.nanyin.model.ProductSort;
+import cn.nanyin.util.FileUpload;
+import cn.nanyin.util.FileUploadResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +73,7 @@ public class ProductController {
     @RequestMapping(value="nyadmin/productsortadd",method=RequestMethod.POST)
     public ModelAndView addProductSort(ProductSort productSort) {
         int level=productDao.getProductSortById(productSort.getUpperProductSort().getId()).getLevel();
-        productSort.setLevel(level+1);
+        productSort.setLevel(level + 1);
         productDao.addProductSort(productSort);
         return new ModelAndView("redirect:productsort");
     }
@@ -131,7 +141,7 @@ public class ProductController {
     public ModelAndView editProduct(Product product) {
         Product targetProduct=productDao.getProductById(product.getId());
         targetProduct.setName(product.getName());
-        targetProduct.setPic(product.getPic());
+        targetProduct.setFile(product.getFile());
         targetProduct.setContent(product.getContent());
         targetProduct.setPrice(product.getPrice());
         targetProduct.setRecommendation(product.getRecommendation());
@@ -163,5 +173,42 @@ public class ProductController {
         targetProductSort.setLevel(productDao.getProductSortById(productSort.getId()).getLevel());
         productDao.updateProductSort(targetProductSort);
         return new ModelAndView("redirect:productsort");
+    }
+
+    /**
+     * 上传文件
+     * @param file
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/productimage", method = RequestMethod.POST)
+    public FileUploadResult uploadImage(@RequestParam MultipartFile file, HttpSession session) {
+        String basePath = "/upload/product/image/";
+        FileUpload fileUpload=new FileUpload(basePath,file,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/ckeditorproductimage", method = RequestMethod.POST)
+    public String uploadCkeditorImage(@RequestParam MultipartFile upload, HttpSession session,HttpServletResponse response,HttpServletRequest request) {
+        PrintWriter out= null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String basePath = "/upload/product/image/";
+        FileUpload fileUpload=new FileUpload(basePath,upload,session);
+        FileUploadResult fileUploadResult=fileUpload.upload();
+
+        String callback = request.getParameter("CKEditorFuncNum");
+        out.println("<script type=\"text/javascript\">");
+        out.println("window.parent.CKEDITOR.tools.callFunction("
+                + callback + ",'" + fileUploadResult.getFileName() + "',''" + ")");
+        out.println("</script>");
+
+        return null;
     }
 }

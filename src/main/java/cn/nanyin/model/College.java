@@ -43,7 +43,7 @@ public class College {
 
     private boolean vip;//是否为vip社团
 
-    private String image;//社团形象图
+    private String file;//社团形象图
 
     private int state;//状态
 
@@ -167,19 +167,19 @@ public class College {
         this.vip = vip;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }

@@ -1,12 +1,35 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(商城管理)").parent().addClass("active");
-    $(function () {
+        $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1");
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorproductimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+     $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/productimage",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
 </script>')
 <section class="content-header">
     <h1>
@@ -21,7 +44,7 @@
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form action="/nyadmin/productedit" method="post">
+                    <form id="data-form" action="/nyadmin/productedit" method="post">
                         <!-- 类别 -->
                         <div class="form-group">
                             <label>选择类别</label>
@@ -59,20 +82,26 @@
                                 $!product.content
                             </textarea>
                         </div>
-                        <!--产品缩略图-->
-                        </br>
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传产品缩略图</label>
-                            <input type="file" name="pic" id="exampleInputFile" value="$!product.pic">
-                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">提交</button>
-                        </div>
                         <div>
                             <input type="hidden" name="id" value="$!product.id">
                         </div>
+                        <input type="hidden" name="file" value="$!product.file" required>
                     </form>
+                    </br>
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
+                        <!--产品形象缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传产品缩略图</label>
+                            <input type="file" name="file" id="exampleInputFile" value="$!produdct.file">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                            <p class="help-block">只有上传缩略图，前台才能显示图片</p>
+                        </div>
+                    </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">提交</button>
+                    </div>
                 </div>
             </div>
             <!-- /.box -->
