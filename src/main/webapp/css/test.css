@@ -1,0 +1,4 @@
+*{ margin: 0px;padding: 0px; font-size: 14px; list-style-type: none}
+#container{ margin: 0 auto;width: 40%; height: 300px; border: crimson 1px groove}
+ul li a{color: #080808; text-decoration: none}
+ul li a:hover{ color: #aa1111;text-decoration: underline}
