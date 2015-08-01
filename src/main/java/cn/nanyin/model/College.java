@@ -34,7 +34,7 @@ public class College {
 
     private String formDate;//成立时间
 
-    private int memberNum;//会员数
+    private String memberNum;//会员数
 
     private String activityDate;//活动时间
 
@@ -43,7 +43,7 @@ public class College {
 
     private boolean vip;//是否为vip社团
 
-    private String image;//社团形象图
+    private String file;//社团形象图
 
     private int state;//状态
 
@@ -135,14 +135,6 @@ public class College {
         this.formDate = formDate;
     }
 
-    public int getMemberNum() {
-        return memberNum;
-    }
-
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
-    }
-
     public String getActivityDate() {
         return activityDate;
     }
@@ -167,19 +159,27 @@ public class College {
         this.vip = vip;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public String getMemberNum() {
+        return memberNum;
+    }
+
+    public void setMemberNum(String memberNum) {
+        this.memberNum = memberNum;
     }
 }

@@ -1,0 +1,10 @@
+<section class="content-header">
+</section>
+<!-- Main content -->
+<section class="content" align="center">
+    <h3><i class="fa fa-warning text-yellow"></i> 对不起，您没有权限！</h3>
+    <p>
+        您可能没有权限操作该模块。
+        您可以询问超级管理员或者尝试<a href="/nyadmin">重新登录</a>
+    </p>
+</section><!-- /.content -->

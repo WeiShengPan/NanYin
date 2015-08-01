@@ -1,20 +1,34 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.CollegeDao;
+import cn.nanyin.model.AdminUser;
 import cn.nanyin.model.College;
 import cn.nanyin.model.CollegeArea;
+import cn.nanyin.util.FileUpload;
+import cn.nanyin.util.FileUploadResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
  * Created by gg on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.COLLEGE_MANAGEMENT)
 public class CollegeController {
     @Autowired
     private CollegeDao collegeDao;
@@ -74,7 +88,7 @@ public class CollegeController {
         targetCollege.setContact(college.getContact());
         targetCollege.setExLeader(college.getExLeader());
         targetCollege.setFormDate(college.getFormDate());
-        targetCollege.setImage(college.getImage());
+        targetCollege.setFile(college.getFile());
         targetCollege.setIntroduction(college.getIntroduction());
         targetCollege.setLeader(college.getLeader());
         targetCollege.setMainMembers(college.getMainMembers());
@@ -154,7 +168,7 @@ public class CollegeController {
         CollegeArea collegeArea=collegeDao.getCollegeAreaById(id);
         model.addObject("collegeArea", collegeArea);
         List<CollegeArea> collegeAreaList=collegeDao.getCollegeAreaList(0, 50);
-        model.addObject("collegeAreaList",collegeAreaList);
+        model.addObject("collegeAreaList", collegeAreaList);
         return model;
     }
 
@@ -168,5 +182,42 @@ public class CollegeController {
 
         collegeDao.updateCollegeArea(targetCollegeArea);
         return new ModelAndView("redirect:collegearea");
+    }
+
+    /**
+     * 上传文件
+     * @param file
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/collegeimage", method = RequestMethod.POST)
+    public FileUploadResult uploadImage(@RequestParam MultipartFile file, HttpSession session) {
+        String basePath = "/upload/college/image/";
+        FileUpload fileUpload=new FileUpload(basePath,file,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/ckeditorcollegeimage", method = RequestMethod.POST)
+    public String uploadCkeditorImage(@RequestParam MultipartFile upload, HttpSession session,HttpServletResponse response,HttpServletRequest request) {
+        PrintWriter out= null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String basePath = "/upload/college/image/";
+        FileUpload fileUpload=new FileUpload(basePath,upload,session);
+        FileUploadResult fileUploadResult=fileUpload.upload();
+
+        String callback = request.getParameter("CKEditorFuncNum");
+        out.println("<script type=\"text/javascript\">");
+        out.println("window.parent.CKEDITOR.tools.callFunction("
+                + callback + ",'" + fileUploadResult.getFileName() + "',''" + ")");
+        out.println("</script>");
+
+        return null;
     }
 }

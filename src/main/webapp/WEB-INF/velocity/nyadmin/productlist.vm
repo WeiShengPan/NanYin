@@ -33,7 +33,7 @@
                                 <td>$!{product.productSort.name}</td>
                                 <td>$!{product.name}</td>
                                 <td>$!{product.price}</td>
-                                <td>$!{product.pic}</td>
+                                <td><img src="$!{product.file}"></img></td>
                                 <td><a href="producteditpage?id=${product.id}" class="btn btn-primary">修改 </a>&nbsp<a href="productdelete?id=${product.id}" class="btn btn-danger">删除</a>
                                 </td>
                             </tr>

@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.LinksDao;
 import cn.nanyin.model.Links;
 import cn.nanyin.util.FileUpload;
@@ -22,6 +24,7 @@ import java.util.List;
  * Created by 玮晟 on 2015/7/28.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.LINKS_MANAGEMENT)
 public class LinksController {
 
     @Autowired

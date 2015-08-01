@@ -18,7 +18,7 @@ public class Product {
 
     private String name;    //产品名称
     private String price;   //产品价格
-    private String pic; //产品缩略图
+    private String file; //产品缩略图
     @Lob
     private String content; //说明
     private int recommendation; //推荐指数
@@ -56,14 +56,6 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
     }
 
     public String getContent() {
@@ -104,5 +96,13 @@ public class Product {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }

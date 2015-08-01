@@ -1,12 +1,35 @@
 #set($pageJS='
 <script>
+$(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(社团管理)").parent().addClass("active");
-    $(function () {
+        $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1");
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorcollegeimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+     $("#submit").click(function () {
+        $("#data-form").submit();
+    });
+    $("#upload-form").submit(function () {
+        var formData = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/collegeimage",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+});
 </script>')
 <section class="content-header">
     <h1>
@@ -24,7 +47,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/collegeedit" method="post">
+                    <form id="data-form" action="/nyadmin/collegeedit" method="post">
                         <!-- 所属地区 -->
                         <div class="form-group">
                             <label>所属地区</label>
@@ -45,11 +68,6 @@
                             <label>社团名</label>
                             <input type="text" name="name" class="form-control" value="$!{college.name}" required/>
                         </div>
-                        <!-- 主要成员 -->
-                        <div class="form-group">
-                            <label>主要成员</label>
-                            <input type="text" name="mainMembers" class="form-control" value="$!{college.mainMembers}"/>
-                        </div>
                         <!-- 现任社团领导 -->
                         <div class="form-group">
                             <label>现任社团领导</label>
@@ -59,6 +77,11 @@
                         <div class="form-group">
                             <label>历届领导</label>
                             <input type="text" name="exLeader" class="form-control" value="$!{college.exLeader}"/>
+                        </div>
+                        <!-- 主要成员 -->
+                        <div class="form-group">
+                            <label>主要成员</label>
+                            <input type="text" name="mainMembers" class="form-control" value="$!{college.mainMembers}"/>
                         </div>
                         <!-- 邮箱 -->
                         <div class="form-group">
@@ -133,20 +156,29 @@
                                 $!{college.introduction}
                             </textarea>
                         </div>
-                        <!--社团形象缩略图-->
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传社团形象缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile" value="$!{college.file}">
-
-                            <p class="help-block">只有上传缩略图，前台才能显示图片新闻，缩略图大小为168*126</p>
-                        </div>
                         <div>
                             <input type="hidden" name="id" value="$!college.id">
                         </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">提交</button>
+                        <input type="hidden" name="file" value="$!college.file" required>
+                    </form>
+                    </br>
+                    <form id="upload-form" role="form" enctype="multipart/form-data">
+                        <!--社团形象缩略图-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传社团缩略图</label>
+                            <input type="file" name="file" id="exampleInputFile" value="$!college.file">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!college.file">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                            <p class="help-block">若无需修改缩略图，不用再次上传图片。</p>
                         </div>
                     </form>
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">提交</button>
+                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>

@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.NewsDao;
 import cn.nanyin.model.News;
 import cn.nanyin.model.NewsSort;
@@ -26,6 +28,7 @@ import java.util.List;
  * Created by ���� on 2015/7/13.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.NEWS_MANAGEMENT)
 public class NewsController {
 
     @Autowired

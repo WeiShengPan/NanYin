@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.ArticleDao;
 import cn.nanyin.model.Book;
 import cn.nanyin.model.BookSort;
@@ -27,6 +29,7 @@ import java.util.List;
  */
 //图文管理类
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.ARTICLE_MANAGEMENT)
 public class ArticleController {
 
     @Autowired

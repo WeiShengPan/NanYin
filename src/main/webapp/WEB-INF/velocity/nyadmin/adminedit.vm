@@ -1,6 +1,14 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(后台账户管理)").parent().addClass("active");
+    $("#submit").click(function(){
+        $("input:checkbox").each(function(){
+            if(this.checked==false){
+                this.value=0
+                this.checked=true;
+            }
+        });
+    });
 </script>')
 <section class="content-header">
     <h1>
@@ -35,15 +43,140 @@
                             <input type="text" name="name" class="form-control" value="$!adminUser.name"/>
                         </div>
                         <!-- 权限 -->
-                    <!--    <div class="form-group">
+                        <div class="form-group">
                             <label>权限</label>
-                            <input type="text" name="permission" class="form-control" value="$!adminUser.permission" placeholder="Enter ..." />
-                        </div>  -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                    #if($adminUser.permission.charAt(0)=='1')
+                                                        checked="checked"
+                                                    #end
+                                                    />
+                                            账户管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(1)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            用户管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(2)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            新闻管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(3)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            社团管理
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(4)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            商城管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(5)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            图文乐谱
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(6)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            影音管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(7)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            教学中心
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(8)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            友情链接
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(9)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            留言管理
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <input type="hidden" name="id" value="$!adminUser.id">
                         </div>
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">提交</button>
+                            <button type="submit" id="submit" class="btn btn-primary">提交</button>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.MediaDao;
 import cn.nanyin.model.Media;
 import cn.nanyin.model.MediaSort;
@@ -26,6 +28,7 @@ import java.util.List;
  * Created by Administrator on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.MEDIA_MANAGEMENT)
 public class MediaController {
     @Autowired
     private MediaDao mediaDao;

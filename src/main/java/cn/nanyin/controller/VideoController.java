@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.VideoDao;
 import cn.nanyin.model.Video;
 import cn.nanyin.model.VideoDetail;
@@ -28,6 +30,7 @@ import java.util.List;
  * Created by Administrator on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.VIDEO_MANAGEMENT)
 public class VideoController {
     @Autowired
     private VideoDao videoDao;

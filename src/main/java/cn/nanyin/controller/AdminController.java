@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.AdminDao;
 import cn.nanyin.model.AdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import java.util.List;
  * Created by gg on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.ADMIN_MANAGEMENT)
 public class AdminController {
     @Autowired
     private AdminDao adminDao;
@@ -30,6 +33,7 @@ public class AdminController {
     //添加管理员账户
     @RequestMapping(value="nyadmin/adminadd",method = RequestMethod.POST)
     public ModelAndView addAdminUser(AdminUser adminUser) {
+        adminUser.setPermission(adminUser.getPermission().replace(",",""));
         adminDao.addAdminUser(adminUser);
         return new ModelAndView("redirect:adminlist");
     }
@@ -58,7 +62,7 @@ public class AdminController {
         targetAdminUser.setName(adminUser.getName());
         targetAdminUser.setAdminName(adminUser.getAdminName());
         targetAdminUser.setPassword(adminUser.getPassword());
-        targetAdminUser.setPermission(adminUser.getPermission());
+        targetAdminUser.setPermission(adminUser.getPermission().replace(",",""));
         targetAdminUser.setLastLoginDate(adminDao.getAdminUserById(adminUser.getId()).getLastLoginDate());
         targetAdminUser.setLastLoginIP(adminDao.getAdminUserById(adminUser.getId()).getLastLoginIP());
         targetAdminUser.setState(adminDao.getAdminUserById(adminUser.getId()).getState());

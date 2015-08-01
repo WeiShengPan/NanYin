@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.AreaDao;
 import cn.nanyin.dao.UserDao;
 import cn.nanyin.model.Area;
@@ -16,6 +18,7 @@ import java.util.List;
  * Created by gg on 2015/7/20.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.USER_MANAGEMENT)
 public class AreaController {
     @Autowired
     private AreaDao areaDao;
