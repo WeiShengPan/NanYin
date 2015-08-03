@@ -1,0 +1,14 @@
+<section class="content-header">
+    <h1>
+        新闻管理
+        <small>文章管理</small>
+    </h1>
+
+</section>
+<br>
+<br>
+<section>
+
+        $!news.content
+
+    </section>
