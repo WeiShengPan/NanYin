@@ -37,7 +37,7 @@
     <audio controls="controls">
         <source src="/upload/media/video/2015/08/05/77cdba54-9325-4893-9ba6-facf592d2af6.mp4">
     </audio>
-##    ckplayer实现播放，js在上面
+##    ckplayer实现播放，js在上面，  视频如果格式不对需要转码，视频格式应该是h.264编码。音频编码是AAC  不然会出现黑屏有声音无画面
     <div id="video" style="position:relative;z-index: 100;width:600px;height:400px;float: left;"><div id="a1"></div></div>
 
 

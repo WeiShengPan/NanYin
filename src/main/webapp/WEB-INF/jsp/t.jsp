@@ -9,7 +9,7 @@
 
 <body>
 
-<%--##    ckplayer实现播放--%>
+<%--##    ckplayer实现播放    视频如果格式不对需要转码，视频格式应该是h.264编码。音频编码是AAC  不然会出现黑屏有声音无画面--%>
 <div id="video" style="position:relative;z-index: 100;width:600px;height:400px;float: left;"><div id="a1"></div></div>
 
 <script type="text/javascript" src="ckplayer/ckplayer.js" charset="utf-8"></script>
