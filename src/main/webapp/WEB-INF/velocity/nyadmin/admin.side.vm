@@ -130,6 +130,16 @@
                     <li><a href="linkslist"><i class="fa fa-circle-o"></i> 链接列表</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>留言管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="commentslist"><i class="fa fa-circle-o"></i> 留言列表</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -154,6 +154,14 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            留言管理
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="box-footer">

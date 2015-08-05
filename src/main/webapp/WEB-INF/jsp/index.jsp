@@ -9,6 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
+<%@page isELIgnored="false" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -212,7 +213,7 @@
   <div id="content">
     <div id="main">
       <div id="main_1">
-        <h2>南音简介</h2>
+        <h2>南音简介${id}</h2>
         <p>南音又称南乐、南曲、南管、弦管、郎君乐等，是我国四大古乐之一，至今有一千多年的历史。清康熙年间，万寿祝典，闽五少芳贤入京御前献奏，赐予"御前清曲"。故南音素有"华夏瑰宝"、"音乐活化石"之美誉，又有"御前清曲"之雅颂。2009年9月，南音被联合国科教文组织列入《人类非物质文化遗产代表作名录》。</p>
         <p>南音的音乐由"指"、"谱"、"曲"三大部分组成，蕴含了晋清商乐、唐大曲、法曲、燕乐和佛教音乐及宋元明以来的词曲音乐、戏曲音乐，保留了唐宋古典曲牌，有着浓厚的中原古乐遗风。</p>
       </div>

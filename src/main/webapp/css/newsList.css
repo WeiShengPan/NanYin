@@ -1,0 +1,13 @@
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none}
+body{ background-color:#000;}
+
+#container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
+#content{width:100%;  position:relative; z-index:1; font-size:12px; border-top:#CCC 1px groove;}
+#main{width:79.5%; float:left;}
+#main table{ width: 90%; height: auto;text-align: center}
+#main table tr{ height: 30px}
+#main table thead{ font-size: medium;font-weight: bolder;color: #902b2b}
+#main table td a{color:#000}
+#main table td a:hover{color:#F00; text-decoration:underline}
+
+#pagination{ width: 100%;height:auto;margin-top: 10px;}

@@ -6,15 +6,15 @@ body{ background-color:#000;}
 #container{ width:1024px; margin:0 auto; background-image:url(../images/bg.png);}
 #header{ width:100%; height:176px;}
 #menu{ width:100%; height:25px; font-size:16px; font-weight:100; font-family:"华文楷体"; position:relative; z-index:9999}
-#search{ width:100%; height:30px; position:relative; z-index:1; border-bottom:#CCC 1px groove}
-#content{width:100%;  position:relative; z-index:1; font-size:12px; border-bottom:#CCC 1px groove;}
+#search{ width:100%; height:30px; position:relative; z-index:1;}
+#content{width:100%;  position:relative; z-index:1; font-size:12px; border:#CCC 1px groove; }
 #content #main{ width:79.5%; float:left; }
 #content #sidebar{ width:20%; height:1312px; float:right; border-left: #ccc 1px groove}
-#footer{ width:100%; clear:both; margin-top:15px; padding-bottom:20px; border-top:#CCC 1px groove }
+#footer{ width:100%; clear:both; margin-top:15px; padding-bottom:20px; border-top: #CCC 1px groove; }
 
 .line{ float:none; width:100%; clear:both; border-bottom:#CCC 1px groove}
 
-#menu ul{overflow:hidden;}
+#menu ul{overflow:hidden; width: 100%}
 #menu ul li{ float:left; width:8.33%}
 #menu ul li ul{ display:none;}
 #menu ul li ul li{ float:none; width:100%}
