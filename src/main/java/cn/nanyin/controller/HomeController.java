@@ -24,10 +24,6 @@ public class HomeController {
 
         ModelAndView model=new ModelAndView("t");
 
-        //Media media=mediaDao.getMediaById(1);
-
-       // model.addObject("media",media);
-
         return model;
     }
 
@@ -36,9 +32,7 @@ public class HomeController {
 
         ModelAndView model=new ModelAndView("nyadmin/test");
 
-        //Media media=mediaDao.getMediaById(1);
 
-        // model.addObject("media",media);
 
         return model;
     }

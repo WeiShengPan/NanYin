@@ -8,12 +8,14 @@
 </head>
 
 <body>
+
+<%--##    ckplayer实现播放--%>
 <div id="video" style="position:relative;z-index: 100;width:600px;height:400px;float: left;"><div id="a1"></div></div>
 
 <script type="text/javascript" src="ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
   var flashvars={
-    f:'upload/media/video/2015/08/05/c499818d-a20c-44fb-84e1-270502c69826.mp4',
+    f:'upload/media/video/2015/08/05/77cdba54-9325-4893-9ba6-facf592d2af6.mp4',
     c:0,
     b:1
   };
@@ -27,5 +29,17 @@
   var support=['iPad','iPhone','ios','android+false','msie10+false'];
   CKobject.embedHTML5('video','ckplayer_a1',600,400,video,flashvars,support);
 </script>
+<br>
+
+
+<%--##    html5标签实现播放，有些版本低的浏览器不支持--%>
+<video controls="controls">
+  <source src="upload/media/video/2015/08/05/77cdba54-9325-4893-9ba6-facf592d2af6.mp4">
+</video>
+
+<audio controls="controls">
+  <source src="upload/media/video/2015/08/05/77cdba54-9325-4893-9ba6-facf592d2af6.mp4">
+</audio>
+
 </body>
 </html>
