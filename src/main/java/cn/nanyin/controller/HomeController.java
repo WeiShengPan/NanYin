@@ -1,6 +1,8 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.dao.MediaDao;
 import cn.nanyin.dao.NewsDao;
+import cn.nanyin.model.Media;
 import cn.nanyin.model.News;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,18 +17,32 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @Autowired
-    private NewsDao newsDao;
+    private MediaDao mediaDao;
 
-    @RequestMapping(value = "nyadmin/test", method = RequestMethod.GET)
+    @RequestMapping(value = "t", method = RequestMethod.GET)
     public ModelAndView index() {
 
-        ModelAndView model=new ModelAndView("nyadmin/test");
+        ModelAndView model=new ModelAndView("t");
 
-        News news=newsDao.getNewsById(2);
+        //Media media=mediaDao.getMediaById(1);
 
-        model.addObject("news",news);
+       // model.addObject("media",media);
 
         return model;
     }
+
+    @RequestMapping(value = "nyadmin/test", method = RequestMethod.GET)
+    public ModelAndView te() {
+
+        ModelAndView model=new ModelAndView("nyadmin/test");
+
+        //Media media=mediaDao.getMediaById(1);
+
+        // model.addObject("media",media);
+
+        return model;
+    }
+
+
 
 }
