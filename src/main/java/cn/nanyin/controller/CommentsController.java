@@ -1,48 +1,152 @@
 package cn.nanyin.controller;
 
-
-import cn.nanyin.adminauth.AdminAuthority;
-import cn.nanyin.adminauth.AuthorityType;
+import cn.nanyin.dao.AudioDao;
 import cn.nanyin.dao.CommentsDao;
-import cn.nanyin.model.Comments;
+import cn.nanyin.dao.NewsDao;
+import cn.nanyin.dao.VideoDao;
+import cn.nanyin.model.*;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
+/**
+ * Created by 张一平 on 2015/8/12.
+ */
 @Controller
-@AdminAuthority(authorityTypes = AuthorityType.COMMENTS_MANAGEMENT)
+@RequestMapping("/comments.do")
 public class CommentsController {
+    @Autowired
+    CommentsDao commentsDao;
 
     @Autowired
-    private CommentsDao commentsDao;
+    NewsDao newsDao;
 
-    @RequestMapping(value = "nyadmin/commentslist", method = RequestMethod.GET)
-    public ModelAndView showCommentsList() {
-        ModelAndView model = new ModelAndView("nyadmin/commentslist");
-        List<Comments> commentsList = commentsDao.getCommentsList(0, 50);
-        model.addObject("commentslist", commentsList);
-        return model;
+    @Autowired
+    VideoDao videoDao;
+
+    @Autowired
+    AudioDao audioDao;
+
+    /***************************新闻评论*****************************************************************************/
+    /*************************发送新闻评论**********************/
+    @RequestMapping(params = "method=sendNewsComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public  void sendNewsComments(long newsId,String content, HttpSession session )throws Exception{
+        User1 user=(User1)session.getAttribute("loginUser");
+        News news=newsDao.getNewsById(newsId);
+        Date date=new Date();
+        NewsComments newsComments=new NewsComments();
+        newsComments.setAddDate(date);
+        newsComments.setContent(content);
+        newsComments.setNews(news);
+        newsComments.setUser(user);
+        commentsDao.addNewsComments(newsComments);
+    }
+    /**************列出某个新闻页面中的所有评论***************/
+    @RequestMapping(params = "method=listNewsComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String listNewsComments(long newsId){
+        List<NewsComments> newsComments=commentsDao.getNewsCommentsList(newsId);
+        if(newsComments==null){
+            return "";
+        }
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<newsComments.size();i++){
+            Map<String,Object> map =new HashMap<String,Object>();
+            NewsComments temp=newsComments.get(i);
+            map.put("userName",temp.getUser().getUserName());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("content",temp.getContent());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+
+        return result;
     }
 
-    @RequestMapping(value = "nyadmin/varyfycomments",method = RequestMethod.GET)
-    public ModelAndView varifyComments(long id)
-    {
-        Comments targetComments=commentsDao.getCommentsById(id);
-        targetComments.setVarify(true);
-        commentsDao.updateComments(targetComments);
-        return new ModelAndView("redirect:commentslist");
+    /***************************视频评论*****************************************************************************/
+    /*************************发送视频评论**********************/
+    @RequestMapping(params = "method=sendVideoComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public  void sendVideoComments(long videoId,String content, HttpSession session )throws Exception{
+        User1 user=(User1)session.getAttribute("loginUser");
+        Video video=videoDao.getVideoById(videoId);
+        Date date=new Date();
+        VideoComments videoComments=new VideoComments();
+        videoComments.setAddDate(date);
+        videoComments.setContent(content);
+        videoComments.setVideo(video);
+        videoComments.setUser(user);
+        commentsDao.addVideoComments(videoComments);
+    }
+    /**************列出某个视频页面中的所有评论***************/
+    @RequestMapping(params = "method=listVideoComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String listVideoComments(long videoId){
+        List<VideoComments> videoComments=commentsDao.getVideoCommentsList(videoId);
+        if(videoComments==null){
+            return "";
+        }
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<videoComments.size();i++){
+            Map<String,Object> map =new HashMap<String,Object>();
+            VideoComments temp=videoComments.get(i);
+            map.put("userName",temp.getUser().getUserName());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("content",temp.getContent());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+
+        return result;
+    }
+    /***************************音频评论*****************************************************************************/
+    /*************************发送音频评论**********************/
+    @RequestMapping(params = "method=sendAudioComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public  void sendAudioComments(long audioId,String content, HttpSession session )throws Exception{
+        User1 user=(User1)session.getAttribute("loginUser");
+        Audio audio=audioDao.getAudioById(audioId);
+        Date date=new Date();
+        AudioComments audioComments=new AudioComments();
+        audioComments.setAddDate(date);
+        audioComments.setContent(content);
+        audioComments.setAudio(audio);
+        audioComments.setUser(user);
+        commentsDao.addAudioComments(audioComments);
+    }
+    /**************列出某个音频页面中的所有评论***************/
+    @RequestMapping(params = "method=listAudioComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String listAudioComments(long audioId){
+        List<AudioComments> audioCommentses=commentsDao.getAudioCommentsList(audioId);
+        if(audioCommentses==null){
+            return "";
+        }
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<audioCommentses.size();i++){
+            Map<String,Object> map =new HashMap<String,Object>();
+            AudioComments temp=audioCommentses.get(i);
+            map.put("userName",temp.getUser().getUserName());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("content",temp.getContent());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+
+        return result;
     }
 
-    @RequestMapping(value = "nyadmin/commentsdelete",method = RequestMethod.GET)
-    public ModelAndView commentsDelete(long id)
-    {
-        Comments comments=commentsDao.getCommentsById(id);
-        commentsDao.deleteComments(comments);
-        return new ModelAndView("redirect:commentslist");
-    }
 
 }

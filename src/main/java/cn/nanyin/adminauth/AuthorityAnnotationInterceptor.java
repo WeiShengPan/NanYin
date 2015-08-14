@@ -16,12 +16,13 @@ public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HandlerMethod handler2=(HandlerMethod) handler;
         AdminAuthority adminAuthority;
-        if(handler2.getMethod().getDeclaredAnnotation(AdminAuthority.class)==null){
+        if(handler2.getMethodAnnotation(AdminAuthority.class)==null){
             adminAuthority=handler2.getBeanType().getAnnotation(AdminAuthority.class);
         }
         else{
             adminAuthority = handler2.getMethodAnnotation(AdminAuthority.class);
         }
+
         if(null == adminAuthority){
             return true;
         }
@@ -37,6 +38,8 @@ public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter {
             }
         }
         response.sendRedirect("/nyadmin/adminautherror");
+
         return false;
     }
+
 }

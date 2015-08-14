@@ -1,3 +1,4 @@
+<%@ page import="cn.nanyin.model.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: 张一平
@@ -13,13 +14,13 @@
 <div id="sidebar">
   <!--登录-->
   <div id="login" style=" width:98%; height:160px; margin:0 auto; margin-top:10px ">
-    <form>
-      <fieldset>
+    <form id="loginForm">
+      <fieldset id="loginField" style="width: 98%; height: 170px">
         <legend> <h2 class="c2">会员登录</h2></legend>
-        <table class="c2"  style=" width:100%; height:120px; margin-top:15px">
-          <tr><td align="right">用户名:</td><td><input type="text" name="user" width="20px" size="10" maxlength="10"/></td></tr>
-          <tr><td align="right">密 码:</td><td><input type="password" name="password" size="10" maxlength="10"/></td></tr>
-          <tr><td></td><td><a href="#">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">重置</a></td></tr>
+        <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:15px">
+          <tr><td align="right">用户名:</td><td><input  id="user" type="text" name="user" width="20px" size="10" maxlength="10"/></td></tr>
+          <tr><td align="right">密 码:</td><td><input id="psw" type="password" name="password" size="10" maxlength="10"/></td></tr>
+          <tr><td></td><td><a href="javascript:void(0)" onclick="Login()">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Reset()">重置</a></td></tr>
           <tr><td></td><td><a href="#">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">忘记密码</a></td></tr>
         </table>
       </fieldset>
@@ -30,14 +31,11 @@
     <center> <h2>公告</h2></center>
     <div id="scrollDiv" align="center">
       <ul class="c2">
-        <li><a href="#">这是公告标题的第一行</a></li>
-        <li><a href="#">这是公告标题的第二行</a></li>
-        <li><a href="#">这是公告标题的第三行</a></li>
-        <li><a href="#">这是公告标题的第四行</a></li>
-        <li><a href="#">这是公告标题的第五行</a></li>
-        <li><a href="#">这是公告标题的第六行</a></li>
-        <li><a href="#">这是公告标题的第七行</a></li>
-        <li><a href="#">这是公告标题的第八行</a></li>
+        <li id="announcement0"><a href="">这是公告标题的第一行</a></li>
+        <li id="announcement1"><a href="">这是公告标题的第二行</a></li>
+        <li id="announcement2"><a href="">这是公告标题的第三行</a></li>
+        <li id="announcement3"><a href="">这是公告标题的第四行</a></li>
+        <li id="announcement4"><a href="">这是公告标题的第五行</a></li>
       </ul>
     </div><br />
     <p class="c1" align="right" style=" margin-right:10px"><a href="#"> >> 更 多 </a></p>

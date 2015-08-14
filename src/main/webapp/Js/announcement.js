@@ -7,7 +7,7 @@
             //参数初始化
             if(!opt) var opt={};
             var _this=this.eq(0).find("ul:first");
-            var        lineH=_this.find("li:first").height(), //获取行高
+            var lineH=_this.find("li:first").height(), //获取行高
                 line=opt.line?parseInt(opt.line,10):parseInt(this.height()/lineH,10), //每次滚动的行数，默认为一屏，即父容器高度
                 speed=opt.speed?parseInt(opt.speed,10):500, //卷动速度，数值越大，速度越慢（毫秒）
                 timer=opt.timer?parseInt(opt.timer,10):3000; //滚动的时间间隔（毫秒）
@@ -35,5 +35,5 @@
 })(jQuery);
 
 $(document).ready(function(){
-    $("#scrollDiv").Scroll({line:1,speed:500,timer:1000});
+    $("#scrollDiv").Scroll({line:1,speed:500,timer:3000});
 });

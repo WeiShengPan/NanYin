@@ -7,6 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page import="cn.nanyin.model.User1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>
@@ -16,6 +17,7 @@
   <script type="text/javascript" language="JavaScript" src="Js/bigpicroll.js"></script>
   <script type="text/javascript" language="JavaScript" src="Js/announcement.js"></script>
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <%@include file="WEB-INF/jsp/loginTemplate.jsp"%>
   <title>福建南音网</title>
 
   <script type="text/javascript">
@@ -25,17 +27,67 @@
         type:'POST',
         url:'index.do?method=news',
         error:function(){
-          alert("sorry,the web application have some errors!");
+          alert("新闻栏加载失败！");
         },
         success:function(data){
           var result= $.parseJSON(data);
           for(var i=0;!(i >= result.length);i++){
             $("#news"+i).find("a").text("["+result[i].type+"]"+" "+result[i].title);
             $("#news"+i).find("a").attr("href","index.do?method=newsLink&id="+result[i].id+"");
+            $("#news"+i).find("a").attr("title",""+result[i].title+"");
+          }
+        }
+      });
+      /******************公告*****************/
+      $.ajax({
+        type:'POST',
+        url:'index.do?method=announcement',
+        error:function(){
+          alert("公告栏加载失败！");
+        },
+        success:function(data){
+          var result= $.parseJSON(data);
+          for(var i=0;!(i >= result.length);i++){
+            $("#announcement"+i).find("a").text(""+(i+1)+""+"."+result[i].title);
+            $("#announcement"+i).find("a").attr("href","index.do?method=announcement&id="+result[i].id+"");
+          }
+        }
+      });
+      /******************南音视频*****************/
+      $.ajax({
+        type:'POST',
+         url:'index.do?method=getVideos',
+        error:function(){
+          alert("视频栏加载失败！");
+        },
+        success:function(data){
+          var result= $.parseJSON(data);
+          for(var i=0;!(i >= result.length);i++){
+            $("#video"+i).find("a").text("["+result[i].type+"]"+" "+result[i].title);
+            $("#video"+i).find("a").attr("href","index.do?method=videoLink&id="+result[i].id+"");
+            $("#video"+i).find("a").attr("title",""+result[i].title+"");
+          }
+        }
+      });
+
+      /******************南音音频*****************/
+      $.ajax({
+        type:'POST',
+        url:'index.do?method=getAudios',
+        error:function(){
+          alert("音频栏加载失败！");
+        },
+        success:function(data){
+          var result= $.parseJSON(data);
+          for(var i=0;!(i >= result.length);i++){
+            $("#audio"+i).find("a").text("["+result[i].type+"]"+" "+result[i].title);
+            $("#audio"+i).find("a").attr("href","index.do?method=audioLink&id="+result[i].id+"");
+            $("#audio"+i).find("a").attr("title",""+result[i].title+"");
           }
         }
       });
     });
+
   </script>
 
 </head>
@@ -48,15 +100,15 @@
     <!--导航菜单-->
     <div id="menu">
       <ul>
-        <li><a href="index.jsp">首  页</a></li>
+        <li><a href="index.jsp">首&nbsp&nbsp页</a></li>
         <li>
-          <a href="index.do?method=dispatcher&page=newsList">南音新闻</a>
+          <a href="index.do?method=dispatcher&page=newsList&type=0">南音新闻</a>
           <ul>
-            <li><a href="#">南音快讯</a></li>
-            <li><a href="#">海外南音</a></li>
-            <li><a href="#">南音专题</a></li>
-            <li><a href="#">南音人物</a></li>
-            <li><a href="#">南音转载</a></li>
+            <li><a href="index.do?method=dispatcher&page=newsList&type=1">南音快讯</a></li>
+            <li><a href="index.do?method=dispatcher&page=newsList&type=2">海外南音</a></li>
+            <li><a href="index.do?method=dispatcher&page=newsList&type=3">南音专题</a></li>
+            <li><a href="index.do?method=dispatcher&page=newsList&type=4">南音人物</a></li>
+            <li><a href="index.do?method=dispatcher&page=newsList&type=5">南音转载</a></li>
           </ul>
         </li>
         <li>
@@ -93,23 +145,23 @@
           </ul>
         </li>
         <li>
-          <a href="#">南音曲库</a>
+          <a href="index.do?method=dispatcher&page=audioList&type=0">南音曲库</a>
           <ul>
-            <li><a href="#">南音.谱</a></li>
-            <li><a href="#">南音.指</a></li>
-            <li><a href="#">南音.曲</a></li>
+            <li><a href="index.do?method=dispatcher&page=audioList&type=1">南音.谱</a></li>
+            <li><a href="index.do?method=dispatcher&page=audioList&type=2">南音.指</a></li>
+            <li><a href="index.do?method=dispatcher&page=audioList&type=3">南音.曲</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">南音视频</a>
+          <a href="index.do?method=dispatcher&page=videoList&type=0">南音视频</a>
           <ul>
-            <li><a href="#">经典视频</a></li>
-            <li><a href="#">南音专辑</a></li>
-            <li><a href="#">社团视频</a></li>
-            <li><a href="#">南音会唱</a></li>
-            <li><a href="#">南音比赛</a></li>
-            <li><a href="#">南音网庆</a></li>
-            <li><a href="#">其他视频</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=1">经典视频</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=2">南音专辑</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=3">社团视频</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=4">南音会唱</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=5">南音比赛</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=6">南音网庆</a></li>
+            <li><a href="index.do?method=dispatcher&page=videoList&type=7">其他视频</a></li>
           </ul>
         </li>
         <li>
@@ -232,14 +284,14 @@
         <div id="main_3">
           <h2>南音新闻</h2>
           <ul>
-            <li id="news0"><a href="">[南音常识]福建南音简介</a></li>
-            <li id="news1"><a href="">[南音常识]南音套曲刍议（六）</a></li>
-            <li id="news2"><a href="">[工尺谱]南音套曲刍议（五）</a></li>
-            <li id="news3"><a href="">[南音乐器]南音套曲刍议（四）</a></li>
-            <li id="news4"><a href="">[南音唱腔]南音套曲刍议（三）</a></li>
-            <li id="news5"><a href="">[滚门曲牌]南音套曲刍议（二）</a></li>
+            <li id="news0"><a href="" title="">[南音常识]福建南音简介</a></li>
+            <li id="news1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
+            <li id="news2"><a href="" title="">[工尺谱]南音套曲刍议（五）</a></li>
+            <li id="news3"><a href="" title="">[南音乐器]南音套曲刍议（四）</a></li>
+            <li id="news4"><a href="" title="">[南音唱腔]南音套曲刍议（三）</a></li>
+            <li id="news5"><a href="" title="">[滚门曲牌]南音套曲刍议（二）</a></li>
           </ul>
-          <p class="c1" align="right"><a href="#"> >> 更 多 </a></p>
+          <p class="c1" align="right"><a href="index.do?method=dispatcher&page=newsList&type=0"> >> 更 多 </a></p>
         </div>
         <!--南音乐理-->
         <div id="main_4">
@@ -273,27 +325,27 @@
         <div id="main_6">
           <h2>南音曲库</h2>
           <ul>
-            <li><a href="#">[南音常识]福建南音简介</a></li>
-            <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
-            <li><a href="#">[工尺谱]南音套曲刍议（五）</a></li>
-            <li><a href="#">[南音乐器]南音套曲刍议（四）</a></li>
-            <li><a href="#">[南音唱腔]南音套曲刍议（三）</a></li>
-            <li><a href="#">[滚门曲牌]南音套曲刍议（二）</a></li>
+            <li  id="audio0"><a href="" title="">[南音常识]福建南音简介</a></li>
+            <li  id="audio1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
+            <li  id="audio2"><a href="" title="">[工尺谱]南音套曲刍议（五）</a></li>
+            <li  id="audio3"><a href="" title="">[南音乐器]南音套曲刍议（四）</a></li>
+            <li  id="audio4"><a href="" title="">[南音唱腔]南音套曲刍议（三）</a></li>
+            <li  id="audio5"><a href="" title="">[滚门曲牌]南音套曲刍议（二）</a></li>
           </ul>
-          <p class="c1" align="right"><a href="#"> >> 更 多 </a></p>
+          <p class="c1" align="right"><a href="index.do?method=dispatcher&page=audioList&type=0"> >> 更 多 </a></p>
         </div>
         <!--南音视频-->
         <div id="main_7">
           <h2>南音视频</h2>
           <ul>
-            <li><a href="#">[南音常识]福建南音简介</a></li>
-            <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
-            <li><a href="#">[工尺谱]南音套曲刍议（五）</a></li>
-            <li><a href="#">[南音乐器]南音套曲刍议（四）</a></li>
-            <li><a href="#">[南音唱腔]南音套曲刍议（三）</a></li>
-            <li><a href="#">[滚门曲牌]南音套曲刍议（二）</a></li>
+            <li  id="video0"><a href="" title="">[南音常识]福建南音简介</a></li>
+            <li  id="video1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
+            <li  id="video2"><a href="" title="">[工尺谱]南音套曲刍议（五）</a></li>
+            <li  id="video3"><a href="" title="">[南音乐器]南音套曲刍议（四）</a></li>
+            <li  id="video4"><a href="" title="">[南音唱腔]南音套曲刍议（三）</a></li>
+            <li  id="video5"><a href="" title="">[滚门曲牌]南音套曲刍议（二）</a></li>
           </ul>
-          <p class="c1" align="right"><a href="#"> >> 更 多 </a></p>
+          <p class="c1" align="right"><a href="index.do?method=dispatcher&page=videoList&type=0"> >> 更 多 </a></p>
         </div>
         <!--南音名录-->
         <div id="main_8">
@@ -432,14 +484,14 @@
       <div id="sidebar">
         <!--登录-->
         <div id="login" style=" width:98%; height:160px; margin:0 auto; margin-top:10px ">
-          <form>
-            <fieldset>
+          <form id="loginForm">
+            <fieldset id="loginField" style="width: 98%; height: 170px">
               <legend> <h2 class="c2">会员登录</h2></legend>
-              <table class="c2"  style=" width:100%; height:120px; margin-top:15px">
-                <tr><td align="right">用户名:</td><td><input type="text" name="user" width="20px" size="10" maxlength="10"/></td></tr>
-                <tr><td align="right">密 码:</td><td><input type="password" name="password" size="10" maxlength="10"/></td></tr>
-                <tr><td></td><td><a href="#">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">重置</a></td></tr>
-                <tr><td></td><td><a href="#">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">忘记密码</a></td></tr>
+              <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:15px">
+                <tr><td align="right">用户名:</td><td><input id="user" type="text" name="user" width="20px" size="10" maxlength="20"/></td></tr>
+                <tr><td align="right">密 码:</td><td><input id="psw" type="password"  name="password" size="10" maxlength="20"/></td></tr>
+                <tr><td></td><td><a href="javascript:void(0)" onclick="Login()">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Reset()">重置</a></td></tr>
+                <tr><td></td><td><a href="index.do?method=register&type=0">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.do?method=pswRecovery">忘记密码</a></td></tr>
               </table>
             </fieldset>
           </form>
@@ -449,14 +501,11 @@
           <center> <h2>公告</h2></center>
           <div id="scrollDiv" align="center">
             <ul class="c2">
-              <li><a href="#">这是公告标题的第一行</a></li>
-              <li><a href="#">这是公告标题的第二行</a></li>
-              <li><a href="#">这是公告标题的第三行</a></li>
-              <li><a href="#">这是公告标题的第四行</a></li>
-              <li><a href="#">这是公告标题的第五行</a></li>
-              <li><a href="#">这是公告标题的第六行</a></li>
-              <li><a href="#">这是公告标题的第七行</a></li>
-              <li><a href="#">这是公告标题的第八行</a></li>
+              <li id="announcement0"><p><a href="">这是公告标题的第一行</a></p></li>
+              <li id="announcement1"><p><a href="">这是公告标题的第二行</a></p></li>
+              <li id="announcement2"><p><a href="">这是公告标题的第三行</a></p></li>
+              <li id="announcement3"><p><a href="">这是公告标题的第四行</a></p></li>
+              <li id="announcement4"><p><a href="">这是公告标题的第五行</a></p></li>
             </ul>
           </div><br />
           <p class="c1" align="right" style=" margin-right:10px"><a href="#"> >> 更 多 </a></p>

@@ -18,13 +18,13 @@
     <ul>
       <li><a href="index.jsp">首  页</a></li>
       <li>
-        <a href="index.do?method=dispatcher&page=newsList">南音新闻</a>
+        <a href="index.do?method=dispatcher&page=newsList&type=0">南音新闻</a>
         <ul>
-          <li><a href="#">南音快讯</a></li>
-          <li><a href="#">海外南音</a></li>
-          <li><a href="#">南音专题</a></li>
-          <li><a href="#">南音人物</a></li>
-          <li><a href="#">南音转载</a></li>
+          <li><a href="index.do?method=dispatcher&page=newsList&type=1">南音快讯</a></li>
+          <li><a href="index.do?method=dispatcher&page=newsList&type=2">海外南音</a></li>
+          <li><a href="index.do?method=dispatcher&page=newsList&type=3">南音专题</a></li>
+          <li><a href="index.do?method=dispatcher&page=newsList&type=4">南音人物</a></li>
+          <li><a href="index.do?method=dispatcher&page=newsList&type=5">南音转载</a></li>
         </ul>
       </li>
       <li>
@@ -61,23 +61,23 @@
         </ul>
       </li>
       <li>
-        <a href="#">南音曲库</a>
+        <a href="index.do?method=dispatcher&page=audioList&type=0">南音曲库</a>
         <ul>
-          <li><a href="#">南音.谱</a></li>
-          <li><a href="#">南音.指</a></li>
-          <li><a href="#">南音.曲</a></li>
+          <li><a href="index.do?method=dispatcher&page=audioList&type=1">南音.谱</a></li>
+          <li><a href="index.do?method=dispatcher&page=audioList&type=2">南音.指</a></li>
+          <li><a href="index.do?method=dispatcher&page=audioList&type=3">南音.曲</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音视频</a>
+        <a href="index.do?method=dispatcher&page=videoList&type=0">南音视频</a>
         <ul>
-          <li><a href="#">经典视频</a></li>
-          <li><a href="#">南音专辑</a></li>
-          <li><a href="#">社团视频</a></li>
-          <li><a href="#">南音会唱</a></li>
-          <li><a href="#">南音比赛</a></li>
-          <li><a href="#">南音网庆</a></li>
-          <li><a href="#">其他视频</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=1">经典视频</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=2">南音专辑</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=3">社团视频</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=4">南音会唱</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=5">南音比赛</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=6">南音网庆</a></li>
+          <li><a href="index.do?method=dispatcher&page=videoList&type=7">其他视频</a></li>
         </ul>
       </li>
       <li>

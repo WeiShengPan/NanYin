@@ -31,6 +31,15 @@ public class UserDao {
         return query.list();
     }
 
+    public User findUser(String name,String psw){
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where username ='"+name+"' and password ='"+psw+" '");
+        if(query.list().size()>0){
+            return (User)query.list().get(0);
+        }else{
+            return null;
+        }
+    }
+
     public Serializable addUser(User user)
     {
         Serializable result=null;

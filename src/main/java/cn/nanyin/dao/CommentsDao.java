@@ -1,6 +1,9 @@
 package cn.nanyin.dao;
 
-import cn.nanyin.model.Comments;
+import cn.nanyin.model.AudioComments;
+import cn.nanyin.model.News;
+import cn.nanyin.model.NewsComments;
+import cn.nanyin.model.VideoComments;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Created by 张一平 on 2015/8/12.
+ */
 @Repository
 @Transactional
 public class CommentsDao {
@@ -17,32 +23,47 @@ public class CommentsDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Serializable addComments(Comments comments)
-    {
-        Serializable result=sessionFactory.getCurrentSession().save(comments);
-        return result;
-    }
-
-    public List<Comments> getCommentsList(Integer start,Integer max)
-    {
-        Query query=sessionFactory.getCurrentSession().createQuery("from Comments as c order by addDate desc");
-        query.setFirstResult(start);
-        query.setMaxResults(max);
+    /***********************************新闻**************************************************************************/
+    public List<NewsComments> getNewsCommentsList(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments where news.id="+id+" order by addDate desc");
         return query.list();
     }
 
-    public Comments getCommentsById(long id)
-    {
-        return (Comments)sessionFactory.getCurrentSession().get(Comments.class,id);
+    public Serializable addNewsComments(NewsComments newsComments) {
+        Serializable result= sessionFactory.getCurrentSession().save(newsComments);
+        return result;
     }
 
-    public void deleteComments(Comments comments)
-    {
-        sessionFactory.getCurrentSession().delete(comments);
+    public void deleteNewsComments(NewsComments newsComments) {
+        sessionFactory.getCurrentSession().delete(newsComments);
+    }
+    /***********************************视频**************************************************************************/
+    public List<VideoComments> getVideoCommentsList(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments where video.id=" + id + " order by addDate desc");
+        return query.list();
     }
 
-    public void updateComments(Comments comments)
-    {
-        sessionFactory.getCurrentSession().saveOrUpdate(comments);
+    public Serializable addVideoComments(VideoComments videoComments) {
+        Serializable result= sessionFactory.getCurrentSession().save(videoComments);
+        return result;
+    }
+
+    public void deleteVideoComments(VideoComments videoComments) {
+        sessionFactory.getCurrentSession().delete(videoComments);
+    }
+
+    /***********************************音频**************************************************************************/
+    public List<AudioComments> getAudioCommentsList(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments where audio.id=" + id + " order by addDate desc");
+        return query.list();
+    }
+
+    public Serializable addAudioComments(AudioComments audioComments) {
+        Serializable result= sessionFactory.getCurrentSession().save(audioComments);
+        return result;
+    }
+
+    public void deleteAudioComments(AudioComments audioComments) {
+        sessionFactory.getCurrentSession().delete(audioComments);
     }
 }
