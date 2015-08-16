@@ -38,6 +38,22 @@
           }
         }
       });
+      /******************新闻图片*****************/
+      $.ajax({
+        type:'POST',
+        url:'index.do?method=getNewsImages',
+        error:function(){
+          alert("图片加载失败！");
+        },
+        success:function(data){
+          var result= $.parseJSON(data);
+          for(var i=0;!(i >= result.length);i++){
+            $("#newsImage"+i).find("a").attr("href","index.do?method=newsLink&id="+result[i].id+"");
+            $("#newsImage"+i).find("img").attr("src",""+result[i].path+"");
+          }
+        }
+      });
+
       /******************公告*****************/
       $.ajax({
         type:'POST',
@@ -49,7 +65,7 @@
           var result= $.parseJSON(data);
           for(var i=0;!(i >= result.length);i++){
             $("#announcement"+i).find("a").text(""+(i+1)+""+"."+result[i].title);
-            $("#announcement"+i).find("a").attr("href","index.do?method=announcement&id="+result[i].id+"");
+            $("#announcement"+i).find("a").attr("href","index.do?method=announcementLink&id="+result[i].id+"");
           }
         }
       });
@@ -112,7 +128,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">南音乐理</a>
+          <a href="index.do?method=dispatcher&page=testNews&type=0">南音乐理</a>
           <ul>
             <li><a href="#">南音常识</a></li>
             <li><a href="#">工乂谱简介</a></li>
@@ -240,28 +256,30 @@
       <div id="main">
         <!--南音介绍-->
         <div id="main_1">
-          <h2>南音简介</h2>
-          <p>南音又称南乐、南曲、南管、弦管、郎君乐等，是我国四大古乐之一，至今有一千多年的历史。清康熙年间，万寿祝典，闽五少芳贤入京御前献奏，赐予"御前清曲"。故南音素有"华夏瑰宝"、"音乐活化石"之美誉，又有"御前清曲"之雅颂。2009年9月，南音被联合国科教文组织列入《人类非物质文化遗产代表作名录》。</p>
-          <p>南音的音乐由"指"、"谱"、"曲"三大部分组成，蕴含了晋清商乐、唐大曲、法曲、燕乐和佛教音乐及宋元明以来的词曲音乐、戏曲音乐，保留了唐宋古典曲牌，有着浓厚的中原古乐遗风。</p>
+          <p class="c3">南音简介</p>
+          <div id="introduction">
+            <p>南音又称南乐、南曲、南管、弦管、郎君乐等，是我国四大古乐之一，至今有一千多年的历史。清康熙年间，万寿祝典，闽五少芳贤入京御前献奏，赐予"御前清曲"。故南音素有"华夏瑰宝"、"音乐活化石"之美誉，又有"御前清曲"之雅颂。2009年9月，南音被联合国科教文组织列入《人类非物质文化遗产代表作名录》。</p>
+            <p>南音的音乐由"指"、"谱"、"曲"三大部分组成，蕴含了晋清商乐、唐大曲、法曲、燕乐和佛教音乐及宋元明以来的词曲音乐、戏曲音乐，保留了唐宋古典曲牌，有着浓厚的中原古乐遗风。</p>
+          </div>
         </div>
         <!--图片切换-->
         <div id="main_2">
           <div class="showpage"  style="margin-top:2px">
             <div  class="flashbox f_list" style="margin:0 auto">
               <div align="center" class="focusNew_out flashlist">
-                <div style="display:block;" class="f_out">
+                <div id="newsImage0" style="display:block;" class="f_out">
                   <a target="_blank" href="#"><img width="99%" height="270" src="images/1.jpg" border="0"></a>
                 </div>
-                <div style="display:none;" class="f_out">
+                <div id="newsImage1" style="display:none;" class="f_out">
                   <a target="_blank" href="#"><img width="99%" height="270" src="images/2.jpg" border="0"></a>
                 </div>
-                <div style="display:none;" class="f_out">
+                <div id="newsImage2" style="display:none;" class="f_out">
                   <a target="_blank" href="#"><img width="99%" height="270" src="images/3.jpg" border="0"></a>
                 </div>
-                <div style="display:none;" class="f_out">
+                <div id="newsImage3" style="display:none;" class="f_out">
                   <a target="_blank" href="#"><img width="99%" height="270" src="images/4.jpg" border="0"></a>
                 </div>
-                <div style="display:none;" class="f_out">
+                <div id="newsImage4" style="display:none;" class="f_out">
                   <a target="_blank" href="#"><img width="99%" height="270" src="images/5.jpg" border="0"></a>
                 </div>
               </div>
@@ -282,7 +300,7 @@
         <div class="line"></div>
         <!--南音新闻-->
         <div id="main_3">
-          <h2>南音新闻</h2>
+          <p class="c3">南音新闻</p>
           <ul>
             <li id="news0"><a href="" title="">[南音常识]福建南音简介</a></li>
             <li id="news1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
@@ -295,7 +313,7 @@
         </div>
         <!--南音乐理-->
         <div id="main_4">
-          <h2>南音乐理</h2>
+          <p class="c3">南音乐理</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -308,7 +326,7 @@
         </div>
         <!--南音文库-->
         <div id="main_5">
-          <h2>南音文库</h2>
+          <p class="c3">南音文库</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -323,7 +341,7 @@
         <div class="line"></div>
         <!--南音曲库-->
         <div id="main_6">
-          <h2>南音曲库</h2>
+          <p class="c3">南音曲库</p>
           <ul>
             <li  id="audio0"><a href="" title="">[南音常识]福建南音简介</a></li>
             <li  id="audio1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
@@ -336,7 +354,7 @@
         </div>
         <!--南音视频-->
         <div id="main_7">
-          <h2>南音视频</h2>
+          <p class="c3">南音视频</p>
           <ul>
             <li  id="video0"><a href="" title="">[南音常识]福建南音简介</a></li>
             <li  id="video1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
@@ -349,7 +367,7 @@
         </div>
         <!--南音名录-->
         <div id="main_8">
-          <h2>南音名录</h2>
+          <p class="c3">南音名录</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -401,7 +419,7 @@
         </div>
         <!--南音商城-->
         <div id="main_10">
-          <h2>南音商城</h2>
+          <p class="c3">南音商城</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -414,7 +432,7 @@
         </div>
         <!--南音教学-->
         <div id="main_11">
-          <h2>南音教学</h2>
+          <p class="c3">南音教学</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -427,7 +445,7 @@
         </div>
         <!--南音社团-->
         <div id="main_12">
-          <h2>南音社团</h2>
+          <p class="c3">南音社团</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -442,7 +460,7 @@
         <div class="line"></div>
         <!--南音文库-->
         <div id="main_13">
-          <h2>南音文库</h2>
+          <p class="c3">南音乐理</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -455,7 +473,7 @@
         </div>
         <!--南音文库-->
         <div id="main_14">
-          <h2>南音文库</h2>
+          <p class="c3">南音乐理</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -468,7 +486,7 @@
         </div>
         <!--南音文库-->
         <div id="main_15">
-          <h2>南音文库</h2>
+          <p class="c3">南音乐理</p>
           <ul>
             <li><a href="#">[南音常识]福建南音简介</a></li>
             <li><a href="#">[南音常识]南音套曲刍议（六）</a></li>
@@ -483,22 +501,22 @@
       <!--右边的侧栏-->
       <div id="sidebar">
         <!--登录-->
-        <div id="login" style=" width:98%; height:160px; margin:0 auto; margin-top:10px ">
+        <div id="login" style=" width:98%; height:160px; margin:10px auto; border-bottom: #CCC 1px dashed ">
+          <p class="c3" align="center">会员登录</p>
           <form id="loginForm">
-            <fieldset id="loginField" style="width: 98%; height: 170px">
-              <legend> <h2 class="c2">会员登录</h2></legend>
-              <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:15px">
-                <tr><td align="right">用户名:</td><td><input id="user" type="text" name="user" width="20px" size="10" maxlength="20"/></td></tr>
-                <tr><td align="right">密 码:</td><td><input id="psw" type="password"  name="password" size="10" maxlength="20"/></td></tr>
+            <div id="loginField">
+              <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:10px">
+                <tr><td align="right">用户名:</td><td><input id="user" type="text" name="user" style="width: 100px" size="20" maxlength="20"/></td></tr>
+                <tr><td align="right">密&nbsp&nbsp码:</td><td><input id="psw" type="password" style="width: 100px"  name="password" size="20" maxlength="20"/></td></tr>
                 <tr><td></td><td><a href="javascript:void(0)" onclick="Login()">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Reset()">重置</a></td></tr>
                 <tr><td></td><td><a href="index.do?method=register&type=0">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.do?method=pswRecovery">忘记密码</a></td></tr>
               </table>
-            </fieldset>
+            </div>
           </form>
         </div>
         <!--公告-->
         <div id="announcement">
-          <center> <h2>公告</h2></center>
+          <center> <p class="c3">公告</p></center>
           <div id="scrollDiv" align="center">
             <ul class="c2">
               <li id="announcement0"><p><a href="">这是公告标题的第一行</a></p></li>
@@ -508,11 +526,11 @@
               <li id="announcement4"><p><a href="">这是公告标题的第五行</a></p></li>
             </ul>
           </div><br />
-          <p class="c1" align="right" style=" margin-right:10px"><a href="#"> >> 更 多 </a></p>
+          <p class="c1" align="right" style=" margin-right:10px"><a href="index.do?method=dispatcher&page=announcementList&type=0"> >> 更 多 </a></p>
         </div>
         <!--投稿-->
         <div id="submission">
-          <h2>欢迎投稿</h2>
+          <p class="c3">欢迎投稿</p>
           <p class="c2"><a href="#">点击进入</a></p>
         </div>
         <!--其他-->
@@ -527,7 +545,7 @@
         </div>
         <!--二维码-->
         <div id="QRcode" class="c2">
-          <h2>扫一扫，关注南音</h2>
+          <p class="c3">扫一扫，关注南音</p>
           <p>微信二维码:</p>
           <img src="images/weixin.jpg" alt="微信" /><br /><br /><br />
           <p>微博二维码:</p>

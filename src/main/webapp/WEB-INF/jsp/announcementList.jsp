@@ -1,9 +1,8 @@
-<%@ page import="cn.nanyin.model.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: 张一平
-  Date: 2015/7/31
-  Time: 9:06
+  Date: 2015/8/16
+  Time: 16:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
@@ -16,16 +15,15 @@
   <script type="text/javascript" src="/Js/jquery-1.4.4.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/newsList.css"/>
   <%@include file="loginTemplate.jsp"%>
-    <title>南音新闻</title>
+    <title>公告列表</title>
   <script type="text/javascript">
     var curPage= 1,pageSize=2;
     var totalNum=0,totalPage=0;
     $(document).ready(function(){
       $.ajax({
         type:'POST',
-        url:'pagination.do?method=showNewsList',
+        url:'pagination.do?method=showAnnouncementList',
         data:{
-          type:${type},
           curPage:curPage,
           pageSize:pageSize,
         },
@@ -37,8 +35,7 @@
           totalNum=result[0].totalNum;
           totalPage=result[0].totalPage;
           for(var i=1;!(i >=result.length);i++){
-            var tr='<tr><td><a href="index.do?method=newsLink&id='+result[i].id+'">'+result[i].title+'</a></td><td>'+result[i].author+'</td>' +
-                    '<td>'+result[i].date+'</td><td>'+result[i].hits+'</td></tr>';
+            var tr='<tr><td><a href="index.do?method=announcementLink&id='+result[i].id+'">'+result[i].title+'</a></td> <td>'+result[i].date+'</td></tr>';
             $("#main table tbody").append(tr);
           }
           show();
@@ -54,7 +51,7 @@
     function getDate(){
       $.ajax({
         type:'POST',
-        url:'pagination.do?method=newsTurnPage',
+        url:'pagination.do?method=announcementTurnPage',
         data:{
           type:${type},
           curPage:curPage,
@@ -66,8 +63,7 @@
         success:function(data) {
           var result = $.parseJSON(data);
           for(var i=0;!(i >=result.length);i++){
-            var tr='<tr><td><a href="index.do?method=newsLink&id='+result[i].id+'">'+result[i].title+'</a></td><td>'+result[i].author+'</td>' +
-                    '<td>'+result[i].date+'</td><td>'+result[i].hits+'</td></tr>';
+            var tr='<tr><td><a href="index.do?method=announcementLink&id='+result[i].id+'">'+result[i].title+'</a></td><td>'+result[i].date+'</td>/tr>';
             $("#main table tbody").append(tr);
           }
           show();
@@ -115,52 +111,49 @@
       getDate();
     }
   </script>
-
 </head>
 <body>
-  <div id="container">
-    <!--引入网页头部-->
-    <%@include file="header.jsp"%>
-    <!--网页内容-->
-    <div id="content">
-      <div id="main" align="center">
-        <table align="center">
-          <thead>
-            <tr class="title">
-              <td style="width: 40%">新闻标题</td>
-              <td style="width: 25%">作者</td>
-              <td style="width: 25%">日期</td>
-              <td style="width: 20%">点击量</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <div id="pagination">
-                  <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
-                  <label id="totalNum"></label>
-                  <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
-                  <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>
-                  <label><a href="javascript:void(0)" onclick="nextPage()">[下一页]</a></label>
-                  <label><a href="javascript:void(0)" onclick="lastPage()">[最后一页]</a></label>
-                  <label>&nbsp&nbsp跳转至:</label>
-                  <label><input id="goto" type="text"  style="width: 20px"/></label>
-                  <label><input type="submit" value="go" onclick="gotoPage()"/>&nbsp&nbsp</label>
-                  <label id="pageNum"></label>
-                </div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-
-      <!--引入侧栏-->
-      <%@include file="sidebar.jsp"%>
+<div id="container">
+  <!--引入网页头部-->
+  <%@include file="header.jsp"%>
+  <!--网页内容-->
+  <div id="content">
+    <div id="main" align="center">
+      <table align="center">
+        <thead>
+        <tr class="title">
+          <td style="width: 60%">标题</td>
+          <td style="width: 40%">日期</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4">
+            <div id="pagination">
+              <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
+              <label id="totalNum"></label>
+              <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
+              <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>
+              <label><a href="javascript:void(0)" onclick="nextPage()">[下一页]</a></label>
+              <label><a href="javascript:void(0)" onclick="lastPage()">[最后一页]</a></label>
+              <label>&nbsp&nbsp跳转至:</label>
+              <label><input id="goto" type="text"  style="width: 20px"/></label>
+              <label><input type="submit" value="go" onclick="gotoPage()"/>&nbsp&nbsp</label>
+              <label id="pageNum"></label>
+            </div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
     </div>
-    <!--引入网页底部-->
-    <%@include file="footer.jsp"%>
+
+    <!--引入侧栏-->
+    <%@include file="sidebar.jsp"%>
   </div>
+  <!--引入网页底部-->
+  <%@include file="footer.jsp"%>
+</div>
 
 </body>
 </html>

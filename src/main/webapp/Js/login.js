@@ -12,7 +12,7 @@ $(document).ready(function(){
     }
     if(name!=""){
         $("#loginForm #loginTab").remove();
-        var add='<table id="addTab" align="center">' +
+        var add='<table id="addTab" align="center" style=" height:120px; width:100%;text-align: center">' +
             '<tr><td>'+text+'</td> </tr>' +
             '<tr><td>'+name+'，您好！</td></tr>'+
             '<tr><td>欢迎来到南音网</td></tr>' +
@@ -30,8 +30,8 @@ $(document).ready(function(){
         success:function(data){
             var result= $.parseJSON(data);
             for(var i=0;!(i >= result.length);i++){
-                $("#announcement"+i).find("a").text(""+(i+1)+""+"."+result[i].content);
-                $("#announcement"+i).find("a").attr("href","index.do?method=announcement&id="+result[i].id+"");
+                $("#announcement"+i).find("a").text(""+(i+1)+""+"."+result[i].title);
+                $("#announcement"+i).find("a").attr("href","index.do?method=announcementLink&id="+result[i].id+"");
             }
         }
     });
@@ -72,7 +72,7 @@ function Login(){
                     }else{
                         level+="尊敬的普通会员:";
                     }
-                    var add='<table id="addTab" align="center">' +
+                    var add='<table id="addTab" align="center" style="height:120px; width:100%;text-align: center">' +
                         '<tr><td>'+level+'</td> </tr>' +
                         '<tr><td>'+result.userName+'，您好！</td></tr>'+
                         '<tr><td>欢迎来到南音网</td></tr>' +

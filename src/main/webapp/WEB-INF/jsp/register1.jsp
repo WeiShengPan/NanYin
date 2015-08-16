@@ -23,10 +23,10 @@
     <%@include file="header.jsp"%>
     <!--网页内容-->
     <div id="content">
-      <div id="title"><h1>会员注册</h1></div>
+      <div id="title"><p>会员注册</p></div>
       <div id="Info">
         <div id="left">
-          <p align="center" style="text-align:center"><h2>普通会员</h2></p>
+          <p align="center" style="font-size: 16px; font-weight: bold">普通会员</p>
           <p>1、普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务</p>
           <p>2、普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务</p>
           <p>3、普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务普通会员的享受的服务</p>
@@ -35,7 +35,7 @@
           <p align="center"><a href="index.do?method=register&type=1">普通会员注册</a></p>
         </div>
         <div id="right">
-          <p align="center"><h2>高级会员</h2></p>
+          <p align="center" style="font-size: 16px; font-weight: bold">高级会员</p>
             <p>1、高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务</p>
             <p>2、高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务高级会员的享受的服务</p>
             <p>3、高级会员的享受的服务高级会员的享受的服务</p>

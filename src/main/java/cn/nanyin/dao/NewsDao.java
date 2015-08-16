@@ -17,6 +17,8 @@ import java.util.List;
 @Repository
 @Transactional
 public class NewsDao {
+
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -44,6 +46,32 @@ public class NewsDao {
         Query query = sessionFactory.getCurrentSession().createQuery("from News as news where newsSort.name='"+typeName+"' order by addDate desc");
         return query.list();
     }
+
+    public List<News> getNewsList(String typeName,Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from News as news where newsSort.name='"+typeName+"' order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public List<News> getNewsImages(Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from News as news where file !='' order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public int getNum(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from News");
+        int num=query.list().size();
+        return num;
+    }
+    public int getNum(String typeName){
+        Query query = sessionFactory.getCurrentSession().createQuery("from News as news where newsSort.name='"+typeName+"'");
+        int num=query.list().size();
+        return num;
+    }
+
 
 
     public List<NewsSort> getNewsSortList(Integer start, Integer max) {

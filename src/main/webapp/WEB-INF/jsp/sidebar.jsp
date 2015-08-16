@@ -13,22 +13,22 @@
 <!--右边的侧栏-->
 <div id="sidebar">
   <!--登录-->
-  <div id="login" style=" width:98%; height:160px; margin:0 auto; margin-top:10px ">
+  <div id="login" style=" width:98%; height:160px; margin:10px auto;border-bottom: #CCC 1px dashed ">
+    <p class="c3" align="center">会员登录</p>
     <form id="loginForm">
-      <fieldset id="loginField" style="width: 98%; height: 170px">
-        <legend> <h2 class="c2">会员登录</h2></legend>
-        <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:15px">
-          <tr><td align="right">用户名:</td><td><input  id="user" type="text" name="user" width="20px" size="10" maxlength="10"/></td></tr>
-          <tr><td align="right">密 码:</td><td><input id="psw" type="password" name="password" size="10" maxlength="10"/></td></tr>
+      <div id="loginField">
+        <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:10px">
+          <tr><td align="right">用户名:</td><td><input id="user" type="text" name="user"style="width: 100px"  size="20" maxlength="20"/></td></tr>
+          <tr><td align="right">密&nbsp&nbsp码:</td><td><input id="psw" type="password"  name="password" style="width: 100px" size="20" maxlength="20"/></td></tr>
           <tr><td></td><td><a href="javascript:void(0)" onclick="Login()">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Reset()">重置</a></td></tr>
-          <tr><td></td><td><a href="#">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">忘记密码</a></td></tr>
+          <tr><td></td><td><a href="index.do?method=register&type=0">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.do?method=pswRecovery">忘记密码</a></td></tr>
         </table>
-      </fieldset>
+      </div>
     </form>
   </div>
   <!--公告-->
   <div id="announcement">
-    <center> <h2>公告</h2></center>
+    <center><p class="c3">公告</p></center>
     <div id="scrollDiv" align="center">
       <ul class="c2">
         <li id="announcement0"><a href="">这是公告标题的第一行</a></li>
@@ -42,7 +42,7 @@
   </div>
   <!--投稿-->
   <div id="submission">
-    <h2>欢迎投稿</h2>
+    <p class="c3">欢迎投稿</p>
     <p class="c2"><a href="#">点击进入</a></p>
   </div>
   <!--其他-->
@@ -57,7 +57,7 @@
   </div>
   <!--二维码-->
   <div id="QRcode" class="c2">
-    <h2>扫一扫，关注南音</h2>
+    <p class="c3">扫一扫，关注南音</p>
     <p>微信二维码:</p>
     <img src="images/weixin.jpg" alt="微信" /><br /><br /><br />
     <p>微博二维码:</p>

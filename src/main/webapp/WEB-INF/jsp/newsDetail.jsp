@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: 张一平
@@ -20,9 +21,10 @@
     var size=0;
     var commentsDate="";
     $(document).ready(function(){
+
       var news= $.parseJSON($("#data").text());
       if(news.source!=""){
-        var text='<p><label><h2>'+news.title+'</h2></label></p>'+
+        var text='<p style="font-size: 16px;font-weight: bolder">'+news.title+'</p>'+
                 '<p><label>作者:</label><label>'+news.author+'</label>'+
                 '<label>&nbsp&nbsp来源:</label><label>'+news.source+'</label>'+
                 '<label>&nbsp&nbsp阅读:</label><label>'+news.hits+'次</label>'+
@@ -44,31 +46,29 @@
         success:function(data){
           var result= $.parseJSON(data);
           if(result==""){
-            $("#comments").append("<p align='center' style='text-align: center'>暂无评论</p>");
+            $("#comments").append("<p align='center' style='text-align: center; margin-top: 15px; margin-bottom: 15px;'>暂无评论</p>");
             return;
           }
           commentsDate=result;
           size=result.length;
           if(!(size>5)){
             for(var i=0;!(i>=result.length);i++){
-              var text='<p class="c3">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
+              var text='<p class="c4">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
                       '<p>'+result[i].content+'</p>';
               $("#comments").append(text);
             }
           }else{
             for(var i=0;!(i>=5);i++){
-              var text='<p class="c3">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
+              var text='<p class="c4">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
                       '<p>'+result[i].content+'</p>';
               $("#comments").append(text);
             }
-            var link='<hr></hr><p align="center"><a href="javascript:void(0)" onclick="moreComm()">更多评论,点击查看>></a></p><hr></hr>';
+            var link='<p class="c5" align="center"><a href="javascript:void(0)" onclick="moreComm()">更多评论,点击查看>></a></p>';
             $("#comments").append(link);
           }
 
         }
       });
-
-
     });
 
     function resetComments(){
@@ -115,11 +115,12 @@
     function moreComm(){
       $("#comments").empty();
       for(var i=0;!(i>=size);i++){
-        var text='<p class="c3">'+commentsDate[i].userName+'&nbsp('+commentsDate[i].date+')</p>' +
+        var text='<p class="c4">'+commentsDate[i].userName+'&nbsp('+commentsDate[i].date+')</p>' +
                 '<p>'+commentsDate[i].content+'</p>';
         $("#comments").append(text);
       }
     }
+
 
 
   </script>
@@ -141,21 +142,19 @@
         <div id="news">
           <div id="title"></div>
           <div id="newsContent">
-            <div style="margin-left: 15px; margin-right: 15px; height: auto">
+            <div id="cc" style="margin-left: 15px; margin-right: 15px; height: auto">
               ${news.content}
             </div>
           </div>
         </div>
 
         <div id="commentsList">
-          <fieldset style="width: 100% ;padding-top: 15px;padding-bottom: 15px;">
-            <legend><h2>网友评论</h2></legend>
+            <p class="c3">网友评论</p>
             <div id="comments" style="text-align: left; line-height: 30px"> </div>
-          </fieldset>
         </div>
 
         <div id="sendComments" align="center">
-          <h2>发表评论</h2>
+          <p class="c3">发表评论</p>
           <p align="left" style="color: red">请注意文明用语，评论内容只代表网友个人观点，与本网立场无关。管理员有权删除非法或者言语不当的评论！</p>
           <form>
             <textarea id="commentsCont" rows="3" style="width: 100%"></textarea><br><br>

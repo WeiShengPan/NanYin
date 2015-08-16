@@ -20,6 +20,10 @@ public class AnnouncementDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public Announcement getAnnouncementById(long id) {
+        return (Announcement) sessionFactory.getCurrentSession().get(Announcement.class, id);
+    }
+
     public List<Announcement> getAnnouncementList(Integer start, Integer max) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Announcement order by addDate desc");
         query.setFirstResult(start);
@@ -31,4 +35,12 @@ public class AnnouncementDao {
         Query query = sessionFactory.getCurrentSession().createQuery("from Announcement order by addDate desc");
         return query.list();
     }
+
+    public int getNum(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Announcement");
+        int n=query.list().size();
+        return n;
+    }
+
+
 }

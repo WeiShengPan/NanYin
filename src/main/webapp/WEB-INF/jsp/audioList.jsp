@@ -19,124 +19,91 @@
     <title>南音网--音频列表</title>
   <script type="text/javascript">
     var curPage= 1,pageSize=2;
-    var totalNum,totalPage;
-    var jsonData;
+    var totalNum=0,totalPage=0;
 
     $(document).ready(function(){
       $.ajax({
         type:'POST',
-        url:'index.do?method=showAudioList',
+        url:'pagination.do?method=showAudioList',
         data:{
           type:${type},
+          curPage:curPage,
+          pageSize:pageSize,
         },
         error:function( ){
-          alert("音频列表加载失败！");
+          alert("加载失败！");
         },
         success:function(data) {
-          jsonData = $.parseJSON(data);
           var result = $.parseJSON(data);
-          var len;
-          if(!(result.length>pageSize)){
-            len=result.length;
-          }else{
-            len=pageSize;
-          }
-          for(var i=0;!(i >= len);i++){
+          totalNum=result[0].totalNum;
+          totalPage=result[0].totalPage;
+          for(var i=1;!(i >=result.length);i++){
             var tr='<tr><td><a href="index.do?method=audioLink&id='+result[i].id+'">'+result[i].title+'</a></td><td>'+result[i].singer+'</td>' +
                     '<td>'+result[i].date+'</td><td>'+result[i].hits+'</td></tr>';
             $("#main table tbody").append(tr);
           }
-          compute();
           show();
         }
       });
     });
-
-    function compute(){
-      totalNum=jsonData.length;
-      totalPage=Math.ceil(totalNum/pageSize);
-    }
 
     function show(){
       $("#totalNum").text("总记录数："+totalNum);
       $("#pageNum").text("当前第"+curPage+""+"/"+""+totalPage+""+"页" );
     }
 
+    function getDate(){
+      $.ajax({
+        type:'POST',
+        url:'pagination.do?method=audioTurnPage',
+        data:{
+          type:${type},
+          curPage:curPage,
+          pageSize:pageSize,
+        },
+        error:function( ){
+          alert("加载失败！");
+        },
+        success:function(data) {
+          var result = $.parseJSON(data);
+          for(var i=0;!(i >=result.length);i++){
+            var tr='<tr><td><a href="index.do?method=audioLink&id='+result[i].id+'">'+result[i].title+'</a></td><td>'+result[i].singer+'</td>' +
+                    '<td>'+result[i].date+'</td><td>'+result[i].hits+'</td></tr>';
+            $("#main table tbody").append(tr);
+          }
+          show();
+        }
+      });
+    }
+
     function firstPage(){
-      if(curPage==1){
-        return;
+      if(curPage!=1){
+        curPage=1;
+        $("#main table tbody").empty();
+        getDate();
       }
-      curPage=1;
-      var len;
-      if(!(jsonData.length>pageSize)){
-        len=jsonData.length;
-      }else{
-        len=pageSize;
-      }
-      $("#main table tbody").empty();
-      for(var i=0;!(i >= len);i++){
-        var tr='<tr><td><a href="index.do?method=audioLink&id='+jsonData[i].id+'">'+jsonData[i].title+'</a></td><td>'+jsonData[i].singer+'</td>' +
-                '<td>'+jsonData[i].date+'</td><td>'+jsonData[i].hits+'</td></tr>';
-        $("#main table tbody").append(tr);
-      }
-      show();
     }
-
-    function nextPage(){
-      if(curPage==totalPage){
-        return;
-      }
-      curPage=curPage+1;
-      var residue=totalNum-((curPage-1)*pageSize);
-      var start=(curPage-1)*pageSize;
-      var len;
-      if(!(residue>pageSize)){
-        len=start+residue;
-      }else{
-        len=start+pageSize;
-      }
-      $("#main table tbody").empty();
-      for(var i=start;!(i>=len);i++){
-        var tr='<tr><td><a href="index.do?method=audioLink&id='+jsonData[i].id+'">'+jsonData[i].title+'</a></td><td>'+jsonData[i].singer+'</td>' +
-                '<td>'+jsonData[i].date+'</td><td>'+jsonData[i].hits+'</td></tr>';
-        $("#main table tbody").append(tr);
-      }
-      show();
-    }
-
-    function prePage(){
-      if(curPage==1){
-        return;
-      }
-      curPage=curPage-1;
-      var start=(curPage-1)*pageSize;
-      var len=start+pageSize;
-      $("#main table tbody").empty();
-      for(var i=start;!(i>=len);i++){
-        var tr='<tr><td><a href="index.do?method=audioLink&id='+jsonData[i].id+'">'+jsonData[i].title+'</a></td><td>'+jsonData[i].singer+'</td>' +
-                '<td>'+jsonData[i].date+'</td><td>'+jsonData[i].hits+'</td></tr>';
-        $("#main table tbody").append(tr);
-      }
-      show();
-    }
-
     function lastPage(){
-      if(curPage==totalPage){
-        return;
+      if(curPage!=totalPage){
+        curPage=totalPage;
+        $("#main table tbody").empty();
+        getDate();
       }
-      curPage=totalPage;
-      var residue=totalNum-((curPage-1)*pageSize);
-      var start=(curPage-1)*pageSize;
-      var len=start+residue;
-      $("#main table tbody").empty();
-      for(var i=start;!(i>=len);i++){
-        var tr='<tr><td><a href="index.do?method=audioLink&id='+jsonData[i].id+'">'+jsonData[i].title+'</a></td><td>'+jsonData[i].singer+'</td>' +
-                '<td>'+jsonData[i].date+'</td><td>'+jsonData[i].hits+'</td></tr>';
-        $("#main table tbody").append(tr);
-      }
-      show();
     }
-
+    function prePage(){
+      if(curPage!=1){
+        curPage=curPage-1;
+        $("#main table tbody").empty();
+        getDate();
+      }
+    }
+    function nextPage(){
+      if(curPage!=totalPage){
+        curPage=curPage+1;
+        $("#main table tbody").empty();
+        getDate();
+      }
+    }
     function gotoPage(){
       var n=parseInt($("#pagination #goto").val());
       if(!(n>=1)||n>totalPage){
@@ -145,22 +112,8 @@
         return;
       }
       curPage=n;
-      var residue=totalNum-((curPage-1)*pageSize);
-      var start=(curPage-1)*pageSize;
-      var len;
-      if(!(residue>pageSize)){
-        len=start+residue;
-      }else{
-        len=start+pageSize;
-      }
       $("#main table tbody").empty();
-      for(var i=start;!(i>=len);i++){
-        var tr='<tr><td><a href="index.do?method=audioLink&id='+jsonData[i].id+'">'+jsonData[i].title+'</a></td><td>'+jsonData[i].singer+'</td>' +
-                '<td>'+jsonData[i].date+'</td><td>'+jsonData[i].hits+'</td></tr>';
-        $("#main table tbody").append(tr);
-      }
-      show();
-      $("#pagination #goto").val("");
+      getDate();
     }
 
   </script>
@@ -175,10 +128,10 @@
         <table align="center">
           <thead>
           <tr class="title">
-            <td style="width: 30%">视频标题</td>
+            <td style="width: 35%">音频标题</td>
             <td style="width: 30%">演唱者</td>
             <td style="width: 20%">上传日期</td>
-            <td style="width: 20%">点击量</td>
+            <td style="width: 15%">点击量</td>
           </tr>
           </thead>
           <tbody></tbody>

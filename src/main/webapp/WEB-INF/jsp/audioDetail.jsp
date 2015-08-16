@@ -40,17 +40,17 @@
           $("#comments").empty();
           if(!(size>5)){
             for(var i=0;!(i>=result.length);i++){
-              var text='<p class="c3">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
+              var text='<p class="c4">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
                       '<p>'+result[i].content+'</p>';
               $("#comments").append(text);
             }
           }else{
             for(var i=0;!(i>=5);i++){
-              var text='<p class="c3">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
+              var text='<p class="c4">'+result[i].userName+'&nbsp('+result[i].date+')</p>' +
                       '<p>'+result[i].content+'</p>';
               $("#comments").append(text);
             }
-            var link='<hr></hr><p align="center"><a href="javascript:void(0)" onclick="moreComm()">更多评论,点击查看>></a></p><hr></hr>';
+            var link='<p class="c5" align="center"><a href="javascript:void(0)" onclick="moreComm()">更多评论,点击查看>></a></p>';
             $("#comments").append(link);
           }
 
@@ -102,7 +102,7 @@
     function moreComm(){
       $("#comments").empty();
       for(var i=0;!(i>=size);i++){
-        var text='<p class="c3">'+commentsDate[i].userName+'&nbsp('+commentsDate[i].date+')</p>' +
+        var text='<p class="c4">'+commentsDate[i].userName+'&nbsp('+commentsDate[i].date+')</p>' +
                 '<p>'+commentsDate[i].content+'</p>';
         $("#comments").append(text);
       }
@@ -123,7 +123,7 @@
       <div id="main">
         <div id="audio">
           <div id="audioTitle">
-            <p><h2>${audio.title}</h2></p>
+            <p style="font-size: 16px;font-weight: bolder">${audio.title}</p>
             <p>演唱者:${audio.singer}&nbsp&nbsp演奏者:${audio.player}&nbsp&nbsp
               制作:${audio.producer}&nbsp&nbsp观看:${audio.hits}次 &nbsp&nbsp上传时间:${audio.date} </p>
           </div>
@@ -212,14 +212,14 @@
           </div>
         </div>
         <div id="commentsList">
-          <h2>网友评论</h2>
+          <p class="c3">网友评论</p>
           <div id="comments">
             <div style="height: 50px"></div>
           </div>
         </div>
 
         <div id="sendComments" align="center">
-          <h2>发表评论</h2>
+          <p class="c3">发表评论</p>
           <p align="left" style="color: red">请注意文明用语，评论内容只代表网友个人观点，与本网立场无关。管理员有权删除非法或者言语不当的评论！</p>
           <form>
             <textarea id="commentsCont" rows="3" style="width: 100%"></textarea><br><br>

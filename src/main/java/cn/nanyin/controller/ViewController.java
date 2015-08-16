@@ -38,6 +38,15 @@ public class ViewController {
     @Autowired
     private AnnouncementDao announcementDao;
 
+    /*************一个页面分发器******************/
+    @RequestMapping(params = "method=dispatcher")
+    public  ModelAndView dispatcher(@RequestParam("page") String page,@RequestParam("type") int type){
+
+        ModelAndView model = new ModelAndView(""+page+"");
+        model.addObject("type",type);
+        return model;
+    }
+
     /**********************首页中的新闻模块（从数据库中读取6条新闻）*******************************************/
     @RequestMapping(params = "method=news", produces = "plain/text;charset=UTF-8")
     @ResponseBody
@@ -67,56 +76,26 @@ public class ViewController {
         */
     }
 
-    /*************一个页面分发器******************/
-    @RequestMapping(params = "method=dispatcher")
-    public  ModelAndView dispatcher(@RequestParam("page") String page,@RequestParam("type") int type){
-
-        ModelAndView model = new ModelAndView(""+page+"");
-        model.addObject("type",type);
-        return model;
-    }
-    /********************新闻列表*********************/
-    @RequestMapping(params = "method=showNewsList", produces = "plain/text;charset=UTF-8")
+    @RequestMapping(params = "method=getNewsImages", produces = "plain/text;charset=UTF-8")
     @ResponseBody
-    public String showNewsList(int type)throws Exception{
-        List<News> newsList=new ArrayList<News>();
-        if(type==0){
-            newsList=newsDao.getNewsList();
-        }else if(type==1){
-            String typeName="南音快讯";
-            newsList=newsDao.getNewsList(typeName);
-        }else if(type==2){
-            String typeName="海外南音";
-            newsList=newsDao.getNewsList(typeName);
-        }else if(type==3){
-            String typeName="南音专题";
-            newsList=newsDao.getNewsList(typeName);
-        }else if(type==4){
-            String typeName="南音人物";
-            newsList=newsDao.getNewsList(typeName);
-        }else if(type==5){
-            String typeName="南音转载";
-            newsList=newsDao.getNewsList(typeName);
-        }
+    public String getNewsImages( )throws  Exception{
+        List<News> newsList=newsDao.getNewsImages(0,5);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<newsList.size();i++){
+        for(int i=0;i<5;i++){
             News tempNew=newsList.get(i);
-            String date=tempNew.getAddDate().toString();
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",tempNew.getId());
-            map.put("title", tempNew.getTitle());
-            map.put("author", tempNew.getAuthor());
-            map.put("date",date);
-            map.put("hits",tempNew.getHits());
-            map.put("type",tempNew.getNewsSort().getName());
+            map.put("path",tempNew.getFile());
             list.add(map);
         }
         JSONArray jsonArray=JSONArray.fromObject(list);
         String result=jsonArray.toString();
         return result;
     }
+
+
     /****************链接到每个新闻的详情页面*************************/
-    @RequestMapping(params = "method=newsLink")
+    @RequestMapping(params = "method=newsLink", produces = "plain/text;charset=UTF-8")
     public ModelAndView showNews( @RequestParam("id") String id){
         ModelAndView model = new ModelAndView("newsDetail");
         long newsId=Long.parseLong(id);
@@ -130,7 +109,6 @@ public class ViewController {
         map.put("date",date);
         map.put("hits", newsDetail.getHits());
         map.put("source", newsDetail.getSource());
-        map.put("content", newsDetail.getContent());
         JSONObject jsonObject=JSONObject.fromObject(map);
         String result=jsonObject.toString();
 
@@ -147,6 +125,7 @@ public class ViewController {
 
         return model;
     }
+
 /******************************音频******************************************************************************/
     /*****首页中的音频模块（从数据库中读取6条音频）***************/
     @RequestMapping(params = "method=getAudios", produces = "plain/text;charset=UTF-8")
@@ -160,40 +139,6 @@ public class ViewController {
             map.put("id",temp.getId());
             map.put("title",temp.getTitle());
             map.put("type",temp.getAudioSort().getName());
-            list.add(map);
-        }
-        JSONArray jsonArray=JSONArray.fromObject(list);
-        String result=jsonArray.toString();
-        return result;
-    }
-    /*******************音频列表*******************************/
-    @RequestMapping(params = "method=showAudioList", produces = "plain/text;charset=UTF-8")
-    @ResponseBody
-    public String showAudioList(int type)throws Exception{
-        List<Audio> audioList=new ArrayList<Audio>();
-        if(type==0){
-            audioList=audioDao.getAudioList();
-        }else if(type==1){
-            String typeName="南音.谱";
-            audioList=audioDao.getAudioList(typeName);
-        }else if(type==2){
-            String typeName="南音.指";
-            audioList=audioDao.getAudioList(typeName);
-        }else if(type==3){
-            String typeName="南音.曲";
-            audioList=audioDao.getAudioList(typeName);
-        }
-
-        List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<audioList.size();i++){
-            Audio temp=audioList.get(i);
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("id",temp.getId());
-            map.put("title",temp.getTitle());
-            map.put("singer",temp.getSinger());
-            String date=temp.getAddDate().toString();
-            map.put("date",date);
-            map.put("hits",temp.getHits());
             list.add(map);
         }
         JSONArray jsonArray=JSONArray.fromObject(list);
@@ -242,52 +187,6 @@ public class ViewController {
             map.put("id",temp.getId());
             map.put("title",temp.getTitle());
             map.put("type",temp.getVideoSort().getName());
-            list.add(map);
-        }
-        JSONArray jsonArray=JSONArray.fromObject(list);
-        String result=jsonArray.toString();
-        return result;
-    }
-    /*******************视频列表*******************************/
-    @RequestMapping(params = "method=showVideoList", produces = "plain/text;charset=UTF-8")
-    @ResponseBody
-    public String showVideoList(int type)throws Exception{
-        List<Video> videoList=new ArrayList<Video>();
-        if(type==0){
-            videoList=videoDao.getVideoList();
-        }else if(type==1){
-            String typeName="经典视频";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==2){
-            String typeName="南音专辑";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==3){
-            String typeName="社团视频";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==4){
-            String typeName="南音会唱";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==5){
-            String typeName="南音比赛";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==6){
-            String typeName="南音网庆";
-            videoList=videoDao.getVideoList(typeName);
-        }else if(type==7){
-            String typeName="其他视频";
-            videoList=videoDao.getVideoList(typeName);
-        }
-
-        List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<videoList.size();i++){
-            Video temp=videoList.get(i);
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("id",temp.getId());
-            map.put("title",temp.getTitle());
-            map.put("singer",temp.getSinger());
-            String date=temp.getAddDate().toString();
-            map.put("date",date);
-            map.put("hits",temp.getHits());
             list.add(map);
         }
         JSONArray jsonArray=JSONArray.fromObject(list);
@@ -375,13 +274,28 @@ public class ViewController {
             map.put("title",announcement.getTitle());
             String date=announcement.getAddDate().toString();
             map.put("date",date);
-            map.put("content",announcement.getContent());
             list.add(map);
         }
         JSONArray jsonArray=JSONArray.fromObject(list);
         String result=jsonArray.toString();
 
         return result;
+    }
+
+    @RequestMapping(params = "method=announcementLink")
+    public ModelAndView showAnnouncement( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("announcementDetail");
+        long announcementId=Long.parseLong(id);
+        Announcement announcementDetail=announcementDao.getAnnouncementById(announcementId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title", announcementDetail.getTitle());
+        String date=announcementDetail.getAddDate().toString();
+        map.put("date", date);
+        map.put("content",announcementDetail.getContent());
+        model.addObject("announcement",map);
+
+        return model;
     }
 
     /*********************************链接到注册页面************************************************************/

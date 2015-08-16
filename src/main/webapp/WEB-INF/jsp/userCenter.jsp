@@ -289,7 +289,6 @@
         </div>
         <div id="right">
           <div id="userInfo">
-
           </div>
         </div>
       </div>
