@@ -29,6 +29,18 @@ public class CommentsDao {
         return query.list();
     }
 
+    public List<NewsComments> getNewsCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments order by addDate desc");
+        return query.list();
+    }
+
+    public List<NewsComments> getNewsCommentsList(Integer start,Integer max) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from NewsComments");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
     public Serializable addNewsComments(NewsComments newsComments) {
         Serializable result= sessionFactory.getCurrentSession().save(newsComments);
         return result;
@@ -37,9 +49,26 @@ public class CommentsDao {
     public void deleteNewsComments(NewsComments newsComments) {
         sessionFactory.getCurrentSession().delete(newsComments);
     }
+
+    public NewsComments getNewsCommentsById(long id)
+    {
+        return (NewsComments)sessionFactory.getCurrentSession().get(NewsComments.class,id);
+    }
     /***********************************视频**************************************************************************/
     public List<VideoComments> getVideoCommentsList(long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments where video.id=" + id + " order by addDate desc");
+        return query.list();
+    }
+
+    public List<VideoComments> getVideoCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments order by addDate desc");
+        return query.list();
+    }
+
+    public List<VideoComments> getVideoCommentsList(Integer start,Integer max) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from VideoComments");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
         return query.list();
     }
 
@@ -52,9 +81,26 @@ public class CommentsDao {
         sessionFactory.getCurrentSession().delete(videoComments);
     }
 
+    public VideoComments getVideoCommentsById(long id)
+    {
+        return (VideoComments)sessionFactory.getCurrentSession().get(VideoComments.class,id);
+    }
+
     /***********************************音频**************************************************************************/
     public List<AudioComments> getAudioCommentsList(long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments where audio.id=" + id + " order by addDate desc");
+        return query.list();
+    }
+
+    public List<AudioComments> getAudioCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments order by addDate desc");
+        return query.list();
+    }
+
+    public List<AudioComments> getAudioCommentsList(Integer start,Integer max) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from AudioComments");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
         return query.list();
     }
 
@@ -65,5 +111,10 @@ public class CommentsDao {
 
     public void deleteAudioComments(AudioComments audioComments) {
         sessionFactory.getCurrentSession().delete(audioComments);
+    }
+
+    public AudioComments getAudioCommentsById(long id)
+    {
+        return (AudioComments)sessionFactory.getCurrentSession().get(AudioComments.class,id);
     }
 }

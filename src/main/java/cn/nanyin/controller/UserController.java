@@ -3,9 +3,11 @@ package cn.nanyin.controller;
 import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.adminauth.AdminAuthority;
 import cn.nanyin.dao.AreaDao;
+import cn.nanyin.dao.User1Dao;
 import cn.nanyin.dao.UserDao;
 import cn.nanyin.model.Area;
 import cn.nanyin.model.User;
+import cn.nanyin.model.User1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +24,16 @@ import java.util.List;
 @AdminAuthority(authorityTypes = AuthorityType.USER_MANAGEMENT)
 public class UserController {
     @Autowired
-    private UserDao userDao;
-    @Autowired
-    private AreaDao areaDao;
+    private User1Dao userDao;
+//    @Autowired
+//    private AreaDao areaDao;
 
     //展示用户列表
     @RequestMapping(value="/nyadmin/userlist",method= RequestMethod.GET)
     public ModelAndView showUserList()
     {
         ModelAndView model=new ModelAndView("nyadmin/userList");
-        List<User> userList =userDao.getUserList(0,50);
+        List<User1> userList =userDao.getUserList(0,50);
         model.addObject("userList", userList);
         return model;
     }
@@ -41,16 +43,23 @@ public class UserController {
     public ModelAndView showUserAddPage()
     {
         ModelAndView model=new ModelAndView("nyadmin/useradd");
-        List<Area> areaList=areaDao.getAreaList(0, 50);
-        model.addObject("areaList",areaList);
+//        List<Area> areaList=areaDao.getAreaList(0, 50);
+//        model.addObject("areaList",areaList);
         return model;
     }
 
     //添加用户操作
     @RequestMapping(value="nyadmin/useradd",method = RequestMethod.POST)
-    public ModelAndView addUser(User user)
+    public ModelAndView addUser(User1 user)
     {
-        user.setRegDate(new Date());
+        user.setRegisterDate(new Date());
+        user.setAnsNum(0);
+        if(user.getState()==true && user.getLevel()==true){
+            user.setLimitNum(0);
+        }
+        else{
+            user.setLimitNum(6);
+        }
         userDao.addUser(user);
         return new ModelAndView("redirect:userlist");
     }
@@ -59,7 +68,7 @@ public class UserController {
     @RequestMapping(value="nyadmin/userdelete",method = RequestMethod.GET)
     public ModelAndView deleteUser(long id)
     {
-        User user = userDao.getUserById(id);
+        User1 user = userDao.getUserById(id);
         userDao.deleteUser(user);
         return new ModelAndView("redirect:userlist");
     }
@@ -69,38 +78,48 @@ public class UserController {
     public ModelAndView showUserEditPage(long id)
     {
         ModelAndView model=new ModelAndView("nyadmin/useredit");
-        User user=userDao.getUserById(id);
+        User1 user=userDao.getUserById(id);
         model.addObject("user", user);
-        List<Area> areaList=areaDao.getAreaList(0, 50);
-        model.addObject("areaList", areaList);
+//        List<Area> areaList=areaDao.getAreaList(0, 50);
+//        model.addObject("areaList", areaList);
         return model;
     }
 
     //修改用户
     @RequestMapping(value="nyadmin/useredit",method = RequestMethod.POST)
-    public ModelAndView editUser(User user)
+    public ModelAndView editUser(User1 user)
     {
-        User targetUser=userDao.getUserById(user.getId());
-        targetUser.setUsername(user.getUsername());
+        User1 targetUser=userDao.getUserById(user.getId());
+        targetUser.setUserName(user.getUserName());
         targetUser.setPassword(user.getPassword());
         targetUser.setName(user.getName());
         targetUser.setGender(user.isGender());
-        targetUser.setTelephone(user.getTelephone());
-        targetUser.setAddress(user.getAddress());
+        targetUser.setTel(user.getTel());
+//        targetUser.setAddress(user.getAddress());
         targetUser.setEmail(user.getEmail());
-        targetUser.setSocialAccount(user.getSocialAccount());
+//        targetUser.setSocialAccount(user.getSocialAccount());
         targetUser.setQuestion(user.getQuestion());
         targetUser.setAnswer(user.getAnswer());
-        targetUser.setJoinCommunity(user.isJoinCommunity());
-        targetUser.setCollege(user.getCollege());
-        targetUser.setVolunteer(user.isVolunteer());
-        targetUser.setSkill(user.getSkill());
+//        targetUser.setJoinCommunity(user.isJoinCommunity());
+//        targetUser.setCollege(user.getCollege());
+//        targetUser.setVolunteer(user.isVolunteer());
+//        targetUser.setSkill(user.getSkill());
         targetUser.setLevel(user.getLevel());
-        targetUser.setArea(areaDao.getAreaById(user.getArea().getId()));
-        targetUser.setRegDate(userDao.getUserById(user.getId()).getRegDate());
-        targetUser.setRegIP(userDao.getUserById(user.getId()).getRegIP());
-        targetUser.setLastLoginDate(userDao.getUserById(user.getId()).getLastLoginDate());
-        targetUser.setState(userDao.getUserById(user.getId()).getState());
+//        targetUser.setArea(areaDao.getAreaById(user.getArea().getId()));
+        targetUser.setRegisterDate(userDao.getUserById(user.getId()).getRegisterDate());
+//        targetUser.setRegIP(userDao.getUserById(user.getId()).getRegIP());
+//        targetUser.setLastLoginDate(userDao.getUserById(user.getId()).getLastLoginDate());
+        targetUser.setState(user.getState());
+
+        targetUser.setAnsNum(userDao.getUserById(user.getId()).getAnsNum());
+        if(user.getState()==true && user.getLevel()==true){
+            targetUser.setLimitNum(0);
+        }
+        else{
+            targetUser.setLimitNum(6);
+        }
+
+
 
         userDao.updateUser(targetUser);
         return new ModelAndView("redirect:userlist");

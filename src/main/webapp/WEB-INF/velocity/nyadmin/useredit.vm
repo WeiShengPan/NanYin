@@ -23,15 +23,15 @@
                                 <!-- 注册时间 -->
                                 <div class="form-group">
                                     <label>注册时间</label>
-                                    <input type="text" class="form-control" value="$!user.regDate" readonly="true"/>
+                                    <input type="text" class="form-control" value="$!user.registerDate" readonly="true"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <!-- 最近登录时间 -->
-                                <div class="form-group">
-                                    <label>最近登录时间</label>
-                                    <input type="text" class="form-control" value="$!user.lastLoginDate" readonly="true"/>
-                                </div>
+##                                <!-- 最近登录时间 -->
+##                                <div class="form-group">
+##                                    <label>最近登录时间</label>
+##                                    <input type="text" class="form-control" value="$!user.lastLoginDate" readonly="true"/>
+##                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -39,7 +39,7 @@
                                 <!-- 用户名 -->
                                 <div class="form-group">
                                     <label>用户名</label>
-                                    <input type="text" name="username" class="form-control" value="$!user.username" required/>
+                                    <input type="text" name="userName" class="form-control" value="$!user.userName" required/>
                                 </div>
                                 <!-- 密码 -->
                                 <div class="form-group">
@@ -80,7 +80,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input type="text" name="telephone" class="form-control" value="$!user.telephone"/>
+                                        <input type="text" name="tel" class="form-control" value="$!user.tel"/>
                                     </div><!-- /.input group -->
                                 </div>
                             </div>
@@ -89,31 +89,46 @@
                                 <div class="form-group">
                                     <label>用户级别</label>
                                     <select name="level" class="form-control">
-                                        <option value="1"
-                                            #if($!{user.level}==1)
+                                        <option value="false"
+                                            #if($!{user.level}=="false")
                                                 selected = "selected"
                                             #end
                                                 >普通会员</option>
-                                        <option value="2"
-                                            #if($!{user.level}==2)
+                                        <option value="true"
+                                            #if($!{user.level}=="true")
                                                 selected = "selected"
                                             #end
-                                                >合格会员</option>
-                                        <option value="3"
-                                            #if($!{user.level}==3)
-                                                selected = "selected"
-                                            #end
-                                                >赞助会员</option>
+                                                >高级会员</option>
+##                                        <option value="3"
+##                                            #if($!{user.level}==3)
+##                                                selected = "selected"
+##                                            #end
+##                                                >赞助会员</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- QQ或MSN -->
+##                                <!-- QQ或MSN -->
+##                                <div class="form-group">
+##                                    <label>QQ或MSN</label>
+##                                    <input type="text" name="socialAccount" class="form-control" value="$!user.socialAccount"/>
+##                                </div>
                                 <div class="form-group">
-                                    <label>QQ或MSN</label>
-                                    <input type="text" name="socialAccount" class="form-control" value="$!user.socialAccount"/>
+                                    <label>状态</label>
+                                    <select name="state" class="form-control">
+                                        <option value="false"
+                                            #if($!{user.state}=="false")
+                                                selected = "selected"
+                                            #end
+                                                >未激活</option>
+                                        <option value="true"
+                                            #if($!{user.state}=="true")
+                                                selected = "selected"
+                                            #end
+                                                >激活</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -131,28 +146,28 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- 地区 -->
-                                <div class="form-group">
-                                    <label>原籍地</label>
-                                    <select name="area.id" class="form-control">
-                                        #foreach($area in ${areaList})
-                                            #if($area.id!=1)
-                                                <option value="$area.id"
-                                                    #if($!{user.area.id}=="$area.id")
-                                                        selected = "selected"
-                                                    #end
-                                                        >$area.name</option>
-                                            #end
-                                        #end
-                                    </select>
-                                </div>
+##                                <!-- 地区 -->
+##                                <div class="form-group">
+##                                    <label>原籍地</label>
+##                                    <select name="area.id" class="form-control">
+##                                        #foreach($area in ${areaList})
+##                                            #if($area.id!=1)
+##                                                <option value="$area.id"
+##                                                    #if($!{user.area.id}=="$area.id")
+##                                                        selected = "selected"
+##                                                    #end
+##                                                        >$area.name</option>
+##                                            #end
+##                                        #end
+##                                    </select>
+##                                </div>
                             </div>
                             <div class="col-md-6">
-                                <!-- 现居地 -->
-                                <div class="form-group">
-                                    <label>现居地</label>
-                                    <input type="text" name="address" class="form-control" value="$!user.address" />
-                                </div>
+##                                <!-- 现居地 -->
+##                                <div class="form-group">
+##                                    <label>现居地</label>
+##                                    <input type="text" name="address" class="form-control" value="$!user.address" />
+##                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -173,53 +188,53 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- 是否参加社团 -->
-                                <div class="form-group">
-                                    <label>参加南音社、文艺团体吗？</label>
-                                    <select name="joinCommunity" class="form-control">
-                                        <option value="false"
-                                            #if($!{user.joinCommunity}=="false")
-                                                selected = "selected"
-                                            #end
-                                                >否</option>
-                                        <option value="true"
-                                            #if($!{user.joinCommunity}=="true")
-                                                selected = "selected"
-                                            #end
-                                                >是</option>
-                                    </select>
-                                </div>
+##                                <!-- 是否参加社团 -->
+##                                <div class="form-group">
+##                                    <label>参加南音社、文艺团体吗？</label>
+##                                    <select name="joinCommunity" class="form-control">
+##                                        <option value="false"
+##                                            #if($!{user.joinCommunity}=="false")
+##                                                selected = "selected"
+##                                            #end
+##                                                >否</option>
+##                                        <option value="true"
+##                                            #if($!{user.joinCommunity}=="true")
+##                                                selected = "selected"
+##                                            #end
+##                                                >是</option>
+##                                    </select>
+##                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>如果是，请填写社团名</label>
-                                    <input type="text" name="college" class="form-control" value="$!user.college" />
-                                </div>
+##                                <div class="form-group">
+##                                    <label>如果是，请填写社团名</label>
+##                                    <input type="text" name="college" class="form-control" value="$!user.college" />
+##                                </div>
                             </div>
                         </div>
-                        <!-- 是否成为志工 -->
-                        <div class="form-group">
-                            <label>愿意成为南音网志工吗？</label>
-                            <select name="volunteer" class="form-control">
-                                <option value="false"
-                                    #if($!{user.joinCommunity}=="false")
-                                        selected = "selected"
-                                    #end
-                                        >否</option>
-                                <option value="true"
-                                    #if($!{user.joinCommunity}=="true")
-                                        selected = "selected"
-                                    #end
-                                        >是</option>
-                            </select>
-                        </div>
-                        <!--专长-->
-                        <div class="form-group">
-                            <label>专长</label>
-                            <textarea name="skill" class="form-control">
-                                $!user.skill
-                            </textarea>
-                        </div>
+##                        <!-- 是否成为志工 -->
+##                        <div class="form-group">
+##                            <label>愿意成为南音网志工吗？</label>
+##                            <select name="volunteer" class="form-control">
+##                                <option value="false"
+##                                    #if($!{user.joinCommunity}=="false")
+##                                        selected = "selected"
+##                                    #end
+##                                        >否</option>
+##                                <option value="true"
+##                                    #if($!{user.joinCommunity}=="true")
+##                                        selected = "selected"
+##                                    #end
+##                                        >是</option>
+##                            </select>
+##                        </div>
+##                        <!--专长-->
+##                        <div class="form-group">
+##                            <label>专长</label>
+##                            <textarea name="skill" class="form-control">
+##                                $!user.skill
+##                            </textarea>
+##                        </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">提交</button>
                         </div>

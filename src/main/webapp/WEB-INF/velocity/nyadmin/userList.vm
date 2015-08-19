@@ -30,15 +30,13 @@
                          <tbody>
                              #foreach(${user}in ${userList})
                              <tr>
-                                 <td>${user.username}</td>
+                                 <td>${user.userName}</td>
                                  <td>${user.password}</td>
                                  <td>${user.name}</td>
-                                 #if(${user.level}==1)
+                                 #if(${user.level}=="false")
                                      <td>普通会员</td>
-                                 #elseif(${user.level}==2)
-                                     <td>合格会员</td>
-                                 #elseif(${user.level}==3)
-                                     <td>赞助会员</td>
+                                 #elseif(${user.level}=="true")
+                                     <td>高级会员</td>
                                  #end
                                  <td>
                                      <a href="usereditpage?id=$user.id" class="btn btn-primary">修改 </a>&nbsp<a href="userdelete?id=$user.id" class="btn btn-danger">删除 </a>
