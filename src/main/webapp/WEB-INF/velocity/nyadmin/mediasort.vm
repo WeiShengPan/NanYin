@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(影音管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(音频管理)").parent().addClass("active");
 </script>')
 <section class="content-header">
     <h1>
-        影音管理
+        音频管理
         <small>类别管理</small>
     </h1>
 

@@ -98,13 +98,13 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
-                    <span>影音管理</span>
+                    <span>音频管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="mediasort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                    <li><a href="mediaaddpage"><i class="fa fa-circle-o"></i> 添加影音</a></li>
-                    <li><a href="medialist"><i class="fa fa-circle-o"></i> 管理影音</a></li>
+                    <li><a href="mediaaddpage"><i class="fa fa-circle-o"></i> 添加音频</a></li>
+                    <li><a href="medialist"><i class="fa fa-circle-o"></i> 管理音频</a></li>
                 </ul>
             </li>
             <li class="treeview">
