@@ -11,7 +11,7 @@ public enum AuthorityType {
     PRODUCT_MANAGEMENT("商城管理",5),
     ARTICLE_MANAGEMENT("图文乐谱",6),
     MEDIA_MANAGEMENT("音频管理",7),
-    VIDEO_MANAGEMENT("教学管理",8),
+    VIDEO_MANAGEMENT("视频管理",8),
     LINKS_MANAGEMENT("友情链接",9),
     COMMENTS_MANAGEMENT("留言管理",10),
     ;

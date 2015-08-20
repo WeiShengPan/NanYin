@@ -128,7 +128,7 @@
                                                    checked="checked"
                                                 #end
                                                     />
-                                            影音管理
+                                            音频管理
                                         </label>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                                    checked="checked"
                                                 #end
                                                     />
-                                            教学中心
+                                            视频管理
                                         </label>
                                     </div>
                                 </div>
