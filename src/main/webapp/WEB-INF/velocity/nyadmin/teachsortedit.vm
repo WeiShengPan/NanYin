@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
 </script>')
 <section class="content-header">
     <h1>
-        视频管理
+        教学中心
         <small>类别管理</small>
     </h1>
 
@@ -38,8 +38,8 @@
                                 <label>类别名称</label>
                                 <input type="text" name="name" class="form-control" value="$!videoSort.name" required/>
                             </div>
-
                         </div>
+
                         <div>
                             <input type="hidden" name="id" value="$!videoSort.id">
                         </div>
