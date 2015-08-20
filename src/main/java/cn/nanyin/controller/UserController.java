@@ -3,9 +3,11 @@ package cn.nanyin.controller;
 import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.adminauth.AdminAuthority;
 import cn.nanyin.dao.AreaDao;
+import cn.nanyin.dao.MyMessageDao;
 import cn.nanyin.dao.User1Dao;
 import cn.nanyin.dao.UserDao;
 import cn.nanyin.model.Area;
+import cn.nanyin.model.MyMessage;
 import cn.nanyin.model.User;
 import cn.nanyin.model.User1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +28,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private User1Dao userDao;
+    @Autowired
+    private MyMessageDao myMessageDao;
 //    @Autowired
 //    private AreaDao areaDao;
 
@@ -123,5 +128,43 @@ public class UserController {
 
         userDao.updateUser(targetUser);
         return new ModelAndView("redirect:userlist");
+    }
+
+    @RequestMapping(value="/nyadmin/messagelist",method= RequestMethod.GET)
+    public ModelAndView showMessageList(long id)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/messagelist");
+        List<MyMessage> myMessageList =myMessageDao.getMessage(id);
+        model.addObject("myMessageList", myMessageList);
+        User1 user=userDao.getUserById(id);
+        model.addObject("user", user);
+        return model;
+    }
+
+    @RequestMapping(value="nyadmin/messageaddpage",method=RequestMethod.GET)
+    public ModelAndView showMessageAddPage(long id)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/messageadd");
+        User1 user=userDao.getUserById(id);
+        model.addObject("user", user);
+        return model;
+    }
+
+    @RequestMapping(value="nyadmin/messageadd",method = RequestMethod.POST)
+    public ModelAndView addMessage(MyMessage myMessage)
+    {
+        myMessage.setDate(new Date());
+        myMessage.setState(false);
+        myMessageDao.addMessage(myMessage);
+        return  new ModelAndView(new RedirectView("messagelist?id="+myMessage.getUser().getId()));
+    }
+
+    @RequestMapping(value="nyadmin/messagedelete",method = RequestMethod.GET)
+    public ModelAndView deleteMessage(long id)
+    {
+        MyMessage myMessage = myMessageDao.getMessageById(id);
+        long user_id=myMessage.getUser().getId();
+        myMessageDao.deleteMessage(myMessage);
+        return  new ModelAndView(new RedirectView("messagelist?id="+user_id));
     }
 }

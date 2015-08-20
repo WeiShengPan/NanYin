@@ -32,11 +32,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label>留言视频</label>
-                                <input type="text" class="form-control" value="$!{videoComments.video.title}" readonly="true"/>
-                            </div>
+                        <div class="form-group">
+                            <label>留言视频</label>
+                            <input type="text" class="form-control" value="$!{videoComments.video.title}" readonly="true"/>
                         </div>
                         <div class="form-group">
                             <label>内容</label>

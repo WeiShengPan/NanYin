@@ -39,6 +39,7 @@
                                      <td>高级会员</td>
                                  #end
                                  <td>
+                                     <a href="messagelist?id=$user.id" class="btn btn-primary">消息列表 </a>&nbsp
                                      <a href="usereditpage?id=$user.id" class="btn btn-primary">修改 </a>&nbsp<a href="userdelete?id=$user.id" class="btn btn-danger">删除 </a>
                                  </td>
                              </tr>

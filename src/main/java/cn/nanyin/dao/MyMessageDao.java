@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -32,6 +33,12 @@ public class MyMessageDao {
     public void deleteMessage(MyMessage myMessage)
     {
         sessionFactory.getCurrentSession().delete(myMessage);
+    }
+
+    public Serializable addMessage(MyMessage myMessage) {
+        Serializable result=null;
+        result=sessionFactory.getCurrentSession().save(myMessage);
+        return result;
     }
 
 }
