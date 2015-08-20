@@ -42,7 +42,7 @@ public class VideoSort {
         }
     }
 
-    private long getId(){
+    public long getId(){
         return this.id;
     }
     public void setId(long id){

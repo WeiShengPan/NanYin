@@ -1,20 +1,15 @@
 #set($pageJS='
 <script>
 $(document).ready(function(){
-    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
-        $(function () {
-        // instance, using default configuration.
-        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorvideoimage"});
-        //bootstrap WYSIHTML5 - text editor
-        $(".textarea").wysihtml5();
-    });
-     $("#submit").click(function () {
+    $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
+
+    $("#submit").click(function () {
         $("#data-form").submit();
     });
     $("#upload-form").submit(function () {
         var formData = new FormData(this);
         $.ajax({
-            url: "/nyadmin/videoimage",
+            url: "/nyadmin/videovideo",
             type: "POST",
             dataType: "json",
             data: formData,
@@ -22,19 +17,21 @@ $(document).ready(function(){
             contentType: false,  // tell jQuery not to set contentType
             success: function (data) {
                 if (data.result == "success") {
-                    $("#data-form input[name=\"file\"]").val(data.fileName);
+                    $("#data-form input[name=\"path\"]").val(data.fileName);
+
                 }
                 alert(data.message);
             }
         });
         return false;
     });
+
 });
 </script>')
 <section class="content-header">
     <h1>
-        教学中心
-        <small>添加专辑</small>
+        视频管理
+        <small>添加视频</small>
     </h1>
 
 </section>
@@ -44,14 +41,13 @@ $(document).ready(function(){
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
-
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form id="data-form" action="/nyadmin/videoadd" method="post">
-                        <div>
+                        <div class="row">
                             <!-- 类别 -->
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label>选择类别</label>
                                 <select name="videoSort.id" class="form-control">
                                     #foreach($videoSort in $videoSortList)
@@ -62,29 +58,58 @@ $(document).ready(function(){
                                 </select>
                             </div>
                             <!-- 标题 -->
-                            <div class="form-group col-md-6">
-                                <label>专辑名称</label>
+                            <div class="form-group col-md-4">
+                                <label>视频名称</label>
                                 <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
                                        required/>
                             </div>
+                            <!-- 演唱 -->
+                            <div class="form-group col-md-4">
+                                <label>演唱</label>
+                                <input type="text" name="singer" class="form-control" placeholder="Enter ..."
+                                       type="text"
+                                       required/>
+                            </div>
                         </div>
-                        <!--内容-->
-                        <label>详细内容</label>
-                                <textarea id="editor1" name="content" rows="10" cols="80" required>
-                                 </textarea>
-                        <input type="hidden" name="file" required>
+                        <div class="row">
+                            <!-- 演奏 -->
+                            <div class="form-group col-md-4">
+                                <label>演奏</label>
+                                <input type="text" name="player" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 摄像 -->
+                            <div class="form-group col-md-4">
+                                <label>摄像</label>
+                                <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                            <!-- 制作 -->
+                            <div class="form-group col-md-4">
+                                <label>制作</label>
+                                <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="path">
+
                     </form>
                     <br>
+
                     <form id="upload-form" role="form" enctype="multipart/form-data">
-                        <!--缩略图-->
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile">
-                            <br>
-                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
-                            <p class="help-block">请上传缩略图</p>
+                        <div>
+
+                            <!-- 播放地址 -->
+                            <div class="form-group">
+                                <label for="exampleInputFile">上传视频文件</label>
+                                <input type="file" name="path" id="exampleInputFile">
+                                <br>
+                                <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                                <p class="help-block">请上传视频文件</p>
+                            </div>
                         </div>
                     </form>
+
+
                     <div class="box-footer">
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                     </div>

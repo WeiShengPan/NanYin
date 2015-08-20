@@ -110,13 +110,25 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
-                    <span>教学中心</span>
+                    <span>视频管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="videosort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                    <li><a href="videoaddpage"><i class="fa fa-circle-o"></i> 专辑管理</a></li>
-                    <li><a href="videolist"><i class="fa fa-circle-o"></i> 专辑列表</a></li>
+                    <li><a href="videoaddpage"><i class="fa fa-circle-o"></i> 添加视频</a></li>
+                    <li><a href="videolist"><i class="fa fa-circle-o"></i> 管理视频</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>教学中心</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href=""><i class="fa fa-circle-o"></i> 专辑管理</a></li>
+                    <li><a href=""><i class="fa fa-circle-o"></i> 专辑列表</a></li>
                 </ul>
             </li>
             <li class="treeview">
