@@ -132,7 +132,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="permission" value="1"/>
-                                            影音管理
+                                            音频管理
                                         </label>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="permission" value="1"/>
-                                            教学中心
+                                            视频管理
                                         </label>
                                     </div>
                                 </div>

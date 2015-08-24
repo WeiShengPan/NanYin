@@ -26,46 +26,87 @@ $(document).ready(function(){
 
 <!-- Main content -->
 <section class="content">
+##    <div class="row">
+##        <div class="col-xs-12">
+##            <div class="box">
+##                <div class="box-header">
+##                    <div class="col-md-10">
+##                        <h3 class="box-title">留言列表 </h3>
+##                    </div>
+##                </div>
+##
+##                <!-- /.box-header -->
+##                <div class="box-body">
+##                    <table id="example2" class="table table-bordered table-hover">
+##                        <thead>
+##                        <tr>
+##                            <th class="col-md-2">文章</th>
+##                            <th class="col-md-4">内容</th>
+##                            <th class="col-md-4">留言时间</th>
+##                            <th class="col-md-2">操作</th>
+##                        </tr>
+##                        </thead>
+##                        <tbody id="newslistbysort">
+##
+##                            #foreach($comments in $commentslist)
+##                            <tr>
+##                                <td></td>
+##                                <td>$!comments.content</td>
+##                                <td>$!comments.addDate</td>
+##                                #if($!comments.varify==false)
+##                                    <td><a href="varyfycomments?id=$comments.id" class="btn btn-primary">审核通过</a>&nbsp<a
+##                                            href="commentsdelete?id=$comments.id" class="btn btn-danger">删除</a></td>
+##                                #else
+##                                    <td><a
+##                                            href="commentsdelete?id=$comments.id" class="btn btn-danger">删除</a></td>
+##                                #end
+##
+##                            </tr>
+##                            #end
+##
+##
+##                        </tfoot>
+##                    </table>
+##                </div>
+##            </div>
+##            <!-- /.box-body -->
+##        </div>
+##        <!-- /.box -->
+##    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <div class="col-md-10">
-                        <h3 class="box-title">留言列表 </h3>
+                        <h3 class="box-title">新闻留言列表 </h3>
                     </div>
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th class="col-md-2">文章</th>
-                            <th class="col-md-4">内容</th>
-                            <th class="col-md-4">留言时间</th>
-                            <th class="col-md-2">操作</th>
+                            <th>留言文章</th>
+                            <th>留言人</th>
+                            <th>内容</th>
+                            <th>留言时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody id="newslistbysort">
-
-                            #foreach($comments in $commentslist)
+                        <tbody>
+                            #foreach(${newsComments}in ${newsCommentsList})
                             <tr>
-                                <td></td>
-                                <td>$!comments.content</td>
-                                <td>$!comments.addDate</td>
-                                #if($!comments.varify==false)
-                                    <td><a href="varyfycomments?id=$comments.id" class="btn btn-primary">审核通过</a>&nbsp<a
-                                            href="commentsdelete?id=$comments.id" class="btn btn-danger">删除</a></td>
-                                #else
-                                    <td><a
-                                            href="commentsdelete?id=$comments.id" class="btn btn-danger">删除</a></td>
-                                #end
-
+                                <td>$!{newsComments.news.title}</td>
+                                <td>$!{newsComments.user.userName}</td>
+                                <td>$!{newsComments.content}</td>
+                                <td>$!{newsComments.addDate}</td>
+                                <td>
+                                    <a href="newscommentspage?id=$newsComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="newscommentsdelete?id=$newsComments.id" class="btn btn-danger">删除 </a>
+                                </td>
                             </tr>
                             #end
-
-
-                        </tfoot>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -73,7 +114,87 @@ $(document).ready(function(){
         </div>
         <!-- /.box -->
     </div>
-    <!-- /.col -->
-    <!-- /.row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">视频留言列表 </h3>
+                    </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>留言视频</th>
+                            <th>留言人</th>
+                            <th>内容</th>
+                            <th>留言时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            #foreach(${videoComments}in ${videoCommentsList})
+                            <tr>
+                                <td>$!{videoComments.video.title}</td>
+                                <td>$!{videoComments.user.userName}</td>
+                                <td>$!{videoComments.content}</td>
+                                <td>$!{videoComments.addDate}</td>
+                                <td>
+                                    <a href="videoCommentspage?id=$videoComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="videoCommentsdelete?id=$videoComments.id" class="btn btn-danger">删除 </a>
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">音频留言列表 </h3>
+                    </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>留言音频</th>
+                            <th>留言人</th>
+                            <th>内容</th>
+                            <th>留言时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            #foreach(${audioComments}in ${audioCommentsList})
+                            <tr>
+                                <td>$!{audioComments.audio.title}</td>
+                                <td>$!{audioComments.user.userName}</td>
+                                <td>$!{audioComments.content}</td>
+                                <td>$!{audioComments.addDate}</td>
+                                <td>
+                                    <a href="audioCommentspage?id=$audioComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="audioCommentsdelete?id=$audioComments.id" class="btn btn-danger">删除 </a>
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
 </section><!-- /.content -->
 

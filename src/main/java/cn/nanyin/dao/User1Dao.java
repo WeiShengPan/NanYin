@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 张一平 on 2015/8/9.
@@ -53,6 +54,15 @@ public class User1Dao {
     public void deleteUser(User1 user)
     {
         sessionFactory.getCurrentSession().delete(user);
+    }
+
+    ////////////////////////////////////////////////////
+    public List<User1> getUserList(Integer start,Integer max)
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User1");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
     }
 
 }

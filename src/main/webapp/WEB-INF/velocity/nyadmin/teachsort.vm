@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(音频管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
 </script>')
 <section class="content-header">
     <h1>
-        音频管理
+        教学中心
         <small>类别管理</small>
     </h1>
 
@@ -31,14 +31,13 @@
                         </thead>
                         <tbody>
 
-                            #foreach($mediaSort in $mediaSortList)
-                                #if($mediaSort.id!=1)
+                            #foreach($videoSort in $videoSortList)
+                                #if($videoSort.id!=1)
                                 <tr>
-                                    <td>$mediaSort.level</td>
-                                    <td>$mediaSort.name</td>
-                                    <td>$!mediaSort.upperMediaSort.name</td>
-                                    <td><a href="mediasorteditpage?id=$mediaSort.id" class="btn btn-primary">修改 </a>&nbsp<a
-                                            href="mediasortdelete?id=$mediaSort.id" class="btn btn-danger">删除</a></td>
+                                    <td>$videoSort.level</td>
+                                    <td>$videoSort.name</td>
+                                    <td>$!videoSort.upperVideoSort.name</td>
+                                    <td><a href="videosorteditpage?id=$videoSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="videosortdelete?id=$videoSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
                                 #end
                             #end
@@ -58,24 +57,24 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/mediasortadd" method="post">
+                    <form action="/nyadmin/videosortadd" method="post">
                         <div>
-                            <!-- 类别 -->
-                            <div class="form-group col-md-6">
-                                <label>上级类别</label>
-                                <select name="upperMediaSort.id" class="form-control">
-                                    #foreach($mediaSort in $mediaSortList)
-                                        <option value="$mediaSort.id">$mediaSort.name</option>
-                                    #end
+                        <!-- 类别 -->
+                        <div class="form-group col-md-6">
+                            <label>上级类别</label>
+                            <select name="upperVideoSort.id" class="form-control">
+                                #foreach($videoSort in $videoSortList)
+                                    <option value="$videoSort.id">$videoSort.name</option>
+                                #end
 
-                                </select>
-                            </div>
-                            <!-- 标题 -->
-                            <div class="form-group col-md-6">
-                                <label>类别名称</label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
-                            </div>
+                            </select>
                         </div>
+                        <!-- 标题 -->
+                        <div class="form-group col-md-6">
+                            <label>类别名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                        </div>
+                            </div>
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

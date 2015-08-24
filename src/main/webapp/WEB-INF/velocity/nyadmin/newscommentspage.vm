@@ -1,0 +1,53 @@
+#set($pageJS='
+<script>
+    $(".sidebar-menu li.treeview>a:contains(留言管理)").parent().addClass("active");
+</script>')
+<section class="content-header">
+    <h1>
+        留言管理
+        <small>新闻留言</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">详细信息</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body pad">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>留言时间</label>
+                                    <input type="text" class="form-control" value="$!newsComments.addDate" readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>留言人</label>
+                                    <input type="text" class="form-control" value="$!{newsComments.user.userName}" readonly="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>留言文章</label>
+                            <input type="text" class="form-control" value="$!{newsComments.news.title}" readonly="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label>内容</label>
+                            <textarea class="form-control" readonly="true">
+                                $!{newsComments.content}
+                            </textarea>
+                        </div>
+                        <div class="box-footer">
+                            <a href="newscommentsdelete?id=$newsComments.id" class="btn btn-danger">删除 </a>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.box -->
+        </div><!-- /.col-->
+    </div><!-- ./row -->
+</section><!-- /.content -->

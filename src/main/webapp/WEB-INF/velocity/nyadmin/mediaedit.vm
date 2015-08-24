@@ -1,7 +1,7 @@
 #set($pageJS='
 <script>
 $(document).ready(function(){
-    $(".sidebar-menu li.treeview>a:contains(影音管理)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(音频管理)").parent().addClass("active");
         $(function () {
         // instance, using default configuration.
         CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditormediaimage"});
@@ -88,8 +88,8 @@ $(document).ready(function(){
 </script>')
 <section class="content-header">
     <h1>
-        影音管理
-        <small>添加影音</small>
+        音频管理
+        <small>添加音频</small>
     </h1>
 
 </section>
@@ -103,11 +103,11 @@ $(document).ready(function(){
                 <!-- /.box-header -->
                 <div class="box-body pad">
                     <form id="data-form" action="/nyadmin/mediaedit" method="post">
-                        <div>
+                        <div class="row">
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
                                 <label>选择类别</label>
-                                <select name="mediaSort.id" class="form-control">
+                                <select name="audioSort.id" class="form-control">
                                     #foreach($mediaSort in $mediaSortList)
                                         #if($mediaSort.id!=1)
                                             <option value="$mediaSort.id">$mediaSort.name</option>
@@ -117,8 +117,8 @@ $(document).ready(function(){
                             </div>
                             <!-- 标题 -->
                             <div class="form-group col-md-4">
-                                <label>影音名称</label>
-                                <input type="text" name="name" class="form-control" value="$!media.name" required/>
+                                <label>音频名称</label>
+                                <input type="text" name="title" class="form-control" value="$!media.title" required/>
                             </div>
 
                             <!-- 演唱 -->
@@ -127,37 +127,37 @@ $(document).ready(function(){
                                 <input type="text" name="singer" class="form-control" value="$!media.singer"/>
                             </div>
                         </div>
-                        <div>
+                        <div class="row">
                             <!-- 演奏 -->
                             <div class="form-group col-md-4">
                                 <label>演奏</label>
-                                <input type="text" name="performer" class="form-control" value="$!media.performer"/>
+                                <input type="text" name="player" class="form-control" value="$!media.player"/>
                             </div>
-                            <!-- 摄像 -->
-                            <div class="form-group col-md-4">
-                                <label>摄像</label>
-                                <input type="text" name="cameraman" class="form-control" value="$!media.cameraman"/>
-                            </div>
+##                            <!-- 摄像 -->
+##                            <div class="form-group col-md-4">
+##                                <label>摄像</label>
+##                                <input type="text" name="cameraman" class="form-control" value="$!media.cameraman"/>
+##                            </div>
                             <!-- 制作 -->
                             <div class="form-group col-md-4">
                                 <label>制作</label>
                                 <input type="text" name="producer" class="form-control" value="$!media.producer"/>
                             </div>
                         </div>
-                        <!-- 播放地址 -->
-                        <div class="form-group col-md-12">
-                            <label>播放地址</label>
-                            <input type="text" name="url" class="form-control" value="$!media.url"/>
-                        </div>
+##                        <!-- 播放地址 -->
+##                        <div class="form-group col-md-12">
+##                            <label>播放地址</label>
+##                            <input type="text" name="url" class="form-control" value="$!media.url"/>
+##                        </div>
                         <!--内容-->
                         <label>内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
                                     $!media.content
                                 </textarea>
-                        <input type="hidden" name="file" value="$!media.file" required>
+##                        <input type="hidden" name="file" value="$!media.file" required>
                         <input type="hidden" name="gcp" value="$!media.gcp" required>
                         <input type="hidden" name="jp" value="$!media.jp" required>
-                        <input type="hidden" name="media" value="$!media.media">
+                        <input type="hidden" name="path" value="$!media.path">
                         <div>
                             <input type="hidden" name="id" value="$!media.id">
                         </div>
@@ -168,15 +168,15 @@ $(document).ready(function(){
 
                             <!-- 播放地址 -->
                             <div class="form-group">
-                                <label for="exampleInputFile">上传媒体文件</label>
-                                <input type="file" name="media" id="exampleInputFile" value="$!media.media">
+                                <label for="exampleInputFile">上传音频文件</label>
+                                <input type="file" name="path" id="exampleInputFile" value="$!media.path">
                                 <br>
-                                <a>已上传媒体文件：</a>
-                                <input type="text" readonly="readonly" value="$!media.media">
+                                <a>已上传音频文件：</a>
+                                <input type="text" readonly="readonly" value="$!media.path">
                                 <br>
                                 <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
-                                <p class="help-block">请上传媒体文件</p>
+                                <p class="help-block">请上传音频文件</p>
                             </div>
                         </div>
                     </form>
@@ -210,21 +210,21 @@ $(document).ready(function(){
                         </div>
                     </form>
 
-                    <br>
-
-                    <form id="upload-form3" role="form" enctype="multipart/form-data">
-                        <!--缩略图-->
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile" value="$!media.file">
-                            <br>
-                            <a>已上传图片：</a>
-                            <input type="text" readonly="readonly" value="$!media.file">
-                            <br>
-                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
-
-                        </div>
-                    </form>
+##                    <br>
+##
+##                    <form id="upload-form3" role="form" enctype="multipart/form-data">
+##                        <!--缩略图-->
+##                        <div class="form-group">
+##                            <label for="exampleInputFile">上传缩略图</label>
+##                            <input type="file" name="file" id="exampleInputFile" value="$!media.file">
+##                            <br>
+##                            <a>已上传图片：</a>
+##                            <input type="text" readonly="readonly" value="$!media.file">
+##                            <br>
+##                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+##
+##                        </div>
+##                    </form>
                     <div class="box-footer">
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                     </div>

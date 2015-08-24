@@ -2,7 +2,10 @@ package cn.nanyin.controller;
 
 import cn.nanyin.adminauth.AdminAuthority;
 import cn.nanyin.adminauth.AuthorityType;
+import cn.nanyin.dao.AudioDao;
 import cn.nanyin.dao.MediaDao;
+import cn.nanyin.model.Audio;
+import cn.nanyin.model.AudioSort;
 import cn.nanyin.model.Media;
 import cn.nanyin.model.MediaSort;
 import cn.nanyin.util.FileUpload;
@@ -31,15 +34,15 @@ import java.util.List;
 @AdminAuthority(authorityTypes = AuthorityType.MEDIA_MANAGEMENT)
 public class MediaController {
     @Autowired
-    private MediaDao mediaDao;
+    private AudioDao mediaDao;
 
     //显示新闻列表页面
     @RequestMapping(value="nyadmin/medialist",method= RequestMethod.GET)
     public ModelAndView showMediaList()
     {
         ModelAndView model = new ModelAndView("nyadmin/medialist");
-        List<Media> mediaList=mediaDao.getMediaList(0, 50);
-        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0,50);
+        List<Audio> mediaList=mediaDao.getAudioList();
+        List<AudioSort> mediaSortList=mediaDao.getAudioSortList(0, 50);
         model.addObject("mediaSortList",mediaSortList);
         model.addObject("mediaList",mediaList);
         return model;
@@ -47,15 +50,15 @@ public class MediaController {
 
     @ResponseBody
     @RequestMapping(value = "nyadmin/medialistbysort/{sortid}", method = RequestMethod.GET)
-    public List<MediaData> getMediaListBySort(@PathVariable Long sortid) {
-        MediaSort mediaSort=mediaDao.getMediaSortById(sortid);
-        List<Media> mediaList=mediaSort.getMediaList();
+    public List<MediaData> getAudioListBySort(@PathVariable Long sortid) {
+        AudioSort mediaSort=mediaDao.getAudioSortById(sortid);
+        List<Audio> mediaList=mediaSort.getAudios();
         List<MediaData> mediaDataList=new ArrayList<MediaData>();
         for(int i=0;i<mediaList.size();i++)
         {
-            Media mediaTmp=mediaList.get(i);
+            Audio mediaTmp=mediaList.get(i);
             long id=mediaTmp.getId();
-            String title=mediaTmp.getName();
+            String title=mediaTmp.getTitle();
             Date addDate=mediaTmp.getAddDate();
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date=sdf.format(addDate);
@@ -70,17 +73,17 @@ public class MediaController {
     public ModelAndView showNewsAddPage()
     {
         ModelAndView model=new ModelAndView("nyadmin/mediaadd");
-        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0, 50);
+        List<AudioSort> mediaSortList=mediaDao.getAudioSortList(0, 50);
         model.addObject("mediaSortList",mediaSortList);
         return model;
     }
 
     //添加新闻
     @RequestMapping(value="nyadmin/mediaadd",method = RequestMethod.POST)
-    public ModelAndView addMedia(Media media,BindingResult result)
+    public ModelAndView addMedia(Audio media,BindingResult result)
     {
         media.setAddDate(new Date());
-        mediaDao.addMedia(media);
+        mediaDao.addAudio(media);
         return new ModelAndView("redirect:mediaaddpage");
     }
 
@@ -90,19 +93,19 @@ public class MediaController {
     {
         ModelAndView model=new ModelAndView("nyadmin/mediasort");
 
-        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0, 50);
+        List<AudioSort> mediaSortList=mediaDao.getAudioSortList(0, 50);
         model.addObject("mediaSortList", mediaSortList);
         return model;
     }
 
     //增加新闻种类
     @RequestMapping(value="nyadmin/mediasortadd",method=RequestMethod.POST)
-    public ModelAndView addMediaSort(MediaSort mediaSort)
+    public ModelAndView addMediaSort(AudioSort mediaSort)
     {
         //if(newsSort.getUpperNewsSort().getId()!=1)
-        int level=mediaDao.getMediaSortById(mediaSort.getUpperMediaSort().getId()).getLevel();
+        int level=mediaDao.getAudioSortById(mediaSort.getUpperAudioSort().getId()).getLevel();
         mediaSort.setLevel(level + 1);
-        mediaDao.addMediaSort(mediaSort);
+        mediaDao.addAudioSort(mediaSort);
         return new ModelAndView("redirect:mediasort");
     }
 
@@ -110,8 +113,8 @@ public class MediaController {
     @RequestMapping(value="nyadmin/mediadelete",method = RequestMethod.GET)
     public ModelAndView deleteMedia(long id)
     {
-       Media media = mediaDao.getMediaById(id);
-        mediaDao.deleteMedia(media);
+        Audio media = mediaDao.getAudioById(id);
+        mediaDao.deleteAudio(media);
         return new ModelAndView("redirect:medialist");
     }
 
@@ -119,40 +122,40 @@ public class MediaController {
     @RequestMapping(value="nyadmin/mediasortdelete",method = RequestMethod.GET)
     public ModelAndView deleteMediaSort(long id)
     {
-        MediaSort mediaSort=mediaDao.getMediaSortById(id);
+        AudioSort mediaSort=mediaDao.getAudioSortById(id);
 
         //级联删除所有该种类新闻
-        List<Media> mediaList=mediaSort.getMediaList();
+        List<Audio> mediaList=mediaSort.getAudios();
         for(int i=0;i<mediaList.size();i++)
         {
-            Media mediaTmp1 =mediaList.get(i);
-            mediaSort.removeMedia(mediaTmp1);
-            mediaTmp1.setMediaSort(null);
-            mediaDao.updateMedia(mediaTmp1);
-            mediaDao.deleteMedia(mediaTmp1);
+            Audio mediaTmp1 =mediaList.get(i);
+            mediaSort.removeAudio(mediaTmp1);
+            mediaTmp1.setAudioSort(null);
+            mediaDao.updateAudio(mediaTmp1);
+            mediaDao.deleteAudio(mediaTmp1);
         }
 
         //级联删除所有下层新闻种类
-        List<MediaSort> lowerMediaSortList=mediaSort.getLowerMediaSortList();
+        List<AudioSort> lowerMediaSortList=mediaSort.getLowerAudioSortList();
         for(int i=0;i<lowerMediaSortList.size();i++)
         {
-            MediaSort mediaSortTmp = lowerMediaSortList.get(i);
-            List<Media> lowerMediaList = mediaSortTmp.getMediaList();
+            AudioSort mediaSortTmp = lowerMediaSortList.get(i);
+            List<Audio> lowerMediaList = mediaSortTmp.getAudios();
             for (int j = 0; j < lowerMediaList.size();j++)
             {
-                Media mediaTmp2=lowerMediaList.get(i);
-                mediaSortTmp.removeMedia(mediaTmp2);
-                mediaTmp2.setMediaSort(null);
-                mediaDao.updateMedia(mediaTmp2);
-                mediaDao.deleteMedia(mediaTmp2);
+                Audio mediaTmp2=lowerMediaList.get(i);
+                mediaSortTmp.removeAudio(mediaTmp2);
+                mediaTmp2.setAudioSort(null);
+                mediaDao.updateAudio(mediaTmp2);
+                mediaDao.deleteAudio(mediaTmp2);
             }
-            mediaSort.removeMediaSort(mediaSortTmp);
-            mediaSortTmp.setUpperMediaSort(null);
-            mediaDao.updateMediaSort(mediaSortTmp);
-            mediaDao.deleteMediaSort(mediaSortTmp);
+            mediaSort.removeAudioSort(mediaSortTmp);
+            mediaSortTmp.setUpperAudioSort(null);
+            mediaDao.updateAudioSort(mediaSortTmp);
+            mediaDao.deleteAudioSort(mediaSortTmp);
         }
 
-        mediaDao.deleteMediaSort(mediaSort);
+        mediaDao.deleteAudioSort(mediaSort);
         return new ModelAndView("redirect:mediasort");
     }
 
@@ -161,33 +164,30 @@ public class MediaController {
     public ModelAndView showMediasEditPage(long id)
     {
         ModelAndView model=new ModelAndView("nyadmin/mediaedit");
-        Media media=mediaDao.getMediaById(id);
+        Audio media=mediaDao.getAudioById(id);
         model.addObject("media", media);
-        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0, 50);
+        List<AudioSort> mediaSortList=mediaDao.getAudioSortList(0, 50);
         model.addObject("mediaSortList", mediaSortList);
         return model;
     }
 
     //修改新闻
     @RequestMapping(value="nyadmin/mediaedit",method = RequestMethod.POST)
-    public ModelAndView editMedia(Media media)
+    public ModelAndView editMedia(Audio media)
     {
-        Media targetMedia=mediaDao.getMediaById(media.getId());
-        targetMedia.setName(media.getName());
+        Audio targetMedia=mediaDao.getAudioById(media.getId());
+        targetMedia.setTitle(media.getTitle());
         targetMedia.setSinger(media.getSinger());
-        targetMedia.setPerformer(media.getPerformer());
-        targetMedia.setCameraman(media.getCameraman());
+        targetMedia.setPlayer(media.getPlayer());
         targetMedia.setProducer(media.getProducer());
-        targetMedia.setType(media.getType());
-        targetMedia.setMedia(media.getMedia());
         targetMedia.setGcp(media.getGcp());
         targetMedia.setJp(media.getJp());
-        targetMedia.setFile(media.getFile());
+        targetMedia.setPath(media.getPath());
         targetMedia.setContent(media.getContent());
-        targetMedia.setMediaSort(mediaDao.getMediaSortById(media.getMediaSort().getId()));
-        targetMedia.setAddDate(mediaDao.getMediaById(media.getId()).getAddDate());
-        targetMedia.setHits(mediaDao.getMediaById(media.getId()).getHits());
-        mediaDao.updateMedia(targetMedia);
+        targetMedia.setAudioSort(mediaDao.getAudioSortById(media.getAudioSort().getId()));
+        targetMedia.setAddDate(mediaDao.getAudioById(media.getId()).getAddDate());
+        targetMedia.setHits(mediaDao.getAudioById(media.getId()).getHits());
+        mediaDao.updateAudio(targetMedia);
         return new ModelAndView("redirect:medialist");
     }
 
@@ -196,21 +196,21 @@ public class MediaController {
     public ModelAndView showMediaSortEditPage(long id)
     {
         ModelAndView model=new ModelAndView("nyadmin/mediasortedit");
-        MediaSort mediaSort=mediaDao.getMediaSortById(id);
+        AudioSort mediaSort=mediaDao.getAudioSortById(id);
         model.addObject("mediaSort", mediaSort);
-        List<MediaSort> mediaSortList=mediaDao.getMediaSortList(0, 50);
+        List<AudioSort> mediaSortList=mediaDao.getAudioSortList(0, 50);
         model.addObject("mediaSortList", mediaSortList);
         return model;
     }
 
     @RequestMapping(value="nyadmin/mediasortedit",method = RequestMethod.POST)
-    public ModelAndView editMediaSort(MediaSort mediaSort)
+    public ModelAndView editMediaSort(AudioSort mediaSort)
     {
-        MediaSort targetMediaSort=mediaDao.getMediaSortById(mediaSort.getId());
+        AudioSort targetMediaSort=mediaDao.getAudioSortById(mediaSort.getId());
         targetMediaSort.setName(mediaSort.getName());
-        targetMediaSort.setUpperMediaSort(mediaDao.getMediaSortById(mediaSort.getUpperMediaSort().getId()));
-        targetMediaSort.setLevel(mediaDao.getMediaSortById(mediaSort.getId()).getLevel());
-        mediaDao.updateMediaSort(targetMediaSort);
+        targetMediaSort.setUpperAudioSort(mediaDao.getAudioSortById(mediaSort.getUpperAudioSort().getId()));
+        targetMediaSort.setLevel(mediaDao.getAudioSortById(mediaSort.getId()).getLevel());
+        mediaDao.updateAudioSort(targetMediaSort);
         return new ModelAndView("redirect:mediasort");
     }
 
