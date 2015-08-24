@@ -1,0 +1,11 @@
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none;font-family: "微软雅黑"}
+body{ background-color:#000;}
+
+#container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
+#content{width:100%;  position:relative; z-index:1; font-size:12px;margin-top: 5px; border-top:#CCC 1px solid;}
+#main{width:79.5%; float:left;}
+#product{width: 80%;margin: 10px auto; height: auto;border:#CCC 1px dashed;}
+#product #img{width: 24%;height: 200px;float: left;}
+#product #title{width: 75%; height: 180px;float: right;padding-top: 20px}
+#product #title p{line-height: 40px;margin-left: 15px;font-size: 15px}
+#product #productCont{width: 100%;clear: both;height:auto;border-top:#CCC 1px dashed}

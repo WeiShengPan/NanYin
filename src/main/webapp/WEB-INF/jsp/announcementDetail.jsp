@@ -5,7 +5,7 @@
   Time: 17:11
   To change this template use File | Settings | File Templates.
 --%>
-<<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +23,7 @@
   <%@include file="header.jsp"%>
   <!--网页内容-->
   <div id="content">
-    <div id="main" align="center">
+    <div id="main">
       <div id="announcement">
         <div id="announcementTitle">
           <p style="font-size: 16px;font-weight:bolder">${announcement.title}</p>

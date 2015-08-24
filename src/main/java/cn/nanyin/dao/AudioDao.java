@@ -49,6 +49,11 @@ public class AudioDao {
         return query.list();
     }
 
+    public List<Audio> findAudios(String text) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Audio where title like '%"+text+"%'");
+        return query.list();
+    }
+
     public int getNum(){
         Query query = sessionFactory.getCurrentSession().createQuery("from Audio");
         int n=query.list().size();

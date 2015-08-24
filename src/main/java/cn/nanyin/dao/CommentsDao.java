@@ -1,9 +1,6 @@
 package cn.nanyin.dao;
 
-import cn.nanyin.model.AudioComments;
-import cn.nanyin.model.News;
-import cn.nanyin.model.NewsComments;
-import cn.nanyin.model.VideoComments;
+import cn.nanyin.model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +62,20 @@ public class CommentsDao {
 
     public void deleteAudioComments(AudioComments audioComments) {
         sessionFactory.getCurrentSession().delete(audioComments);
+    }
+
+    /***********************************教学**************************************************************************/
+    public List<TeachingComments> getTeachingCommentsList(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments where teaching.id="+id+" order by addDate desc");
+        return query.list();
+    }
+
+    public Serializable addTeachingComment(TeachingComments teachingComments) {
+        Serializable result= sessionFactory.getCurrentSession().save(teachingComments);
+        return result;
+    }
+
+    public void deleteTeachingComments(TeachingComments teachingComments) {
+        sessionFactory.getCurrentSession().delete(teachingComments);
     }
 }

@@ -7,6 +7,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <link rel="stylesheet" type="text/css" href="/css/header.css">
+<script type="text/javascript">
+  function validForm(){
+    var text=$("#searchContent").val();
+    if(text==""){
+      alert("请填写关键字");
+      return false;
+    }
+    return true;
+  }
+</script>
 
 <div id="header">
   <!--网页logo-->
@@ -28,36 +38,36 @@
         </ul>
       </li>
       <li>
-        <a href="#">南音乐理</a>
+        <a href="index.do?method=dispatcher&page=musicTheoryList&type=0">南音乐理</a>
         <ul>
-          <li><a href="#">南音常识</a></li>
-          <li><a href="#">工乂谱简介</a></li>
-          <li><a href="#">南音乐器</a></li>
-          <li><a href="#">南音唱腔</a></li>
-          <li><a href="#">滚门曲牌</a></li>
-          <li><a href="#">南音本事</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=1">南音常识</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=2">工乂谱简介</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=3">南音乐器</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=4">南音唱腔</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=5">滚门曲牌</a></li>
+          <li><a href="index.do?method=dispatcher&page=musicTheoryList&type=6">南音本事</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音文库</a>
+        <a href="index.do?method=dispatcher&page=libraryList&type=0">南音文库</a>
         <ul>
-          <li><a href="#">南音曲词</a></li>
-          <li><a href="#">南音论文</a></li>
-          <li><a href="#">南音钩沉</a></li>
-          <li><a href="#">南音文萃</a></li>
-          <li><a href="#">南音轶事</a></li>
-          <li><a href="#">诗词楹联</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=1">南音曲词</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=2">南音论文</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=3">南音钩沉</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=4">南音文萃</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=5">南音轶事</a></li>
+          <li><a href="index.do?method=dispatcher&page=libraryList&type=6">诗词楹联</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音图谱</a>
+        <a href="index.do?method=dispatcher&page=galleryList&type=0">南音图谱</a>
         <ul>
-          <li><a href="#">南音工乂谱</a></li>
-          <li><a href="#">南音简谱影</a></li>
-          <li><a href="#">电子相册</a></li>
-          <li><a href="#">专题剪影</a></li>
-          <li><a href="#">珍贵图录</a></li>
-          <li><a href="#">名家题词</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=1">南音工乂谱</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=2">南音简谱影</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=3">电子相册</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=4">专题剪影</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=5">珍贵图录</a></li>
+          <li><a href="index.do?method=dispatcher&page=galleryList&type=6">名家题词</a></li>
         </ul>
       </li>
       <li>
@@ -83,69 +93,69 @@
       <li>
         <a href="#">诗词音画</a>
         <ul>
-          <li><a href="#">唐诗宋词南管唱</a></li>
-          <li><a href="#">丁马成南音作品</a></li>
-          <li><a href="#">郑梦集茶乡清曲</a></li>
-          <li><a href="#">乡土风情南管唱</a></li>
+          <li><a href="#"><p>唐诗宋词</p><p>南管唱</p></a></li>
+          <li><a href="#"><p>丁马成</p><p>南音作品</p></a></li>
+          <li><a href="#"><p>郑梦集</p><p>茶乡清曲</p></a></li>
+          <li><a href="#"><p>陈丽华</p><p>台湾风情</p></a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音教学</a>
+        <a href="index.do?method=dispatcher&page=teachingList&type=0">南音教学</a>
         <ul>
-          <li><a href="#">工乂谱识谱</a></li>
-          <li><a href="#">乐器技法</a></li>
-          <li><a href="#">唱腔指导曲</a></li>
-          <li><a href="#">名师访谈唱</a></li>
-          <li><a href="#">学习申请</a></li>
+          <li><a href="index.do?method=dispatcher&page=teachingList&type=1">工乂谱识谱</a></li>
+          <li><a href="index.do?method=dispatcher&page=teachingList&type=2">乐器技法</a></li>
+          <li><a href="index.do?method=dispatcher&page=teachingList&type=3">唱腔指导曲</a></li>
+          <li><a href="index.do?method=dispatcher&page=teachingList&type=4">名师访谈唱</a></li>
+          <li><a href="index.do?method=dispatcher&page=teachingList&type=5">学习申请</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音名录</a>
+        <a href="index.do?method=dispatcher&page=directoryList&type=0">南音名录</a>
         <ul>
-          <li><a href="#">南音人物志</a></li>
-          <li><a href="#">南音传承人</a></li>
-          <li><a href="#">南音新秀榜</a></li>
-          <li><a href="#">学术界名录</a></li>
-          <li><a href="#">本网机构</a></li>
+          <li><a href="index.do?method=dispatcher&page=directoryList&type=1">南音人物志</a></li>
+          <li><a href="index.do?method=dispatcher&page=directoryList&type=2">南音传承人</a></li>
+          <li><a href="index.do?method=dispatcher&page=directoryList&type=3">南音新秀榜</a></li>
+          <li><a href="index.do?method=dispatcher&page=directoryList&type=4">学术界名录</a></li>
+          <li><a href="index.do?method=dispatcher&page=directoryList&type=5">本网机构</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音社团</a>
+        <a href="index.do?method=dispatcher&page=collegeList&type=0">南音社团</a>
         <ul>
-          <li><a href="#">荣誉社团</a></li>
-          <li><a href="#">国内社团</a></li>
-          <li><a href="#">港澳台社团</a></li>
-          <li><a href="#">东南亚社团</a></li>
-          <li><a href="#">传习&培训</a></li>
+          <li><a href="index.do?method=dispatcher&page=collegeList&type=1">荣誉社团</a></li>
+          <li><a href="index.do?method=dispatcher&page=collegeList&type=2">国内社团</a></li>
+          <li><a href="index.do?method=dispatcher&page=collegeList&type=3">港澳台社团</a></li>
+          <li><a href="index.do?method=dispatcher&page=collegeList&type=4">东南亚社团</a></li>
+          <li><a href="index.do?method=dispatcher&page=collegeList&type=5">传习&培训</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">南音商城</a>
+        <a href="index.do?method=dispatcher&page=productsList1&type=0">南音商城</a>
         <ul>
-          <li><a href="#">南音乐器</a></li>
-          <li><a href="#">南音书籍</a></li>
-          <li><a href="#">南音音箱 </a></li>
-          <li><a href="#">南音伴奏</a></li>
-          <li><a href="#">其他配件</a></li>
-          <li><a href="#">文创艺品 </a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=1">南音乐器</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=2">南音书籍</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=3">南音音箱 </a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=4">南音伴奏</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=5">其他配件</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList1&type=6">文创艺品 </a></li>
         </ul>
       </li>
     </ul>
   </div>
   <!--搜索栏-->
   <div id="search">
-    <form>
+    <form action="index.do?method=searchContent" method="post">
       <table align="right" style="margin-top:5px">
         <tr>
           <td>
-            <select>
-              <option value="1">影音</option>
-              <option value="2">文库</option>
+            <select name="selectItem">
+              <option value="1">文库</option>
+              <option value="2">影音</option>
               <option value="3">曲库</option>
             </select>
           </td>
-          <td><input type="text" name="text" style="width:200px"/></td>
-          <td><input type="submit" name="搜索" value="搜索" style="width:50px" /></td>
+          <td><input id="searchContent" type="text" name="searchContent" style="width:200px"/></td>
+          <td><input type="submit" value="搜索" style="width:50px" onclick=" return validForm()" /></td>
         </tr>
       </table>
     </form>

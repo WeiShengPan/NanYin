@@ -1,8 +1,8 @@
-*{ margin:0; padding:0; text-decoration:none; list-style-type:none}
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none;font-family: "微软雅黑"}
 body{ background-color:#000;}
 
 #container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
-#content{width:100%; height: auto;  position:relative; z-index:1; font-size:12px; border-top:#CCC 1px solid; }
+#content{width:100%; height: auto;  position:relative; z-index:1; font-size:12px;margin-top: 5px; border-top:#CCC 1px solid; }
 #main{width:79.5%; height: auto; float:left;}
 #main #audio{width: 98%; height: auto; margin: 0 auto;}
 #main #audio #audioTitle{width: 100%; line-height: 25px}
