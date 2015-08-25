@@ -1,0 +1,13 @@
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none;font-family: "微软雅黑"}
+body{ background-color:#000;}
+
+#container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
+#content{width:100%;  position:relative; z-index:1; font-size:12px;margin-top: 5px; border-top:#CCC 1px solid;}
+#main{width:79.5%; float:left;}
+#main #college{width: 90%;margin: 10px auto; height:auto;border:#CCC 1px dashed;}
+#college p{ margin-left: 10px; line-height: 30px}
+#college .title{margin-left: 0; font-size: 14px;font-weight: bold; background-color: #c0a160}
+#introduction{width: 98%; height:300px; margin-left:10px;margin-top: 10px; margin-bottom:15px;border:#CCC 1px dashed;}
+#organization{width: 98%; height:300px; margin-left:10px;margin-top: 10px;margin-bottom:15px;border:#CCC 1px dashed;}
+#activeImage{width: 98%; height:300px; margin-left:10px;margin-top: 10px;margin-bottom:15px;border:#CCC 1px dashed;}
+#video{width: 600px; height:400px; margin: 10px auto ;}

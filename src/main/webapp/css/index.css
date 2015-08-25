@@ -1,13 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
-*{ margin:0; padding:0; text-decoration:none; list-style-type:none}
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none;font-family: "微软雅黑"}
 body{ background-color:#000;}
 
 #container{ width:1024px; margin:0 auto; background-image:url(../images/bg.png);}
 #header{ width:100%; height:176px;}
-#menu{ width:100%; height:25px; font-size:16px; font-weight:100; font-family:"华文楷体"; position:relative; z-index:9999}
+#menu{ width:100%; height:25px; font-size:15px; font-weight:100;position:relative; z-index:9999}
 #search{ width:100%; height:30px; position:relative; z-index:1;}
-#content{width:100%;  position:relative; z-index:1; font-size:12px; border-top:#CCC 1px solid; }
+#content{width:100%;  position:relative; z-index:1; font-size:12px; margin-top: 5px;border-top:#CCC 1px solid;}
 #content #main{ width:79.5%; float:left; }
 #content #sidebar{ width:20%; height:1312px; float:right; border-left: #ccc 1px dashed}
 #footer{ width:100%; clear:both; margin-top:15px; padding-bottom:20px; border-top: #CCC 1px solid; }
@@ -31,20 +31,19 @@ padding:4px;
 #menu ul li:hover ul{ display:block;}
 
 /*全文标题*/
-h2{ margin-bottom:10px; margin-top:10px; font-family:"新宋体"}
 .c3{font-size:16px; color:#C96;font-weight:bold; margin-top:10px;margin-bottom:10px;}
 /*c1是 “更多” 的样式表*/
 .c1{ margin-right:15px}
-.c1 a{ color:#000}
+.c1 a{color:#000}
 .c1 a:hover{ color:#F00; text-decoration:underline}
 
 /*c2是sidebar中链接的的样式表*/
-.c2 a{ color:#000}
+.c2 a{color:#000}
 .c2 a:hover{ color:#F00; text-decoration:underline}
 
 /*maim中链接的的样式表*/
 #main ul li{ line-height:25px;overflow: hidden;white-space:nowrap;}
-#main ul li a{ color:#000}
+#main ul li a{color:#000}
 #main ul li a:hover{ color:#F00;text-decoration:underline}
 
 
@@ -53,22 +52,24 @@ h2{ margin-bottom:10px; margin-top:10px; font-family:"新宋体"}
 #main_2{ width:49.5%; height:275px; float:right; border-left:#CCC 1px dashed}
 
 #main_3{ width:32%; height:220px; float:left; clear:both; padding-left:5px;padding-right: 5px; border-right:#CCC 1px dashed;}
-#main_4{ width:32%; height:220px; float:left;  padding-left:10px;border-right:#CCC 1px dashed }
-#main_5{ width:32%; height:220px; float:right; padding-left:10px;}
+#main_4{ width:32%; height:220px; float:left;  padding-left:5px;padding-right: 5px;border-right:#CCC 1px dashed }
+#main_5{ width:32%; height:220px; float:right;  padding-left:5px;padding-right: 5px;}
 
-#main_6{ width:32%; height:220px; float:left; clear:both; padding-left:10px; border-right:#CCC 1px dashed;}
-#main_7{width:32%; height:220px; float:left; padding-left:10px; border-right:#CCC 1px dashed;}
-#main_8{width:32%; height:220px; float:right; padding-left:10px}
+#main_6{ width:32%; height:220px; float:left; clear:both;  padding-left:5px;padding-right: 5px;border-right:#CCC 1px dashed;}
+#main_7{width:32%; height:220px; float:left; padding-left:5px;padding-right: 5px; border-right:#CCC 1px dashed;}
+#main_8{width:32%; height:220px; float:right;  padding-left:5px;padding-right: 5px;}
 
-#main_9{ width:100%; height:152px; float:none; clear:both; border-top:#ccc 1px dashed;border-bottom:#ccc 1px dashed}
+#main_9{ width:100%; height:220px; float:none; clear:both; border-top:#ccc 1px dashed;border-bottom:#ccc 1px dashed}
 
-#main_10{ width:32%; height:220px; float:left;padding-left:10px; border-right:#CCC 1px dashed }
-#main_11{ width:32%; height:220px; float:left;padding-left:10px; border-right:#CCC 1px dashed}
-#main_12{ width:32%; height:220px; float:right; padding-left:10px;}
+#main_10{ width:32%; height:220px; float:left; padding-left:5px;padding-right: 5px; border-right:#CCC 1px dashed }
+#main_11{ width:32%; height:220px; float:left; padding-left:5px;padding-right: 5px; border-right:#CCC 1px dashed}
+#main_12{ width:32%; height:220px; float:right;  padding-left:5px;padding-right: 5px;}
 
-#main_13{ width:32%; height:220px; float:left; padding-left:10px; border-right:#CCC 1px dashed}
-#main_14{ width:32%; height:220px; float:left;padding-left:10px; border-right:#CCC 1px dashed}
-#main_15{ width:32%; height:220px; float:right;padding-left:10px;}
+#main_13{ width:32%; height:220px; float:left;  padding-left:5px;padding-right: 5px; border-right:#CCC 1px dashed}
+#main_14{ width:32%; height:220px; float:left; padding-left:5px;padding-right: 5px;border-right:#CCC 1px dashed}
+#main_15{ width:32%; height:220px; float:right; padding-left:5px;padding-right: 5px;}
+
+#main_16{ width:100%; height:152px; float:none; clear:both; border-top:#ccc 1px dashed;}
 
 #announcement{ width:99%; height:305px;border-bottom:#CCC 1px dashed; margin-top:20px }
 #announcement #scrollDiv{width:100%;height:230px;min-height:25px; overflow:hidden}

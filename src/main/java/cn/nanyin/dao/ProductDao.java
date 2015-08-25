@@ -36,6 +36,26 @@ public class ProductDao {
         return query.list();
     }
 
+    public List<Product> getProductList(String typeName,Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product where productSort.name='"+typeName+"' order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public List<Product> getProductImages(Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product where file !='' order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public int getNum(String typeName){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product where productSort.name='"+typeName+"'");
+        int n=query.list().size();
+        return n;
+    }
+
     public List<ProductSort> getProductSortList(Integer start, Integer max) {
         Query query = sessionFactory.getCurrentSession().createQuery("from ProductSort");
         query.setFirstResult(start);

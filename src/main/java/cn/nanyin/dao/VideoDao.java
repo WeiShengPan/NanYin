@@ -59,6 +59,11 @@ public class VideoDao {
         return n;
     }
 
+    public List<Video> findVideos(String text) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Video where title like '%"+text+"%'");
+        return query.list();
+    }
+
     public void updateVideo(Video video)
     {
         sessionFactory.getCurrentSession().saveOrUpdate(video);

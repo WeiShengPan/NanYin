@@ -140,20 +140,20 @@
               <div id="menu2">
                 <!--tag标题-->
                 <ul id="nav">
-                  <li><a href="#" class="selected">歌词</a></li>
+                  <li><a href="#" class="selected">说明</a></li>
                   <li><a href="#" class="">工尺谱</a></li>
                   <li><a href="#" class="">简谱</a></li>
                 </ul>
                 <!--二级菜单-->
                 <div id="menu_con">
                   <div class="tag" style="display:block">
-                    这里是jQuery特效内容列表
+                    ${audio.content}
                   </div>
                   <div class="tag" style="display:none">
-                    这里是tab切换效果
+                    ${audio.gcp}
                   </div>
                   <div class="tag"  style="display:none">
-                    这里是菜单导航效果
+                    ${audio.jp}
                   </div>
                 </div>
               </div>

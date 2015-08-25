@@ -2,15 +2,19 @@ package cn.nanyin.controller;
 
 import cn.nanyin.dao.*;
 import cn.nanyin.model.*;
+import com.sun.deploy.net.HttpResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import sun.awt.image.ImageWatched;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -30,10 +34,25 @@ public class ViewController {
     private User1Dao userDao;
 
     @Autowired
+    private ArticleDao articleDao;
+
+    @Autowired
     private VideoDao videoDao;
 
     @Autowired
     private AudioDao audioDao;
+
+    @Autowired
+    private DirectoryDao directoryDao;
+
+    @Autowired
+    private ProductDao productDao;
+
+    @Autowired
+    private TeachingDao teachingDao;
+
+    @Autowired
+    private CollegeDao collegeDao;
 
     @Autowired
     private AnnouncementDao announcementDao;
@@ -51,9 +70,9 @@ public class ViewController {
     @RequestMapping(params = "method=news", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String getNews( )throws  Exception{
-        List<News> newsList=newsDao.getNewsList(0,6);
+        List<News> newsList=newsDao.getNewsList(0, 6);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<6;i++){
+        for(int i=0;i<newsList.size();i++){
             News tempNew=newsList.get(i);
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",tempNew.getId());
@@ -75,13 +94,13 @@ public class ViewController {
         out.close();
         */
     }
-
+    /*************新闻的缩略图******************/
     @RequestMapping(params = "method=getNewsImages", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String getNewsImages( )throws  Exception{
-        List<News> newsList=newsDao.getNewsImages(0,5);
+        List<News> newsList=newsDao.getNewsImages(0, 5);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<newsList.size();i++){
             News tempNew=newsList.get(i);
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",tempNew.getId());
@@ -92,7 +111,6 @@ public class ViewController {
         String result=jsonArray.toString();
         return result;
     }
-
 
     /****************链接到每个新闻的详情页面*************************/
     @RequestMapping(params = "method=newsLink", produces = "plain/text;charset=UTF-8")
@@ -126,6 +144,129 @@ public class ViewController {
         return model;
     }
 
+    /******************************图文乐理******************************************************************************/
+    /*****首页中的图文乐理模块（从数据库中读取6条数据）***************/
+    @RequestMapping(params = "method=getContent", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getContent(int type){
+        String typeName="";
+        if(type==1){
+            typeName+="南音文库";
+        }else if(type==2){
+            typeName+="南音图谱";
+        }else if(type==3){
+            typeName+="南音乐理";
+        }
+        List<Book> bookList=articleDao.getBookList(typeName,0,6,1);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<bookList.size();i++){
+            Book temp=bookList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getTitle());
+            map.put("type", temp.getBookSort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=libraryLink", produces = "plain/text;charset=UTF-8")
+    public ModelAndView showLibrary( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("libraryDetail");
+        long libraryId=Long.parseLong(id);
+        Book bookDetail=articleDao.getBookById(libraryId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",bookDetail.getTitle());
+        map.put("author",bookDetail.getAuthor());
+        String date=bookDetail.getAddDate().toString();
+        map.put("date",date);
+        map.put("hits", bookDetail.getHits());
+        map.put("source", bookDetail.getSource());
+        map.put("content", bookDetail.getContent());
+
+        model.addObject("library", map);
+
+        Book updateBook=bookDetail;
+        updateBook.setHits(bookDetail.getHits() + 1);
+        articleDao.updateBook(updateBook);
+
+        return model;
+
+    }
+
+    @RequestMapping(params = "method=galleryLink", produces = "plain/text;charset=UTF-8")
+    public ModelAndView showGallery( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("galleryDetail");
+        long galleryId=Long.parseLong(id);
+        Book bookDetail=articleDao.getBookById(galleryId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",bookDetail.getTitle());
+        map.put("author",bookDetail.getAuthor());
+        String date=bookDetail.getAddDate().toString();
+        map.put("date",date);
+        map.put("hits", bookDetail.getHits());
+        map.put("source", bookDetail.getSource());
+        map.put("content", bookDetail.getContent());
+
+        model.addObject("gallery", map);
+
+        Book updateBook=bookDetail;
+        updateBook.setHits(bookDetail.getHits() + 1);
+        articleDao.updateBook(updateBook);
+
+        return model;
+
+    }
+
+    /*************图库的缩略图******************/
+    @RequestMapping(params = "method=getGalleryImages", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getGalleryImages( )throws  Exception{
+        List<Book> bookList=articleDao.getGalleryImages(0,10);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<bookList.size();i++){
+            Book temp=bookList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id", temp.getId());
+            map.put("path", temp.getFile());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+
+    @RequestMapping(params = "method=musicTheoryLink", produces = "plain/text;charset=UTF-8")
+    public ModelAndView showMusicTheory( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("musicTheoryDetail");
+        long musicTheoryId=Long.parseLong(id);
+        Book bookDetail=articleDao.getBookById(musicTheoryId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",bookDetail.getTitle());
+        map.put("author",bookDetail.getAuthor());
+        String date=bookDetail.getAddDate().toString();
+        map.put("date",date);
+        map.put("hits", bookDetail.getHits());
+        map.put("source", bookDetail.getSource());
+        map.put("content", bookDetail.getContent());
+
+        model.addObject("musicTheory", map);
+
+        Book updateBook=bookDetail;
+        updateBook.setHits(bookDetail.getHits() + 1);
+        articleDao.updateBook(updateBook);
+
+        return model;
+
+    }
+
+
 /******************************音频******************************************************************************/
     /*****首页中的音频模块（从数据库中读取6条音频）***************/
     @RequestMapping(params = "method=getAudios", produces = "plain/text;charset=UTF-8")
@@ -133,7 +274,7 @@ public class ViewController {
     public String getAudios(){
         List<Audio> audioList=audioDao.getAudioList(0,6);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<6;i++){
+        for(int i=0;i<audioList.size();i++){
             Audio temp=audioList.get(i);
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",temp.getId());
@@ -145,6 +286,8 @@ public class ViewController {
         String result=jsonArray.toString();
         return result;
     }
+
+
     /*************************链接到音频的详情页面**********************************/
     @RequestMapping(params = "method=audioLink")
     public ModelAndView showAudio( @RequestParam("id") String id){
@@ -181,7 +324,7 @@ public class ViewController {
     public String getVideos(){
         List<Video> videoList=videoDao.getVideoList(0,6);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<6;i++){
+        for(int i=0;i<videoList.size();i++){
             Video temp=videoList.get(i);
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",temp.getId());
@@ -222,6 +365,239 @@ public class ViewController {
         return model;
     }
 
+    /******************************名录******************************************************************************/
+    /*****首页中的名录模块（从数据库中读取6条数据）***************/
+    @RequestMapping(params = "method=getDirectory", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getDirectory(){
+        List<Directory> directories=directoryDao.getDirectoryList(0,6);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<directories.size();i++){
+            Directory temp=directories.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getTitle());
+            map.put("type",temp.getDirectorySort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=directoryLink")
+    public ModelAndView showDirectory( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("directoryDetail");
+        long directoryId=Long.parseLong(id);
+        Directory directoryDetail=directoryDao.getDirectoryById(directoryId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("id",directoryDetail.getId());
+        map.put("title", directoryDetail.getTitle());
+        map.put("author",directoryDetail.getAuthor());
+        String date=directoryDetail.getAddDate().toString();
+        map.put("date", date);
+        map.put("hits", directoryDetail.getHits());
+        map.put("content",directoryDetail.getContent());
+        map.put("source", directoryDetail.getSource());
+
+        model.addObject("directory", map);
+
+        Directory updateDirectory=directoryDetail;
+        updateDirectory.setHits(directoryDetail.getHits() + 1);
+        directoryDao.updateDirectory(updateDirectory);
+
+        return model;
+    }
+
+    /*****首页中的商城模块（从数据库中读取6条信息）***************/
+    @RequestMapping(params = "method=getProducts", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getProducts(){
+        List<Product> productList=productDao.getProductList(0,6);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<productList.size();i++){
+            Product temp=productList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getName());
+            map.put("type",temp.getProductSort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=showProductList", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String showProductionList(int type){
+        String typeName="";
+        if(type==1){
+            typeName+="南音书籍";
+        }else if(type==2){
+            typeName+="南音音像";
+        }else if(type==3){
+            typeName+="南音乐器";
+        }else if(type==4){
+            typeName+="南音伴奏";
+        }else if(type==5){
+            typeName+="专辑录制";
+        } else if(type==6){
+            typeName+="文创艺品 ";
+        }else if(type==7){
+            typeName+="其他配件";
+        }
+        List<Product> productList=productDao.getProductList(typeName,0,5);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<productList.size();i++){
+            Product temp=productList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("name",temp.getName());
+            map.put("path",temp.getFile());
+            map.put("price",temp.getPrice());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=productLink")
+    public ModelAndView showProduct( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("productDetail");
+        long productId=Long.parseLong(id);
+        Product productDetail=productDao.getProductById(productId);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("name", productDetail.getName());
+        map.put("price", productDetail.getPrice());
+        String date=productDetail.getAddDate().toString();
+        map.put("date",date);
+        map.put("path",productDetail.getFile());
+        map.put("recommendation", productDetail.getRecommendation());
+        map.put("content",productDetail.getContent());
+
+        model.addObject("product", map);
+        return model;
+    }
+
+    /*************商城的缩略图******************/
+    @RequestMapping(params = "method=getProductImages", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getProductImages( )throws  Exception{
+        List<Product> productList=productDao.getProductImages(0, 10);
+        System.out.println("共有图片："+productList.size());
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<productList.size();i++){
+            Product temp=productList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id", temp.getId());
+            map.put("path", temp.getFile());
+            map.put("name",temp.getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+
+    /*****首页中的社团模块（从数据库中读取6条信息）***************/
+    @RequestMapping(params = "method=getColleges", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getColleges(){
+        List<College> collegeList=collegeDao.getCollegeList(0,6);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<collegeList.size();i++){
+            College temp=collegeList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getName());
+            map.put("type",temp.getCollegeArea().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=collegeLink")
+    public ModelAndView showCollege( @RequestParam("id") String id){
+        long productId=Long.parseLong(id);
+        College collegeDetail=collegeDao.getCollegeById(productId);
+        boolean vip=collegeDetail.isVip();
+        String a="";
+        if(vip){
+            a+="collegeDetail1";
+        }else{
+            a+="collegeDetail2";
+        }
+        ModelAndView model = new ModelAndView(a);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("name", collegeDetail.getName());
+        map.put("members", collegeDetail.getMainMembers());
+        String activeDate=collegeDetail.getActivityDate();
+        map.put("activeDate",activeDate);
+        map.put("leader",collegeDetail.getLeader());
+        map.put(" exLeader",collegeDetail.getExLeader());
+        map.put("email",collegeDetail.getEmail());
+        String formDate=collegeDetail.getFormDate();
+        map.put("formDate",formDate);
+        map.put("address",collegeDetail.getAddress());
+        map.put("contact",collegeDetail.getContact());
+        map.put("tel",collegeDetail.getTelephone());
+        map.put("memberNum",collegeDetail.getMemberNum());
+        map.put("introduction",collegeDetail.getIntroduction());
+        map.put("vip",collegeDetail.isVip());
+
+        model.addObject("college", map);
+        return model;
+    }
+
+    /*****首页中的教学模块（从数据库中读取6条信息）***************/
+    @RequestMapping(params = "method=getTeaching", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String getTeaching(){
+        List<Teaching> teachingList=teachingDao.getTeachingList(0,6);
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<teachingList.size();i++){
+            Teaching temp=teachingList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getTitle());
+            map.put("type",temp.getTeachingSort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+    @RequestMapping(params = "method=teachingLink")
+    public ModelAndView showTeaching( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("teachingDetail");
+        long teachingId=Long.parseLong(id);
+        Teaching teachingDetail=teachingDao.getTeachingById(teachingId);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("id",teachingDetail.getId());
+        map.put("title",teachingDetail.getTitle());
+        map.put("teacher",teachingDetail.getTeacher());
+        String date=teachingDetail.getAddDate().toString();
+        map.put("date", date);
+        map.put("path",teachingDetail.getFile());
+        map.put("source",teachingDetail.getSource());
+        map.put("hits",teachingDetail.getHits());
+        map.put("content", teachingDetail.getContent());
+        model.addObject("teaching", map);
+
+        Teaching updateTeaching=teachingDetail;
+        updateTeaching.setHits(teachingDetail.getHits() + 1);
+        teachingDao.updateTeaching(updateTeaching);
+
+        return model;
+    }
 
     /******************************会员登录*******************************************************/
     @RequestMapping(params = "method=login",produces = "plain/text;charset=UTF-8")
@@ -267,7 +643,7 @@ public class ViewController {
     public String getAnnouncement(){
         List<Announcement> announcementList=announcementDao.getAnnouncementList(0,5);
         List<Map> list=new ArrayList<Map>();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<announcementList.size();i++){
             Announcement announcement=announcementList.get(i);
             Map<String,Object> map=new HashMap<String,Object>();
             map.put("id",announcement.getId());
@@ -328,5 +704,80 @@ public class ViewController {
         ModelAndView  model = new ModelAndView("userCenter");
         return model;
     }
+
+    @RequestMapping(params = "method=searchContent",produces = "plain/text;charset=UTF-8")
+    public  ModelAndView searchContent(HttpServletRequest request){
+
+        String text=request.getParameter("searchContent");
+
+        ModelAndView  model = new ModelAndView("searchList");
+        int type=Integer.parseInt(request.getParameter("selectItem"));
+
+        System.out.println(text+","+type);
+
+        Map<String,Object> dataMap=new HashMap<String,Object>();
+
+        String typeName="";
+        if(type==1){
+            typeName+="南音文库";
+            List<Book> bookList=articleDao.findBooks(typeName, text);
+            List<Map> list=new ArrayList<Map>();
+            for(int i=0;i<bookList.size();i++){
+                Book book=bookList.get(i);
+                Map<String,Object> map=new HashMap<String,Object>();
+                map.put("id",book.getId());
+                map.put("title",book.getTitle());
+                String date=book.getAddDate().toString();
+                map.put("date",date);
+                map.put("hits",book.getHits());
+                list.add(map);
+            }
+            JSONArray jsonArray=JSONArray.fromObject(list);
+            String result=jsonArray.toString();
+            dataMap.put("dataList",result);
+            dataMap.put("type",type);
+            model.addObject("data", dataMap);
+        }else if(type==2){
+            List<Video> videoList=videoDao.findVideos(text);
+            List<Map> list=new ArrayList<Map>();
+            for(int i=0;i<videoList.size();i++){
+                Video temp=videoList.get(i);
+                Map<String,Object> map=new HashMap<String,Object>();
+                map.put("id", temp.getId());
+                map.put("title", temp.getTitle());
+                String date=temp.getAddDate().toString();
+                map.put("date",date);
+                map.put("hits", temp.getHits());
+                list.add(map);
+            }
+            JSONArray jsonArray=JSONArray.fromObject(list);
+            String result=jsonArray.toString();
+            dataMap.put("dataList",result);
+            dataMap.put("type",type);
+            model.addObject("data",dataMap);
+        }else if(type==3){
+            List<Audio> audioList=audioDao.findAudios(text);
+            List<Map> list=new ArrayList<Map>();
+            for(int i=0;i<audioList.size();i++){
+                Audio temp=audioList.get(i);
+                Map<String,Object> map=new HashMap<String,Object>();
+                map.put("id", temp.getId());
+                map.put("title", temp.getTitle());
+                String date=temp.getAddDate().toString();
+                map.put("date",date);
+                map.put("hits", temp.getHits());
+                list.add(map);
+            }
+            JSONArray jsonArray=JSONArray.fromObject(list);
+            String result=jsonArray.toString();
+            dataMap.put("dataList",result);
+            dataMap.put("type",type);
+            model.addObject("data",dataMap);
+        }
+
+        return model;
+
+    }
+
 
 }

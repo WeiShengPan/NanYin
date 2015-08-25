@@ -1,9 +1,6 @@
 package cn.nanyin.controller;
 
-import cn.nanyin.dao.AudioDao;
-import cn.nanyin.dao.CommentsDao;
-import cn.nanyin.dao.NewsDao;
-import cn.nanyin.dao.VideoDao;
+import cn.nanyin.dao.*;
 import cn.nanyin.model.*;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,9 @@ public class CommentsController {
 
     @Autowired
     AudioDao audioDao;
+
+    @Autowired
+    TeachingDao teachingDao;
 
     /***************************新闻评论*****************************************************************************/
     /*************************发送新闻评论**********************/
@@ -147,6 +147,42 @@ public class CommentsController {
 
         return result;
     }
-
+/***************************教学评论*****************************************************************************/
+    /*************************发送教学评论**********************/
+    @RequestMapping(params = "method=sendTeachingComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public  void sendTeachingComments(long teachingId,String content, HttpSession session )throws Exception{
+        User1 user=(User1)session.getAttribute("loginUser");
+        Teaching teaching=teachingDao.getTeachingById(teachingId);
+        Date date=new Date();
+        TeachingComments teachingComments=new TeachingComments();
+        teachingComments.setAddDate(date);
+        teachingComments.setContent(content);
+        teachingComments.setTeaching(teaching);
+        teachingComments.setUser(user);
+        commentsDao.addTeachingComment(teachingComments);
+    }
+    /**************列出某个教学页面中的所有评论***************/
+    @RequestMapping(params = "method=listTeachingComments",produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String listTeachingComments(long teachingId){
+        List<TeachingComments> teachingCommentses=commentsDao.getTeachingCommentsList(teachingId);
+        if(teachingCommentses==null){
+            return "";
+        }
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<teachingCommentses.size();i++){
+            Map<String,Object> map =new HashMap<String,Object>();
+            TeachingComments temp=teachingCommentses.get(i);
+            map.put("userName",temp.getUser().getUserName());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("content",temp.getContent());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
 
 }

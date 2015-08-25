@@ -1,9 +1,6 @@
 package cn.nanyin.dao;
 
-import cn.nanyin.model.AudioComments;
-import cn.nanyin.model.News;
-import cn.nanyin.model.NewsComments;
-import cn.nanyin.model.VideoComments;
+import cn.nanyin.model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +21,18 @@ public class CommentsDao {
     private SessionFactory sessionFactory;
 
     /***********************************新闻**************************************************************************/
-    public List<NewsComments> getNewsCommentsList(long id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments where news.id="+id+" order by addDate desc");
+    public List<NewsComments> getNewsCommentsList(long newId){
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments where news.id="+newId+" order by addDate desc");
         return query.list();
     }
 
-    public List<NewsComments> getNewsCommentsList(){
+    public NewsComments getNewsCommentsById(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments where id="+id+"");
+        return (NewsComments)query.list().get(0);
+    }
+
+    public List<NewsComments> getNewsCommentsList(Integer start, Integer max){
         Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments order by addDate desc");
-        return query.list();
-    }
-
-    public List<NewsComments> getNewsCommentsList(Integer start,Integer max) {
-        Query query=sessionFactory.getCurrentSession().createQuery("from NewsComments");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
@@ -49,24 +46,19 @@ public class CommentsDao {
     public void deleteNewsComments(NewsComments newsComments) {
         sessionFactory.getCurrentSession().delete(newsComments);
     }
-
-    public NewsComments getNewsCommentsById(long id)
-    {
-        return (NewsComments)sessionFactory.getCurrentSession().get(NewsComments.class,id);
-    }
     /***********************************视频**************************************************************************/
-    public List<VideoComments> getVideoCommentsList(long id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments where video.id=" + id + " order by addDate desc");
+    public List<VideoComments> getVideoCommentsList(long videoId){
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments where video.id=" + videoId + " order by addDate desc");
         return query.list();
     }
 
-    public List<VideoComments> getVideoCommentsList(){
+    public VideoComments getVideoCommentsById(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments where id="+id+"");
+        return (VideoComments)query.list().get(0);
+    }
+
+    public List<VideoComments> getVideoCommentsList(Integer start, Integer max){
         Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments order by addDate desc");
-        return query.list();
-    }
-
-    public List<VideoComments> getVideoCommentsList(Integer start,Integer max) {
-        Query query=sessionFactory.getCurrentSession().createQuery("from VideoComments");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
@@ -81,24 +73,19 @@ public class CommentsDao {
         sessionFactory.getCurrentSession().delete(videoComments);
     }
 
-    public VideoComments getVideoCommentsById(long id)
-    {
-        return (VideoComments)sessionFactory.getCurrentSession().get(VideoComments.class,id);
-    }
-
     /***********************************音频**************************************************************************/
-    public List<AudioComments> getAudioCommentsList(long id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments where audio.id=" + id + " order by addDate desc");
+    public List<AudioComments> getAudioCommentsList(long audioId){
+        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments where audio.id=" + audioId + " order by addDate desc");
         return query.list();
     }
 
-    public List<AudioComments> getAudioCommentsList(){
+    public AudioComments getAudioCommentsById(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments where id="+id+"");
+        return (AudioComments)query.list().get(0);
+    }
+
+    public List<AudioComments> getAudioCommentsList(Integer start, Integer max){
         Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments order by addDate desc");
-        return query.list();
-    }
-
-    public List<AudioComments> getAudioCommentsList(Integer start,Integer max) {
-        Query query=sessionFactory.getCurrentSession().createQuery("from AudioComments");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.list();
@@ -113,8 +100,29 @@ public class CommentsDao {
         sessionFactory.getCurrentSession().delete(audioComments);
     }
 
-    public AudioComments getAudioCommentsById(long id)
-    {
-        return (AudioComments)sessionFactory.getCurrentSession().get(AudioComments.class,id);
+    /***********************************教学**************************************************************************/
+    public List<TeachingComments> getTeachingCommentsList(long teachingId){
+        Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments where teaching.id="+teachingId+" order by addDate desc");
+        return query.list();
+    }
+
+    public TeachingComments getTeachingCommentsById(long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments where id="+id+"");
+        return (TeachingComments)query.list().get(0);
+    }
+
+    public List<TeachingComments> getTeachingCommentsList(Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+    public Serializable addTeachingComment(TeachingComments teachingComments) {
+        Serializable result= sessionFactory.getCurrentSession().save(teachingComments);
+        return result;
+    }
+
+    public void deleteTeachingComments(TeachingComments teachingComments) {
+        sessionFactory.getCurrentSession().delete(teachingComments);
     }
 }

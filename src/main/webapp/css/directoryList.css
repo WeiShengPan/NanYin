@@ -1,0 +1,17 @@
+*{ margin:0; padding:0; text-decoration:none; list-style-type:none;font-family: "微软雅黑"}
+body{ background-color:#000;}
+
+#container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
+#content{width:100%;  position:relative; z-index:1; font-size:12px;margin-top: 5px; border-top:#CCC 1px solid;}
+#main{width:79.5%; float:left;}
+#main #title{width: 95%;margin: 10px auto; font-size: 16px;font-weight: bold;color:#9c3328;}
+#main #directoryList{ width: 95%; height: auto;margin: 10px auto; }
+#main #directoryList table{ width:100%;text-align: center}
+#main #directoryList table tr{ height: 30px}
+#main #directoryList table thead{ font-size: medium;font-weight: bolder;color: #902b2b}
+#main #directoryList table td a{color:#000}
+#main #directoryList table td a:hover{color:#F00; text-decoration:underline}
+
+#pagination{ width: 95%;margin: 20px auto; text-align: center}
+#pagination a{color:#000}
+#pagination a:hover{color:#F00; text-decoration:underline}

@@ -51,6 +51,24 @@ public class CollegeDao {
         return (CollegeArea) sessionFactory.getCurrentSession().get(CollegeArea.class, id);
     }
 
+    public List<College> getCollegeList(String typeName,Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from College where collegeArea.name='"+typeName+"'");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public int getNum(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from College");
+        int num=query.list().size();
+        return num;
+    }
+    public int getNum(String typeName){
+        Query query = sessionFactory.getCurrentSession().createQuery("from College where collegeArea.name='"+typeName+"'");
+        int num=query.list().size();
+        return num;
+    }
+
     public List<CollegeArea> getCollegeAreaList(Integer start,Integer max) {
         Query query=sessionFactory.getCurrentSession().createQuery("from CollegeArea");
         query.setFirstResult(start);

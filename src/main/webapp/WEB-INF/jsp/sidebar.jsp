@@ -14,7 +14,7 @@
 <div id="sidebar">
   <!--登录-->
   <div id="login" style=" width:98%; height:160px; margin:10px auto;border-bottom: #CCC 1px dashed ">
-    <p class="c3" align="center">会员登录</p>
+    <p class="c3" align="center">会员登陆</p>
     <form id="loginForm">
       <div id="loginField">
         <table id="loginTab" class="c2"  style=" width:100%; height:120px; margin-top:10px">
