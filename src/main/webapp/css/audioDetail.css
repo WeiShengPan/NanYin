@@ -6,14 +6,14 @@ body{ background-color:#000;}
 #main{width:79.5%; height: auto; float:left;}
 #main #audio{width: 98%; height: auto; margin: 0 auto;}
 #main #audio #audioTitle{width: 100%; line-height: 25px}
-#main #audio #audioContent{width: 100%; height:500px; margin-top: 10px; text-align: center}
+#main #audio #audioContent{width: 100%; height:700px; margin-top: 10px; text-align: center}
 #musicPlayer{ width: 100%; height: 50px;}
 #tab{width: 100%;}
 #tab #menu2{width:100%; overflow:hidden; margin:0 auto;border:1px solid #CCC;}
 #tab #menu2 #nav {display:block;width:100%;padding:0;margin:0;list-style:none;}
 #tab #menu2 #nav li {float:left;width:33.3%;}
 #tab #menu2 #nav li a {display:block;line-height:27px;text-decoration:none;padding:0 0 0 5px; text-align:center; color:#333;}
-#tab #menu2 #menu_con{ width:358px; height:450px; border-top:none}
+#tab #menu2 #menu_con{ width:358px; height:600px; border-top:none; overflow: auto}
 #tab .tag{ padding:10px; overflow:hidden;}
 #tab .selected{background:#C5A069; color:#fff;}
 
