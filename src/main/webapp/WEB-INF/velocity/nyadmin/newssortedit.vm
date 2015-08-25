@@ -1,6 +1,13 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(新闻管理)").parent().addClass("active");
+
+     $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 </script>')
 <section class="content-header">
     <h1>
@@ -26,7 +33,7 @@
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select name="upperNewsSort.id" class="form-control">
+                                <select id="sel" name="upperNewsSort.id" class="form-control">
                                     #foreach($newsSort in $newsSortList)
                                         <option value="$newsSort.id">$newsSort.name</option>
                                     #end
@@ -42,6 +49,7 @@
 
                         <div>
                             <input type="hidden" name="id" value="$!newsSort.id">
+                            <input id="sortid" type="hidden" value="$!newsSort.upperNewsSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

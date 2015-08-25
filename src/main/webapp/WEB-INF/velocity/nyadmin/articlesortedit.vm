@@ -1,6 +1,12 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(图文乐谱)").parent().addClass("active");
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 </script>')
 <section class="content-header">
     <h1>
@@ -26,7 +32,7 @@
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select name="upperBookSort.id" class="form-control">
+                                <select id="sel" name="upperBookSort.id" class="form-control">
                                     #foreach($bookSort in $bookSortList)
                                         <option value="$bookSort.id">$bookSort.name</option>
                                     #end
@@ -42,6 +48,7 @@
 
                         <div>
                             <input type="hidden" name="id" value="$!bookSort.id">
+                            <input id="sortid" type="hidden" value="$!bookSort.upperBookSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

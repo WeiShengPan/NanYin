@@ -8,7 +8,9 @@ $(document).ready(function(){
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
-     $("#submit").click(function () {
+
+
+    $("#submit").click(function () {
         $("#news-form").submit();
     });
     $("#upload-form").submit(function () {
@@ -28,6 +30,13 @@ $(document).ready(function(){
             }
         });
         return false;
+    });
+
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
     });
 });
 </script>')
@@ -53,7 +62,7 @@ $(document).ready(function(){
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>选择类别</label>
-                                <select name="newsSort.id" class="form-control">
+                                <select id="sel" name="newsSort.id" class="form-control">
                                     #foreach($newsSort in $newsSortList)
                                         #if($newsSort.id!=1)
                                             <option value="$newsSort.id">$newsSort.name</option>
@@ -90,7 +99,8 @@ $(document).ready(function(){
                         </textarea>
 
                         <div>
-                            <input type="hidden" name="id" value="$!news.id">
+                            <input id="newsid" type="hidden" name="id" value="$!news.id">
+                            <input id="sortid" type="hidden" value="$!news.newsSort.id">
                         </div>
                         <input type="hidden" name="file" value="$!news.file" required>
                     </form>
@@ -120,3 +130,6 @@ $(document).ready(function(){
     </div>
     <!-- ./row -->
 </section><!-- /.content -->
+<script>
+
+</script>
