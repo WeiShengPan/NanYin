@@ -1,6 +1,12 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 </script>')
 <section class="content-header">
     <h1>
@@ -26,7 +32,7 @@
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select name="upperVideoSort.id" class="form-control">
+                                <select id="sel" name="upperVideoSort.id" class="form-control">
                                     #foreach($videoSort in $videoSortList)
                                         <option value="$videoSort.id">$videoSort.name</option>
                                     #end
@@ -42,6 +48,7 @@
                         </div>
                         <div>
                             <input type="hidden" name="id" value="$!videoSort.id">
+                            <input id="sortid" type="hidden" value="$!videoSort.upperVideoSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

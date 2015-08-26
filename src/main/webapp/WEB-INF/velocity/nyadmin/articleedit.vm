@@ -29,6 +29,12 @@ $(document).ready(function(){
         });
         return false;
     });
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 });
 </script>')
 <!-- Content Header (Page header) -->
@@ -53,7 +59,7 @@ $(document).ready(function(){
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
                                 <label>选择类别</label>
-                                <select name="bookSort.id" class="form-control">
+                                <select id="sel" name="bookSort.id" class="form-control">
                                     #foreach($bookSort in $bookSortList)
                                         #if($bookSort.id!=1)
                                             <option value="$bookSort.id">$bookSort.name</option>
@@ -94,6 +100,7 @@ $(document).ready(function(){
 
                         <div>
                             <input type="hidden" name="id" value="$!book.id">
+                            <input id="sortid" type="hidden" value="$!book.bookSort.id">
                         </div>
                         <input type="hidden" name="file" value="$!book.file" required>
                     </form>

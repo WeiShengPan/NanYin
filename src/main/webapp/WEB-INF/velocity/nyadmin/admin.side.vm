@@ -152,6 +152,17 @@
                     <li><a href="commentslist"><i class="fa fa-circle-o"></i> 留言列表</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>公告管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="announcementlist"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+                    <li><a href="announcementaddpage"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

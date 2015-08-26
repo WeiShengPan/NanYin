@@ -26,6 +26,12 @@ $(document).ready(function(){
         return false;
     });
 
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 });
 </script>')
 <section class="content-header">
@@ -49,7 +55,7 @@ $(document).ready(function(){
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
                                 <label>选择类别</label>
-                                <select name="videoSort.id" class="form-control">
+                                <select id="sel" name="videoSort.id" class="form-control">
                                     #foreach($videoSort in $videoSortList)
                                         #if($videoSort.id!=1)
                                             <option value="$videoSort.id">$videoSort.name</option>
@@ -92,6 +98,7 @@ $(document).ready(function(){
                         <input type="hidden" name="path">
                         <div>
                             <input type="hidden" name="id" value="$!video.id">
+                            <input id="sortid" type="hidden" value="$!video.videoSort.id">
                         </div>
 
                     </form>

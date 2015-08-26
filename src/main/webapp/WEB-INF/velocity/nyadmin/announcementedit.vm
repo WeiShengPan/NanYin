@@ -1,0 +1,68 @@
+#set($pageJS='
+<script>
+$(document).ready(function(){
+    $(".sidebar-menu li.treeview>a:contains(公告管理)").parent().addClass("active");
+        $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorannouncementimage"});
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+     $("#submit").click(function () {
+        $("#news-form").submit();
+    });
+
+});
+</script>')
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        公告管理
+        <small>修改公告</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <br>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    <form id="news-form" action="/nyadmin/announcementedit" method="post">
+                        <div>
+                            <!-- 标题 -->
+                            <div>
+
+                                <label>标题</label>
+                                <input type="text" name="title" class="form-control" value="$!announcement.title" type="text"
+                                       required/>
+
+                            </div>
+                        </div>
+                        <!--内容-->
+                        <label>详细内容</label>
+                        <textarea id="editor1" name="content" rows="10" cols="80" required>
+                            $!announcement.content
+                        </textarea>
+
+                        <div>
+                            <input type="hidden" name="id" value="$!announcement.id">
+                        </div>
+
+                    </form>
+                    </br>
+
+                    <div class="box-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section><!-- /.content -->

@@ -29,6 +29,8 @@ $(document).ready(function(){
           "autoWidth": false
         });
       });
+
+
 });
 </script>')
 <section class="content-header">

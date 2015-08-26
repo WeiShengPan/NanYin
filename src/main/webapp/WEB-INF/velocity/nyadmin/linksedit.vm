@@ -25,6 +25,14 @@ $(document).ready(function(){
         });
         return false;
     });
+    $(function()
+    {
+        var type=$("#linktype")[0].value;
+        if(type=="false")
+            $("#sel option[value="+0+"]").attr("selected",true);
+        else if(type=="true")
+            $("#sel option[value="+1+"]").attr("selected",true);
+    });
 });
 </script>')
 <section class="content-header">
@@ -64,7 +72,7 @@ $(document).ready(function(){
                             <!--链接类型-->
                             <div class="form-group col-md-6">
                                 <label>链接类型</label>
-                                <select name="linkType" class="form-control">
+                                <select id="sel" name="linkType" class="form-control">
                                     <option value="0">文字链接</option>
                                     <option value="1">图片链接</option>
                                 </select>
@@ -77,6 +85,7 @@ $(document).ready(function(){
                         </div>
                         <div>
                             <input type="hidden" name="id" value="$!links.id">
+                            <input id="linktype" type="hidden" value="$!links.linkType">
                         </div>
                         <input type="hidden" name="file" value="$!links.file" required>
                     </form>
@@ -103,5 +112,6 @@ $(document).ready(function(){
     </div>
 </section><!-- /.content -->
 <script>
+
 
 </script>
