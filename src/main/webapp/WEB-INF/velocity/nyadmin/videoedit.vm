@@ -2,7 +2,12 @@
 <script>
 $(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
-
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorvideoimage"});
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
     $("#submit").click(function () {
         $("#data-form").submit();
     });
@@ -19,6 +24,42 @@ $(document).ready(function(){
                 if (data.result == "success") {
                     $("#data-form input[name=\"path\"]").val(data.fileName);
 
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+     $("#upload-form1").submit(function () {
+        var formData1 = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/videogcp",
+            type: "POST",
+            dataType: "json",
+            data: formData1,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"gcp\"]").val(data.fileName);
+                }
+                alert(data.message);
+            }
+        });
+        return false;
+    });
+     $("#upload-form2").submit(function () {
+        var formData2 = new FormData(this);
+        $.ajax({
+            url: "/nyadmin/videojp",
+            type: "POST",
+            dataType: "json",
+            data: formData2,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                if (data.result == "success") {
+                    $("#data-form input[name=\"jp\"]").val(data.fileName);
                 }
                 alert(data.message);
             }
@@ -94,8 +135,14 @@ $(document).ready(function(){
                                 <input type="text" name="producer" class="form-control" value="$!video.producer"/>
                             </div>
                         </div>
-
-                        <input type="hidden" name="path">
+                        <!--内容-->
+                        <label>内容</label>
+                                <textarea id="editor1" name="content" rows="10" cols="80" required>
+                                    $!video.content
+                                </textarea>
+                        <input type="hidden" name="path" value="$!video.path">
+                        <input type="hidden" name="gcp" value="$!video.gcp" required>
+                        <input type="hidden" name="jp" value="$!video.jp" required>
                         <div>
                             <input type="hidden" name="id" value="$!video.id">
                             <input id="sortid" type="hidden" value="$!video.videoSort.id">
@@ -122,7 +169,34 @@ $(document).ready(function(){
                         </div>
                     </form>
 
+                    <form id="upload-form1" role="form" enctype="multipart/form-data">
+                        <!--工尺谱-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传工尺谱</label>
+                            <input type="file" name="gcp" id="exampleInputFile" value="$!video.gcp">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!video.gcp">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
+                        </div>
+                    </form>
+                    <br>
+
+                    <form id="upload-form2" role="form" enctype="multipart/form-data">
+                        <!--简谱-->
+                        <div class="form-group">
+                            <label for="exampleInputFile">上传简谱</label>
+                            <input type="file" name="jp" id="exampleInputFile" value="$!video.jp">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!video.jp">
+                            <br>
+                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                        </div>
+                    </form>
                     <div class="box-footer">
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                     </div>

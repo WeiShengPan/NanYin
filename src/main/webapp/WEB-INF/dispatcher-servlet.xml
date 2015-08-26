@@ -59,7 +59,7 @@
         <!-- 数据库的用户名 -->
         <property name="username" value="root"/>
         <!-- 连接数据库的密码 -->
-        <property name="password" value="admin"/>
+        <property name="password" value="pws1993"/>
     </bean>
     <!--End 数据源 -->
     <!--Begin Hibernate 的 SessionFactory -->

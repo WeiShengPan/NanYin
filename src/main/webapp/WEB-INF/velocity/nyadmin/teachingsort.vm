@@ -4,7 +4,7 @@
 </script>')
 <section class="content-header">
     <h1>
-        教学中心
+        视频管理
         <small>类别管理</small>
     </h1>
 
@@ -31,13 +31,14 @@
                         </thead>
                         <tbody>
 
-                            #foreach($videoSort in $videoSortList)
-                                #if($videoSort.id!=1)
+                            #foreach($teachingSort in $teachingSortList)
+                                #if($teachingSort.id!=1)
                                 <tr>
-                                    <td>$videoSort.level</td>
-                                    <td>$videoSort.name</td>
-                                    <td>$!videoSort.upperVideoSort.name</td>
-                                    <td><a href="videosorteditpage?id=$videoSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="videosortdelete?id=$videoSort.id" class="btn btn-danger">删除</a></td>
+                                    <td>$teachingSort.level</td>
+                                    <td>$teachingSort.name</td>
+                                    <td>$!teachingSort.upperTeachingSort.name</td>
+                                    <td><a href="teachingsorteditpage?id=$teachingSort.id" class="btn btn-primary">修改 </a>&nbsp<a
+                                            href="teachingsortdelete?id=$teachingSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
                                 #end
                             #end
@@ -57,24 +58,24 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/videosortadd" method="post">
+                    <form action="/nyadmin/teachingsortadd" method="post">
                         <div>
-                        <!-- 类别 -->
-                        <div class="form-group col-md-6">
-                            <label>上级类别</label>
-                            <select name="upperVideoSort.id" class="form-control">
-                                #foreach($videoSort in $videoSortList)
-                                    <option value="$videoSort.id">$videoSort.name</option>
-                                #end
+                            <!-- 类别 -->
+                            <div class="form-group col-md-6">
+                                <label>上级类别</label>
+                                <select name="upperTeachingSort.id" class="form-control">
+                                    #foreach($teachingSort in $teachingSortList)
+                                        <option value="$teachingSort.id">$teachingSort.name</option>
+                                    #end
 
-                            </select>
-                        </div>
-                        <!-- 标题 -->
-                        <div class="form-group col-md-6">
-                            <label>类别名称</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
-                        </div>
+                                </select>
                             </div>
+                            <!-- 标题 -->
+                            <div class="form-group col-md-6">
+                                <label>类别名称</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter ..." required/>
+                            </div>
+                        </div>
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

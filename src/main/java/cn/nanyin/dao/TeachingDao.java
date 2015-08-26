@@ -1,15 +1,13 @@
 package cn.nanyin.dao;
 
-import cn.nanyin.model.News;
-import cn.nanyin.model.Product;
-import cn.nanyin.model.ProductSort;
-import cn.nanyin.model.Teaching;
+import cn.nanyin.model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -56,6 +54,38 @@ public class TeachingDao {
 
     public void deleteTeaching(Teaching teaching) {
         sessionFactory.getCurrentSession().delete(teaching);
+    }
+
+    public List<TeachingSort> getTeachingSortList(Integer start,Integer max)
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from TeachingSort");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public TeachingSort getTeachingSortById(long id)
+    {
+        return (TeachingSort)sessionFactory.getCurrentSession().get(TeachingSort.class,id);
+    }
+
+    public Serializable addTeaching(Teaching teaching) {
+        Serializable result =  sessionFactory.getCurrentSession().save(teaching);
+        return result;
+    }
+
+    public Serializable addTeachingSort(TeachingSort teachingSort) {
+        Serializable result = sessionFactory.getCurrentSession().save(teachingSort);
+        return result;
+    }
+
+    public void deleteTeachingSort(TeachingSort teachingSort) {
+        sessionFactory.getCurrentSession().delete(teachingSort);
+    }
+
+    public void updateTeachingSort(TeachingSort teachingSort)
+    {
+        sessionFactory.getCurrentSession().saveOrUpdate(teachingSort);
     }
 
 
