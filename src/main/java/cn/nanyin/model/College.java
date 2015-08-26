@@ -44,10 +44,12 @@ public class College {
     private boolean vip;//是否为vip社团
 
     private int state;//状态
-
-    private String organizationStructure;//组织结构
-    private String activeImages; //活动剪影
     private String file;//视频文件
+
+    @Lob
+    private String organizationStructure;//组织结构
+    @Lob
+    private String activeImages; //活动剪影
 
     public long getId() {
         return id;

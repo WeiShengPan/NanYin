@@ -54,6 +54,12 @@ public class CollegeController {
     //添加社团操作
     @RequestMapping(value="nyadmin/collegeadd",method = RequestMethod.POST)
     public ModelAndView addCollege(College college) {
+        if(college.isVip()==false){
+            college.setIntroduction("");
+            college.setActiveImages("");
+            college.setOrganizationStructure("");
+            college.setFile("");
+        }
         collegeDao.addCollege(college);
         return new ModelAndView("redirect:collegelist");
     }
@@ -82,14 +88,12 @@ public class CollegeController {
     public ModelAndView editCollege(College college) {
         College targetCollege=collegeDao.getCollegeById(college.getId());
         targetCollege.setEmail(college.getEmail());
+        targetCollege.setContact(college.getContact());
         targetCollege.setName(college.getName());
         targetCollege.setActivityDate(college.getActivityDate());
         targetCollege.setAddress(college.getAddress());
-        targetCollege.setContact(college.getContact());
         targetCollege.setExLeader(college.getExLeader());
         targetCollege.setFormDate(college.getFormDate());
-        targetCollege.setFile(college.getFile());
-        targetCollege.setIntroduction(college.getIntroduction());
         targetCollege.setLeader(college.getLeader());
         targetCollege.setMainMembers(college.getMainMembers());
         targetCollege.setMemberNum(college.getMemberNum());
@@ -97,6 +101,18 @@ public class CollegeController {
         targetCollege.setVip(college.isVip());
         targetCollege.setCollegeArea(collegeDao.getCollegeAreaById(college.getCollegeArea().getId()));
         targetCollege.setState(collegeDao.getCollegeById(college.getId()).getState());
+        if(targetCollege.isVip()==false){
+            targetCollege.setIntroduction("");
+            targetCollege.setActiveImages("");
+            targetCollege.setOrganizationStructure("");
+            targetCollege.setFile("");
+        }
+        else{
+            targetCollege.setIntroduction(college.getIntroduction());
+            targetCollege.setActiveImages(college.getActiveImages());
+            targetCollege.setOrganizationStructure(college.getOrganizationStructure());
+            targetCollege.setFile(college.getFile());
+        }
 
         collegeDao.updateCollege(targetCollege);
         return new ModelAndView("redirect:collegelist");
@@ -191,9 +207,9 @@ public class CollegeController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "nyadmin/collegeimage", method = RequestMethod.POST)
-    public FileUploadResult uploadImage(@RequestParam MultipartFile file, HttpSession session) {
-        String basePath = "/upload/college/image/";
+    @RequestMapping(value = "nyadmin/collegevideo", method = RequestMethod.POST)
+    public FileUploadResult uploadVideo(@RequestParam MultipartFile file, HttpSession session) {
+        String basePath = "/upload/college/video/";
         FileUpload fileUpload=new FileUpload(basePath,file,session);
         return fileUpload.upload();
     }

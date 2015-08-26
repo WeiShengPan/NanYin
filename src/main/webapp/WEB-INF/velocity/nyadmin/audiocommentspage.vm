@@ -43,7 +43,7 @@
                             </textarea>
                         </div>
                         <div class="box-footer">
-                            <a href="audioCommentsdelete?id=$audioComments.id" class="btn btn-danger">删除 </a>
+                            <a href="audiocommentsdelete?id=$audioComments.id" class="btn btn-danger">删除 </a>
                         </div>
                     </form>
                 </div>

@@ -143,7 +143,7 @@ $(document).ready(function(){
                                 <td>$!{videoComments.content}</td>
                                 <td>$!{videoComments.addDate}</td>
                                 <td>
-                                    <a href="videoCommentspage?id=$videoComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="videoCommentsdelete?id=$videoComments.id" class="btn btn-danger">删除 </a>
+                                    <a href="videocommentspage?id=$videoComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="videocommentsdelete?id=$videoComments.id" class="btn btn-danger">删除 </a>
                                 </td>
                             </tr>
                             #end
@@ -184,7 +184,48 @@ $(document).ready(function(){
                                 <td>$!{audioComments.content}</td>
                                 <td>$!{audioComments.addDate}</td>
                                 <td>
-                                    <a href="audioCommentspage?id=$audioComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="audioCommentsdelete?id=$audioComments.id" class="btn btn-danger">删除 </a>
+                                    <a href="audiocommentspage?id=$audioComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="audiocommentsdelete?id=$audioComments.id" class="btn btn-danger">删除 </a>
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-md-10">
+                        <h3 class="box-title">教学留言列表 </h3>
+                    </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>教学标题</th>
+                            <th>留言人</th>
+                            <th>内容</th>
+                            <th>留言时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            #foreach(${teachingComments}in ${teachingCommentsList})
+                            <tr>
+                                <td>$!{teachingComments.teaching.title}</td>
+                                <td>$!{teachingComments.user.userName}</td>
+                                <td>$!{teachingComments.content}</td>
+                                <td>$!{teachingComments.addDate}</td>
+                                <td>
+                                    <a href="teachingcommentspage?id=$teachingComments.id" class="btn btn-primary">显示详细内容 </a>&nbsp<a href="teachingcommentsdelete?id=$teachingComments.id" class="btn btn-danger">删除 </a>
                                 </td>
                             </tr>
                             #end

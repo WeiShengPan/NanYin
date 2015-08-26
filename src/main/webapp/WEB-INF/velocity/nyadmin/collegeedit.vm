@@ -2,19 +2,10 @@
 <script>
 $(document).ready(function(){
     $(".sidebar-menu li.treeview>a:contains(社团管理)").parent().addClass("active");
-        $(function () {
-        // instance, using default configuration.
-        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorcollegeimage"});
-        //bootstrap WYSIHTML5 - text editor
-        $(".textarea").wysihtml5();
-    });
-     $("#submit").click(function () {
-        $("#data-form").submit();
-    });
     $("#upload-form").submit(function () {
         var formData = new FormData(this);
         $.ajax({
-            url: "/nyadmin/collegeimage",
+            url: "/nyadmin/collegevideo",
             type: "POST",
             dataType: "json",
             data: formData,
@@ -23,11 +14,33 @@ $(document).ready(function(){
             success: function (data) {
                 if (data.result == "success") {
                     $("#data-form input[name=\"file\"]").val(data.fileName);
+
                 }
                 alert(data.message);
             }
         });
         return false;
+    });
+        $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorcollegeimage"});
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor2",{ filebrowserUploadUrl : "/nyadmin/ckeditorcollegeimage"});
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+    $(function () {
+        // instance, using default configuration.
+        CKEDITOR.replace("editor3",{ filebrowserUploadUrl : "/nyadmin/ckeditorcollegeimage"});
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+     $("#submit").click(function () {
+        $("#data-form").submit();
     });
 });
 </script>')
@@ -156,24 +169,39 @@ $(document).ready(function(){
                                 $!{college.introduction}
                             </textarea>
                         </div>
+                        <div class="form-group">
+                            <label>组织结构</label>
+                            <textarea name="organizationStructure" id="editor2" rows="10" cols="80" required>
+                                $!{college.organizationStructure}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>活动剪影</label>
+                            <textarea name="activeImages" id="editor3" rows="10" cols="80" required>
+                                $!{college.activeImages}
+                            </textarea>
+                        </div>
                         <div>
                             <input type="hidden" name="id" value="$!college.id">
                         </div>
-                        <input type="hidden" name="file" value="$!college.file" required>
+                        <input type="hidden" name="file" required>
                     </form>
                     </br>
                     <form id="upload-form" role="form" enctype="multipart/form-data">
-                        <!--社团形象缩略图-->
-                        <div class="form-group">
-                            <label for="exampleInputFile">上传社团缩略图</label>
-                            <input type="file" name="file" id="exampleInputFile" value="$!college.file">
-                            <br>
-                            <a>已上传图片：</a>
-                            <input type="text" readonly="readonly" value="$!college.file">
-                            <br>
-                            <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+                        <div>
 
-                            <p class="help-block">若无需修改缩略图，不用再次上传图片。</p>
+                            <!-- 播放地址 -->
+                            <div class="form-group">
+                                <label for="exampleInputFile">上传视频文件</label>
+                                <input type="file" name="file" id="exampleInputFile" value="$!college.file">
+                                <br>
+                                <a>已上传视频文件：</a>
+                                <input type="text" readonly="readonly" value="$!college.file">
+                                <br>
+                                <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
+
+                                <p class="help-block">若无需修改视频，不用再次上传视频。</p>
+                            </div>
                         </div>
                     </form>
                     <div class="box-footer">
