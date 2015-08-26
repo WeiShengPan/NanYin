@@ -290,12 +290,23 @@ public class ViewController {
 
     /*************************链接到音频的详情页面**********************************/
     @RequestMapping(params = "method=audioLink")
-    public ModelAndView showAudio( @RequestParam("id") String id){
+    public ModelAndView showAudio( @RequestParam("id") String id,HttpSession session){
         ModelAndView model = new ModelAndView("audioDetail");
         long audioId=Long.parseLong(id);
         Audio audioDetail=audioDao.getAudioById(audioId);
 
         Map<String,Object> map=new HashMap<String,Object>();
+
+        User1 user=(User1)session.getAttribute("loginUser");
+        if(user!=null){
+            map.put("flag",1);
+            Audio updateAideo=audioDetail;
+            updateAideo.setHits(audioDetail.getHits() + 1);
+            audioDao.updateAudio(updateAideo);
+        }else{
+            map.put("flag",0);
+        }
+
         map.put("id",audioDetail.getId());
         map.put("title", audioDetail.getTitle());
         map.put("singer", audioDetail.getSinger());
@@ -306,13 +317,9 @@ public class ViewController {
         map.put("player",audioDetail.getPlayer());
         map.put("producer", audioDetail.getProducer());
         map.put("content",audioDetail.getContent());
-        map.put("gcp",audioDetail.getGcp());
-        map.put("jp",audioDetail.getJp());
+        map.put("gcp", audioDetail.getGcp());
+        map.put("jp", audioDetail.getJp());
         model.addObject("audio", map);
-
-        Audio updateAideo=audioDetail;
-        updateAideo.setHits(audioDetail.getHits() + 1);
-        audioDao.updateAudio(updateAideo);
 
         return model;
     }
@@ -339,12 +346,20 @@ public class ViewController {
 
     /*************************链接到视频的详情页面**********************************/
     @RequestMapping(params = "method=videoLink")
-    public ModelAndView showVideo( @RequestParam("id") String id){
+    public ModelAndView showVideo( @RequestParam("id") String id,HttpSession session){
         ModelAndView model = new ModelAndView("videoDetail");
         long videoId=Long.parseLong(id);
         Video videoDetail=videoDao.getVideoById(videoId);
-
         Map<String,Object> map=new HashMap<String,Object>();
+        User1 user=(User1)session.getAttribute("loginUser");
+        if(user!=null){
+            map.put("flag",1);
+            Video updateVideo=videoDetail;
+            updateVideo.setHits(videoDetail.getHits() + 1);
+            videoDao.updateVideo(updateVideo);
+        }else{
+            map.put("flag",0);
+        }
         map.put("id",videoDetail.getId());
         map.put("title", videoDetail.getTitle());
         map.put("singer", videoDetail.getSinger());
@@ -353,14 +368,9 @@ public class ViewController {
         map.put("path",videoDetail.getPath());
         map.put("hits", videoDetail.getHits());
         map.put("player",videoDetail.getPlayer());
-        map.put("cameraman",videoDetail.getCameraman());
-        map.put("producer",videoDetail.getProducer());
-
+        map.put("cameraman", videoDetail.getCameraman());
+        map.put("producer", videoDetail.getProducer());
         model.addObject("video", map);
-
-        Video updateVideo=videoDetail;
-        updateVideo.setHits(videoDetail.getHits() + 1);
-        videoDao.updateVideo(updateVideo);
 
         return model;
     }
@@ -551,6 +561,9 @@ public class ViewController {
         map.put("memberNum",collegeDetail.getMemberNum());
         map.put("introduction",collegeDetail.getIntroduction());
         map.put("vip",collegeDetail.isVip());
+        map.put("path",collegeDetail.getFile());
+        map.put("organization",collegeDetail.getOrganizationStructure());
+        map.put("activeImages",collegeDetail.getActiveImages());
 
         model.addObject("college", map);
         return model;
@@ -576,11 +589,26 @@ public class ViewController {
     }
 
     @RequestMapping(params = "method=teachingLink")
-    public ModelAndView showTeaching( @RequestParam("id") String id){
+    public ModelAndView showTeaching( @RequestParam("id") String id,HttpSession session){
         ModelAndView model = new ModelAndView("teachingDetail");
         long teachingId=Long.parseLong(id);
         Teaching teachingDetail=teachingDao.getTeachingById(teachingId);
         Map<String,Object> map=new HashMap<String,Object>();
+
+        User1 user=(User1)session.getAttribute("loginUser");
+        if(user!=null){
+            if(user.getLevel()){
+                map.put("flag",1);
+                Teaching updateTeaching=teachingDetail;
+                updateTeaching.setHits(teachingDetail.getHits() + 1);
+                teachingDao.updateTeaching(updateTeaching);
+            }else{
+                map.put("flag",0);
+            }
+        }else{
+            map.put("flag",0);
+        }
+
         map.put("id",teachingDetail.getId());
         map.put("title",teachingDetail.getTitle());
         map.put("teacher",teachingDetail.getTeacher());
@@ -590,11 +618,11 @@ public class ViewController {
         map.put("source",teachingDetail.getSource());
         map.put("hits",teachingDetail.getHits());
         map.put("content", teachingDetail.getContent());
+        map.put("gcp", teachingDetail.getGcp());
+        map.put("jp", teachingDetail.getJp());
         model.addObject("teaching", map);
 
-        Teaching updateTeaching=teachingDetail;
-        updateTeaching.setHits(teachingDetail.getHits() + 1);
-        teachingDao.updateTeaching(updateTeaching);
+
 
         return model;
     }

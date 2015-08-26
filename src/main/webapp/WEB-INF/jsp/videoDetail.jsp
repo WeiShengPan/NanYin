@@ -20,6 +20,11 @@
     var size=0;
     var commentsDate="";
     $(document).ready(function(){
+      if(${video.flag==0}){
+        $("#videoContent").css("display","none");
+        $("#hideCont").css("display","block");
+      }
+
       $.ajax({
         type:'POST',
         url:'comments.do?method=listVideoComments',
@@ -54,6 +59,7 @@
 
         }
       });
+
     });
 
     function resetComments(){
@@ -126,6 +132,7 @@
               摄影:${video.cameraman}&nbsp&nbsp 制作:${video.producer}&nbsp&nbsp
               观看:${video.hits}次 &nbsp&nbsp上传时间:${video.date} </p>
           </div>
+          <div id="hideCont" style="width:98%;display: none; margin: 80px auto; text-align: center; line-height: 30px; font-size: 15px; color: red"><p>本视频只允许会员观看，请先登录会员，再次刷新本页观看，谢谢！</p></div>
           <div id="videoContent">
             <!-- 播放器(52player.com)/代码开始 -->
             <script type="text/javascript" src="/Js/swfobject.js"></script>
@@ -145,6 +152,81 @@
             <!-- 我爱播放器(52player.com)/代码结束 -->
           </div>
         </div>
+
+        <div id="tab">
+          <!--代码部分begin-->
+          <div id="menu2">
+            <!--tag标题-->
+            <ul id="nav">
+              <li><a href="javascript:void(0)" class="selected">说明</a></li>
+              <li><a href="javascript:void(0)" class="">工尺谱</a></li>
+              <li><a href="javascript:void(0)" class="">简谱</a></li>
+            </ul>
+            <!--二级菜单-->
+            <div id="menu_con">
+              <div class="tag" style="display:block">
+                ${video.content}
+              </div>
+              <div class="tag" style="display:none">
+                ${video.gcp}
+              </div>
+              <div class="tag"  style="display:none">
+                ${video.jp}
+              </div>
+            </div>
+          </div>
+          <script>
+            var tabs=function(){
+              function tag(name,elem){
+                return (elem||document).getElementsByTagName(name);
+              }
+              //获得相应ID的元素
+              function id(name){
+                return document.getElementById(name);
+              }
+              function first(elem){
+                elem=elem.firstChild;
+                return elem&&elem.nodeType==1? elem:next(elem);
+              }
+              function next(elem){
+                do{
+                  elem=elem.nextSibling;
+                }while(
+                elem&&elem.nodeType!=1
+                        )
+                return elem;
+              }
+              return {
+                set:function(elemId,tabId){
+                  var elem=tag("li",id(elemId));
+                  var tabs=tag("div",id(tabId));
+                  var listNum=elem.length;
+                  var tabNum=tabs.length;
+                  for(var i=0;i<listNum;i++){
+                    elem[i].onclick=(function(i){
+                      return function(){
+                        for(var j=0;j<tabNum;j++){
+                          if(i==j){
+                            tabs[j].style.display="block";
+                            //alert(elem[j].firstChild);
+                            elem[j].firstChild.className="selected";
+                          }
+                          else{
+                            tabs[j].style.display="none";
+                            elem[j].firstChild.className="";
+                          }
+                        }
+                      }
+                    })(i)
+                  }
+                }
+              }
+            }();
+            tabs.set("nav","menu_con");//执行
+          </script>
+          <!--代码部分end-->
+        </div>
+
 
         <div id="commentsList">
           <p class="c3">网友评论</p>

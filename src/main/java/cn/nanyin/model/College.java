@@ -43,9 +43,11 @@ public class College {
 
     private boolean vip;//是否为vip社团
 
-    private String file;//社团形象图
-
     private int state;//状态
+
+    private String organizationStructure;//组织结构
+    private String activeImages; //活动剪影
+    private String file;//视频文件
 
     public long getId() {
         return id;
@@ -53,6 +55,19 @@ public class College {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getOrganizationStructure(){
+        return this.organizationStructure;
+    }
+    public void setOrganizationStructure(String organizationStructure){
+        this.organizationStructure=organizationStructure;
+    }
+    public String getActiveImages() {
+        return this.activeImages;
+    }
+    public void setActiveImages(String activeImages){
+        this.activeImages=activeImages;
     }
 
     public String getMainMembers() {

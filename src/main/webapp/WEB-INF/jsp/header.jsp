@@ -132,12 +132,13 @@
       <li>
         <a href="index.do?method=dispatcher&page=productsList1&type=0">南音商城</a>
         <ul>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=1">南音乐器</a></li>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=2">南音书籍</a></li>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=3">南音音箱 </a></li>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=4">南音伴奏</a></li>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=5">其他配件</a></li>
-          <li><a href="index.do?method=dispatcher&page=productsList1&type=6">文创艺品 </a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=1">南音书籍</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=2">南音音像</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=3">南音乐器 </a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=4">南音伴奏</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=5">专辑录制</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=6">其他配件</a></li>
+          <li><a href="index.do?method=dispatcher&page=productsList2&type=7">文创艺品 </a></li>
         </ul>
       </li>
     </ul>

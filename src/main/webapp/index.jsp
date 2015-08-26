@@ -395,9 +395,9 @@
         <li>
           <a href="index.do?method=dispatcher&page=productsList1&type=0">南音商城</a>
           <ul>
-            <li><a href="index.do?method=dispatcher&page=productsList2&type=1">南音乐器</a></li>
-            <li><a href="index.do?method=dispatcher&page=productsList2&type=2">南音书籍</a></li>
-            <li><a href="index.do?method=dispatcher&page=productsList2&type=3">南音音像 </a></li>
+            <li><a href="index.do?method=dispatcher&page=productsList2&type=1">南音书籍</a></li>
+            <li><a href="index.do?method=dispatcher&page=productsList2&type=2">南音音像</a></li>
+            <li><a href="index.do?method=dispatcher&page=productsList2&type=3">南音乐器 </a></li>
             <li><a href="index.do?method=dispatcher&page=productsList2&type=4">南音伴奏</a></li>
             <li><a href="index.do?method=dispatcher&page=productsList2&type=5">专辑录制</a></li>
             <li><a href="index.do?method=dispatcher&page=productsList2&type=6">其他配件</a></li>
@@ -544,12 +544,12 @@
         <div id="main_8">
           <p class="c3">南音视频</p>
           <ul>
-            <li  id="video0"><a href="" title="">[南音常识]福建南音简介</a></li>
-            <li  id="video1"><a href="" title="">[南音常识]南音套曲刍议（六）</a></li>
-            <li  id="video2"><a href="" title="">[工尺谱]南音套曲刍议（五）</a></li>
-            <li  id="video3"><a href="" title="">[南音乐器]南音套曲刍议（四）</a></li>
-            <li  id="video4"><a href="" title="">[南音唱腔]南音套曲刍议（三）</a></li>
-            <li  id="video5"><a href="" title="">[滚门曲牌]南音套曲刍议（二）</a></li>
+            <li  id="video0"><a href="" title="" >[南音常识]福建南音简介</a></li>
+            <li  id="video1"><a href="" title="" >[南音常识]南音套曲刍议（六）</a></li>
+            <li  id="video2"><a href="" title="" >[工尺谱]南音套曲刍议（五）</a></li>
+            <li  id="video3"><a href="" title="" >[南音乐器]南音套曲刍议（四）</a></li>
+            <li  id="video4"><a href="" title="" >[南音唱腔]南音套曲刍议（三）</a></li>
+            <li  id="video5"><a href="" title="" >[滚门曲牌]南音套曲刍议（二）</a></li>
           </ul>
           <p class="c1" align="right"><a href="index.do?method=dispatcher&page=videoList&type=0"> >> 更 多 </a></p>
         </div>

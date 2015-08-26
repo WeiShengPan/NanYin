@@ -4,10 +4,11 @@ body{ background-color:#000;}
 #container{width: 1024px; height: auto; margin: 0 auto; padding: 0;background-image:url("/images/bg.png")}
 #content{width:100%;  position:relative; z-index:1; font-size:12px;margin-top: 5px; border-top:#CCC 1px solid;}
 #main{width:79.5%; float:left;}
-#title{width: 95%;margin: 10px auto; font-size: 15px;font-weight: bold;color:#9c3328;}
+#title{width: 95%;margin: 10px auto; font-size: 16px;font-weight: bold;color:#9c3328;}
 #products{width: 95%;margin: 20px auto; height:980px; border:#CCC 1px dashed;}
-#products div{width: 20%;height: 210px;float: left; margin: 5px 0;text-align: center;}
+#products div{width:19.8%; height: 210px;float: left; margin: 5px 0; text-align: center}
 #products div p{line-height: 20px}
+
 #pagination{ width: 95%;margin: 20px auto; text-align: center}
 #pagination a{color:#000}
 #pagination a:hover{color:#F00; text-decoration:underline}

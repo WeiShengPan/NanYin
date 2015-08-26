@@ -9,7 +9,7 @@ body{ background-color:#000;}
 #main #audio #audioContent{width: 100%; height:700px; margin-top: 10px; text-align: center}
 #musicPlayer{ width: 100%; height: 50px;}
 #tab{width: 100%;}
-#tab #menu2{width:100%; overflow:hidden; margin:0 auto;border:1px solid #CCC;}
+#tab #menu2{width:100%; overflow:hidden; margin:0 auto;border:1px dashed #CCC;}
 #tab #menu2 #nav {display:block;width:100%;padding:0;margin:0;list-style:none;}
 #tab #menu2 #nav li {float:left;width:33.3%;}
 #tab #menu2 #nav li a {display:block;line-height:27px;text-decoration:none;padding:0 0 0 5px; text-align:center; color:#333;}

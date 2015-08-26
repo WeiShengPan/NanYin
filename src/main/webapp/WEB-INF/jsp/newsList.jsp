@@ -21,6 +21,21 @@
     var curPage= 1,pageSize=2;
     var totalNum=0,totalPage=0;
     $(document).ready(function(){
+
+      var t=$("#type").text();
+      if(t==1){
+        $("#title").text('南音快讯');
+      }else if(t==2){
+        $("#title").text('海外南音');
+      }else if(t==3){
+        $("#title").text('南音专题');
+      }else if(t==4){
+        $("#title").text('南音人物');
+      }else if(t==5){
+        $("#title").text('南音转载');
+      }
+
+
       $.ajax({
         type:'POST',
         url:'pagination.do?method=showNewsList',
@@ -118,23 +133,26 @@
 
 </head>
 <body>
+  <label id="type" style="display: none">${type}</label>
   <div id="container">
     <!--引入网页头部-->
     <%@include file="header.jsp"%>
     <!--网页内容-->
     <div id="content">
-      <div id="main" align="center">
-        <table align="center">
-          <thead>
+      <div id="main">
+        <div id="title"></div>
+        <div id="newsCont">
+          <table align="center">
+            <thead>
             <tr class="title">
               <td style="width: 40%">新闻标题</td>
               <td style="width: 25%">作者</td>
               <td style="width: 25%">日期</td>
               <td style="width: 20%">点击量</td>
             </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
             <tr>
               <td colspan="4">
                 <div id="pagination">
@@ -151,8 +169,9 @@
                 </div>
               </td>
             </tr>
-          </tfoot>
-        </table>
+            </tfoot>
+          </table>
+        </div>
       </div>
 
       <!--引入侧栏-->

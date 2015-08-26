@@ -31,7 +31,7 @@
           <p class="title">组织结构</p>
           <div id="organization">${college.organization}</div>
           <p class="title">活动剪影</p>
-          <div id="activeImage">${college.activeImage}</div>
+          <div id="activeImage">${college.activeImages}</div>
           <p class="title">社团视频</p>
           <div id="video">
             <!-- 播放器(52player.com)/代码开始 -->
@@ -44,7 +44,7 @@
               so.addParam("wmode","opaque");
               so.addParam("quality","high");
               so.addParam("salign","lt");
-              so.addVariable("file","${college.video}");//视频地址
+              so.addVariable("file","${college.path}");//视频地址
               so.addVariable("img","/images/logo.jpg");//视频图片
               so.addVariable("autoplay","false");//是否自动播放
               so.write("CuPlayer");

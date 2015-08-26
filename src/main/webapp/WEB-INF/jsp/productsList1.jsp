@@ -98,11 +98,33 @@
           }
         }
       });
+
       $.ajax({
         type:'POST',
         url:'index.do?method=showProductList',
         data:{
           type:5,
+        },
+        error:function( ){
+          alert("专辑录制加载失败！");
+        },
+        success:function(data) {
+          var result= $.parseJSON(data);
+          for(var i=0;!(i >=result.length);i++){
+            $("#album #album"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
+            $("#album #album"+i).find("a").attr("title",""+result[i].name+"");
+            $("#album #album"+i).find("img").attr("src",""+result[i].path+"");
+            $("#album #album"+i+" .name").text('《'+result[i].name+'》');
+            $("#album #album"+i+" .price").text('价格:'+result[i].price+'');
+          }
+        }
+      });
+
+      $.ajax({
+        type:'POST',
+        url:'index.do?method=showProductList',
+        data:{
+          type:6,
         },
         error:function( ){
           alert("文创艺品加载失败！");
@@ -122,7 +144,7 @@
         type:'POST',
         url:'index.do?method=showProductList',
         data:{
-          type:6,
+          type:7,
         },
         error:function( ){
           alert("其他配件加载失败！");
@@ -151,11 +173,11 @@
         <div class="title">
           <label>南音书籍</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=1">更多>></a>
         </div>
         <div id="books" class="wrapper">
           <div id="book0">
-            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <a target="_blank" href=""><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
             <p class="name">《平凡的世界》</p>
             <p class="price">价格：￥60</p>
           </div>
@@ -184,7 +206,7 @@
         <div class="title">
           <label>南音音像</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=2">更多>></a>
           </div>
         <div id="media" class="wrapper">
           <div id="media0">
@@ -217,7 +239,7 @@
         <div class="title">
           <label>南音乐器</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=3">更多>></a>
         </div>
         <div id="instruments" class="wrapper">
           <div id="instrument0">
@@ -250,7 +272,7 @@
         <div class="title">
           <label>南音伴奏</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=4">更多>></a>
         </div>
         <div id="accompaniment" class="wrapper">
           <div id="accompaniment0">
@@ -281,9 +303,42 @@
         </div>
 
         <div class="title">
+          <label>专辑录制</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="index.do?method=dispatcher&page=productsList2&type=5">更多>></a>
+        </div>
+        <div id="album" class="wrapper">
+          <div id="albun0">
+            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <p class="name">《平凡的世界》</p>
+            <p class="price">价格：￥60</p>
+          </div>
+          <div id="albun1">
+            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <p class="name">《平凡的世界》</p>
+            <p class="price">价格：￥60</p>
+          </div>
+          <div id="albun2">
+            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <p class="name">《平凡的世界》</p>
+            <p class="price">价格：￥60</p>
+          </div>
+          <div id="albun3">
+            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <p class="name">《平凡的世界》</p>
+            <p class="price">价格：￥60</p>
+          </div>
+          <div id="albun4">
+            <a target="_blank" href="#"><img width="120px" height="160px" src="images/1.jpg" border="0"></a><br>
+            <p class="name">《平凡的世界》</p>
+            <p class="price">价格：￥60</p>
+          </div>
+        </div>
+
+        <div class="title">
           <label>文创艺品</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=6">更多>></a>
         </div>
         <div id="literary" class="wrapper">
           <div id="literary0">
@@ -316,7 +371,7 @@
         <div class="title">
           <label>其他配件</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">更多>></a>
+          <a href="index.do?method=dispatcher&page=productsList2&type=7">更多>></a>
         </div>
         <div id="others" class="wrapper">
           <div id="others0">

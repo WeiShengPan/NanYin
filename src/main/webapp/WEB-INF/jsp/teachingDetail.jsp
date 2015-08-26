@@ -20,6 +20,10 @@
     var size=0;
     var commentsDate="";
     $(document).ready(function(){
+      if(${teaching.flag==0}){
+        $("#teachingContent").css("display","none");
+        $("#hideCont").css("display","block");
+      }
       $.ajax({
         type:'POST',
         url:'comments.do?method=listTeachingComments',
@@ -121,6 +125,7 @@
             <p>指导老师：${teaching.teacher}&nbsp&nbsp来源：${teaching.source}&nbsp&nbsp
               观看：${teaching.hits}次 &nbsp&nbsp上传时间：${teaching.date} </p>
           </div>
+          <div id="hideCont" style="width:98%;display: none; margin: 80px auto; text-align: center; line-height: 30px; font-size: 15px; color: red"><p>本教学视频只允许高级会员观看，请先登录会员，再次刷新本页观看</p><p>若您不是高级会员，请到会员中心申请升级，谢谢！</p></div>
           <div id="teachingContent">
             <!-- 播放器(52player.com)/代码开始 -->
             <script type="text/javascript" src="/Js/swfobject.js"></script>
@@ -141,9 +146,78 @@
           </div>
         </div>
 
-        <p class="c3" align="center">说 明</p>
-        <div id="illustration">
-          ${teaching.content}
+        <div id="tab">
+          <!--代码部分begin-->
+          <div id="menu2">
+            <!--tag标题-->
+            <ul id="nav">
+              <li><a href="javascript:void(0)" class="selected">说明</a></li>
+              <li><a href="javascript:void(0)" class="">工尺谱</a></li>
+              <li><a href="javascript:void(0)" class="">简谱</a></li>
+            </ul>
+            <!--二级菜单-->
+            <div id="menu_con">
+              <div class="tag" style="display:block">
+                ${teaching.content}
+              </div>
+              <div class="tag" style="display:none">
+                ${teaching.gcp}
+              </div>
+              <div class="tag"  style="display:none">
+                ${teaching.jp}
+              </div>
+            </div>
+          </div>
+          <script>
+            var tabs=function(){
+              function tag(name,elem){
+                return (elem||document).getElementsByTagName(name);
+              }
+              //获得相应ID的元素
+              function id(name){
+                return document.getElementById(name);
+              }
+              function first(elem){
+                elem=elem.firstChild;
+                return elem&&elem.nodeType==1? elem:next(elem);
+              }
+              function next(elem){
+                do{
+                  elem=elem.nextSibling;
+                }while(
+                elem&&elem.nodeType!=1
+                        )
+                return elem;
+              }
+              return {
+                set:function(elemId,tabId){
+                  var elem=tag("li",id(elemId));
+                  var tabs=tag("div",id(tabId));
+                  var listNum=elem.length;
+                  var tabNum=tabs.length;
+                  for(var i=0;i<listNum;i++){
+                    elem[i].onclick=(function(i){
+                      return function(){
+                        for(var j=0;j<tabNum;j++){
+                          if(i==j){
+                            tabs[j].style.display="block";
+                            //alert(elem[j].firstChild);
+                            elem[j].firstChild.className="selected";
+                          }
+                          else{
+                            tabs[j].style.display="none";
+                            elem[j].firstChild.className="";
+                          }
+                        }
+                      }
+                    })(i)
+                  }
+                }
+              }
+            }();
+            tabs.set("nav","menu_con");//执行
+          </script>
+          <!--代码部分end-->
         </div>
 
         <div id="commentsList">

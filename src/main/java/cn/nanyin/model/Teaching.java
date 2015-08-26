@@ -23,6 +23,8 @@ public class Teaching {
     private String source;   //来源
     private String file;   //教学视频存放路径
     private  String content;//说明
+    private String gcp;         //工尺谱
+    private String jp;          //简谱
 
     public  long getId(){
         return this.id;
@@ -78,4 +80,8 @@ public class Teaching {
     public void setContent(String content){
         this.content=content;
     }
+    public String getGcp(){return this.gcp;}
+    public void setGcp(String gcp){this.gcp=gcp;}
+    public String getJp(){return this.jp;}
+    public void setJp(String jp){this.jp=jp;}
 }

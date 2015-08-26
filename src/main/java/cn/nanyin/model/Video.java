@@ -21,6 +21,9 @@ public class Video {
     private String player;//演奏者
     private String cameraman; //摄像师
     private String producer;//制作人
+    private String content;     //说明
+    private String gcp;         //工尺谱
+    private String jp;          //简谱
     private long hits;
     private String path;
     private Date addDate;
@@ -86,5 +89,12 @@ public class Video {
     public void setVideoSort(VideoSort videoSort){
         this.videoSort=videoSort;
     }
+
+    public String getContent(){return this.content;}
+    public void setContent(String content){this.content=content;}
+    public String getGcp(){return this.gcp;}
+    public void setGcp(String gcp){this.gcp=gcp;}
+    public String getJp(){return this.jp;}
+    public void setJp(String jp){this.jp=jp;}
 
 }

@@ -22,6 +22,12 @@
     var size=0;
     var commentsDate="";
     $(document).ready(function(){
+
+      if(${audio.flag==0}){
+        $("#musicPlayer").css("display","none");
+        $("#hideCont").css("display","block");
+      }
+
       $.ajax({
         type:'POST',
         url:'comments.do?method=listAudioComments',
@@ -127,6 +133,7 @@
             <p>演唱者:${audio.singer}&nbsp&nbsp演奏者:${audio.player}&nbsp&nbsp
               制作:${audio.producer}&nbsp&nbsp观看:${audio.hits}次 &nbsp&nbsp上传时间:${audio.date} </p>
           </div>
+          <div id="hideCont" style="width:98%;display: none; margin: 80px auto; text-align: center; line-height: 30px; font-size: 15px; color: red"><p>本音频只允许会员观看，请先登录会员，再次刷新本页面观看，谢谢！</p></div>
           <div id="audioContent">
             <div id="musicPlayer">
               <object width="164" height="37" id="niftyPlayer1" align="left">
@@ -140,9 +147,9 @@
               <div id="menu2">
                 <!--tag标题-->
                 <ul id="nav">
-                  <li><a href="#" class="selected">说明</a></li>
-                  <li><a href="#" class="">工尺谱</a></li>
-                  <li><a href="#" class="">简谱</a></li>
+                  <li><a href="javascript:void(0)" class="selected">说明</a></li>
+                  <li><a href="javascript:void(0)" class="">工尺谱</a></li>
+                  <li><a href="javascript:void(0)" class="">简谱</a></li>
                 </ul>
                 <!--二级菜单-->
                 <div id="menu_con">

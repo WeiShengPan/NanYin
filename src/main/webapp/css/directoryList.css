@@ -8,7 +8,7 @@ body{ background-color:#000;}
 #main #directoryList{ width: 95%; height: auto;margin: 10px auto; }
 #main #directoryList table{ width:100%;text-align: center}
 #main #directoryList table tr{ height: 30px}
-#main #directoryList table thead{ font-size: medium;font-weight: bolder;color: #902b2b}
+#main #directoryList table thead{ font-size: 15px;font-weight: bold;color: #902b2b}
 #main #directoryList table td a{color:#000}
 #main #directoryList table td a:hover{color:#F00; text-decoration:underline}
 

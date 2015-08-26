@@ -149,9 +149,7 @@
     <div id="main">
       <div id="title"></div>
       <div id="products">
-        <div>
 
-        </div>
       </div>
       <div id="pagination">
         <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
