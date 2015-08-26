@@ -126,9 +126,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> 专辑管理</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> 专辑列表</a></li>
+                    <li><a href="teachingsort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+                    <li><a href="teachingaddpage"><i class="fa fa-circle-o"></i> 添加视频</a></li>
+                    <li><a href="teachinglist"><i class="fa fa-circle-o"></i> 管理视频</a></li>
                 </ul>
             </li>
             <li class="treeview">
