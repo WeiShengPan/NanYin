@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.TeachingDao;
 import cn.nanyin.model.Teaching;
 import cn.nanyin.model.TeachingSort;
@@ -26,6 +28,7 @@ import java.util.List;
  * Created by 玮晟 on 2015/8/26.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.TEACHING_MANAGEMENT)
 public class TeachingController {
     
     @Autowired

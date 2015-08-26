@@ -12,8 +12,9 @@ public enum AuthorityType {
     ARTICLE_MANAGEMENT("图文乐谱",6),
     MEDIA_MANAGEMENT("音频管理",7),
     VIDEO_MANAGEMENT("视频管理",8),
-    LINKS_MANAGEMENT("友情链接",9),
-    COMMENTS_MANAGEMENT("留言管理",10),
+    TEACHING_MANAGEMENT("教学中心",9),
+    LINKS_MANAGEMENT("友情链接",10),
+    COMMENTS_MANAGEMENT("留言管理",11),
     ;
     private String name;
     private int index;
