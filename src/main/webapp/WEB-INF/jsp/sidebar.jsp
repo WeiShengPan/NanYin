@@ -38,12 +38,12 @@
         <li id="announcement4"><a href="">这是公告标题的第五行</a></li>
       </ul>
     </div><br />
-    <p class="c1" align="right" style=" margin-right:10px"><a href="#"> >> 更 多 </a></p>
+    <p class="c1" align="right" style=" margin-right:10px"><a href="index.do?method=dispatcher&page=announcementList&type=0"> >> 更 多 </a></p>
   </div>
   <!--投稿-->
   <div id="submission">
     <p class="c3">欢迎投稿</p>
-    <p class="c2"><a href="#">点击进入</a></p>
+    <p class="c2"><a href="index.do?method=dispatcher&page=submission&type=0">点击进入</a></p>
   </div>
   <!--其他-->
   <div id="other">

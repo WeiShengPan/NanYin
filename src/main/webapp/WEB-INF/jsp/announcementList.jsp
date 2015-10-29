@@ -13,7 +13,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script type="text/javascript" src="/Js/jquery-1.4.4.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/newsList.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/announcementList.css"/>
   <%@include file="loginTemplate.jsp"%>
     <title>公告列表</title>
   <script type="text/javascript">
@@ -119,33 +119,36 @@
   <!--网页内容-->
   <div id="content">
     <div id="main" align="center">
-      <table align="center">
-        <thead>
-        <tr class="title">
-          <td style="width: 60%">标题</td>
-          <td style="width: 40%">日期</td>
-        </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-        <tr>
-          <td colspan="4">
-            <div id="pagination">
-              <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
-              <label id="totalNum"></label>
-              <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
-              <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>
-              <label><a href="javascript:void(0)" onclick="nextPage()">[下一页]</a></label>
-              <label><a href="javascript:void(0)" onclick="lastPage()">[最后一页]</a></label>
-              <label>&nbsp&nbsp跳转至:</label>
-              <label><input id="goto" type="text"  style="width: 20px"/></label>
-              <label><input type="submit" value="go" onclick="gotoPage()"/>&nbsp&nbsp</label>
-              <label id="pageNum"></label>
-            </div>
-          </td>
-        </tr>
-        </tfoot>
-      </table>
+      <div id="title"></div>
+      <div id="announcementList">
+        <table align="center">
+          <thead>
+          <tr class="title">
+            <td style="width: 60%">标题</td>
+            <td style="width: 40%">日期</td>
+          </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+          <tr>
+            <td colspan="4">
+              <div id="pagination">
+                <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
+                <label id="totalNum"></label>
+                <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
+                <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>
+                <label><a href="javascript:void(0)" onclick="nextPage()">[下一页]</a></label>
+                <label><a href="javascript:void(0)" onclick="lastPage()">[最后一页]</a></label>
+                <label>&nbsp&nbsp跳转至:</label>
+                <label><input id="goto" type="text"  style="width: 20px"/></label>
+                <label><input type="submit" value="go" onclick="gotoPage()"/>&nbsp&nbsp</label>
+                <label id="pageNum"></label>
+              </div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
 
     <!--引入侧栏-->
