@@ -5,6 +5,7 @@ import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.CommentsDao;
 import cn.nanyin.model.AudioComments;
 import cn.nanyin.model.NewsComments;
+import cn.nanyin.model.TeachingComments;
 import cn.nanyin.model.VideoComments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,9 @@ public class CommentController {
 
         List<AudioComments> audioCommentsList =commentsDao.getAudioCommentsList(0, 50);
         model.addObject("audioCommentsList", audioCommentsList);
+
+        List<TeachingComments> teachingCommentsList =commentsDao.getTeachingCommentsList(0, 50);
+        model.addObject("teachingCommentsList", teachingCommentsList);
         return model;
     }
 
@@ -86,6 +90,23 @@ public class CommentController {
         ModelAndView model=new ModelAndView("nyadmin/audiocommentspage");
         AudioComments audioComments=commentsDao.getAudioCommentsById(id);
         model.addObject("audioComments", audioComments);
+        return model;
+    }
+
+    //删除教学留言
+    @RequestMapping(value="nyadmin/teachingcommentsdelete",method = RequestMethod.GET)
+    public ModelAndView deleteTeachingComments(long id) {
+        TeachingComments teachingComments = commentsDao.getTeachingCommentsById(id);
+        commentsDao.deleteTeachingComments(teachingComments);
+        return new ModelAndView("redirect:commentslist");
+    }
+
+    //显示教学留言详细页面
+    @RequestMapping(value="nyadmin/teachingcommentspage",method = RequestMethod.GET)
+    public ModelAndView showTeachingCommentsPage(long id) {
+        ModelAndView model=new ModelAndView("nyadmin/teachingCommentspage");
+        TeachingComments teachingComments=commentsDao.getTeachingCommentsById(id);
+        model.addObject("teachingComments", teachingComments);
         return model;
     }
 }

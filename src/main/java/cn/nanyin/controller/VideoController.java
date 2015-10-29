@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -173,8 +177,10 @@ public class VideoController {
         targetVideo.setSinger(video.getSinger());
         targetVideo.setPlayer(video.getPlayer());
         targetVideo.setProducer(video.getProducer());
-
+        targetVideo.setContent(video.getContent());
         targetVideo.setPath(video.getPath());
+        targetVideo.setGcp(video.getGcp());
+        targetVideo.setJp(video.getJp());
         targetVideo.setVideoSort(videoDao.getVideoSortById(video.getVideoSort().getId()));
         targetVideo.setAddDate(videoDao.getVideoById(video.getId()).getAddDate());
         targetVideo.setHits(videoDao.getVideoById(video.getId()).getHits());
@@ -211,6 +217,48 @@ public class VideoController {
         String basePath = "/upload/video/video/";
         FileUpload fileUpload=new FileUpload(basePath,path,session);
         return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/videogcp", method = RequestMethod.POST)
+    public FileUploadResult uploadgcp(@RequestParam MultipartFile gcp, HttpSession session) {
+
+        String basePath="/upload/video/image/";
+        FileUpload fileUpload=new FileUpload(basePath,gcp,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/videojp", method = RequestMethod.POST)
+    public FileUploadResult uploadjp(@RequestParam MultipartFile jp, HttpSession session) {
+
+        String basePath="/upload/video/image/";
+        FileUpload fileUpload=new FileUpload(basePath,jp,session);
+        return fileUpload.upload();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "nyadmin/ckeditorvideoimage", method = RequestMethod.POST)
+    public String uploadCkeditorImage(@RequestParam MultipartFile upload, HttpSession session,HttpServletResponse response,HttpServletRequest request)
+    {
+        PrintWriter out= null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String basePath = "/upload/video/image/";
+        FileUpload fileUpload=new FileUpload(basePath,upload,session);
+        FileUploadResult fileUploadResult=fileUpload.upload();
+
+        String callback = request.getParameter("CKEditorFuncNum");
+        out.println("<script type=\"text/javascript\">");
+        out.println("window.parent.CKEDITOR.tools.callFunction("
+                + callback + ",'" + fileUploadResult.getFileName() + "',''" + ")");
+        out.println("</script>");
+
+        return null;
     }
 
 }

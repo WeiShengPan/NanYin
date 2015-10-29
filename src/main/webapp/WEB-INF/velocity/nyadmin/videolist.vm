@@ -71,7 +71,7 @@ $(document).ready(function(){
                             <th class="col-md-2">操作</th>
                         </tr>
                         </thead>
-                        <tbody id="medialistbysort">
+                        <tbody id="videolistbysort">
 
                             #foreach($video in $videoList)
                             <tr>

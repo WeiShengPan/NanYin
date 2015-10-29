@@ -1,10 +1,16 @@
 #set($pageJS='
 <script>
-    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 </script>')
 <section class="content-header">
     <h1>
-        教学中心
+        视频管理
         <small>类别管理</small>
     </h1>
 
@@ -21,14 +27,14 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="/nyadmin/videosortedit" method="post">
+                    <form action="/nyadmin/teachingsortedit" method="post">
                         <div>
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select name="upperVideoSort.id" class="form-control">
-                                    #foreach($videoSort in $videoSortList)
-                                        <option value="$videoSort.id">$videoSort.name</option>
+                                <select id="sel" name="upperTeachingSort.id" class="form-control">
+                                    #foreach($teachingSort in $teachingSortList)
+                                        <option value="$teachingSort.id">$teachingSort.name</option>
                                     #end
 
                                 </select>
@@ -36,12 +42,13 @@
                             <!-- 标题 -->
                             <div class="form-group col-md-6">
                                 <label>类别名称</label>
-                                <input type="text" name="name" class="form-control" value="$!videoSort.name" required/>
+                                <input type="text" name="name" class="form-control" value="$!teachingSort.name" required/>
                             </div>
-                        </div>
 
+                        </div>
                         <div>
-                            <input type="hidden" name="id" value="$!videoSort.id">
+                            <input type="hidden" name="id" value="$!teachingSort.id">
+                            <input id="sortid" type="hidden" value="$!teachingSort.upperTeachingSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,10 +1,10 @@
 #set($pageJS='
 <script>
 $(document).ready(function(){
-    $(".sidebar-menu li.treeview>a:contains(视频管理)").parent().addClass("active");
-     $(function () {
+    $(".sidebar-menu li.treeview>a:contains(教学中心)").parent().addClass("active");
+    $(function () {
         // instance, using default configuration.
-        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorvideoimage"});
+        CKEDITOR.replace("editor1",{ filebrowserUploadUrl : "/nyadmin/ckeditorteachingimage"});
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
@@ -14,7 +14,7 @@ $(document).ready(function(){
     $("#upload-form").submit(function () {
         var formData = new FormData(this);
         $.ajax({
-            url: "/nyadmin/videovideo",
+            url: "/nyadmin/teachingvideo",
             type: "POST",
             dataType: "json",
             data: formData,
@@ -22,7 +22,7 @@ $(document).ready(function(){
             contentType: false,  // tell jQuery not to set contentType
             success: function (data) {
                 if (data.result == "success") {
-                    $("#data-form input[name=\"path\"]").val(data.fileName);
+                    $("#data-form input[name=\"file\"]").val(data.fileName);
 
                 }
                 alert(data.message);
@@ -33,7 +33,7 @@ $(document).ready(function(){
      $("#upload-form1").submit(function () {
         var formData1 = new FormData(this);
         $.ajax({
-            url: "/nyadmin/videogcp",
+            url: "/nyadmin/teachinggcp",
             type: "POST",
             dataType: "json",
             data: formData1,
@@ -51,7 +51,7 @@ $(document).ready(function(){
      $("#upload-form2").submit(function () {
         var formData2 = new FormData(this);
         $.ajax({
-            url: "/nyadmin/videojp",
+            url: "/nyadmin/teachingjp",
             type: "POST",
             dataType: "json",
             data: formData2,
@@ -67,6 +67,12 @@ $(document).ready(function(){
         return false;
     });
 
+    $(function()
+    {
+        var sortid=$("#sortid")[0].value;
+        $("#sel option[value="+sortid+"]").attr("selected",true);
+
+    });
 });
 </script>')
 <section class="content-header">
@@ -85,15 +91,15 @@ $(document).ready(function(){
                 <br>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    <form id="data-form" action="/nyadmin/videoadd" method="post">
+                    <form id="data-form" action="/nyadmin/teachingedit" method="post">
                         <div class="row">
                             <!-- 类别 -->
                             <div class="form-group col-md-4">
                                 <label>选择类别</label>
-                                <select name="videoSort.id" class="form-control">
-                                    #foreach($videoSort in $videoSortList)
-                                        #if($videoSort.id!=1)
-                                            <option value="$videoSort.id">$videoSort.name</option>
+                                <select id="sel" name="teachingSort.id" class="form-control">
+                                    #foreach($teachingSort in $teachingSortList)
+                                        #if($teachingSort.id!=1)
+                                            <option value="$teachingSort.id">$teachingSort.name</option>
                                         #end
                                     #end
                                 </select>
@@ -101,41 +107,37 @@ $(document).ready(function(){
                             <!-- 标题 -->
                             <div class="form-group col-md-4">
                                 <label>视频名称</label>
-                                <input type="text" name="title" class="form-control" placeholder="Enter ..." type="text"
+                                <input type="text" name="title" class="form-control" value="$!teaching.title" type="text"
                                        required/>
                             </div>
                             <!-- 演唱 -->
                             <div class="form-group col-md-4">
-                                <label>演唱</label>
-                                <input type="text" name="singer" class="form-control" placeholder="Enter ..."
+                                <label>教师</label>
+                                <input type="text" name="teacher" class="form-control" value="$!teaching.teacher"
                                        type="text"
                                        required/>
                             </div>
                         </div>
                         <div class="row">
                             <!-- 演奏 -->
-                            <div class="form-group col-md-4">
-                                <label>演奏</label>
-                                <input type="text" name="player" class="form-control" placeholder="Enter ..."/>
+                            <div>
+                                <label>来源</label>
+                                <input type="text" name="source" class="form-control" value="$!teaching.source"/>
                             </div>
-                            <!-- 摄像 -->
-                            <div class="form-group col-md-4">
-                                <label>摄像</label>
-                                <input type="text" name="cameraman" class="form-control" placeholder="Enter ..."/>
-                            </div>
-                            <!-- 制作 -->
-                            <div class="form-group col-md-4">
-                                <label>制作</label>
-                                <input type="text" name="producer" class="form-control" placeholder="Enter ..."/>
-                            </div>
+
                         </div>
                         <!--内容-->
                         <label>内容</label>
                                 <textarea id="editor1" name="content" rows="10" cols="80" required>
-                                 </textarea>
-                        <input type="hidden" name="gcp">
-                        <input type="hidden" name="jp">
-                        <input type="hidden" name="path">
+                                    $!teaching.content
+                                </textarea>
+                        <input type="hidden" name="file" value="$!teaching.file">
+                        <input type="hidden" name="gcp" value="$!teaching.gcp" required>
+                        <input type="hidden" name="jp" value="$!teaching.jp" required>
+                        <div>
+                            <input type="hidden" name="id" value="$!teaching.id">
+                            <input id="sortid" type="hidden" value="$!teaching.teachingSort.id">
+                        </div>
 
                     </form>
                     <br>
@@ -146,7 +148,10 @@ $(document).ready(function(){
                             <!-- 播放地址 -->
                             <div class="form-group">
                                 <label for="exampleInputFile">上传视频文件</label>
-                                <input type="file" name="path" id="exampleInputFile">
+                                <input type="file" name="file" id="exampleInputFile" value="$!teaching.file">
+                                <br>
+                                <a>已上传音频文件：</a>
+                                <input type="text" readonly="readonly" value="$!teaching.file">
                                 <br>
                                 <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
@@ -159,7 +164,10 @@ $(document).ready(function(){
                         <!--工尺谱-->
                         <div class="form-group">
                             <label for="exampleInputFile">上传工尺谱</label>
-                            <input type="file" name="gcp" id="exampleInputFile">
+                            <input type="file" name="gcp" id="exampleInputFile" value="$!teaching.gcp">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!teaching.gcp">
                             <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
@@ -171,14 +179,15 @@ $(document).ready(function(){
                         <!--简谱-->
                         <div class="form-group">
                             <label for="exampleInputFile">上传简谱</label>
-                            <input type="file" name="jp" id="exampleInputFile">
+                            <input type="file" name="jp" id="exampleInputFile" value="$!teaching.jp">
+                            <br>
+                            <a>已上传图片：</a>
+                            <input type="text" readonly="readonly" value="$!teaching.jp">
                             <br>
                             <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 
                         </div>
                     </form>
-
-
                     <div class="box-footer">
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                     </div>
