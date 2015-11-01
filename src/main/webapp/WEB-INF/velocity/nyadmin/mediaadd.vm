@@ -163,7 +163,7 @@ $(document).ready(function(){
                             <!-- 播放地址 -->
                             <div class="form-group">
                                 <label for="exampleInputFile">上传音频文件</label>
-                                <input type="file" name="path" id="exampleInputFile">
+                                <input type="file" name="media" id="exampleInputFile">
                                 <br>
                                 <input id="uploadimage" type="submit" value="上传" class="btn btn-danger">
 

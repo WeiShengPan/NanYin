@@ -91,8 +91,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="articlesort"><i class="fa fa-circle-o"></i> 类别管理</a></li>
-                    <li><a href="articleaddpage"><i class="fa fa-circle-o"></i> 添加图书</a></li>
-                    <li><a href="articlelist"><i class="fa fa-circle-o"></i> 管理图书</a></li>
+                    <li><a href="articleaddpage"><i class="fa fa-circle-o"></i> 添加内容</a></li>
+                    <li><a href="articlelist"><i class="fa fa-circle-o"></i> 管理内容</a></li>
                 </ul>
             </li>
             <li class="treeview">
