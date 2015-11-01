@@ -34,15 +34,6 @@ public class FindPasswordController {
             return null;
         }
         Map<String,Object> map=new HashMap<String,Object>();
-        int count=findUser.getAnsNum();
-        if(count>=6){
-            map.put("question",null);
-            map.put("flag",1);
-            JSONObject jsonObject=JSONObject.fromObject(map);
-            String result=jsonObject.toString();
-            return result;
-        }
-
         map.put("question", findUser.getQuestion());
         JSONObject jsonObject=JSONObject.fromObject(map);
         String result=jsonObject.toString();
@@ -52,21 +43,14 @@ public class FindPasswordController {
     @RequestMapping(params = "method=sendAns", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String sendAns(@RequestParam("answer") String answer){
-        int count=findUser.getAnsNum();
         Map<String,Object> map=new HashMap<String,Object>();
         if(answer.equals(findUser.getAnswer().toString())){
             map.put("flag","get");
             map.put("psw",findUser.getPassword().toString());
-        }else if(count<=6){
-            findUser.setAnsNum(findUser.getAnsNum()+1);
-            userDao.updateUser(findUser);
+        }else{
             map.put("flag","miss");
             map.put("psw",null);
-        }else {
-            map.put("flag","over");
-            map.put("psw",null);
         }
-
         JSONObject jsonObject=JSONObject.fromObject(map);
         String result=jsonObject.toString();
         return result;

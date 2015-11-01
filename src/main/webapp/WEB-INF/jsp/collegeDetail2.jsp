@@ -39,9 +39,7 @@
         <p>联系电话：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${college.tel}</p>
         <p>联络地址：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${college.address}</p>
         <p>电子邮箱：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${college.email}</p>
-        <p>社团网址：</p>
         <p class="title">其他信息</p>
-        <p>资料提供：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${college.provider}</p>
         <p>备 注：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp联系时请说是在【福建南音网】上看到的，谢谢！</p>
         <p class="title">社团简介</p>
         <div id="introduction">

@@ -38,26 +38,24 @@
             alert("对不起，没有该用户!");
             return;
           }
-          if(result.question!=null){
+          if(result.question!=""){
             $("#detail").empty();
-            var text='<table align="center">'+
+            var text1='<table align="center">'+
                     '<tr align="left"><td>您注册会员时设置的问题为:'+result.question+'</td></tr>'+
-                    '<tr align="left"><td>请问答该问题(注意:你有6次回答的机会)</td></tr>'+
+                    '<tr align="left"><td>请问答该问题</td></tr>'+
                     '<tr><td><textarea id="answer" rows="3" cols="43"></textarea></td></tr>'+
                     '<tr><td><br><input type="button" value="提&nbsp&nbsp交" onclick="send()"/>&nbsp&nbsp&nbsp&nbsp<input type="button" value="重&nbsp&nbsp置" onclick="reset()"/></td></tr>'+
                     '<tr><td id="reply" style="color: red">  </td></tr>'
                     '</table>';
-            $("#detail").append(text);
+            $("#detail").append(text1);
           }else{
-            if(result.flag==1){
               $("#detail").empty();
-              var text='<br><br><p>您回答的次数太多了，我们将尽快把密码以短信或邮件的方式发送给您，请注意查收！</p>';
-              $("#detail").append(text);
-              return;
-            }
-            $("#detail").empty();
-            var text='<br><br><p>由于您注册会员时没有设置密保问题，我们将尽快把密码发到您的邮箱或者手机上，请注意查收！</p>';
-            $("#detail").append(text);
+              var text2 = '<br><br><p>由于您注册会员时没有设置密保问题，所以您需要向管理员索要密码。</p>' +
+                      '<p>请发邮件到123456789@163.com，标题为：找回密码，内容为您的用户名。</p>' +
+                      '<p>我们将尽快把密码以短信或邮件的方式发送给您注册时的电话或邮箱，请注意查收！</p>';
+
+              $("#detail").append(text2);
+
           }
         }
       });
@@ -91,15 +89,11 @@
             var text='<br><br><p>您的密码为:'+result.psw+'</p>';
             $("#reply").append(text);
             $("#answer").val("");
-          }else if(flag=="miss"){
+          }else{
             $("#reply").empty();
             var text='<br><br><p>答案错误，请重新回答！</p>';
             $("#reply").append(text);
             $("#answer").val("");
-          }else{
-            $("#detail").empty();
-            var text='<br><br><p>您回答的次数太多了，我们将尽快把密码以短信或邮件的方式发送给您，请注意查收！</p>';
-            $("#detail").append(text);
           }
         }
       });

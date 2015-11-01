@@ -23,6 +23,7 @@ public class Product {
     private String content; //说明
     private int recommendation; //推荐指数
     private Date addDate;   //上架时间
+    private String link;   //购买网址
     private int hits;   //点击量
     private int state;  //状态
 
@@ -104,5 +105,12 @@ public class Product {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public String getLink(){
+        return this.link;
+    }
+    public void setLink(String link){
+        this.link=link;
     }
 }

@@ -370,6 +370,9 @@ public class ViewController {
         map.put("player",videoDetail.getPlayer());
         map.put("cameraman", videoDetail.getCameraman());
         map.put("producer", videoDetail.getProducer());
+        map.put("content",videoDetail.getContent());
+        map.put("gcp", videoDetail.getGcp());
+        map.put("jp", videoDetail.getJp());
         model.addObject("video", map);
 
         return model;
@@ -485,7 +488,7 @@ public class ViewController {
         String date=productDetail.getAddDate().toString();
         map.put("date",date);
         map.put("path",productDetail.getFile());
-        map.put("recommendation", productDetail.getRecommendation());
+        map.put("link", productDetail.getLink());
         map.put("content",productDetail.getContent());
 
         model.addObject("product", map);
@@ -596,7 +599,7 @@ public class ViewController {
         Map<String,Object> map=new HashMap<String,Object>();
 
         User1 user=(User1)session.getAttribute("loginUser");
-        if(user!=null){
+        if(user!=null&&user.getState()){
             if(user.getLevel()){
                 map.put("flag",1);
                 Teaching updateTeaching=teachingDetail;

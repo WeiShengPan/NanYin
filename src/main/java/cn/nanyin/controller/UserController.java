@@ -58,13 +58,6 @@ public class UserController {
     public ModelAndView addUser(User1 user)
     {
         user.setRegisterDate(new Date());
-        user.setAnsNum(0);
-        if(user.getState()==true && user.getLevel()==true){
-            user.setLimitNum(0);
-        }
-        else{
-            user.setLimitNum(6);
-        }
         userDao.addUser(user);
         return new ModelAndView("redirect:userlist");
     }
@@ -116,14 +109,14 @@ public class UserController {
 //        targetUser.setLastLoginDate(userDao.getUserById(user.getId()).getLastLoginDate());
         targetUser.setState(user.getState());
 
-        targetUser.setAnsNum(userDao.getUserById(user.getId()).getAnsNum());
+      /*  targetUser.setAnsNum(userDao.getUserById(user.getId()).getAnsNum());
         if(user.getState()==true && user.getLevel()==true){
             targetUser.setLimitNum(0);
         }
         else{
             targetUser.setLimitNum(6);
         }
-
+    */
 
 
         userDao.updateUser(targetUser);

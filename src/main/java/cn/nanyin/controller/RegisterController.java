@@ -41,12 +41,9 @@ public class RegisterController {
         user.setAnswer(answer);
         Date date=new Date();
         user.setRegisterDate(date);
-        user.setLimitNum(0);
-        user.setAnsNum(0);
         if(type==1){
             user.setState(true);
             user.setLevel(false);
-            user.setLimitNum(6);
         }else if(type==2){
             user.setLevel(true);
             user.setState(false);

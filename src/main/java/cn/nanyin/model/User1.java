@@ -33,14 +33,10 @@ public class User1 {
     private String answer;     //密保答案
     @Column(nullable=false)
     private boolean level;       //用户的级别
-    @Column(nullable=true)
-    private int limitNum;         //普通用户每天观看视频或音频的数量限制
     @Column(nullable=false)
     private  boolean  state;      //0代表未激活用户，1代表激活用户，
     @Column(nullable=false)
     private Date registerDate;       //注册日期
-    @Column(nullable=false)
-    private  int ansNum;              //找回密码时，回答的次数
 
     public long getId(){
         return this.id;
@@ -102,12 +98,6 @@ public class User1 {
     public  void setLevel(boolean level){
         this.level=level;
     }
-    public int getLimitNum(){
-        return this.limitNum;
-    }
-    public void setLimitNum(int limitNum){
-        this.limitNum=limitNum;
-    }
     public boolean getState(){
         return  this.state;
     }
@@ -119,12 +109,6 @@ public class User1 {
     }
     public  void setRegisterDate(Date registerDate){
         this.registerDate=registerDate;
-    }
-    public int getAnsNum(){
-        return this.ansNum;
-    }
-    public void setAnsNum(int ansNum){
-        this.ansNum=ansNum;
     }
 
 }
