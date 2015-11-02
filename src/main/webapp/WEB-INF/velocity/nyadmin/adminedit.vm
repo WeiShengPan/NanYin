@@ -154,7 +154,7 @@
                                                    checked="checked"
                                                 #end
                                                     />
-                                            友情链接
+                                            教学中心
                                         </label>
                                     </div>
                                 </div>
@@ -163,6 +163,18 @@
                                         <label>
                                             <input type="checkbox" name="permission" value="1"
                                                 #if($adminUser.permission.charAt(9)=='1')
+                                                   checked="checked"
+                                                #end
+                                                    />
+                                            友情链接
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"
+                                                #if($adminUser.permission.charAt(10)=='1')
                                                    checked="checked"
                                                 #end
                                                     />

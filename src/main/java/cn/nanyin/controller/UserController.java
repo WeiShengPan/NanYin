@@ -12,8 +12,10 @@ import cn.nanyin.model.User;
 import cn.nanyin.model.User1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -43,6 +45,30 @@ public class UserController {
         return model;
     }
 
+    @RequestMapping(value="/nyadmin/userlistsearch",method= RequestMethod.POST)
+    public ModelAndView showUserListSearch(User1 user)
+    {
+        ModelAndView model=new ModelAndView("nyadmin/userList");
+        if(user.getUserName().equals("")||user.getUserName()==null){
+            List<User1> user1List =userDao.getUserList(0,50);
+            model.addObject("userList", user1List);
+            return model;
+        }
+        List<User1> userList =userDao.getUserList();
+        List<User1> tempList =userDao.getUserList();
+        for(User1 user1:userList){
+            if(user1.getUserName().equals(user.getUserName())||user1.getUserName()==user.getUserName()){
+                tempList.remove(user1);
+            }
+        }
+        userList.removeAll(tempList);
+        if(userList.isEmpty()){
+            return model;
+        }
+        model.addObject("userList", userList);
+        return model;
+    }
+
     //添加用户页面
     @RequestMapping(value="nyadmin/useraddpage",method=RequestMethod.GET)
     public ModelAndView showUserAddPage()
@@ -55,7 +81,7 @@ public class UserController {
 
     //添加用户操作
     @RequestMapping(value="nyadmin/useradd",method = RequestMethod.POST)
-    public ModelAndView addUser(User1 user)
+    public ModelAndView addUser(User1 user,BindingResult result)
     {
         user.setRegisterDate(new Date());
         userDao.addUser(user);

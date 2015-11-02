@@ -150,6 +150,14 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="permission" value="1"/>
+                                            教学中心
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
                                             友情链接
                                         </label>
                                     </div>

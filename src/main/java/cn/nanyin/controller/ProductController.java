@@ -144,7 +144,8 @@ public class ProductController {
         targetProduct.setFile(product.getFile());
         targetProduct.setContent(product.getContent());
         targetProduct.setPrice(product.getPrice());
-        targetProduct.setRecommendation(product.getRecommendation());
+        targetProduct.setLink(product.getLink());
+        targetProduct.setRecommendation(productDao.getProductById(product.getId()).getRecommendation());
         targetProduct.setProductSort(productDao.getProductSortById(product.getProductSort().getId()));
         targetProduct.setAddDate(productDao.getProductById(product.getId()).getAddDate());
         targetProduct.setHits(productDao.getProductById(product.getId()).getHits());

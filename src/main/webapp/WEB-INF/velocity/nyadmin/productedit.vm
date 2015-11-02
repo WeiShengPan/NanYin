@@ -70,10 +70,10 @@ $(document).ready(function(){
                             <label>价格</label>
                             <input type="text" name="price" class="form-control" value="$!product.price" type="text" required/>
                         </div>
-                        <!-- 推荐指数 -->
+                        <!-- 购买网址 -->
                         <div class="form-group">
-                            <label>推荐指数</label>
-                            <input type="text" name="recommendation" class="form-control" value="$!product.recommendation"/>
+                            <label>购买网址</label>
+                            <input type="text" name="link" class="form-control" value="$!product.recommendation"/>
                         </div>
                         <!--介绍-->
                         <div class="form-group">

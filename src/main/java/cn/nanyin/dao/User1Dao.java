@@ -65,4 +65,10 @@ public class User1Dao {
         return query.list();
     }
 
+    public List<User1> getUserList()
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User1");
+        return query.list();
+    }
+
 }

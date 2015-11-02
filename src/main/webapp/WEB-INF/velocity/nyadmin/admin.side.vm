@@ -66,7 +66,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="collegearea"><i class="fa fa-circle-o"></i> 地区管理</a></li>
+                    <li><a href="collegearea"><i class="fa fa-circle-o"></i> 社团类别</a></li>
                     <li><a href="collegeaddpage"><i class="fa fa-circle-o"></i> 添加社团</a></li>
                     <li><a href="collegelist"><i class="fa fa-circle-o"></i> 管理社团</a></li>
                 </ul>

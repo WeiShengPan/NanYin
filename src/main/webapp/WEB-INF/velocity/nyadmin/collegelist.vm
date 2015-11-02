@@ -21,7 +21,7 @@
                         <thead>
                         <tr>
                             <th>社团名</th>
-                            <th>所属地区</th>
+                            <th>所属类别</th>
                             <th>联系人</th>
                             <th>是否VIP</th>
                             <th>操作</th>

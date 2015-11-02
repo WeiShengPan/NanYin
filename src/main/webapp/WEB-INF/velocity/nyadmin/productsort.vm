@@ -34,7 +34,7 @@
                                     <td>$!{productSort.level}</td>
                                     <td>$!{productSort.name}</td>
                                     <td>$!{productSort.upperProductSort.name}</td>
-                                    <td><a href="productsorteditpage?id=$productSort.id" class="btn btn-primary">修改 </a><a href="productsortdelete?id=$productSort.id" class="btn btn-danger">删除</a></td>
+                                    <td><a href="productsorteditpage?id=$productSort.id" class="btn btn-primary">修改 </a>&nbsp<a href="productsortdelete?id=$productSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
                                 #end
                             #end

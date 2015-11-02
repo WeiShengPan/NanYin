@@ -63,7 +63,7 @@ $(document).ready(function(){
                     <form id="data-form" action="/nyadmin/collegeadd" method="post">
                         <!-- 所属地区 -->
                         <div class="form-group">
-                            <label>所属地区</label>
+                            <label>所属类别</label>
                             <select name="collegeArea.id" class="form-control">
                                 #foreach($collegeArea in ${collegeAreaList})
                                     #if($collegeArea.id!=1)
