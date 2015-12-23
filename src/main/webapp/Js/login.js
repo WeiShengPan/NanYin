@@ -16,7 +16,7 @@ $(document).ready(function(){
             '<tr><td>'+text+'</td> </tr>' +
             '<tr><td>'+name+'，您好！</td></tr>'+
             '<tr><td>欢迎来到南音网</td></tr>' +
-            '<tr><td><a href="index.do?method=userCenter">我的会员中心</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Exit()">退出</a></td></tr>' +
+            '<tr><td><p class="c2"><a href="index.do?method=userCenter">我的会员中心</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Exit()">退出</a></p></td></tr>' +
             '</table>'
         $("#loginForm #loginField").append(add);
     }
@@ -76,7 +76,7 @@ function Login(){
                         '<tr><td>'+level+'</td> </tr>' +
                         '<tr><td>'+result.userName+'，您好！</td></tr>'+
                         '<tr><td>欢迎来到南音网</td></tr>' +
-                        '<tr><td><a href="index.do?method=userCenter">我的会员中心</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Exit()">退出</a></td></tr>' +
+                        '<tr><td><p class="c2"><a href="index.do?method=userCenter">我的会员中心</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="Exit()">退出</a></p></td></tr>' +
                         '</table>'
                     $("#loginForm #loginField").append(add);
 

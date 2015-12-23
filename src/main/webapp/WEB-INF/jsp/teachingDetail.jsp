@@ -161,10 +161,10 @@
                 ${teaching.content}
               </div>
               <div class="tag" style="display:none">
-                ${teaching.gcp}
+                 <img src="${teaching.gcp}"  width="100%"/>
               </div>
               <div class="tag"  style="display:none">
-                ${teaching.jp}
+                 <img src="${teaching.jp}" width="100%"/>
               </div>
             </div>
           </div>

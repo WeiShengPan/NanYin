@@ -91,12 +91,12 @@
         </ul>
       </li>
       <li>
-        <a href="#">诗词音画</a>
+        <a href="index.do?method=dispatcher&page=poetryList&type=0">诗词音画</a>
         <ul>
-          <li><a href="#"><p>唐诗宋词</p><p>南管唱</p></a></li>
-          <li><a href="#"><p>丁马成</p><p>南音作品</p></a></li>
-          <li><a href="#"><p>郑梦集</p><p>茶乡清曲</p></a></li>
-          <li><a href="#"><p>陈丽华</p><p>台湾风情</p></a></li>
+          <li><a href="index.do?method=dispatcher&page=poetryList&type=1"><p>唐诗宋词</p><p>南管唱</p></a></li>
+          <li><a href="index.do?method=dispatcher&page=poetryList&type=2"><p>丁马成</p><p>南音作品</p></a></li>
+          <li><a href="index.do?method=dispatcher&page=poetryList&type=3"><p>郑梦集</p><p>茶乡清曲</p></a></li>
+          <li><a href="index.do?method=dispatcher&page=poetryList&type=4"><p>陈丽华</p><p>台湾风情</p></a></li>
         </ul>
       </li>
       <li>

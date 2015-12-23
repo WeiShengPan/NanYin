@@ -51,18 +51,26 @@ public class AudioDao {
         return query.list();
     }
 
+    public List<Audio> getAudioLists(String typeName,Integer start, Integer max){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Audio where audioSort.upperAudioSort.name='"+typeName+"' order by addDate desc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
     public List<Audio> findAudios(String text) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Audio where title like '%"+text+"%'");
         return query.list();
     }
 
-    public int getNum(){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Audio");
+    public int getNum(String typeName){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Audio where audioSort.name='"+typeName+"'");
         int n=query.list().size();
         return n;
     }
-    public int getNum(String typeName){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Audio where audioSort.name='"+typeName+"'");
+
+    public int getNums(String typeName){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Audio where audioSort.upperAudioSort.name='"+typeName+"'");
         int n=query.list().size();
         return n;
     }

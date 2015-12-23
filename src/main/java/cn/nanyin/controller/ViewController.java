@@ -272,7 +272,8 @@ public class ViewController {
     @RequestMapping(params = "method=getAudios", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String getAudios(){
-        List<Audio> audioList=audioDao.getAudioList(0,6);
+        String typeName="南音曲库";
+        List<Audio> audioList=audioDao.getAudioLists(typeName,0,6);
         List<Map> list=new ArrayList<Map>();
         for(int i=0;i<audioList.size();i++){
             Audio temp=audioList.get(i);

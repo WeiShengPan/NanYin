@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="NanYinWebsite:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="NanYinWebsite.war">
+      <element id="artifact" artifact-name="NanYinWebsite:war exploded" />
+    </root>
+  </artifact>
+</component>
