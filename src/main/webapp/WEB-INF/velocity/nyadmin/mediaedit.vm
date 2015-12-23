@@ -163,7 +163,7 @@ $(document).ready(function(){
 ##                        <input type="hidden" name="file" value="$!media.file" required>
                         <input type="hidden" name="gcp" value="$!media.gcp" required>
                         <input type="hidden" name="jp" value="$!media.jp" required>
-                        <input type="hidden" name="path" value="$!media.path">
+                        <input type="hidden" name="media" value="$!media.media">
                         <div>
                             <input type="hidden" name="id" value="$!media.id">
                             <input id="sortid" type="hidden" value="$!media.mediaSort.id">
@@ -176,7 +176,7 @@ $(document).ready(function(){
                             <!-- 播放地址 -->
                             <div class="form-group">
                                 <label for="exampleInputFile">上传音频文件</label>
-                                <input type="file" name="path" id="exampleInputFile" value="$!media.path">
+                                <input type="file" name="media" id="exampleInputFile" value="$!media.media">
                                 <br>
                                 <a>已上传音频文件：</a>
                                 <input type="text" readonly="readonly" value="$!media.path">

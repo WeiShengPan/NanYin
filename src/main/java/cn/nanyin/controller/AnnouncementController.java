@@ -1,5 +1,7 @@
 package cn.nanyin.controller;
 
+import cn.nanyin.adminauth.AdminAuthority;
+import cn.nanyin.adminauth.AuthorityType;
 import cn.nanyin.dao.AnnouncementDao;
 import cn.nanyin.model.Announcement;
 import cn.nanyin.util.FileUpload;
@@ -26,6 +28,7 @@ import java.util.List;
  * Created by 玮晟 on 2015/8/25.
  */
 @Controller
+@AdminAuthority(authorityTypes = AuthorityType.COMMENTS_MANAGEMENT)
 public class AnnouncementController {
 
     @Autowired
