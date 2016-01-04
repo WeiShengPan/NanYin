@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>$mediaSort.level</td>
                                     <td>$mediaSort.name</td>
-                                    <td>$!mediaSort.upperMediaSort.name</td>
+                                    <td>$!mediaSort.upperAudioSort.name</td>
                                     <td><a href="mediasorteditpage?id=$mediaSort.id" class="btn btn-primary">修改 </a>&nbsp<a
                                             href="mediasortdelete?id=$mediaSort.id" class="btn btn-danger">删除</a></td>
                                 </tr>
@@ -63,7 +63,7 @@
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select name="upperMediaSort.id" class="form-control">
+                                <select name="upperAudioSort.id" class="form-control">
                                     #foreach($mediaSort in $mediaSortList)
                                         <option value="$mediaSort.id">$mediaSort.name</option>
                                     #end

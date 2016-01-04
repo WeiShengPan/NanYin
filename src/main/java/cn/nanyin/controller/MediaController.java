@@ -249,9 +249,9 @@ public class MediaController {
 
     @ResponseBody
     @RequestMapping(value = "nyadmin/mediavideo", method = RequestMethod.POST)
-    public FileUploadResult uploadMedia(@RequestParam MultipartFile media, HttpSession session) {
+    public FileUploadResult uploadMedia(@RequestParam MultipartFile path, HttpSession session) {
         String basePath = "/upload/media/video/";
-        FileUpload fileUpload=new FileUpload(basePath,media,session);
+        FileUpload fileUpload=new FileUpload(basePath,path,session);
         return fileUpload.upload();
     }
 

@@ -75,7 +75,7 @@ $(document).ready(function(){
 
                             #foreach($media in $mediaList)
                             <tr>
-                                <td>$media.mediaSort.name</td>
+                                <td>$media.audioSort.name</td>
                                 <td>$media.title</td>
                                 <td>$media.addDate</td>
                                 <td><a href="mediaeditpage?id=$media.id" class="btn btn-primary">修改 </a>&nbsp<a href="mediadelete?id=$media.id" class="btn btn-danger">删除</a>

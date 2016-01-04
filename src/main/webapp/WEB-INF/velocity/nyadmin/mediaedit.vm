@@ -22,7 +22,7 @@ $(document).ready(function(){
             contentType: false,  // tell jQuery not to set contentType
             success: function (data) {
                 if (data.result == "success") {
-                    $("#data-form input[name=\"media\"]").val(data.fileName);
+                    $("#data-form input[name=\"path\"]").val(data.fileName);
 
                 }
                 alert(data.message);
@@ -163,10 +163,10 @@ $(document).ready(function(){
 ##                        <input type="hidden" name="file" value="$!media.file" required>
                         <input type="hidden" name="gcp" value="$!media.gcp" required>
                         <input type="hidden" name="jp" value="$!media.jp" required>
-                        <input type="hidden" name="media" value="$!media.media">
+                        <input type="hidden" name="path" value="$!media.path">
                         <div>
                             <input type="hidden" name="id" value="$!media.id">
-                            <input id="sortid" type="hidden" value="$!media.mediaSort.id">
+                            <input id="sortid" type="hidden" value="$!media.audioSort.id">
                         </div>
                     </form>
                     <br>
@@ -176,7 +176,7 @@ $(document).ready(function(){
                             <!-- 播放地址 -->
                             <div class="form-group">
                                 <label for="exampleInputFile">上传音频文件</label>
-                                <input type="file" name="media" id="exampleInputFile" value="$!media.media">
+                                <input type="file" name="path" id="exampleInputFile" value="$!media.path">
                                 <br>
                                 <a>已上传音频文件：</a>
                                 <input type="text" readonly="readonly" value="$!media.path">

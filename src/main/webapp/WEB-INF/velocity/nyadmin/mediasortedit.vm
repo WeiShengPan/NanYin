@@ -32,7 +32,7 @@
                             <!-- 类别 -->
                             <div class="form-group col-md-6">
                                 <label>上级类别</label>
-                                <select id="sel" name="upperMediaSort.id" class="form-control">
+                                <select id="sel" name="upperAudioSort.id" class="form-control">
                                     #foreach($mediaSort in $mediaSortList)
                                         <option value="$mediaSort.id">$mediaSort.name</option>
                                     #end
@@ -48,7 +48,7 @@
                         </div>
                         <div>
                             <input type="hidden" name="id" value="$!mediaSort.id">
-                            <input id="sortid" type="hidden" value="$!mediaSort.upperMediaSort.id">
+                            <input id="sortid" type="hidden" value="$!mediaSort.upperAudioSort.id">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
