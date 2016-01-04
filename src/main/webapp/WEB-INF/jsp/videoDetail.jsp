@@ -168,10 +168,10 @@
                 ${video.content}
               </div>
               <div class="tag" style="display:none">
-                ${video.gcp}
+                <img src="${video.gcp}" width="100%"/>
               </div>
               <div class="tag"  style="display:none">
-                ${video.jp}
+                 <img src="${video.jp}" width="100%" />
               </div>
             </div>
           </div>

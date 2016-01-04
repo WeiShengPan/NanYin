@@ -13,7 +13,8 @@ body{ background-color:#000;}
 #tab #menu2 #nav {display:block;width:100%;padding:0;margin:0;list-style:none;}
 #tab #menu2 #nav li {float:left;width:33.3%;}
 #tab #menu2 #nav li a {display:block;line-height:27px;text-decoration:none;padding:0 0 0 5px; text-align:center; color:#333;}
-#tab #menu2 #menu_con{ width:358px; height:600px; border-top:none; overflow: auto}
+/*#tab #menu2 #menu_con{ width:358px; height:600px; border-top:none; overflow: auto}*/
+#tab #menu2 #menu_con{ width:90%; height:600px; margin-top:50px ;overflow: auto;text-align: left; margin-left: 20px}
 #tab .tag{ padding:10px; overflow:hidden;}
 #tab .selected{background:#C5A069; color:#fff;}
 

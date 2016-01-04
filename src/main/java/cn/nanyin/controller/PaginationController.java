@@ -560,11 +560,12 @@ public class PaginationController {
 
         List<Audio> audioList=new ArrayList<Audio>();
         if(type==0){
-            totalNum=audioDao.getNum();
+            String typeName="南音曲库";
+            totalNum=audioDao.getNums(typeName);
             double re=(double)totalNum/pageSize;
             totalPage=(int)Math.ceil(re);
             int start=(curPage-1)*pageSize;
-            audioList=audioDao.getAudioList(start,pageSize);
+            audioList=audioDao.getAudioLists(typeName,start,pageSize);
         }else if(type==1){
             String typeName="南音.谱";
             totalNum=audioDao.getNum(typeName);
@@ -616,7 +617,8 @@ public class PaginationController {
         List<Audio> audioList=new ArrayList<Audio>();
         int start=(curPage-1)*pageSize;
         if(type==0){
-            audioList=audioDao.getAudioList(start,pageSize);
+            String typeName="南音曲库";
+            audioList=audioDao.getAudioLists(typeName,start,pageSize);
         }else if(type==1){
             String typeName="南音.谱";
             audioList=audioDao.getAudioList(typeName,start,pageSize);
@@ -779,6 +781,117 @@ public class PaginationController {
         String result=jsonArray.toString();
         return result;
     }
+
+    /***********************************诗词音画************************************************************/
+    @RequestMapping(params = "method=showPoetryList", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String showPoetryList(int type,int curPage,int pageSize)throws Exception{
+
+        int totalNum=0;
+        int totalPage=0;
+
+        List<Audio> audioList=new ArrayList<Audio>();
+        if(type==0){
+            String typeName="诗词音画";
+            totalNum=audioDao.getNums(typeName);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            audioList= audioDao.getAudioLists(typeName,start,pageSize);
+        }else if(type==1){
+            String typeName="唐诗宋词南管唱";
+            totalNum = audioDao.getNum(typeName);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start = (curPage - 1) * pageSize;
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==2){
+            String typeName = "丁马成南音作品";
+            totalNum = audioDao.getNum(typeName);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start = (curPage - 1) * pageSize;
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==3){
+            String typeName="郑梦集茶乡清曲";
+            totalNum = audioDao.getNum(typeName);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start = (curPage - 1) * pageSize;
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==4){
+            String typeName="陈丽华台湾风情";
+            totalNum = audioDao.getNum(typeName);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start = (curPage - 1) * pageSize;
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }
+
+        List<Map> list=new ArrayList<Map>();
+        Map<String,Object> pageInfo=new HashMap<String,Object>();
+        pageInfo.put("totalNum",totalNum);
+        pageInfo.put("totalPage",totalPage);
+        list.add(pageInfo);
+
+        for(int i=0;i<audioList.size();i++){
+            Audio temp=audioList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getTitle());
+            map.put("singer",temp.getSinger());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("hits",temp.getHits());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+
+    @RequestMapping(params = "method=poetryTurnPage", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String poetryTurnPage(int type,int curPage,int pageSize)throws Exception{
+        List<Audio> audioList=new ArrayList<Audio>();
+        int start=(curPage-1)*pageSize;
+        if(type==0){
+            String typeName="诗词音画";
+            audioList=audioDao.getAudioLists(typeName, start, pageSize);
+        }else if(type==1){
+            String typeName="唐诗宋词南管唱";
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==2){
+            String typeName="丁马成南音作品";
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==3){
+            String typeName="郑梦集茶乡清曲";
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }else if(type==4){
+            String typeName="陈丽华台湾风情";
+            audioList=audioDao.getAudioList(typeName, start, pageSize);
+        }
+
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<audioList.size();i++){
+            Audio temp=audioList.get(i);
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title",temp.getTitle());
+            map.put("singer",temp.getSinger());
+            String date=temp.getAddDate().toString();
+            map.put("date",date);
+            map.put("hits",temp.getHits());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+
+
 
     /***********************************名录列表************************************************************/
     @RequestMapping(params = "method=showDirectoryList", produces = "plain/text;charset=UTF-8")

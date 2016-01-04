@@ -17,8 +17,8 @@ public class Audio {
     private AudioSort audioSort;
 
     private String title;
-    private String  singer; //演唱者
-    private String player;//演奏者
+    private String singer; //演唱者
+    private String player;  //演奏者
     private String producer;//制作人
     private long hits;
     private String path;

@@ -1,11 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 张一平
-  Date: 2015/8/12
-  Time: 12:50
-  Page:音频详情页面
+  User: Administrator
+  Date: 2015/12/21
+  Time: 21:47
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,9 +15,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script type="text/javascript" src="/Js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" language="javascript" src="/Js/niftyplayer.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/audioDetail.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/poetryDetail.css"/>
   <%@include file="loginTemplate.jsp"%>
-    <title>南音网--音频列表</title>
+  <title>南音网--诗词音画</title>
   <script type="text/javascript">
     var size=0;
     var commentsDate="";
@@ -157,10 +157,10 @@
                     ${audio.content}
                   </div>
                   <div class="tag" style="display:none">
-                    <img src="${audio.gcp}" width="100%"/>
+                    ${audio.gcp}
                   </div>
                   <div class="tag"  style="display:none">
-                    <img src="${audio.jp}" width="100%"/>
+                    ${audio.jp}
                   </div>
                 </div>
               </div>
@@ -215,9 +215,9 @@
               </script>
               <!--代码部分end-->
             </div>
-
           </div>
         </div>
+
         <div id="commentsList">
           <p class="c3">网友评论</p>
           <div id="comments">
