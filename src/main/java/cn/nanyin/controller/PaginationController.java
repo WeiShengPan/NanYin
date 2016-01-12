@@ -548,6 +548,116 @@ public class PaginationController {
     }
 
 
+    @RequestMapping(params = "method=showDirectoryList", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String showDirectoryList(int type,int curPage,int pageSize)throws Exception{
+        List<Book> bookList=new ArrayList<Book>();
+        int totalNum=0;
+        int totalPage=0;
+        if(type==0){
+            String typeName="南音名录";
+            totalNum=articleDao.getNum(typeName,1);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            bookList=articleDao.getBookList(typeName,start,pageSize,1);
+        }else if(type==1){
+            String typeName="南音人物志";
+            totalNum=articleDao.getNum(typeName,0);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==2){
+            String typeName="南音传承人";
+            totalNum=articleDao.getNum(typeName,0);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==3){
+            String typeName="南音新秀榜";
+            totalNum=articleDao.getNum(typeName,0);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==4){
+            String typeName="学术界名录";
+            totalNum=articleDao.getNum(typeName,0);
+            double re=(double)totalNum/pageSize;
+            totalPage=(int)Math.ceil(re);
+            int start=(curPage-1)*pageSize;
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }
+
+        List<Map> list=new ArrayList<Map>();
+
+        Map<String,Object> pageInfo=new HashMap<String,Object>();
+        pageInfo.put("totalNum",totalNum);
+        pageInfo.put("totalPage",totalPage);
+        list.add(pageInfo);
+
+        for(int i=0;i<bookList.size();i++){
+            Book temp=bookList.get(i);
+            String date=temp.getAddDate().toString();
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title", temp.getTitle());
+            map.put("author", temp.getAuthor());
+            map.put("date",date);
+            map.put("hits",temp.getHits());
+            map.put("type",temp.getBookSort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+    }
+
+
+    @RequestMapping(params = "method=directoryTurnPage", produces = "plain/text;charset=UTF-8")
+    @ResponseBody
+    public String directoryTurnPage(int type,int curPage,int pageSize)throws Exception{
+        List<Book> bookList=new ArrayList<Book>();
+        int start=(curPage-1)*pageSize;
+        if(type==0){
+            String typeName="南音名录";
+            bookList=articleDao.getBookList(typeName,start,pageSize,1);
+        }else if(type==1){
+            String typeName="南音人物志";
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==2){
+            String typeName="南音传承人";
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==3){
+            String typeName="南音新秀榜";
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }else if(type==4){
+            String typeName="学术界名录";
+            bookList=articleDao.getBookList(typeName,start,pageSize,0);
+        }
+
+        List<Map> list=new ArrayList<Map>();
+        for(int i=0;i<bookList.size();i++){
+            Book temp=bookList.get(i);
+            String date=temp.getAddDate().toString();
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("id",temp.getId());
+            map.put("title", temp.getTitle());
+            map.put("author", temp.getAuthor());
+            map.put("date",date);
+            map.put("hits",temp.getHits());
+            map.put("type",temp.getBookSort().getName());
+            list.add(map);
+        }
+        JSONArray jsonArray=JSONArray.fromObject(list);
+        String result=jsonArray.toString();
+        return result;
+
+    }
+
+
 
 
     /***********************************音频列表************************************************************/
@@ -797,7 +907,7 @@ public class PaginationController {
             double re=(double)totalNum/pageSize;
             totalPage=(int)Math.ceil(re);
             int start=(curPage-1)*pageSize;
-            audioList= audioDao.getAudioLists(typeName,start,pageSize);
+            audioList= audioDao.getAudioLists(typeName, start, pageSize);
         }else if(type==1){
             String typeName="唐诗宋词南管唱";
             totalNum = audioDao.getNum(typeName);
@@ -894,7 +1004,7 @@ public class PaginationController {
 
 
     /***********************************名录列表************************************************************/
-    @RequestMapping(params = "method=showDirectoryList", produces = "plain/text;charset=UTF-8")
+   /* @RequestMapping(params = "method=showDirectoryList", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String showDirectoryList(int type,int curPage,int pageSize)throws Exception{
 
@@ -1005,7 +1115,7 @@ public class PaginationController {
         String result=jsonArray.toString();
         return result;
 
-    }
+    }*/
 
     /***********************************商城列表************************************************************/
     @RequestMapping(params = "method=showProductList", produces = "plain/text;charset=UTF-8")

@@ -8,7 +8,7 @@ body{ background-color:#000;}
 
 #main #announcementList{ width: 95%; height: auto;margin: 10px auto; }
 #main #announcementList table{ width:100%;text-align: center}
-#main #announcementList table tr{ height: 30px}
+#main #announcementList table tr{ height: 50px}
 #main #announcementList table thead{ font-size:15px;font-weight: bold;color: #902b2b}
 #main #announcementList table td a{color:#000}
 #main #announcementList table td a:hover{color:#F00; text-decoration:underline}

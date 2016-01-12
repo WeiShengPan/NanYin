@@ -17,7 +17,7 @@
   <%@include file="loginTemplate.jsp"%>
     <title>公告列表</title>
   <script type="text/javascript">
-    var curPage= 1,pageSize=2;
+    var curPage= 1,pageSize=25;
     var totalNum=0,totalPage=0;
     $(document).ready(function(){
       $.ajax({
@@ -133,7 +133,7 @@
           <tr>
             <td colspan="4">
               <div id="pagination">
-                <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
+                <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：25 &nbsp</label>
                 <label id="totalNum"></label>
                 <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
                 <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>

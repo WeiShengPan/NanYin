@@ -116,7 +116,6 @@
           <li><a href="index.do?method=dispatcher&page=directoryList&type=2">南音传承人</a></li>
           <li><a href="index.do?method=dispatcher&page=directoryList&type=3">南音新秀榜</a></li>
           <li><a href="index.do?method=dispatcher&page=directoryList&type=4">学术界名录</a></li>
-          <li><a href="index.do?method=dispatcher&page=directoryList&type=5">本网机构</a></li>
         </ul>
       </li>
       <li>

@@ -7,7 +7,7 @@ body{ background-color:#000;}
 #main #college{width: 90%;margin: 10px auto; height:auto;border:#CCC 1px dashed;}
 #college p{ margin-left: 10px; line-height: 30px}
 #college .title{margin-left: 0; font-size: 14px;font-weight: bold; background-color: #c0a160}
-#introduction{width: 98%; height:300px; margin-left:10px;margin-top: 10px; margin-bottom:15px;border:#CCC 1px dashed;}
-#organization{width: 98%; height:300px; margin-left:10px;margin-top: 10px;margin-bottom:15px;border:#CCC 1px dashed;}
-#activeImage{width: 98%; height:300px; margin-left:10px;margin-top: 10px;margin-bottom:15px;border:#CCC 1px dashed;}
+#introduction{width: 98%; height:auto; margin-left:10px;margin-top: 20px; margin-bottom:15px;border:#CCC 1px dashed;}
+#organization{width: 98%; height:auto; margin-left:10px;margin-top: 20px;margin-bottom:15px;border:#CCC 1px dashed;}
+#activeImage{width: 98%; height:auto; margin-left:10px;margin-top: 20px;margin-bottom:15px;border:#CCC 1px dashed;}
 #video{width: 600px; height:400px; margin: 10px auto ;}

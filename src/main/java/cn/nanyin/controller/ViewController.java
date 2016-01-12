@@ -156,7 +156,10 @@ public class ViewController {
             typeName+="南音图谱";
         }else if(type==3){
             typeName+="南音乐理";
+        }else if(type==4){
+            typeName+="南音名录";
         }
+
         List<Book> bookList=articleDao.getBookList(typeName,0,6,1);
         List<Map> list=new ArrayList<Map>();
         for(int i=0;i<bookList.size();i++){
@@ -226,7 +229,7 @@ public class ViewController {
     @RequestMapping(params = "method=getGalleryImages", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String getGalleryImages( )throws  Exception{
-        List<Book> bookList=articleDao.getGalleryImages(0,10);
+        List<Book> bookList=articleDao.getGalleryImages(0, 10);
         List<Map> list=new ArrayList<Map>();
         for(int i=0;i<bookList.size();i++){
             Book temp=bookList.get(i);
@@ -264,6 +267,30 @@ public class ViewController {
 
         return model;
 
+    }
+
+    @RequestMapping(params = "method=directoryLink")
+    public ModelAndView showDirectory( @RequestParam("id") String id){
+        ModelAndView model = new ModelAndView("directoryDetail");
+        long directoryId=Long.parseLong(id);
+        Book bookDetail=articleDao.getBookById(directoryId);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",bookDetail.getTitle());
+        map.put("author",bookDetail.getAuthor());
+        String date=bookDetail.getAddDate().toString();
+        map.put("date",date);
+        map.put("hits", bookDetail.getHits());
+        map.put("source", bookDetail.getSource());
+        map.put("content", bookDetail.getContent());
+
+        model.addObject("directory", map);
+
+        Book updateBook=bookDetail;
+        updateBook.setHits(bookDetail.getHits() + 1);
+        articleDao.updateBook(updateBook);
+
+        return model;
     }
 
 
@@ -347,11 +374,11 @@ public class ViewController {
 
     /*************************链接到视频的详情页面**********************************/
     @RequestMapping(params = "method=videoLink")
-    public ModelAndView showVideo( @RequestParam("id") String id,HttpSession session){
+    public ModelAndView showVideo(@RequestParam("id") String id,HttpSession session){
         ModelAndView model = new ModelAndView("videoDetail");
-        long videoId=Long.parseLong(id);
-        Video videoDetail=videoDao.getVideoById(videoId);
-        Map<String,Object> map=new HashMap<String,Object>();
+        long videoId = Long.parseLong(id);
+        Video videoDetail = videoDao.getVideoById(videoId);
+        Map<String, Object> map=new HashMap<String,Object>();
         User1 user=(User1)session.getAttribute("loginUser");
         if(user!=null){
             map.put("flag",1);
@@ -381,7 +408,7 @@ public class ViewController {
 
     /******************************名录******************************************************************************/
     /*****首页中的名录模块（从数据库中读取6条数据）***************/
-    @RequestMapping(params = "method=getDirectory", produces = "plain/text;charset=UTF-8")
+  /*  @RequestMapping(params = "method=getDirectory", produces = "plain/text;charset=UTF-8")
     @ResponseBody
     public String getDirectory(){
         List<Directory> directories=directoryDao.getDirectoryList(0,6);
@@ -423,7 +450,7 @@ public class ViewController {
 
         return model;
     }
-
+        */
     /*****首页中的商城模块（从数据库中读取6条信息）***************/
     @RequestMapping(params = "method=getProducts", produces = "plain/text;charset=UTF-8")
     @ResponseBody

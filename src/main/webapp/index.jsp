@@ -122,7 +122,7 @@
         success:function(data){
           var result= $.parseJSON(data);
           for(var i=0;!(i >= result.length);i++){
-            var text='<td align=center><a href="index.do?method=productLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=140 height=180 border="0"></a><br><br><p>'+result[i].name+'</p></td>'+
+            var text='<td align=center><a href="index.do?method=productLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=140 height=180 border="0"></a><br><p>'+result[i].name+'</p></td>'+
                     '<td align=center>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>';
             $("#main_9 .addTr").append(text);
           }
@@ -202,7 +202,10 @@
       /******************南音名录*****************/
       $.ajax({
         type:'POST',
-        url:'index.do?method=getDirectory',
+        url:'index.do?method=getContent',
+        data:{
+          type:4,
+        },
         error:function(){
           alert("名录栏加载失败！");
         },
@@ -379,7 +382,6 @@
             <li><a href="index.do?method=dispatcher&page=directoryList&type=2">南音传承人</a></li>
             <li><a href="index.do?method=dispatcher&page=directoryList&type=3">南音新秀榜</a></li>
             <li><a href="index.do?method=dispatcher&page=directoryList&type=4">学术界名录</a></li>
-            <li><a href="index.do?method=dispatcher&page=directoryList&type=5">本网机构</a></li>
           </ul>
         </li>
         <li>

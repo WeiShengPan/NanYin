@@ -7,7 +7,7 @@ body{ background-color:#000;}
 #main #title{width: 95%;margin: 10px auto; font-size: 16px;font-weight: bold;color:#9c3328;}
 #main #videoCont{width: 95%; height: auto;text-align: center}
 #main #videoCont  table{ width: 100%;}
-#main #videoCont table tr{ height: 30px}
+#main #videoCont table tr{ height: 50px}
 #main #videoCont table thead{ font-size:15px;font-weight: bold;color: #902b2b}
 #main #videoCont table td a{color:#000}
 #main #videoCont table td a:hover{color:#F00; text-decoration:underline}

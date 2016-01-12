@@ -31,7 +31,7 @@
           </div>
           <div id="title">
             <p>商品名称:&nbsp&nbsp&nbsp ${product.name}</p>
-            <p>商品价格:&nbsp&nbsp&nbsp ￥${product.price}</p>
+            <p>商品价格:&nbsp&nbsp&nbsp ${product.price}</p>
             <p>上架日期:&nbsp&nbsp&nbsp ${product.date}</p>
             <p>购买网址:&nbsp&nbsp&nbsp ${product.link}</p>
           </div>

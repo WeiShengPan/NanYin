@@ -1,5 +1,6 @@
 package cn.nanyin.dao;
 
+import cn.nanyin.model.Book;
 import cn.nanyin.model.Directory;
 import cn.nanyin.model.News;
 import org.hibernate.Query;

@@ -17,7 +17,7 @@
   <%@include file="loginTemplate.jsp"%>
     <title>图库列表</title>
   <script type="text/javascript">
-    var curPage= 1,pageSize=2;
+    var curPage= 1,pageSize=25;
     var totalNum=0,totalPage=0;
     $(document).ready(function(){
       var t= ${type};
@@ -31,9 +31,9 @@
         $("#title").text('电子相册');
       } else if (t == 4) {
         $("#title").text('专题剪影');
-      }else if(type==5){
+      }else if(t==5){
         $("#title").text('珍贵图录');
-      }else if(type==6){
+      }else if(t==6){
         $("#title").text('名家题词');
       }
 
@@ -145,17 +145,17 @@
           <table align="center">
             <thead>
             <tr class="title">
-              <td style="width: 40%">标题</td>
-              <td style="width: 20%">作者</td>
-              <td style="width: 20%">上传日期</td>
-              <td style="width: 20%">点击量</td>
+              <td style="width: 50%">标题</td>
+              <td style="width: 17%">作者</td>
+              <td style="width: 17%">上传日期</td>
+              <td style="width: 16%">点击量</td>
             </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
         <div id="pagination">
-          <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：2 &nbsp</label>
+          <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每页显示条数：25 &nbsp</label>
           <label id="totalNum"></label>
           <label><a href="javascript:void(0)" onclick="firstPage()"> &nbsp[第一页]</a></label>
           <label><a href="javascript:void(0)" onclick="prePage()">[上一页]</a></label>
