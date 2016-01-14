@@ -28,7 +28,7 @@ import java.util.List;
  * Created by 玮晟 on 2015/8/25.
  */
 @Controller
-@AdminAuthority(authorityTypes = AuthorityType.COMMENTS_MANAGEMENT)
+@AdminAuthority(authorityTypes = AuthorityType.ANNOUNCEMENT_MANAGEMENT)
 public class AnnouncementController {
 
     @Autowired

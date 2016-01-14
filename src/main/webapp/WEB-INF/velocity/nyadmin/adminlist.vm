@@ -1,6 +1,17 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(后台账户管理)").parent().addClass("active");
+    $(function () {
+        $("#example1").DataTable();
+        $("#example2").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
     $("#submit").click(function(){
         $("input:checkbox").each(function(){
             if(this.checked==false){
@@ -167,6 +178,14 @@
                                         <label>
                                             <input type="checkbox" name="permission" value="1"/>
                                             留言管理
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permission" value="1"/>
+                                            公告管理
                                         </label>
                                     </div>
                                 </div>

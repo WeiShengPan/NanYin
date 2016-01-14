@@ -1,6 +1,17 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(商城管理)").parent().addClass("active");
+    $(function () {
+        $("#example1").DataTable();
+        $("#example2").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
 </script>')
 <section class="content-header">
     <h1>
