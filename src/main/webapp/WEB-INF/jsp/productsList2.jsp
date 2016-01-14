@@ -55,7 +55,7 @@
           var text=' <div>'+
                   '<a target="_blank" href="index.do?method=productLink&id='+result[i].id+'" title="'+result[i].name+'">' +
                   '<img width="120px" height="160px" src="'+result[i].path+'" border="0"></a><br>'+
-                  '<p class="name">《'+result[i].name+'》</p>'+
+                  '<p class="name">'+result[i].name+'</p>'+
                   '<p class="price">价格: '+result[i].price+'</p>'+
                   '</div>';
           $("#main #products").append(text);
@@ -88,7 +88,7 @@
             var text=' <div>'+
                     '<a target="_blank" href="index.do?method=productLink&id='+result[i].id+'" title="'+result[i].name+'">' +
                     '<img width="120px" height="160px" src="'+result[i].path+'" border="0"></a><br>'+
-                    '<p class="name">《'+result[i].name+'》</p>'+
+                    '<p class="name">'+result[i].name+'</p>'+
                     '<p class="price">价格: '+result[i].price+'</p>'+
                     '</div>';
             $("#main #products").append(text);

@@ -100,13 +100,13 @@
         </ul>
       </li>
       <li>
-        <a href="index.do?method=dispatcher&page=teachingList&type=0">南音教学</a>
+        <a href="index.do?method=dispatcher&page=TeachingList&type=0">南音教学</a>
         <ul>
-          <li><a href="index.do?method=dispatcher&page=teachingList&type=1">工乂谱识谱</a></li>
-          <li><a href="index.do?method=dispatcher&page=teachingList&type=2">乐器技法</a></li>
-          <li><a href="index.do?method=dispatcher&page=teachingList&type=3">唱腔指导曲</a></li>
-          <li><a href="index.do?method=dispatcher&page=teachingList&type=4">名师访谈唱</a></li>
-          <li><a href="index.do?method=dispatcher&page=teachingList&type=5">学习申请</a></li>
+          <li><a href="index.do?method=dispatcher&page=TeachingList&type=1">工乂谱识谱</a></li>
+          <li><a href="index.do?method=dispatcher&page=TeachingList&type=2">乐器技法</a></li>
+          <li><a href="index.do?method=dispatcher&page=TeachingList&type=3">唱腔指导曲</a></li>
+          <li><a href="index.do?method=dispatcher&page=TeachingList&type=4">名师访谈唱</a></li>
+          <li><a href="index.do?method=dispatcher&page=TachingList&type=5">学习申请</a></li>
         </ul>
       </li>
       <li>

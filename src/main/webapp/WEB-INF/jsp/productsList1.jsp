@@ -33,7 +33,7 @@
             $("#books #book"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#books #book"+i).find("a").attr("title",""+result[i].name+"");
             $("#books #book"+i).find("img").attr("src",""+result[i].path+"");
-            $("#books #book"+i+" .name").text('《'+result[i].name+'》');
+            $("#books #book"+i+" .name").text(''+result[i].name+'');
             $("#books #book"+i+" .price").text('价格:'+result[i].price+'');
           }
         }
@@ -53,7 +53,7 @@
             $("#media #media"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#media #media"+i).find("a").attr("title",""+result[i].name+"");
             $("#media #media"+i).find("img").attr("src",""+result[i].path+"");
-            $("#media #media"+i+" .name").text('《'+result[i].name+'》');
+            $("#media #media"+i+" .name").text(''+result[i].name+'');
             $("#media #media"+i+" .price").text('价格:'+result[i].price+'');
           }
         }
@@ -93,7 +93,7 @@
             $("#accompaniment #accompaniment"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#accompaniment #accompaniment"+i).find("a").attr("title",""+result[i].name+"");
             $("#accompaniment #accompaniment"+i).find("img").attr("src",""+result[i].path+"");
-            $("#accompaniment #accompaniment"+i+" .name").text('《'+result[i].name+'》');
+            $("#accompaniment #accompaniment"+i+" .name").text(''+result[i].name+'');
             $("#accompaniment #accompaniment"+i+" .price").text('价格:'+result[i].price+'');
           }
         }
@@ -114,7 +114,7 @@
             $("#album #album"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#album #album"+i).find("a").attr("title",""+result[i].name+"");
             $("#album #album"+i).find("img").attr("src",""+result[i].path+"");
-            $("#album #album"+i+" .name").text('《'+result[i].name+'》');
+            $("#album #album"+i+" .name").text(''+result[i].name+'');
             $("#album #album"+i+" .price").text('价格:'+result[i].price+'');
           }
         }
@@ -135,7 +135,7 @@
             $("#literary #literary"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#literary #literary"+i).find("a").attr("title",""+result[i].name+"");
             $("#literary #literary"+i).find("img").attr("src",""+result[i].path+"");
-            $("#literary #literary"+i+" .name").text('《'+result[i].name+'》');
+            $("#literary #literary"+i+" .name").text(''+result[i].name+'');
             $("#literary #literary"+i+" .price").text('价格:'+result[i].price+'');
           }
         }
@@ -155,7 +155,7 @@
             $("#others #others"+i).find("a").attr("href","index.do?method=productLink&id="+result[i].id+"");
             $("#others #others"+i).find("a").attr("title",""+result[i].name+"");
             $("#others #others"+i).find("img").attr("src",""+result[i].path+"");
-            $("#others #others"+i+" .name").text('《'+result[i].name+'》');
+            $("#others #others"+i+" .name").text(''+result[i].name+'');
             $("#others #others"+i+" .price").text('价格:'+result[i].price+'');
           }
         }

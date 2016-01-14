@@ -24,6 +24,32 @@
         $("#teachingContent").css("display","none");
         $("#hideCont").css("display","block");
       }
+
+      var gcp=$("#teachingGcp").text();
+      var jp=$("#teachingJp").text();
+      if(gcp.indexOf("|")>0){
+        var gcpImages=gcp.split("|");
+        for(var i=0;!(i>=gcpImages.length-1);i++){
+          var text1='<img src="'+gcpImages[i]+'" width="100%"/>';
+          $("#menu_con #gcp").append(text1);
+        }
+      }else{
+        var text1='<img src="'+gcp+'" width="100%"/>';
+        $("#menu_con #gcp").append(text1);
+      }
+
+      if(jp.indexOf("|")){
+        var jpImages=jp.split("|");
+        for(var j=0;!(j>=jpImages.length-1);j++){
+          var text2='<img src="'+jpImages[j]+'" width="100%"/>';
+          $("#menu_con #jp").append(text2);
+        }
+      }else{
+        var text2='<img src="'+jp+'" width="100%"/>';
+        $("#menu_con #jp").append(text2);
+      }
+
+
       $.ajax({
         type:'POST',
         url:'comments.do?method=listTeachingComments',
@@ -112,6 +138,9 @@
 <body>
   <label id="userName" style="display: none"></label>
   <label id="teachingId" style="display: none">${teaching.id}</label>
+  <label id="teachingGcp" style="display: none">${teaching.gcp}</label>
+  <label id="teachingJp" style="display: none">${teaching.jp}</label>
+
   <div id="container">
     <!--引入网页头部-->
     <%@include file="header.jsp"%>
@@ -160,11 +189,11 @@
               <div class="tag" style="display:block">
                 ${teaching.content}
               </div>
-              <div class="tag" style="display:none">
-                 <img src="${teaching.gcp}"  width="100%"/>
+              <div id="gcp" class="tag" style="display:none">
+
               </div>
-              <div class="tag"  style="display:none">
-                 <img src="${teaching.jp}" width="100%"/>
+              <div id="jp" class="tag"  style="display:none">
+
               </div>
             </div>
           </div>

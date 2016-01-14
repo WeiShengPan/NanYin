@@ -105,7 +105,7 @@
         success:function(data){
           var result= $.parseJSON(data);
           for(var i=0;!(i >= result.length);i++){
-            var text='<td align=center><a href="index.do?method=galleryLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=250 height=150 border="0"></a></td>'+
+            var text='<td align=center><a  href="index.do?method=galleryLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=250 height=150 border="0"></a></td>'+
                     '<td align=center>&nbsp&nbsp</td>';
             $("#main_16 .addTr").append(text);
           }
@@ -122,7 +122,7 @@
         success:function(data){
           var result= $.parseJSON(data);
           for(var i=0;!(i >= result.length);i++){
-            var text='<td align=center><a href="index.do?method=productLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=140 height=180 border="0"></a><br><p>'+result[i].name+'</p></td>'+
+            var text='<td align=center><a title="'+result[i].name+'" href="index.do?method=productLink&id='+result[i].id+'"><img src="'+result[i].path+'" width=140 height=180 border="0"></a></td>'+
                     '<td align=center>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>';
             $("#main_9 .addTr").append(text);
           }
@@ -366,13 +366,13 @@
           </ul>
         </li>
         <li>
-          <a href="index.do?method=dispatcher&page=teachingList&type=0">南音教学</a>
+          <a href="index.do?method=dispatcher&page=TeachingList&type=0">南音教学</a>
           <ul>
-            <li><a href="index.do?method=dispatcher&page=teachingList&type=1">工乂谱识谱</a></li>
-            <li><a href="index.do?method=dispatcher&page=teachingList&type=2">乐器技法</a></li>
-            <li><a href="index.do?method=dispatcher&page=teachingList&type=3">唱腔指导</a></li>
-            <li><a href="index.do?method=dispatcher&page=teachingList&type=4">名师访谈</a></li>
-            <li><a href="index.do?method=dispatcher&page=teachingList&type=5">学习申请</a></li>
+            <li><a href="index.do?method=dispatcher&page=TeachingList&type=1">工乂谱识谱</a></li>
+            <li><a href="index.do?method=dispatcher&page=TeachingList&type=2">乐器技法</a></li>
+            <li><a href="index.do?method=dispatcher&page=TeachingList&type=3">唱腔指导</a></li>
+            <li><a href="index.do?method=dispatcher&page=TeachingList&type=4">名师访谈</a></li>
+            <li><a href="index.do?method=dispatcher&page=TeachingList&type=5">学习申请</a></li>
           </ul>
         </li>
         <li>
@@ -624,7 +624,7 @@
             <li  id="college4"><a href="" title="">[南音唱腔]南音套曲刍议（三）</a></li>
             <li  id="college5"><a href="" title="">[滚门曲牌]南音套曲刍议（二）</a></li>
           </ul>
-          <p class="c1" align="right"><a href="#"> >> 更 多 </a></p>
+          <p class="c1" align="right"><a href="index.do?method=dispatcher&page=collegeList&type=0"> >> 更 多 </a></p>
         </div>
         <!--分隔线-->
         <div id="main_16">
