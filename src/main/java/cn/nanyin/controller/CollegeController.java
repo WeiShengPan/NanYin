@@ -55,7 +55,7 @@ public class CollegeController {
     @RequestMapping(value="nyadmin/collegeadd",method = RequestMethod.POST)
     public ModelAndView addCollege(College college) {
         if(college.isVip()==false){
-            college.setIntroduction("");
+            //college.setIntroduction("");
             college.setActiveImages("");
             college.setOrganizationStructure("");
             college.setFile("");

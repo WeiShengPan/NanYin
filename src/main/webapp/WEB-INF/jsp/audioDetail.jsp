@@ -28,6 +28,35 @@
         $("#hideCont").css("display","block");
       }
 
+      var gcp=$("#audioGcp").text();
+      var jp=$("#audioJp").text();
+
+      if(gcp.indexOf("|")>0){
+        var gcpImages=gcp.split("|");
+        for(var i=0;!(i>=gcpImages.length-1);i++){
+          var text1='<img src="'+gcpImages[i]+'" width="100%"/>';
+          $("#menu_con #gcp").append(text1);
+        }
+      }else{
+        var text1='<img src="'+gcp+'" width="100%"/>';
+        $("#menu_con #gcp").append(text1);
+      }
+
+      if(jp.indexOf("|")){
+        var jpImages=jp.split("|");
+        for(var j=0;!(j>=jpImages.length-1);j++){
+          var text2='<img src="'+jpImages[j]+'" width="100%"/>';
+          $("#menu_con #jp").append(text2);
+        }
+      }else{
+        var text2='<img src="'+jp+'" width="100%"/>';
+        $("#menu_con #jp").append(text2);
+      }
+
+
+
+
+
       $.ajax({
         type:'POST',
         url:'comments.do?method=listAudioComments',
@@ -119,6 +148,8 @@
 <body>
   <label id="userName" style="display: none"></label>
   <label id="audioId" style="display: none">${audio.id}</label>
+  <label id="audioGcp" style="display: none">${audio.gcp}</label>
+  <label id="audioJp" style="display: none">${audio.jp}</label>
 
   <div id="container">
     <!--引入网页头部-->
@@ -156,11 +187,11 @@
                   <div class="tag" style="display:block">
                     ${audio.content}
                   </div>
-                  <div class="tag" style="display:none">
-                    <img src="${audio.gcp}" width="100%"/>
+                  <div id="gcp" class="tag" style="display:none">
+
                   </div>
-                  <div class="tag"  style="display:none">
-                    <img src="${audio.jp}" width="100%"/>
+                  <div id="jp" class="tag"  style="display:none">
+
                   </div>
                 </div>
               </div>
