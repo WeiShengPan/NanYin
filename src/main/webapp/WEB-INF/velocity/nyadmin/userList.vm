@@ -1,7 +1,26 @@
 #set($pageJS='
 <script>
     $(".sidebar-menu li.treeview>a:contains(用户管理)").parent().addClass("active");
+    $(function () {
+        $("#example1").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+        $("#example2").DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
 </script>')
+</script>
  <section class="content-header">
      <h1>
          用户管理
@@ -28,7 +47,7 @@
                  </div>
                  <div class="box-body">
                      <div class="col-md-6">
-                         <table id="example2" class="table table-bordered table-hover">
+                         <table id="example1" class="table table-bordered table-hover">
                              <thead>
                              <tr>
                                  <th>用户名</th>
@@ -39,7 +58,7 @@
                              </tr>
                              </thead>
                              <tbody>
-                                 #foreach(${user}in ${userList})
+                                 #foreach(${user}in ${trueUserList})
                                  <tr>
                                      #if(${user.level}=="true")
                                          <td>${user.userName}</td>
@@ -68,7 +87,7 @@
                              </tr>
                              </thead>
                              <tbody>
-                                 #foreach(${user}in ${userList})
+                                 #foreach(${user}in ${falseUserList})
                                  <tr>
                                      #if(${user.level}=="false")
                                          <td>${user.userName}</td>

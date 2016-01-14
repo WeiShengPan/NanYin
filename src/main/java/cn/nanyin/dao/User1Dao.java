@@ -71,4 +71,20 @@ public class User1Dao {
         return query.list();
     }
 
+    public List<User1> getFalseUserList(Integer start,Integer max)
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User1 where level= false");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
+    public List<User1> getTrueUserList(Integer start,Integer max)
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User1 where level= true");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.list();
+    }
+
 }
