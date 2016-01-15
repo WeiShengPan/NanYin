@@ -3,6 +3,7 @@ package cn.nanyin.model;
 import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by gg on 2015/7/9.
@@ -25,6 +26,8 @@ public class News {
     private int hits;       //�����
     private Date addDate;   //����ʱ��
     private String source;
+
+
 
     public long getId() {
         return id;
@@ -99,4 +102,5 @@ public class News {
     public void setFile(String file) {
         this.file = file;
     }
+
 }

@@ -75,7 +75,7 @@ public class CommentsController {
     /*************************发送视频评论**********************/
     @RequestMapping(params = "method=sendVideoComments",produces = "plain/text;charset=UTF-8")
     @ResponseBody
-    public  void sendVideoComments(long videoId,String content, HttpSession session )throws Exception{
+    public void sendVideoComments(long videoId,String content, HttpSession session )throws Exception{
         User1 user=(User1)session.getAttribute("loginUser");
         Video video=videoDao.getVideoById(videoId);
         Date date=new Date();

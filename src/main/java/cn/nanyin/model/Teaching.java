@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 张一平 on 2015/8/20.
@@ -25,6 +26,7 @@ public class Teaching {
     private  String content;//说明
     private String gcp;         //工尺谱
     private String jp;          //简谱
+
 
     public  long getId(){
         return this.id;

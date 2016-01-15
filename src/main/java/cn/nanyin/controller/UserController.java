@@ -40,9 +40,11 @@ public class UserController {
     public ModelAndView showUserList()
     {
         ModelAndView model=new ModelAndView("nyadmin/userList");
-        List<User1> falseUserList =userDao.getFalseUserList(0, 50);
+       // List<User1> falseUserList =userDao.getFalseUserList(0, 50);
+        List<User1> falseUserList =userDao.getFalseUserList();
         model.addObject("falseUserList", falseUserList);
-        List<User1> trueUserList =userDao.getTrueUserList(0, 50);
+        //List<User1> trueUserList =userDao.getTrueUserList(0, 50);
+        List<User1> trueUserList =userDao.getTrueUserList();
         model.addObject("trueUserList", trueUserList);
         return model;
     }

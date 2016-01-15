@@ -2,6 +2,7 @@ package cn.nanyin.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 张一平 on 2015/8/12.
@@ -27,6 +28,7 @@ public class Audio {
     private String content;     //说明
     private String gcp;         //工尺谱
     private String jp;          //简谱
+
 
     public long getId(){
         return this.id;
@@ -88,5 +90,6 @@ public class Audio {
     public void setGcp(String gcp){this.gcp=gcp;}
     public String getJp(){return this.jp;}
     public void setJp(String jp){this.jp=jp;}
+
 
 }

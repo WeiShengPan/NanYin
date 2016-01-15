@@ -28,16 +28,16 @@ public class CommentController {
     @RequestMapping(value="/nyadmin/commentslist",method= RequestMethod.GET)
     public ModelAndView showCollegeList() {
         ModelAndView model=new ModelAndView("nyadmin/commentslist");
-        List<NewsComments> newsCommentsList =commentsDao.getNewsCommentsList(0, 50);
+        List<NewsComments> newsCommentsList =commentsDao.getNewsCommentsList();
         model.addObject("newsCommentsList", newsCommentsList);
 
-        List<VideoComments> videoCommentsList =commentsDao.getVideoCommentsList(0, 50);
+        List<VideoComments> videoCommentsList =commentsDao.getVideoCommentsList();
         model.addObject("videoCommentsList", videoCommentsList);
 
-        List<AudioComments> audioCommentsList =commentsDao.getAudioCommentsList(0, 50);
+        List<AudioComments> audioCommentsList =commentsDao.getAudioCommentsList();
         model.addObject("audioCommentsList", audioCommentsList);
 
-        List<TeachingComments> teachingCommentsList =commentsDao.getTeachingCommentsList(0, 50);
+        List<TeachingComments> teachingCommentsList =commentsDao.getTeachingCommentsList();
         model.addObject("teachingCommentsList", teachingCommentsList);
         return model;
     }

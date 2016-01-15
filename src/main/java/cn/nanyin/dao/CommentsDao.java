@@ -37,6 +37,10 @@ public class CommentsDao {
         query.setMaxResults(max);
         return query.list();
     }
+    public List<NewsComments> getNewsCommentsList( ){
+        Query query = sessionFactory.getCurrentSession().createQuery("from NewsComments order by addDate desc");
+        return query.list();
+    }
 
     public Serializable addNewsComments(NewsComments newsComments) {
         Serializable result= sessionFactory.getCurrentSession().save(newsComments);
@@ -61,6 +65,10 @@ public class CommentsDao {
         Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments order by addDate desc");
         query.setFirstResult(start);
         query.setMaxResults(max);
+        return query.list();
+    }
+    public List<VideoComments> getVideoCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from VideoComments order by addDate desc");
         return query.list();
     }
 
@@ -90,6 +98,10 @@ public class CommentsDao {
         query.setMaxResults(max);
         return query.list();
     }
+    public List<AudioComments> getAudioCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from AudioComments order by addDate desc");
+        return query.list();
+    }
 
     public Serializable addAudioComments(AudioComments audioComments) {
         Serializable result= sessionFactory.getCurrentSession().save(audioComments);
@@ -115,6 +127,10 @@ public class CommentsDao {
         Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments order by addDate desc");
         query.setFirstResult(start);
         query.setMaxResults(max);
+        return query.list();
+    }
+    public List<TeachingComments> getTeachingCommentsList(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from TeachingComments order by addDate desc");
         return query.list();
     }
     public Serializable addTeachingComment(TeachingComments teachingComments) {

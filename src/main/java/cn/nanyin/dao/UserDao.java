@@ -30,6 +30,11 @@ public class UserDao {
         query.setMaxResults(max);
         return query.list();
     }
+    public List<User> getUserList()
+    {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User");
+        return query.list();
+    }
 
     public User findUser(String name,String psw){
         Query query = sessionFactory.getCurrentSession().createQuery("from User where username ='"+name+"' and password ='"+psw+" '");
